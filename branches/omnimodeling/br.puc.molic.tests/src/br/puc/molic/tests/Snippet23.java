@@ -30,7 +30,6 @@ public class Snippet23 {
     shell.addListener(SWT.MouseMove, new Listener() {
         public void handleEvent(Event e) {	     
   	      if(Snippet23.down){
-  	    	//System.out.println(e.x+"."+e.y);
   	    	gc.drawPoint(e.x, e.y);
   	      }  	      	
         }
