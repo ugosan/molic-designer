@@ -76,6 +76,13 @@
     <ownedChild>
       <domainMetaElement
           href="molic.ecore#//UbiquitousAccess"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="molic.gmfgraph#UbiquitousAccessLabel"/>
+        <features
+            href="molic.ecore#//UbiquitousAccess/label"/>
+      </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
           href="molic.gmftool#//@palette/@tools.6"/>

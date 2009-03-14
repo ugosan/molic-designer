@@ -19,6 +19,7 @@ import br.puc.molic.diagram.edit.parts.SceneDialogueEditPart;
 import br.puc.molic.diagram.edit.parts.SceneNameEditPart;
 import br.puc.molic.diagram.edit.parts.SceneTopicEditPart;
 import br.puc.molic.diagram.edit.parts.UtteranceLabelEditPart;
+import br.puc.molic.diagram.edit.parts.WrappingLabelEditPart;
 import br.puc.molic.diagram.parsers.CompositeParser;
 import br.puc.molic.diagram.parsers.MessageFormatParser;
 import br.puc.molic.diagram.parsers.NativeParser;
@@ -112,6 +113,31 @@ public class MolicParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser ubiquitousAccessLabel_5007Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getUbiquitousAccessLabel_5007Parser() {
+		if (ubiquitousAccessLabel_5007Parser == null) {
+			ubiquitousAccessLabel_5007Parser = createUbiquitousAccessLabel_5007Parser();
+		}
+		return ubiquitousAccessLabel_5007Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createUbiquitousAccessLabel_5007Parser() {
+		EAttribute[] features = new EAttribute[] { MolicPackage.eINSTANCE
+				.getUbiquitousAccess_Label(), };
+		MessageFormatParser parser = new MessageFormatParser(features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser utteranceLabel_6001Parser;
 
 	/**
@@ -170,6 +196,8 @@ public class MolicParserProvider extends AbstractProvider implements
 			return getSceneDialogue_5005Parser();
 		case MonologueLabelEditPart.VISUAL_ID:
 			return getMonologueLabel_5006Parser();
+		case WrappingLabelEditPart.VISUAL_ID:
+			return getUbiquitousAccessLabel_5007Parser();
 		case UtteranceLabelEditPart.VISUAL_ID:
 			return getUtteranceLabel_6001Parser();
 		case BRTUtteranceLabelEditPart.VISUAL_ID:

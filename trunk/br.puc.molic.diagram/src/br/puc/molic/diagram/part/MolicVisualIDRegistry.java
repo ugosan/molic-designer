@@ -26,6 +26,7 @@ import br.puc.molic.diagram.edit.parts.SystemProcessEditPart;
 import br.puc.molic.diagram.edit.parts.UbiquitousAccessEditPart;
 import br.puc.molic.diagram.edit.parts.UtteranceEditPart;
 import br.puc.molic.diagram.edit.parts.UtteranceLabelEditPart;
+import br.puc.molic.diagram.edit.parts.WrappingLabelEditPart;
 
 /**
  * This registry is used to determine which type of visual object should be
@@ -195,6 +196,11 @@ public class MolicVisualIDRegistry {
 			break;
 		case MonologueEditPart.VISUAL_ID:
 			if (MonologueLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case UbiquitousAccessEditPart.VISUAL_ID:
+			if (WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

@@ -1,6 +1,8 @@
 package br.puc.molic.diagram.edit.parts;
 
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.StackLayout;
@@ -12,13 +14,17 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 
 import br.puc.molic.diagram.edit.policies.UbiquitousAccessItemSemanticEditPolicy;
+import br.puc.molic.diagram.part.MolicVisualIDRegistry;
 
 /**
  * @generated
@@ -104,6 +110,54 @@ public class UbiquitousAccessEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof WrappingLabelEditPart) {
+			((WrappingLabelEditPart) childEditPart).setLabel(getPrimaryShape()
+					.getFigureUbiquitousAccessLabel());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+
+		return super.getContentPaneFor(editPart);
+	}
+
+	/**
+	 * @generated
+	 */
 	protected NodeFigure createNodePlate() {
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
 				.DPtoLP(100), getMapMode().DPtoLP(40));
@@ -134,6 +188,11 @@ public class UbiquitousAccessEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
+		if (nodeShape.getLayoutManager() == null) {
+			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
+			layout.setSpacing(getMapMode().DPtoLP(5));
+			nodeShape.setLayoutManager(layout);
+		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
 
@@ -150,12 +209,31 @@ public class UbiquitousAccessEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(MolicVisualIDRegistry
+				.getType(WrappingLabelEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
 	public class UbiquitousAccessFigure extends RoundedRectangle {
 
 		/**
 		 * @generated
 		 */
+		private WrappingLabel fFigureUbiquitousAccessLabel;
+
+		/**
+		 * @generated
+		 */
 		public UbiquitousAccessFigure() {
+
+			GridLayout layoutThis = new GridLayout();
+			layoutThis.numColumns = 1;
+			layoutThis.makeColumnsEqualWidth = true;
+			this.setLayoutManager(layoutThis);
+
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(20),
 					getMapMode().DPtoLP(20)));
 			this.setLineWidth(2);
@@ -163,6 +241,28 @@ public class UbiquitousAccessEditPart extends ShapeNodeEditPart {
 			this.setBackgroundColor(ColorConstants.lightGray);
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100),
 					getMapMode().DPtoLP(40)));
+			createContents();
+		}
+
+		/**
+		 * @generated
+		 */
+		private void createContents() {
+
+			fFigureUbiquitousAccessLabel = new WrappingLabel();
+			fFigureUbiquitousAccessLabel.setText(" ");
+
+			GridData constraintFFigureUbiquitousAccessLabel = new GridData();
+			constraintFFigureUbiquitousAccessLabel.verticalAlignment = GridData.CENTER;
+			constraintFFigureUbiquitousAccessLabel.horizontalAlignment = GridData.CENTER;
+			constraintFFigureUbiquitousAccessLabel.horizontalIndent = 0;
+			constraintFFigureUbiquitousAccessLabel.horizontalSpan = 1;
+			constraintFFigureUbiquitousAccessLabel.verticalSpan = 1;
+			constraintFFigureUbiquitousAccessLabel.grabExcessHorizontalSpace = true;
+			constraintFFigureUbiquitousAccessLabel.grabExcessVerticalSpace = true;
+			this.add(fFigureUbiquitousAccessLabel,
+					constraintFFigureUbiquitousAccessLabel);
+
 		}
 
 		/**
@@ -182,6 +282,13 @@ public class UbiquitousAccessEditPart extends ShapeNodeEditPart {
 		 */
 		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
 			myUseLocalCoordinates = useLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureUbiquitousAccessLabel() {
+			return fFigureUbiquitousAccessLabel;
 		}
 
 	}

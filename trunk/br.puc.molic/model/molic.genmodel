@@ -27,7 +27,9 @@
     <genClasses ecoreClass="molic.ecore#//Utterance"/>
     <genClasses ecoreClass="molic.ecore#//BRTUtterance"/>
     <genClasses ecoreClass="molic.ecore#//SystemProcess"/>
-    <genClasses ecoreClass="molic.ecore#//UbiquitousAccess"/>
+    <genClasses ecoreClass="molic.ecore#//UbiquitousAccess">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//UbiquitousAccess/label"/>
+    </genClasses>
     <genClasses ecoreClass="molic.ecore#//OpeningPoint"/>
     <genClasses ecoreClass="molic.ecore#//ClosingPoint"/>
   </genPackages>

@@ -22,6 +22,7 @@ import br.puc.molic.diagram.edit.parts.SystemProcessEditPart;
 import br.puc.molic.diagram.edit.parts.UbiquitousAccessEditPart;
 import br.puc.molic.diagram.edit.parts.UtteranceEditPart;
 import br.puc.molic.diagram.edit.parts.UtteranceLabelEditPart;
+import br.puc.molic.diagram.edit.parts.WrappingLabelEditPart;
 import br.puc.molic.diagram.part.MolicVisualIDRegistry;
 import br.puc.molic.diagram.view.factories.BRTUtteranceLabelViewFactory;
 import br.puc.molic.diagram.view.factories.BRTUtteranceViewFactory;
@@ -38,6 +39,7 @@ import br.puc.molic.diagram.view.factories.SystemProcessViewFactory;
 import br.puc.molic.diagram.view.factories.UbiquitousAccessViewFactory;
 import br.puc.molic.diagram.view.factories.UtteranceLabelViewFactory;
 import br.puc.molic.diagram.view.factories.UtteranceViewFactory;
+import br.puc.molic.diagram.view.factories.WrappingLabelViewFactory;
 
 /**
  * @generated
@@ -136,6 +138,13 @@ public class MolicViewProvider extends AbstractViewProvider {
 						return null; // wrong container
 					}
 					break;
+				case WrappingLabelEditPart.VISUAL_ID:
+					if (UbiquitousAccessEditPart.VISUAL_ID != MolicVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
 				case UtteranceLabelEditPart.VISUAL_ID:
 					if (UtteranceEditPart.VISUAL_ID != MolicVisualIDRegistry
 							.getVisualID(containerView)
@@ -182,6 +191,8 @@ public class MolicViewProvider extends AbstractViewProvider {
 			return MonologueLabelViewFactory.class;
 		case UbiquitousAccessEditPart.VISUAL_ID:
 			return UbiquitousAccessViewFactory.class;
+		case WrappingLabelEditPart.VISUAL_ID:
+			return WrappingLabelViewFactory.class;
 		case OpeningPointEditPart.VISUAL_ID:
 			return OpeningPointViewFactory.class;
 		case ClosingPointEditPart.VISUAL_ID:
