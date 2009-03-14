@@ -349,13 +349,22 @@ public interface MolicPackage extends EPackage {
 	int UBIQUITOUS_ACCESS = 8;
 
 	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UBIQUITOUS_ACCESS__LABEL = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Ubiquitous Access</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UBIQUITOUS_ACCESS_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
+	int UBIQUITOUS_ACCESS_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
 
 
 	/**
@@ -532,6 +541,17 @@ public interface MolicPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getUbiquitousAccess();
+
+	/**
+	 * Returns the meta object for the attribute '{@link br.puc.molic.UbiquitousAccess#getLabel <em>Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Label</em>'.
+	 * @see br.puc.molic.UbiquitousAccess#getLabel()
+	 * @see #getUbiquitousAccess()
+	 * @generated
+	 */
+	EAttribute getUbiquitousAccess_Label();
 
 	/**
 	 * Returns the meta object for class '{@link br.puc.molic.OpeningPoint <em>Opening Point</em>}'.
@@ -737,6 +757,14 @@ public interface MolicPackage extends EPackage {
 		 * @generated
 		 */
 		EClass UBIQUITOUS_ACCESS = eINSTANCE.getUbiquitousAccess();
+
+			/**
+		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UBIQUITOUS_ACCESS__LABEL = eINSTANCE.getUbiquitousAccess_Label();
 
 			/**
 		 * The meta object literal for the '{@link br.puc.molic.impl.OpeningPointImpl <em>Opening Point</em>}' class.

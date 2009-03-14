@@ -300,6 +300,15 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getUbiquitousAccess_Label() {
+		return (EAttribute)ubiquitousAccessEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOpeningPoint() {
 		return openingPointEClass;
 	}
@@ -402,6 +411,7 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
 		systemProcessEClass = createEClass(SYSTEM_PROCESS);
 
 		ubiquitousAccessEClass = createEClass(UBIQUITOUS_ACCESS);
+		createEAttribute(ubiquitousAccessEClass, UBIQUITOUS_ACCESS__LABEL);
 
 		openingPointEClass = createEClass(OPENING_POINT);
 
@@ -467,6 +477,7 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
 		initEClass(systemProcessEClass, SystemProcess.class, "SystemProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(ubiquitousAccessEClass, UbiquitousAccess.class, "UbiquitousAccess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUbiquitousAccess_Label(), ecorePackage.getEString(), "label", null, 0, 1, UbiquitousAccess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(openingPointEClass, OpeningPoint.class, "OpeningPoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

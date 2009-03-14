@@ -54,6 +54,9 @@ public class MolicEditPartFactory implements EditPartFactory {
 			case UbiquitousAccessEditPart.VISUAL_ID:
 				return new UbiquitousAccessEditPart(view);
 
+			case WrappingLabelEditPart.VISUAL_ID:
+				return new WrappingLabelEditPart(view);
+
 			case OpeningPointEditPart.VISUAL_ID:
 				return new OpeningPointEditPart(view);
 

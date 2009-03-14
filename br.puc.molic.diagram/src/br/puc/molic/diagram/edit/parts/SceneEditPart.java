@@ -4,11 +4,16 @@
 package br.puc.molic.diagram.edit.parts;
 
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.CompoundBorder;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.LineBorder;
+import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.MouseListener;
+import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -269,26 +274,31 @@ public class SceneEditPart extends ShapeNodeEditPart {
 		}
 
 		/**
-		 * @generated NOT
+		 * @generated
 		 */
 		private void createContents() {
 
-			fFigureSceneTopicFigure = new WrapLabel();
-			fFigureSceneTopicFigure.setText("<...>");
+			fFigureSceneTopicFigure = new WrappingLabel();
+			fFigureSceneTopicFigure.setText("Untitled Scene");
 
-			GridData constraintFFigureSceneNameFigure = new GridData();
-			constraintFFigureSceneNameFigure.verticalAlignment = GridData.BEGINNING;
-			constraintFFigureSceneNameFigure.horizontalAlignment = GridData.CENTER;
-			constraintFFigureSceneNameFigure.horizontalIndent = 0;
-			constraintFFigureSceneNameFigure.horizontalSpan = 1;
-			constraintFFigureSceneNameFigure.verticalSpan = 1;
-			constraintFFigureSceneNameFigure.grabExcessHorizontalSpace = true;
-			constraintFFigureSceneNameFigure.grabExcessVerticalSpace = false;
-			this.add(fFigureSceneTopicFigure, constraintFFigureSceneNameFigure);
+			fFigureSceneTopicFigure.setFont(FFIGURESCENETOPICFIGURE_FONT);
 
-			fFigureDialogueFigure = new WrapLabel();
-			fFigureDialogueFigure.setText("Click to edit the dialogue...");
-			fFigureDialogueFigure.setTextWrap(true);
+			GridData constraintFFigureSceneTopicFigure = new GridData();
+			constraintFFigureSceneTopicFigure.verticalAlignment = GridData.BEGINNING;
+			constraintFFigureSceneTopicFigure.horizontalAlignment = GridData.CENTER;
+			constraintFFigureSceneTopicFigure.horizontalIndent = 0;
+			constraintFFigureSceneTopicFigure.horizontalSpan = 1;
+			constraintFFigureSceneTopicFigure.verticalSpan = 1;
+			constraintFFigureSceneTopicFigure.grabExcessHorizontalSpace = true;
+			constraintFFigureSceneTopicFigure.grabExcessVerticalSpace = false;
+			this
+					.add(fFigureSceneTopicFigure,
+							constraintFFigureSceneTopicFigure);
+
+			fFigureDialogueFigure = new WrappingLabel();
+			fFigureDialogueFigure.setText("Click to edit...");
+			fFigureDialogueFigure.setBorder(new LineBorder(null, getMapMode()
+					.DPtoLP(1)));
 
 			GridData constraintFFigureDialogueFigure = new GridData();
 			constraintFFigureDialogueFigure.verticalAlignment = GridData.FILL;
@@ -301,6 +311,40 @@ public class SceneEditPart extends ShapeNodeEditPart {
 			this.add(fFigureDialogueFigure, constraintFFigureDialogueFigure);
 
 		}
+
+		/**
+		 *
+			private void createContents() {
+
+				fFigureSceneTopicFigure = new WrapLabel();
+				fFigureSceneTopicFigure.setText("<...>");
+
+				GridData constraintFFigureSceneNameFigure = new GridData();
+				constraintFFigureSceneNameFigure.verticalAlignment = GridData.BEGINNING;
+				constraintFFigureSceneNameFigure.horizontalAlignment = GridData.CENTER;
+				constraintFFigureSceneNameFigure.horizontalIndent = 0;
+				constraintFFigureSceneNameFigure.horizontalSpan = 1;
+				constraintFFigureSceneNameFigure.verticalSpan = 1;
+				constraintFFigureSceneNameFigure.grabExcessHorizontalSpace = true;
+				constraintFFigureSceneNameFigure.grabExcessVerticalSpace = false;
+				this.add(fFigureSceneTopicFigure, constraintFFigureSceneNameFigure);
+
+				fFigureDialogueFigure = new WrapLabel();
+				fFigureDialogueFigure.setText("Click to edit the dialogue...");
+				fFigureDialogueFigure.setTextWrap(true);
+
+				GridData constraintFFigureDialogueFigure = new GridData();
+				constraintFFigureDialogueFigure.verticalAlignment = GridData.FILL;
+				constraintFFigureDialogueFigure.horizontalAlignment = GridData.FILL;
+				constraintFFigureDialogueFigure.horizontalIndent = 0;
+				constraintFFigureDialogueFigure.horizontalSpan = 1;
+				constraintFFigureDialogueFigure.verticalSpan = 1;
+				constraintFFigureDialogueFigure.grabExcessHorizontalSpace = true;
+				constraintFFigureDialogueFigure.grabExcessVerticalSpace = true;
+				this.add(fFigureDialogueFigure, constraintFFigureDialogueFigure);
+
+			} 
+		 */
 
 		/**
 		 * @generated
