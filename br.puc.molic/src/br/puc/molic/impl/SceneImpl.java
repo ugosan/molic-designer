@@ -21,7 +21,7 @@ import br.puc.molic.Scene;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link br.puc.molic.impl.SceneImpl#getName <em>Name</em>}</li>
+ *   <li>{@link br.puc.molic.impl.SceneImpl#getTopic <em>Topic</em>}</li>
  *   <li>{@link br.puc.molic.impl.SceneImpl#getDialogue <em>Dialogue</em>}</li>
  * </ul>
  * </p>
@@ -30,24 +30,24 @@ import br.puc.molic.Scene;
  */
 public class SceneImpl extends EObjectImpl implements Scene {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The default value of the '{@link #getTopic() <em>Topic</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getTopic()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NAME_EDEFAULT = null;
+	protected static final String TOPIC_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * The cached value of the '{@link #getTopic() <em>Topic</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
+	 * @see #getTopic()
 	 * @generated
 	 * @ordered
 	 */
-	protected String name = NAME_EDEFAULT;
+	protected String topic = TOPIC_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDialogue() <em>Dialogue</em>}' attribute.
@@ -92,8 +92,8 @@ public class SceneImpl extends EObjectImpl implements Scene {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
+	public String getTopic() {
+		return topic;
 	}
 
 	/**
@@ -101,11 +101,11 @@ public class SceneImpl extends EObjectImpl implements Scene {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
+	public void setTopic(String newTopic) {
+		String oldTopic = topic;
+		topic = newTopic;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.SCENE__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.SCENE__TOPIC, oldTopic, topic));
 	}
 
 	/**
@@ -136,8 +136,8 @@ public class SceneImpl extends EObjectImpl implements Scene {
 	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MolicPackage.SCENE__NAME:
-				return getName();
+			case MolicPackage.SCENE__TOPIC:
+				return getTopic();
 			case MolicPackage.SCENE__DIALOGUE:
 				return getDialogue();
 		}
@@ -151,8 +151,8 @@ public class SceneImpl extends EObjectImpl implements Scene {
 	 */
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MolicPackage.SCENE__NAME:
-				setName((String)newValue);
+			case MolicPackage.SCENE__TOPIC:
+				setTopic((String)newValue);
 				return;
 			case MolicPackage.SCENE__DIALOGUE:
 				setDialogue((String)newValue);
@@ -168,8 +168,8 @@ public class SceneImpl extends EObjectImpl implements Scene {
 	 */
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MolicPackage.SCENE__NAME:
-				setName(NAME_EDEFAULT);
+			case MolicPackage.SCENE__TOPIC:
+				setTopic(TOPIC_EDEFAULT);
 				return;
 			case MolicPackage.SCENE__DIALOGUE:
 				setDialogue(DIALOGUE_EDEFAULT);
@@ -185,8 +185,8 @@ public class SceneImpl extends EObjectImpl implements Scene {
 	 */
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MolicPackage.SCENE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case MolicPackage.SCENE__TOPIC:
+				return TOPIC_EDEFAULT == null ? topic != null : !TOPIC_EDEFAULT.equals(topic);
 			case MolicPackage.SCENE__DIALOGUE:
 				return DIALOGUE_EDEFAULT == null ? dialogue != null : !DIALOGUE_EDEFAULT.equals(dialogue);
 		}
@@ -202,8 +202,8 @@ public class SceneImpl extends EObjectImpl implements Scene {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
+		result.append(" (topic: ");
+		result.append(topic);
 		result.append(", dialogue: ");
 		result.append(dialogue);
 		result.append(')');

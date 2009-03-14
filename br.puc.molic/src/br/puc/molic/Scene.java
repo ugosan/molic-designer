@@ -15,7 +15,7 @@ package br.puc.molic;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link br.puc.molic.Scene#getName <em>Name</em>}</li>
+ *   <li>{@link br.puc.molic.Scene#getTopic <em>Topic</em>}</li>
  *   <li>{@link br.puc.molic.Scene#getDialogue <em>Dialogue</em>}</li>
  * </ul>
  * </p>
@@ -26,30 +26,30 @@ package br.puc.molic;
  */
 public interface Scene extends Element {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Topic</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Topic</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see br.puc.molic.MolicPackage#getScene_Name()
+	 * @return the value of the '<em>Topic</em>' attribute.
+	 * @see #setTopic(String)
+	 * @see br.puc.molic.MolicPackage#getScene_Topic()
 	 * @model
 	 * @generated
 	 */
-	String getName();
+	String getTopic();
 
 	/**
-	 * Sets the value of the '{@link br.puc.molic.Scene#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link br.puc.molic.Scene#getTopic <em>Topic</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
+	 * @param value the new value of the '<em>Topic</em>' attribute.
+	 * @see #getTopic()
 	 * @generated
 	 */
-	void setName(String value);
+	void setTopic(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Dialogue</b></em>' attribute.

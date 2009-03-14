@@ -18,7 +18,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference molic.ecore#//Connection/target"/>
     </genClasses>
     <genClasses ecoreClass="molic.ecore#//Scene">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Scene/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Scene/topic"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Scene/dialogue"/>
     </genClasses>
     <genClasses ecoreClass="molic.ecore#//Monologue">

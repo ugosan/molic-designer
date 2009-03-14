@@ -8,6 +8,7 @@ import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MouseListener;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -18,9 +19,13 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -120,9 +125,9 @@ public class SceneEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof SceneNameEditPart) {
-			((SceneNameEditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureSceneNameFigure());
+		if (childEditPart instanceof SceneTopicEditPart) {
+			((SceneTopicEditPart) childEditPart).setLabel(getPrimaryShape()
+					.getFigureSceneTopicFigure());
 			return true;
 		}
 		if (childEditPart instanceof SceneDialogueEditPart) {
@@ -181,8 +186,8 @@ public class SceneEditPart extends ShapeNodeEditPart {
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so
-	 * you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -227,7 +232,7 @@ public class SceneEditPart extends ShapeNodeEditPart {
 	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(MolicVisualIDRegistry
-				.getType(SceneNameEditPart.VISUAL_ID));
+				.getType(SceneTopicEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -238,7 +243,7 @@ public class SceneEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fFigureSceneNameFigure;
+		private WrappingLabel fFigureSceneTopicFigure;
 		/**
 		 * @generated
 		 */
@@ -268,8 +273,8 @@ public class SceneEditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			fFigureSceneNameFigure = new WrapLabel();
-			fFigureSceneNameFigure.setText("<...>");
+			fFigureSceneTopicFigure = new WrapLabel();
+			fFigureSceneTopicFigure.setText("<...>");
 
 			GridData constraintFFigureSceneNameFigure = new GridData();
 			constraintFFigureSceneNameFigure.verticalAlignment = GridData.BEGINNING;
@@ -279,10 +284,10 @@ public class SceneEditPart extends ShapeNodeEditPart {
 			constraintFFigureSceneNameFigure.verticalSpan = 1;
 			constraintFFigureSceneNameFigure.grabExcessHorizontalSpace = true;
 			constraintFFigureSceneNameFigure.grabExcessVerticalSpace = false;
-			this.add(fFigureSceneNameFigure, constraintFFigureSceneNameFigure);
+			this.add(fFigureSceneTopicFigure, constraintFFigureSceneNameFigure);
 
 			fFigureDialogueFigure = new WrapLabel();
-			fFigureDialogueFigure.setText("Click to edit...");
+			fFigureDialogueFigure.setText("Click to edit the dialogue...");
 			fFigureDialogueFigure.setTextWrap(true);
 
 			GridData constraintFFigureDialogueFigure = new GridData();
@@ -319,8 +324,8 @@ public class SceneEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getFigureSceneNameFigure() {
-			return fFigureSceneNameFigure;
+		public WrappingLabel getFigureSceneTopicFigure() {
+			return fFigureSceneTopicFigure;
 		}
 
 		/**
@@ -335,7 +340,7 @@ public class SceneEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Font FFIGURESCENENAMEFIGURE_FONT = new Font(Display
+	static final Font FFIGURESCENETOPICFIGURE_FONT = new Font(Display
 			.getCurrent(), "sans", 10, SWT.NORMAL);
 
 }

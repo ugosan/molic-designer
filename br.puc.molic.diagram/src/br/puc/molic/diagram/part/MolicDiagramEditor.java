@@ -3,44 +3,37 @@
  */
 package br.puc.molic.diagram.part;
 
-import java.util.ArrayList;
-
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.edit.ui.provider.PropertySource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.palette.PaletteRoot;
-import org.eclipse.gef.requests.CreateConnectionRequest;
+import org.eclipse.gef.ui.properties.UndoablePropertySheetEntry;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.GC;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
-
-import br.puc.molic.diagram.edit.parts.SceneEditPart;
-import br.puc.molic.diagram.edit.policies.DiagramCanonicalEditPolicy;
-import br.puc.molic.diagram.providers.MolicElementTypes;
+import org.eclipse.ui.views.properties.IPropertySource;
+import org.eclipse.ui.views.properties.IPropertySourceProvider;
+import org.eclipse.ui.views.properties.PropertySheetPage;
 
 /**
  * @generated
  */
 public class MolicDiagramEditor extends DiagramDocumentEditor {
+
+	private AdapterFactory fAdapterFactory;
+
+	private AdapterFactoryContentProvider adapterFactoryConentProvider;
 
 	/**
 	 * @generated
@@ -52,31 +45,44 @@ public class MolicDiagramEditor extends DiagramDocumentEditor {
 	 */
 	public static final String CONTEXT_ID = "br.puc.molic.diagram.ui.diagramContext"; //$NON-NLS-1$
 
-	private IContentOutlinePage fOutlinePage;
-
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public MolicDiagramEditor() {
+
 		super(true);
+		fAdapterFactory = new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		adapterFactoryConentProvider = new AdapterFactoryContentProvider(
+				fAdapterFactory);
 	}
 
 	@Override
 	public Object getAdapter(Class type) {
-		// TODO Auto-generated method stub
+		if (type == org.eclipse.ui.views.properties.IPropertySheetPage.class) {
+			PropertySheetPage page = new PropertySheetPage();
+			UndoablePropertySheetEntry root = new UndoablePropertySheetEntry(
+					getCommandStack());
+			root.setPropertySourceProvider(new IPropertySourceProvider() {
+				public IPropertySource getPropertySource(Object object) {
+					if (object instanceof EditPart) {
+						Object model = ((EditPart) object).getModel();
 
-		if (IContentOutlinePage.class.equals(type)) {
+						View v = (View) model;
 
-			/*
-			 * if (fOutlinePage == null) { fOutlinePage= new
-			 * ProcessDetailsOutlinePage(getDocumentProvider(), this);
-			 * 
-			 * if (getEditorInput() != null)
-			 * fOutlinePage.setInput(getEditorInput()); } return fOutlinePage;
-			 */
-
+						return new PropertySource(v.getElement(),
+								(IItemPropertySource) fAdapterFactory.adapt(v
+										.getElement(),
+										IItemPropertySource.class));
+					} else {
+						return adapterFactoryConentProvider
+								.getPropertySource(object);
+					}
+				}
+			});
+			page.setRootEntry(root);
+			return page;
 		}
-
 		return super.getAdapter(type);
 	}
 

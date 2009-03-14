@@ -219,7 +219,7 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getScene_Name() {
+	public EAttribute getScene_Topic() {
 		return (EAttribute)sceneEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -389,7 +389,7 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
 		createEReference(connectionEClass, CONNECTION__TARGET);
 
 		sceneEClass = createEClass(SCENE);
-		createEAttribute(sceneEClass, SCENE__NAME);
+		createEAttribute(sceneEClass, SCENE__TOPIC);
 		createEAttribute(sceneEClass, SCENE__DIALOGUE);
 
 		monologueEClass = createEClass(MONOLOGUE);
@@ -454,7 +454,7 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
 		initEReference(getConnection_Target(), this.getElement(), null, "target", null, 0, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sceneEClass, Scene.class, "Scene", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getScene_Name(), ecorePackage.getEString(), "name", null, 0, 1, Scene.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getScene_Topic(), ecorePackage.getEString(), "topic", null, 0, 1, Scene.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getScene_Dialogue(), ecorePackage.getEString(), "dialogue", null, 0, 1, Scene.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(monologueEClass, Monologue.class, "Monologue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

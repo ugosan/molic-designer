@@ -21,7 +21,7 @@
             dy="100"/>
         <children
             xsi:type="gmfgraph:Label"
-            name="SceneNameFigure"
+            name="SceneTopicFigure"
             text="Untitled Scene">
           <layoutData
               xsi:type="gmfgraph:GridLayoutData"
@@ -45,6 +45,7 @@
         </children>
       </actualFigure>
       <accessors
+          accessor="getFigureSceneTopicFigure"
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
       <accessors
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
@@ -242,7 +243,7 @@
       name="BRTUtterance"
       figure="BRTUtteranceFigure"/>
   <labels
-      name="SceneName"
+      name="SceneTopic"
       figure="SceneFigure"
       elementIcon="false"
       accessor="//@figures.0/@descriptors.0/@accessors.0"/>

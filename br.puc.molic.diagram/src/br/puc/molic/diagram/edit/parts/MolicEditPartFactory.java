@@ -36,8 +36,8 @@ public class MolicEditPartFactory implements EditPartFactory {
 			case SceneEditPart.VISUAL_ID:
 				return new SceneEditPart(view);
 
-			case SceneNameEditPart.VISUAL_ID:
-				return new SceneNameEditPart(view);
+			case SceneTopicEditPart.VISUAL_ID:
+				return new SceneTopicEditPart(view);
 
 			case SceneDialogueEditPart.VISUAL_ID:
 				return new SceneDialogueEditPart(view);
