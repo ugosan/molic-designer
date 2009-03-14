@@ -17,6 +17,7 @@ import br.puc.molic.diagram.edit.parts.OpeningPointEditPart;
 import br.puc.molic.diagram.edit.parts.SceneDialogueEditPart;
 import br.puc.molic.diagram.edit.parts.SceneEditPart;
 import br.puc.molic.diagram.edit.parts.SceneNameEditPart;
+import br.puc.molic.diagram.edit.parts.SceneTopicEditPart;
 import br.puc.molic.diagram.edit.parts.SystemProcessEditPart;
 import br.puc.molic.diagram.edit.parts.UbiquitousAccessEditPart;
 import br.puc.molic.diagram.edit.parts.UtteranceEditPart;
@@ -31,6 +32,7 @@ import br.puc.molic.diagram.view.factories.MonologueViewFactory;
 import br.puc.molic.diagram.view.factories.OpeningPointViewFactory;
 import br.puc.molic.diagram.view.factories.SceneDialogueViewFactory;
 import br.puc.molic.diagram.view.factories.SceneNameViewFactory;
+import br.puc.molic.diagram.view.factories.SceneTopicViewFactory;
 import br.puc.molic.diagram.view.factories.SceneViewFactory;
 import br.puc.molic.diagram.view.factories.SystemProcessViewFactory;
 import br.puc.molic.diagram.view.factories.UbiquitousAccessViewFactory;
@@ -119,7 +121,7 @@ public class MolicViewProvider extends AbstractViewProvider {
 						return null; // visual id in semantic hint should match visual id for domain element
 					}
 					break;
-				case SceneNameEditPart.VISUAL_ID:
+				case SceneTopicEditPart.VISUAL_ID:
 				case SceneDialogueEditPart.VISUAL_ID:
 					if (SceneEditPart.VISUAL_ID != MolicVisualIDRegistry
 							.getVisualID(containerView)
@@ -168,8 +170,8 @@ public class MolicViewProvider extends AbstractViewProvider {
 		switch (visualID) {
 		case SceneEditPart.VISUAL_ID:
 			return SceneViewFactory.class;
-		case SceneNameEditPart.VISUAL_ID:
-			return SceneNameViewFactory.class;
+		case SceneTopicEditPart.VISUAL_ID:
+			return SceneTopicViewFactory.class;
 		case SceneDialogueEditPart.VISUAL_ID:
 			return SceneDialogueViewFactory.class;
 		case SystemProcessEditPart.VISUAL_ID:

@@ -20,6 +20,7 @@ import br.puc.molic.diagram.edit.parts.DiagramEditPart;
 import br.puc.molic.diagram.edit.parts.SceneDialogueEditPart;
 import br.puc.molic.diagram.edit.parts.SceneEditPart;
 import br.puc.molic.diagram.edit.parts.SceneNameEditPart;
+import br.puc.molic.diagram.edit.parts.SceneTopicEditPart;
 import br.puc.molic.diagram.part.MolicVisualIDRegistry;
 
 /**
@@ -64,7 +65,7 @@ public class SceneViewFactory extends AbstractShapeViewFactory {
 			eObjectAdapter = new EObjectAdapter(eObject);
 		}
 		getViewService().createNode(eObjectAdapter, view,
-				MolicVisualIDRegistry.getType(SceneNameEditPart.VISUAL_ID),
+				MolicVisualIDRegistry.getType(SceneTopicEditPart.VISUAL_ID),
 				ViewUtil.APPEND, true, getPreferencesHint());
 		getViewService().createNode(eObjectAdapter, view,
 				MolicVisualIDRegistry.getType(SceneDialogueEditPart.VISUAL_ID),

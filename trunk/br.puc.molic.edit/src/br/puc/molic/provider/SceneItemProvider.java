@@ -60,26 +60,26 @@ public class SceneItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
+			addTopicPropertyDescriptor(object);
 			addDialoguePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Topic feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addTopicPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Scene_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Scene_name_feature", "_UI_Scene_type"),
-				 MolicPackage.Literals.SCENE__NAME,
+				 getString("_UI_Scene_topic_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Scene_topic_feature", "_UI_Scene_type"),
+				 MolicPackage.Literals.SCENE__TOPIC,
 				 true,
 				 false,
 				 false,
@@ -127,7 +127,7 @@ public class SceneItemProvider
 	 * @generated
 	 */
 	public String getText(Object object) {
-		String label = ((Scene)object).getName();
+		String label = ((Scene)object).getTopic();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Scene_type") :
 			getString("_UI_Scene_type") + " " + label;
@@ -144,7 +144,7 @@ public class SceneItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Scene.class)) {
-			case MolicPackage.SCENE__NAME:
+			case MolicPackage.SCENE__TOPIC:
 			case MolicPackage.SCENE__DIALOGUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

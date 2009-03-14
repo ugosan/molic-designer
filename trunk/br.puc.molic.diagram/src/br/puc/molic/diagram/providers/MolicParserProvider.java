@@ -17,6 +17,7 @@ import br.puc.molic.diagram.edit.parts.BRTUtteranceLabelEditPart;
 import br.puc.molic.diagram.edit.parts.MonologueLabelEditPart;
 import br.puc.molic.diagram.edit.parts.SceneDialogueEditPart;
 import br.puc.molic.diagram.edit.parts.SceneNameEditPart;
+import br.puc.molic.diagram.edit.parts.SceneTopicEditPart;
 import br.puc.molic.diagram.edit.parts.UtteranceLabelEditPart;
 import br.puc.molic.diagram.parsers.CompositeParser;
 import br.puc.molic.diagram.parsers.MessageFormatParser;
@@ -33,24 +34,24 @@ public class MolicParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser sceneName_5004Parser;
+	private IParser sceneTopic_5004Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getSceneName_5004Parser() {
-		if (sceneName_5004Parser == null) {
-			sceneName_5004Parser = createSceneName_5004Parser();
+	private IParser getSceneTopic_5004Parser() {
+		if (sceneTopic_5004Parser == null) {
+			sceneTopic_5004Parser = createSceneTopic_5004Parser();
 		}
-		return sceneName_5004Parser;
+		return sceneTopic_5004Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected IParser createSceneName_5004Parser() {
+	protected IParser createSceneTopic_5004Parser() {
 		EAttribute[] features = new EAttribute[] { MolicPackage.eINSTANCE
-				.getScene_Name(), };
+				.getScene_Topic(), };
 		MessageFormatParser parser = new MessageFormatParser(features);
 		return parser;
 	}
@@ -163,8 +164,8 @@ public class MolicParserProvider extends AbstractProvider implements
 	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
-		case SceneNameEditPart.VISUAL_ID:
-			return getSceneName_5004Parser();
+		case SceneTopicEditPart.VISUAL_ID:
+			return getSceneTopic_5004Parser();
 		case SceneDialogueEditPart.VISUAL_ID:
 			return getSceneDialogue_5005Parser();
 		case MonologueLabelEditPart.VISUAL_ID:

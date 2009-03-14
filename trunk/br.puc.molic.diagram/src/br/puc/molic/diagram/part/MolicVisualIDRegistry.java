@@ -21,6 +21,7 @@ import br.puc.molic.diagram.edit.parts.OpeningPointEditPart;
 import br.puc.molic.diagram.edit.parts.SceneDialogueEditPart;
 import br.puc.molic.diagram.edit.parts.SceneEditPart;
 import br.puc.molic.diagram.edit.parts.SceneNameEditPart;
+import br.puc.molic.diagram.edit.parts.SceneTopicEditPart;
 import br.puc.molic.diagram.edit.parts.SystemProcessEditPart;
 import br.puc.molic.diagram.edit.parts.UbiquitousAccessEditPart;
 import br.puc.molic.diagram.edit.parts.UtteranceEditPart;
@@ -185,7 +186,7 @@ public class MolicVisualIDRegistry {
 		}
 		switch (containerVisualID) {
 		case SceneEditPart.VISUAL_ID:
-			if (SceneNameEditPart.VISUAL_ID == nodeVisualID) {
+			if (SceneTopicEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (SceneDialogueEditPart.VISUAL_ID == nodeVisualID) {

@@ -172,13 +172,13 @@ public interface MolicPackage extends EPackage {
 	int CONNECTION_FEATURE_COUNT = 3;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Topic</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SCENE__NAME = ELEMENT_FEATURE_COUNT + 0;
+	int SCENE__TOPIC = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Dialogue</b></em>' attribute.
@@ -441,15 +441,15 @@ public interface MolicPackage extends EPackage {
 	EClass getScene();
 
 	/**
-	 * Returns the meta object for the attribute '{@link br.puc.molic.Scene#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link br.puc.molic.Scene#getTopic <em>Topic</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see br.puc.molic.Scene#getName()
+	 * @return the meta object for the attribute '<em>Topic</em>'.
+	 * @see br.puc.molic.Scene#getTopic()
 	 * @see #getScene()
 	 * @generated
 	 */
-	EAttribute getScene_Name();
+	EAttribute getScene_Topic();
 
 	/**
 	 * Returns the meta object for the attribute '{@link br.puc.molic.Scene#getDialogue <em>Dialogue</em>}'.
@@ -655,12 +655,12 @@ public interface MolicPackage extends EPackage {
 		EClass SCENE = eINSTANCE.getScene();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Topic</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SCENE__NAME = eINSTANCE.getScene_Name();
+		EAttribute SCENE__TOPIC = eINSTANCE.getScene_Topic();
 
 		/**
 		 * The meta object literal for the '<em><b>Dialogue</b></em>' attribute feature.

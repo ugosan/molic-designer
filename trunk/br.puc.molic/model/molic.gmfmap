@@ -16,9 +16,9 @@
           viewPattern=""
           editorPattern="">
         <diagramLabel
-            href="molic.gmfgraph#SceneName"/>
+            href="molic.gmfgraph#SceneTopic"/>
         <features
-            href="molic.ecore#//Scene/name"/>
+            href="molic.ecore#//Scene/topic"/>
       </labelMappings>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
