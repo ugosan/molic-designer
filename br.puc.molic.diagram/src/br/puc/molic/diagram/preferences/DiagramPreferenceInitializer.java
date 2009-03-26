@@ -10,22 +10,22 @@ import br.puc.molic.diagram.part.MolicDiagramEditorPlugin;
  */
 public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer {
 
-	/**
-	 * @generated
-	 */
-	public void initializeDefaultPreferences() {
-		IPreferenceStore store = getPreferenceStore();
-		DiagramPrintingPreferencePage.initDefaults(store);
-		DiagramGeneralPreferencePage.initDefaults(store);
-		DiagramAppearancePreferencePage.initDefaults(store);
-		DiagramConnectionsPreferencePage.initDefaults(store);
-		DiagramRulersAndGridPreferencePage.initDefaults(store);
-	}
+    /**
+     * @generated
+     */
+    public void initializeDefaultPreferences() {
+        IPreferenceStore store = getPreferenceStore();
+        DiagramPrintingPreferencePage.initDefaults(store);
+        DiagramGeneralPreferencePage.initDefaults(store);
+        DiagramAppearancePreferencePage.initDefaults(store);
+        DiagramConnectionsPreferencePage.initDefaults(store);
+        DiagramRulersAndGridPreferencePage.initDefaults(store);
+    }
 
-	/**
-	 * @generated
-	 */
-	protected IPreferenceStore getPreferenceStore() {
-		return MolicDiagramEditorPlugin.getInstance().getPreferenceStore();
-	}
+    /**
+     * @generated
+     */
+    protected IPreferenceStore getPreferenceStore() {
+        return MolicDiagramEditorPlugin.getInstance().getPreferenceStore();
+    }
 }

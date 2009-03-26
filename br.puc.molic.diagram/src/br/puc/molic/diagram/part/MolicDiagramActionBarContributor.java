@@ -9,20 +9,20 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramActionBarContributor;
  * @generated
  */
 public class MolicDiagramActionBarContributor extends
-		DiagramActionBarContributor {
+        DiagramActionBarContributor {
 
-	/**
-	 * @generated
-	 */
-	protected Class getEditorClass() {
-		return MolicDiagramEditor.class;
-	}
+    /**
+     * @generated
+     */
+    protected Class getEditorClass() {
+        return MolicDiagramEditor.class;
+    }
 
-	/**
-	 * @generated NOT
-	 */
-	protected String getEditorId() {
-		return MolicDiagramEditor.ID;
+    /**
+     * @generated NOT
+     */
+    protected String getEditorId() {
+        return MolicDiagramEditor.ID;
 
-	}
+    }
 }

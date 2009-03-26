@@ -21,58 +21,58 @@ import br.puc.molic.diagram.edit.parts.DiagramEditPart;
  * @generated
  */
 public class MolicInitDiagramFileAction implements
-		IWorkbenchWindowActionDelegate {
+        IWorkbenchWindowActionDelegate {
 
-	/**
-	 * @generated
-	 */
-	private IWorkbenchWindow window;
+    /**
+     * @generated
+     */
+    private IWorkbenchWindow window;
 
-	/**
-	 * @generated
-	 */
-	public void init(IWorkbenchWindow window) {
-		this.window = window;
-	}
+    /**
+     * @generated
+     */
+    public void init(IWorkbenchWindow window) {
+        this.window = window;
+    }
 
-	/**
-	 * @generated
-	 */
-	public void dispose() {
-		window = null;
-	}
+    /**
+     * @generated
+     */
+    public void dispose() {
+        window = null;
+    }
 
-	/**
-	 * @generated
-	 */
-	public void selectionChanged(IAction action, ISelection selection) {
-	}
+    /**
+     * @generated
+     */
+    public void selectionChanged(IAction action, ISelection selection) {
+    }
 
-	/**
-	 * @generated
-	 */
-	private Shell getShell() {
-		return window.getShell();
-	}
+    /**
+     * @generated
+     */
+    private Shell getShell() {
+        return window.getShell();
+    }
 
-	/**
-	 * @generated
-	 */
-	public void run(IAction action) {
-		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
-				.createEditingDomain();
-		Resource resource = MolicDiagramEditorUtil.openModel(getShell(),
-				Messages.MolicInitDiagramFileAction_OpenModelFileDialogTitle,
-				editingDomain);
-		if (resource == null || resource.getContents().isEmpty()) {
-			return;
-		}
-		EObject diagramRoot = (EObject) resource.getContents().get(0);
-		Wizard wizard = new MolicNewDiagramFileWizard(resource.getURI(),
-				diagramRoot, editingDomain);
-		wizard.setWindowTitle(NLS.bind(
-				Messages.MolicInitDiagramFileAction_InitDiagramFileWizardTitle,
-				DiagramEditPart.MODEL_ID));
-		MolicDiagramEditorUtil.runWizard(getShell(), wizard, "InitDiagramFile"); //$NON-NLS-1$
-	}
+    /**
+     * @generated
+     */
+    public void run(IAction action) {
+        TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
+                .createEditingDomain();
+        Resource resource = MolicDiagramEditorUtil.openModel(getShell(),
+                Messages.MolicInitDiagramFileAction_OpenModelFileDialogTitle,
+                editingDomain);
+        if (resource == null || resource.getContents().isEmpty()) {
+            return;
+        }
+        EObject diagramRoot = (EObject) resource.getContents().get(0);
+        Wizard wizard = new MolicNewDiagramFileWizard(resource.getURI(),
+                diagramRoot, editingDomain);
+        wizard.setWindowTitle(NLS.bind(
+                Messages.MolicInitDiagramFileAction_InitDiagramFileWizardTitle,
+                DiagramEditPart.MODEL_ID));
+        MolicDiagramEditorUtil.runWizard(getShell(), wizard, "InitDiagramFile"); //$NON-NLS-1$
+    }
 }

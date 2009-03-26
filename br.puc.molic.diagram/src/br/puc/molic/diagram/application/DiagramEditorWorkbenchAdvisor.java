@@ -12,32 +12,32 @@ import org.eclipse.ui.application.WorkbenchWindowAdvisor;
  * @generated
  */
 public class DiagramEditorWorkbenchAdvisor extends WorkbenchAdvisor {
-	/**
-	 * @generated
-	 */
-	public static final String PERSPECTIVE_ID = "br.puc.molic.diagram.MolicPerspective"; //$NON-NLS-1$
+    /**
+     * @generated
+     */
+    public static final String PERSPECTIVE_ID = "br.puc.molic.diagram.MolicPerspective"; //$NON-NLS-1$
 
-	/**
-	 * @generated
-	 */
-	public String getInitialWindowPerspectiveId() {
-		return PERSPECTIVE_ID;
-	}
+    /**
+     * @generated
+     */
+    public String getInitialWindowPerspectiveId() {
+        return PERSPECTIVE_ID;
+    }
 
-	/**
-	 * @generated
-	 */
-	public void initialize(IWorkbenchConfigurer configurer) {
-		super.initialize(configurer);
-		configurer.setSaveAndRestore(true);
-	}
+    /**
+     * @generated
+     */
+    public void initialize(IWorkbenchConfigurer configurer) {
+        super.initialize(configurer);
+        configurer.setSaveAndRestore(true);
+    }
 
-	/**
-	 * @generated
-	 */
-	public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(
-			IWorkbenchWindowConfigurer configurer) {
-		return new DiagramEditorWorkbenchWindowAdvisor(configurer);
-	}
+    /**
+     * @generated
+     */
+    public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(
+            IWorkbenchWindowConfigurer configurer) {
+        return new DiagramEditorWorkbenchWindowAdvisor(configurer);
+    }
 
 }
