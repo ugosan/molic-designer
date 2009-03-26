@@ -14,17 +14,17 @@ import org.eclipse.jface.action.IAction;
  * @generated
  */
 public class MolicContributionItemProvider extends
-		AbstractContributionItemProvider {
+        AbstractContributionItemProvider {
 
-	/**
-	 * @generated
-	 */
-	protected IAction createAction(String actionId,
-			IWorkbenchPartDescriptor partDescriptor) {
-		if (actionId.equals(PrintPreviewAction.ID)) {
-			return new RenderedPrintPreviewAction(
-					new EnhancedPrintActionHelper());
-		}
-		return super.createAction(actionId, partDescriptor);
-	}
+    /**
+     * @generated
+     */
+    protected IAction createAction(String actionId,
+            IWorkbenchPartDescriptor partDescriptor) {
+        if (actionId.equals(PrintPreviewAction.ID)) {
+            return new RenderedPrintPreviewAction(
+                    new EnhancedPrintActionHelper());
+        }
+        return super.createAction(actionId, partDescriptor);
+    }
 }

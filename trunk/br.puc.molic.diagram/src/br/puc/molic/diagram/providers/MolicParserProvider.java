@@ -16,252 +16,248 @@ import br.puc.molic.MolicPackage;
 import br.puc.molic.diagram.edit.parts.BRTUtteranceLabelEditPart;
 import br.puc.molic.diagram.edit.parts.MonologueLabelEditPart;
 import br.puc.molic.diagram.edit.parts.SceneDialogueEditPart;
-import br.puc.molic.diagram.edit.parts.SceneNameEditPart;
 import br.puc.molic.diagram.edit.parts.SceneTopicEditPart;
 import br.puc.molic.diagram.edit.parts.UtteranceLabelEditPart;
 import br.puc.molic.diagram.edit.parts.WrappingLabelEditPart;
-import br.puc.molic.diagram.parsers.CompositeParser;
 import br.puc.molic.diagram.parsers.MessageFormatParser;
-import br.puc.molic.diagram.parsers.NativeParser;
-import br.puc.molic.diagram.part.MetaModelFacility;
 import br.puc.molic.diagram.part.MolicVisualIDRegistry;
 
 /**
  * @generated
  */
 public class MolicParserProvider extends AbstractProvider implements
-		IParserProvider {
+        IParserProvider {
 
-	/**
-	 * @generated
-	 */
-	private IParser sceneTopic_5004Parser;
+    /**
+     * @generated
+     */
+    private IParser sceneTopic_5004Parser;
 
-	/**
-	 * @generated
-	 */
-	private IParser getSceneTopic_5004Parser() {
-		if (sceneTopic_5004Parser == null) {
-			sceneTopic_5004Parser = createSceneTopic_5004Parser();
-		}
-		return sceneTopic_5004Parser;
-	}
+    /**
+     * @generated
+     */
+    private IParser getSceneTopic_5004Parser() {
+        if (sceneTopic_5004Parser == null) {
+            sceneTopic_5004Parser = createSceneTopic_5004Parser();
+        }
+        return sceneTopic_5004Parser;
+    }
 
-	/**
-	 * @generated
-	 */
-	protected IParser createSceneTopic_5004Parser() {
-		EAttribute[] features = new EAttribute[] { MolicPackage.eINSTANCE
-				.getScene_Topic(), };
-		MessageFormatParser parser = new MessageFormatParser(features);
-		return parser;
-	}
+    /**
+     * @generated
+     */
+    protected IParser createSceneTopic_5004Parser() {
+        EAttribute[] features = new EAttribute[] { MolicPackage.eINSTANCE
+                .getScene_Topic(), };
+        MessageFormatParser parser = new MessageFormatParser(features);
+        return parser;
+    }
 
-	/**
-	 * @generated
-	 */
-	private IParser sceneDialogue_5005Parser;
+    /**
+     * @generated
+     */
+    private IParser sceneDialogue_5005Parser;
 
-	/**
-	 * @generated
-	 */
-	private IParser getSceneDialogue_5005Parser() {
-		if (sceneDialogue_5005Parser == null) {
-			sceneDialogue_5005Parser = createSceneDialogue_5005Parser();
-		}
-		return sceneDialogue_5005Parser;
-	}
+    /**
+     * @generated
+     */
+    private IParser getSceneDialogue_5005Parser() {
+        if (sceneDialogue_5005Parser == null) {
+            sceneDialogue_5005Parser = createSceneDialogue_5005Parser();
+        }
+        return sceneDialogue_5005Parser;
+    }
 
-	/**
-	 * @generated
-	 */
-	protected IParser createSceneDialogue_5005Parser() {
-		EAttribute[] features = new EAttribute[] { MolicPackage.eINSTANCE
-				.getScene_Dialogue(), };
-		MessageFormatParser parser = new MessageFormatParser(features);
-		return parser;
-	}
+    /**
+     * @generated
+     */
+    protected IParser createSceneDialogue_5005Parser() {
+        EAttribute[] features = new EAttribute[] { MolicPackage.eINSTANCE
+                .getScene_Dialogue(), };
+        MessageFormatParser parser = new MessageFormatParser(features);
+        return parser;
+    }
 
-	/**
-	 * @generated
-	 */
-	private IParser monologueLabel_5006Parser;
+    /**
+     * @generated
+     */
+    private IParser monologueLabel_5006Parser;
 
-	/**
-	 * @generated
-	 */
-	private IParser getMonologueLabel_5006Parser() {
-		if (monologueLabel_5006Parser == null) {
-			monologueLabel_5006Parser = createMonologueLabel_5006Parser();
-		}
-		return monologueLabel_5006Parser;
-	}
+    /**
+     * @generated
+     */
+    private IParser getMonologueLabel_5006Parser() {
+        if (monologueLabel_5006Parser == null) {
+            monologueLabel_5006Parser = createMonologueLabel_5006Parser();
+        }
+        return monologueLabel_5006Parser;
+    }
 
-	/**
-	 * @generated
-	 */
-	protected IParser createMonologueLabel_5006Parser() {
-		EAttribute[] features = new EAttribute[] { MolicPackage.eINSTANCE
-				.getMonologue_Label(), };
-		MessageFormatParser parser = new MessageFormatParser(features);
-		parser.setViewPattern("<< {0} >>");
-		parser.setEditorPattern("<< {0} >>");
-		parser.setEditPattern("{0}");
-		return parser;
-	}
+    /**
+     * @generated
+     */
+    protected IParser createMonologueLabel_5006Parser() {
+        EAttribute[] features = new EAttribute[] { MolicPackage.eINSTANCE
+                .getMonologue_Label(), };
+        MessageFormatParser parser = new MessageFormatParser(features);
+        parser.setViewPattern("<< {0} >>");
+        parser.setEditorPattern("<< {0} >>");
+        parser.setEditPattern("{0}");
+        return parser;
+    }
 
-	/**
-	 * @generated
-	 */
-	private IParser ubiquitousAccessLabel_5007Parser;
+    /**
+     * @generated
+     */
+    private IParser ubiquitousAccessLabel_5007Parser;
 
-	/**
-	 * @generated
-	 */
-	private IParser getUbiquitousAccessLabel_5007Parser() {
-		if (ubiquitousAccessLabel_5007Parser == null) {
-			ubiquitousAccessLabel_5007Parser = createUbiquitousAccessLabel_5007Parser();
-		}
-		return ubiquitousAccessLabel_5007Parser;
-	}
+    /**
+     * @generated
+     */
+    private IParser getUbiquitousAccessLabel_5007Parser() {
+        if (ubiquitousAccessLabel_5007Parser == null) {
+            ubiquitousAccessLabel_5007Parser = createUbiquitousAccessLabel_5007Parser();
+        }
+        return ubiquitousAccessLabel_5007Parser;
+    }
 
-	/**
-	 * @generated
-	 */
-	protected IParser createUbiquitousAccessLabel_5007Parser() {
-		EAttribute[] features = new EAttribute[] { MolicPackage.eINSTANCE
-				.getUbiquitousAccess_Label(), };
-		MessageFormatParser parser = new MessageFormatParser(features);
-		return parser;
-	}
+    /**
+     * @generated
+     */
+    protected IParser createUbiquitousAccessLabel_5007Parser() {
+        EAttribute[] features = new EAttribute[] { MolicPackage.eINSTANCE
+                .getUbiquitousAccess_Label(), };
+        MessageFormatParser parser = new MessageFormatParser(features);
+        return parser;
+    }
 
-	/**
-	 * @generated
-	 */
-	private IParser utteranceLabel_6001Parser;
+    /**
+     * @generated
+     */
+    private IParser utteranceLabel_6001Parser;
 
-	/**
-	 * @generated
-	 */
-	private IParser getUtteranceLabel_6001Parser() {
-		if (utteranceLabel_6001Parser == null) {
-			utteranceLabel_6001Parser = createUtteranceLabel_6001Parser();
-		}
-		return utteranceLabel_6001Parser;
-	}
+    /**
+     * @generated
+     */
+    private IParser getUtteranceLabel_6001Parser() {
+        if (utteranceLabel_6001Parser == null) {
+            utteranceLabel_6001Parser = createUtteranceLabel_6001Parser();
+        }
+        return utteranceLabel_6001Parser;
+    }
 
-	/**
-	 * @generated
-	 */
-	protected IParser createUtteranceLabel_6001Parser() {
-		EAttribute[] features = new EAttribute[] { MolicPackage.eINSTANCE
-				.getConnection_Label(), };
-		MessageFormatParser parser = new MessageFormatParser(features);
-		return parser;
-	}
+    /**
+     * @generated
+     */
+    protected IParser createUtteranceLabel_6001Parser() {
+        EAttribute[] features = new EAttribute[] { MolicPackage.eINSTANCE
+                .getConnection_Label(), };
+        MessageFormatParser parser = new MessageFormatParser(features);
+        return parser;
+    }
 
-	/**
-	 * @generated
-	 */
-	private IParser bRTUtteranceLabel_6002Parser;
+    /**
+     * @generated
+     */
+    private IParser bRTUtteranceLabel_6002Parser;
 
-	/**
-	 * @generated
-	 */
-	private IParser getBRTUtteranceLabel_6002Parser() {
-		if (bRTUtteranceLabel_6002Parser == null) {
-			bRTUtteranceLabel_6002Parser = createBRTUtteranceLabel_6002Parser();
-		}
-		return bRTUtteranceLabel_6002Parser;
-	}
+    /**
+     * @generated
+     */
+    private IParser getBRTUtteranceLabel_6002Parser() {
+        if (bRTUtteranceLabel_6002Parser == null) {
+            bRTUtteranceLabel_6002Parser = createBRTUtteranceLabel_6002Parser();
+        }
+        return bRTUtteranceLabel_6002Parser;
+    }
 
-	/**
-	 * @generated
-	 */
-	protected IParser createBRTUtteranceLabel_6002Parser() {
-		EAttribute[] features = new EAttribute[] { MolicPackage.eINSTANCE
-				.getConnection_Label(), };
-		MessageFormatParser parser = new MessageFormatParser(features);
-		return parser;
-	}
+    /**
+     * @generated
+     */
+    protected IParser createBRTUtteranceLabel_6002Parser() {
+        EAttribute[] features = new EAttribute[] { MolicPackage.eINSTANCE
+                .getConnection_Label(), };
+        MessageFormatParser parser = new MessageFormatParser(features);
+        return parser;
+    }
 
-	/**
-	 * @generated
-	 */
-	protected IParser getParser(int visualID) {
-		switch (visualID) {
-		case SceneTopicEditPart.VISUAL_ID:
-			return getSceneTopic_5004Parser();
-		case SceneDialogueEditPart.VISUAL_ID:
-			return getSceneDialogue_5005Parser();
-		case MonologueLabelEditPart.VISUAL_ID:
-			return getMonologueLabel_5006Parser();
-		case WrappingLabelEditPart.VISUAL_ID:
-			return getUbiquitousAccessLabel_5007Parser();
-		case UtteranceLabelEditPart.VISUAL_ID:
-			return getUtteranceLabel_6001Parser();
-		case BRTUtteranceLabelEditPart.VISUAL_ID:
-			return getBRTUtteranceLabel_6002Parser();
-		}
-		return null;
-	}
+    /**
+     * @generated
+     */
+    protected IParser getParser(int visualID) {
+        switch (visualID) {
+        case SceneTopicEditPart.VISUAL_ID:
+            return getSceneTopic_5004Parser();
+        case SceneDialogueEditPart.VISUAL_ID:
+            return getSceneDialogue_5005Parser();
+        case MonologueLabelEditPart.VISUAL_ID:
+            return getMonologueLabel_5006Parser();
+        case WrappingLabelEditPart.VISUAL_ID:
+            return getUbiquitousAccessLabel_5007Parser();
+        case UtteranceLabelEditPart.VISUAL_ID:
+            return getUtteranceLabel_6001Parser();
+        case BRTUtteranceLabelEditPart.VISUAL_ID:
+            return getBRTUtteranceLabel_6002Parser();
+        }
+        return null;
+    }
 
-	/**
-	 * @generated
-	 */
-	public IParser getParser(IAdaptable hint) {
-		String vid = (String) hint.getAdapter(String.class);
-		if (vid != null) {
-			return getParser(MolicVisualIDRegistry.getVisualID(vid));
-		}
-		View view = (View) hint.getAdapter(View.class);
-		if (view != null) {
-			return getParser(MolicVisualIDRegistry.getVisualID(view));
-		}
-		return null;
-	}
+    /**
+     * @generated
+     */
+    public IParser getParser(IAdaptable hint) {
+        String vid = (String) hint.getAdapter(String.class);
+        if (vid != null) {
+            return getParser(MolicVisualIDRegistry.getVisualID(vid));
+        }
+        View view = (View) hint.getAdapter(View.class);
+        if (view != null) {
+            return getParser(MolicVisualIDRegistry.getVisualID(view));
+        }
+        return null;
+    }
 
-	/**
-	 * @generated
-	 */
-	public boolean provides(IOperation operation) {
-		if (operation instanceof GetParserOperation) {
-			IAdaptable hint = ((GetParserOperation) operation).getHint();
-			if (MolicElementTypes.getElement(hint) == null) {
-				return false;
-			}
-			return getParser(hint) != null;
-		}
-		return false;
-	}
+    /**
+     * @generated
+     */
+    public boolean provides(IOperation operation) {
+        if (operation instanceof GetParserOperation) {
+            IAdaptable hint = ((GetParserOperation) operation).getHint();
+            if (MolicElementTypes.getElement(hint) == null) {
+                return false;
+            }
+            return getParser(hint) != null;
+        }
+        return false;
+    }
 
-	/**
-	 * @generated
-	 */
-	public static class HintAdapter extends ParserHintAdapter {
+    /**
+     * @generated
+     */
+    public static class HintAdapter extends ParserHintAdapter {
 
-		/**
-		 * @generated
-		 */
-		private final IElementType elementType;
+        /**
+         * @generated
+         */
+        private final IElementType elementType;
 
-		/**
-		 * @generated
-		 */
-		public HintAdapter(IElementType type, EObject object, String parserHint) {
-			super(object, parserHint);
-			assert type != null;
-			elementType = type;
-		}
+        /**
+         * @generated
+         */
+        public HintAdapter(IElementType type, EObject object, String parserHint) {
+            super(object, parserHint);
+            assert type != null;
+            elementType = type;
+        }
 
-		/**
-		 * @generated
-		 */
-		public Object getAdapter(Class adapter) {
-			if (IElementType.class.equals(adapter)) {
-				return elementType;
-			}
-			return super.getAdapter(adapter);
-		}
-	}
+        /**
+         * @generated
+         */
+        public Object getAdapter(Class adapter) {
+            if (IElementType.class.equals(adapter)) {
+                return elementType;
+            }
+            return super.getAdapter(adapter);
+        }
+    }
 }

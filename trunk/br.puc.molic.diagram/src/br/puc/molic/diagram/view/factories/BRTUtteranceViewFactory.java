@@ -20,40 +20,40 @@ import br.puc.molic.diagram.part.MolicVisualIDRegistry;
  */
 public class BRTUtteranceViewFactory extends ConnectionViewFactory {
 
-	/**
-	 * @generated 
-	 */
-	protected List createStyles(View view) {
-		List styles = new ArrayList();
-		styles.add(NotationFactory.eINSTANCE.createRoutingStyle());
-		styles.add(NotationFactory.eINSTANCE.createFontStyle());
-		return styles;
-	}
+    /**
+     * @generated 
+     */
+    protected List createStyles(View view) {
+        List styles = new ArrayList();
+        styles.add(NotationFactory.eINSTANCE.createRoutingStyle());
+        styles.add(NotationFactory.eINSTANCE.createFontStyle());
+        return styles;
+    }
 
-	/**
-	 * @generated
-	 */
-	protected void decorateView(View containerView, View view,
-			IAdaptable semanticAdapter, String semanticHint, int index,
-			boolean persisted) {
-		if (semanticHint == null) {
-			semanticHint = MolicVisualIDRegistry
-					.getType(BRTUtteranceEditPart.VISUAL_ID);
-			view.setType(semanticHint);
-		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint,
-				index, persisted);
-		IAdaptable eObjectAdapter = null;
-		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
-		if (eObject != null) {
-			eObjectAdapter = new EObjectAdapter(eObject);
-		}
-		getViewService().createNode(
-				eObjectAdapter,
-				view,
-				MolicVisualIDRegistry
-						.getType(BRTUtteranceLabelEditPart.VISUAL_ID),
-				ViewUtil.APPEND, true, getPreferencesHint());
-	}
+    /**
+     * @generated
+     */
+    protected void decorateView(View containerView, View view,
+            IAdaptable semanticAdapter, String semanticHint, int index,
+            boolean persisted) {
+        if (semanticHint == null) {
+            semanticHint = MolicVisualIDRegistry
+                    .getType(BRTUtteranceEditPart.VISUAL_ID);
+            view.setType(semanticHint);
+        }
+        super.decorateView(containerView, view, semanticAdapter, semanticHint,
+                index, persisted);
+        IAdaptable eObjectAdapter = null;
+        EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
+        if (eObject != null) {
+            eObjectAdapter = new EObjectAdapter(eObject);
+        }
+        getViewService().createNode(
+                eObjectAdapter,
+                view,
+                MolicVisualIDRegistry
+                        .getType(BRTUtteranceLabelEditPart.VISUAL_ID),
+                ViewUtil.APPEND, true, getPreferencesHint());
+    }
 
 }

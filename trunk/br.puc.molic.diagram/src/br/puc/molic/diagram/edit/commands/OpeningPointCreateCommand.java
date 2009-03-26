@@ -17,29 +17,29 @@ import br.puc.molic.diagram.part.MetaModelFacility;
  */
 public class OpeningPointCreateCommand extends CreateElementCommand {
 
-	/**
-	 * @generated
-	 */
-	public OpeningPointCreateCommand(CreateElementRequest req) {
-		super(req);
-	}
+    /**
+     * @generated
+     */
+    public OpeningPointCreateCommand(CreateElementRequest req) {
+        super(req);
+    }
 
-	/**
-	 * @generated
-	 */
-	protected EObject getElementToEdit() {
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
-		}
-		return container;
-	}
+    /**
+     * @generated
+     */
+    protected EObject getElementToEdit() {
+        EObject container = ((CreateElementRequest) getRequest())
+                .getContainer();
+        if (container instanceof View) {
+            container = ((View) container).getElement();
+        }
+        return container;
+    }
 
-	/**
-	 * @generated
-	 */
-	protected EClass getEClassToEdit() {
-		return MolicPackage.eINSTANCE.getDiagram();
-	}
+    /**
+     * @generated
+     */
+    protected EClass getEClassToEdit() {
+        return MolicPackage.eINSTANCE.getDiagram();
+    }
 }

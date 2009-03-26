@@ -30,147 +30,147 @@ import br.puc.molic.diagram.part.MolicDiagramEditorPlugin;
  */
 public class MolicModelingAssistantProvider extends ModelingAssistantProvider {
 
-	/**
-	 * @generated
-	 */
-	public List getTypesForPopupBar(IAdaptable host) {
-		IGraphicalEditPart editPart = (IGraphicalEditPart) host
-				.getAdapter(IGraphicalEditPart.class);
-		if (editPart instanceof DiagramEditPart) {
-			List types = new ArrayList();
-			types.add(MolicElementTypes.Scene_2007);
-			types.add(MolicElementTypes.SystemProcess_2008);
-			types.add(MolicElementTypes.Monologue_2009);
-			types.add(MolicElementTypes.UbiquitousAccess_2010);
-			types.add(MolicElementTypes.OpeningPoint_2011);
-			types.add(MolicElementTypes.ClosingPoint_2012);
-			return types;
-		}
-		return Collections.EMPTY_LIST;
-	}
+    /**
+     * @generated
+     */
+    public List getTypesForPopupBar(IAdaptable host) {
+        IGraphicalEditPart editPart = (IGraphicalEditPart) host
+                .getAdapter(IGraphicalEditPart.class);
+        if (editPart instanceof DiagramEditPart) {
+            List types = new ArrayList();
+            types.add(MolicElementTypes.Scene_2007);
+            types.add(MolicElementTypes.SystemProcess_2008);
+            types.add(MolicElementTypes.Monologue_2009);
+            types.add(MolicElementTypes.UbiquitousAccess_2010);
+            types.add(MolicElementTypes.OpeningPoint_2011);
+            types.add(MolicElementTypes.ClosingPoint_2012);
+            return types;
+        }
+        return Collections.EMPTY_LIST;
+    }
 
-	/**
-	 * @generated
-	 */
-	public List getRelTypesOnSource(IAdaptable source) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
-		return Collections.EMPTY_LIST;
-	}
+    /**
+     * @generated
+     */
+    public List getRelTypesOnSource(IAdaptable source) {
+        IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+                .getAdapter(IGraphicalEditPart.class);
+        return Collections.EMPTY_LIST;
+    }
 
-	/**
-	 * @generated
-	 */
-	public List getRelTypesOnTarget(IAdaptable target) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
-		return Collections.EMPTY_LIST;
-	}
+    /**
+     * @generated
+     */
+    public List getRelTypesOnTarget(IAdaptable target) {
+        IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+                .getAdapter(IGraphicalEditPart.class);
+        return Collections.EMPTY_LIST;
+    }
 
-	/**
-	 * @generated
-	 */
-	public List getRelTypesOnSourceAndTarget(IAdaptable source,
-			IAdaptable target) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
-		return Collections.EMPTY_LIST;
-	}
+    /**
+     * @generated
+     */
+    public List getRelTypesOnSourceAndTarget(IAdaptable source,
+            IAdaptable target) {
+        IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+                .getAdapter(IGraphicalEditPart.class);
+        IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+                .getAdapter(IGraphicalEditPart.class);
+        return Collections.EMPTY_LIST;
+    }
 
-	/**
-	 * @generated
-	 */
-	public List getTypesForSource(IAdaptable target,
-			IElementType relationshipType) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
-		return Collections.EMPTY_LIST;
-	}
+    /**
+     * @generated
+     */
+    public List getTypesForSource(IAdaptable target,
+            IElementType relationshipType) {
+        IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+                .getAdapter(IGraphicalEditPart.class);
+        return Collections.EMPTY_LIST;
+    }
 
-	/**
-	 * @generated
-	 */
-	public List getTypesForTarget(IAdaptable source,
-			IElementType relationshipType) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
-		return Collections.EMPTY_LIST;
-	}
+    /**
+     * @generated
+     */
+    public List getTypesForTarget(IAdaptable source,
+            IElementType relationshipType) {
+        IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+                .getAdapter(IGraphicalEditPart.class);
+        return Collections.EMPTY_LIST;
+    }
 
-	/**
-	 * @generated
-	 */
-	public EObject selectExistingElementForSource(IAdaptable target,
-			IElementType relationshipType) {
-		return selectExistingElement(target, getTypesForSource(target,
-				relationshipType));
-	}
+    /**
+     * @generated
+     */
+    public EObject selectExistingElementForSource(IAdaptable target,
+            IElementType relationshipType) {
+        return selectExistingElement(target, getTypesForSource(target,
+                relationshipType));
+    }
 
-	/**
-	 * @generated
-	 */
-	public EObject selectExistingElementForTarget(IAdaptable source,
-			IElementType relationshipType) {
-		return selectExistingElement(source, getTypesForTarget(source,
-				relationshipType));
-	}
+    /**
+     * @generated
+     */
+    public EObject selectExistingElementForTarget(IAdaptable source,
+            IElementType relationshipType) {
+        return selectExistingElement(source, getTypesForTarget(source,
+                relationshipType));
+    }
 
-	/**
-	 * @generated
-	 */
-	protected EObject selectExistingElement(IAdaptable host, Collection types) {
-		if (types.isEmpty()) {
-			return null;
-		}
-		IGraphicalEditPart editPart = (IGraphicalEditPart) host
-				.getAdapter(IGraphicalEditPart.class);
-		if (editPart == null) {
-			return null;
-		}
-		Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
-		Collection elements = new HashSet();
-		for (Iterator it = diagram.getElement().eAllContents(); it.hasNext();) {
-			EObject element = (EObject) it.next();
-			if (isApplicableElement(element, types)) {
-				elements.add(element);
-			}
-		}
-		if (elements.isEmpty()) {
-			return null;
-		}
-		return selectElement((EObject[]) elements.toArray(new EObject[elements
-				.size()]));
-	}
+    /**
+     * @generated
+     */
+    protected EObject selectExistingElement(IAdaptable host, Collection types) {
+        if (types.isEmpty()) {
+            return null;
+        }
+        IGraphicalEditPart editPart = (IGraphicalEditPart) host
+                .getAdapter(IGraphicalEditPart.class);
+        if (editPart == null) {
+            return null;
+        }
+        Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
+        Collection elements = new HashSet();
+        for (Iterator it = diagram.getElement().eAllContents(); it.hasNext();) {
+            EObject element = (EObject) it.next();
+            if (isApplicableElement(element, types)) {
+                elements.add(element);
+            }
+        }
+        if (elements.isEmpty()) {
+            return null;
+        }
+        return selectElement((EObject[]) elements.toArray(new EObject[elements
+                .size()]));
+    }
 
-	/**
-	 * @generated
-	 */
-	protected boolean isApplicableElement(EObject element, Collection types) {
-		IElementType type = ElementTypeRegistry.getInstance().getElementType(
-				element);
-		return types.contains(type);
-	}
+    /**
+     * @generated
+     */
+    protected boolean isApplicableElement(EObject element, Collection types) {
+        IElementType type = ElementTypeRegistry.getInstance().getElementType(
+                element);
+        return types.contains(type);
+    }
 
-	/**
-	 * @generated
-	 */
-	protected EObject selectElement(EObject[] elements) {
-		Shell shell = Display.getCurrent().getActiveShell();
-		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				MolicDiagramEditorPlugin.getInstance()
-						.getItemProvidersAdapterFactory());
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(
-				shell, labelProvider);
-		dialog.setMessage(Messages.MolicModelingAssistantProviderMessage);
-		dialog.setTitle(Messages.MolicModelingAssistantProviderTitle);
-		dialog.setMultipleSelection(false);
-		dialog.setElements(elements);
-		EObject selected = null;
-		if (dialog.open() == Window.OK) {
-			selected = (EObject) dialog.getFirstResult();
-		}
-		return selected;
-	}
+    /**
+     * @generated
+     */
+    protected EObject selectElement(EObject[] elements) {
+        Shell shell = Display.getCurrent().getActiveShell();
+        ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
+                MolicDiagramEditorPlugin.getInstance()
+                        .getItemProvidersAdapterFactory());
+        ElementListSelectionDialog dialog = new ElementListSelectionDialog(
+                shell, labelProvider);
+        dialog.setMessage(Messages.MolicModelingAssistantProviderMessage);
+        dialog.setTitle(Messages.MolicModelingAssistantProviderTitle);
+        dialog.setMultipleSelection(false);
+        dialog.setElements(elements);
+        EObject selected = null;
+        if (dialog.open() == Window.OK) {
+            selected = (EObject) dialog.getFirstResult();
+        }
+        return selected;
+    }
 }

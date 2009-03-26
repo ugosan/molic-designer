@@ -11,22 +11,22 @@ import org.eclipse.gmf.runtime.notation.View;
  * @generated
  */
 public class DiagramViewFactory extends
-		org.eclipse.gmf.runtime.diagram.ui.view.factories.DiagramViewFactory {
+        org.eclipse.gmf.runtime.diagram.ui.view.factories.DiagramViewFactory {
 
-	/**
-	 * @generated 
-	 */
-	protected List createStyles(View view) {
-		List styles = new ArrayList();
-		styles.add(NotationFactory.eINSTANCE.createDiagramStyle());
-		return styles;
-	}
+    /**
+     * @generated 
+     */
+    protected List createStyles(View view) {
+        List styles = new ArrayList();
+        styles.add(NotationFactory.eINSTANCE.createDiagramStyle());
+        return styles;
+    }
 
-	/**
-	 * @generated
-	 */
-	protected MeasurementUnit getMeasurementUnit() {
-		return MeasurementUnit.PIXEL_LITERAL;
-	}
+    /**
+     * @generated
+     */
+    protected MeasurementUnit getMeasurementUnit() {
+        return MeasurementUnit.PIXEL_LITERAL;
+    }
 
 }
