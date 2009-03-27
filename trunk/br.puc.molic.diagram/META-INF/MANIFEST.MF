@@ -47,6 +47,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.diagram.ui.printing,
  org.eclipse.gmf.runtime.diagram.ui.printing.render,
  org.eclipse.gmf.runtime.notation.edit,
- org.eclipse.ui,
- br.puc.molic.diagram
+ org.eclipse.ui
 Eclipse-LazyStart: true
