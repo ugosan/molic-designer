@@ -18,41 +18,41 @@ import br.puc.molic.Connection;
 public abstract class ConnectionTest extends TestCase {
 
 	/**
-	 * The fixture for this Connection test case.
-	 * <!-- begin-user-doc -->
+     * The fixture for this Connection test case.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected Connection fixture = null;
 
 	/**
-	 * Constructs a new Connection test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Connection test case with the given name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ConnectionTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
 	/**
-	 * Sets the fixture for this Connection test case.
-	 * <!-- begin-user-doc -->
+     * Sets the fixture for this Connection test case.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected void setFixture(Connection fixture) {
-		this.fixture = fixture;
-	}
+        this.fixture = fixture;
+    }
 
 	/**
-	 * Returns the fixture for this Connection test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Connection test case.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private Connection getFixture() {
-		return fixture;
-	}
+        return fixture;
+    }
 
 } //ConnectionTest

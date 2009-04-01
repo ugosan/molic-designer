@@ -22,70 +22,70 @@ import junit.textui.TestRunner;
 public class OpeningPointTest extends TestCase {
 
 	/**
-	 * The fixture for this Opening Point test case.
-	 * <!-- begin-user-doc -->
+     * The fixture for this Opening Point test case.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected OpeningPoint fixture = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static void main(String[] args) {
-		TestRunner.run(OpeningPointTest.class);
-	}
+        TestRunner.run(OpeningPointTest.class);
+    }
 
 	/**
-	 * Constructs a new Opening Point test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Opening Point test case with the given name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OpeningPointTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
 	/**
-	 * Sets the fixture for this Opening Point test case.
-	 * <!-- begin-user-doc -->
+     * Sets the fixture for this Opening Point test case.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected void setFixture(OpeningPoint fixture) {
-		this.fixture = fixture;
-	}
+        this.fixture = fixture;
+    }
 
 	/**
-	 * Returns the fixture for this Opening Point test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Opening Point test case.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private OpeningPoint getFixture() {
-		return fixture;
-	}
+        return fixture;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
 	protected void setUp() throws Exception {
-		setFixture(MolicFactory.eINSTANCE.createOpeningPoint());
-	}
+        setFixture(MolicFactory.eINSTANCE.createOpeningPoint());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
 	protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //OpeningPointTest

@@ -19,70 +19,70 @@ import br.puc.molic.MolicFactory;
  */
 public class DiagramTest extends TestCase {
 	/**
-	 * The fixture for this Diagram test case.
-	 * <!-- begin-user-doc -->
+     * The fixture for this Diagram test case.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected Diagram fixture = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static void main(String[] args) {
-		TestRunner.run(DiagramTest.class);
-	}
+        TestRunner.run(DiagramTest.class);
+    }
 
 	/**
-	 * Constructs a new Diagram test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Diagram test case with the given name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DiagramTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
 	/**
-	 * Sets the fixture for this Diagram test case.
-	 * <!-- begin-user-doc -->
+     * Sets the fixture for this Diagram test case.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected void setFixture(Diagram fixture) {
-		this.fixture = fixture;
-	}
+        this.fixture = fixture;
+    }
 
 	/**
-	 * Returns the fixture for this Diagram test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Diagram test case.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private Diagram getFixture() {
-		return fixture;
-	}
+        return fixture;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
 	protected void setUp() throws Exception {
-		setFixture(MolicFactory.eINSTANCE.createDiagram());
-	}
+        setFixture(MolicFactory.eINSTANCE.createDiagram());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
 	protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //DiagramTest
