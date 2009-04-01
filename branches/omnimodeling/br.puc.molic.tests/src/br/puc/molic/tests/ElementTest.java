@@ -17,41 +17,41 @@ import br.puc.molic.Element;
  */
 public abstract class ElementTest extends TestCase {
 	/**
-	 * The fixture for this Element test case.
-	 * <!-- begin-user-doc -->
+     * The fixture for this Element test case.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected Element fixture = null;
 
 	/**
-	 * Constructs a new Element test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Element test case with the given name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ElementTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
 	/**
-	 * Sets the fixture for this Element test case.
-	 * <!-- begin-user-doc -->
+     * Sets the fixture for this Element test case.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected void setFixture(Element fixture) {
-		this.fixture = fixture;
-	}
+        this.fixture = fixture;
+    }
 
 	/**
-	 * Returns the fixture for this Element test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Element test case.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private Element getFixture() {
-		return fixture;
-	}
+        return fixture;
+    }
 
 } //ElementTest

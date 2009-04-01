@@ -32,6 +32,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
+import org.eclipse.gmf.runtime.gef.ui.internal.parts.WrapTextCellEditor;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -308,12 +309,12 @@ public class UtteranceLabelEditPart extends LabelEditPart implements
     }
 
     /**
-     * @generated
+     * @generated NOT
      */
     protected DirectEditManager getManager() {
         if (manager == null) {
-            setManager(new TextDirectEditManager(this, TextDirectEditManager
-                    .getTextCellEditorClass(this), MolicEditPartFactory
+            setManager(new TextDirectEditManager(this, 
+                    WrapTextCellEditor.class, MolicEditPartFactory
                     .getTextCellEditorLocator(this)));
         }
         return manager;

@@ -26,5 +26,16 @@ Require-Bundle: org.eclipse.core.runtime,
  org.apache.batik.xml,
  org.w3c.css.sac,
  org.w3c.dom.smil,
- org.apache.xerces
+ org.apache.xerces,
+ br.puc.molic.diagram;bundle-version="1.0.0",
+ br.puc.molic.edit;bundle-version="1.0.0",
+ br.puc.molic.editor;bundle-version="1.0.0"
 Eclipse-LazyStart: true
+Import-Package: org.eclipse.emf.transaction,
+ org.eclipse.gmf.runtime.common.core.command,
+ org.eclipse.gmf.runtime.diagram.core.services,
+ org.eclipse.gmf.runtime.diagram.ui.editparts,
+ org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts,
+ org.eclipse.gmf.runtime.emf.commands.core.command,
+ org.eclipse.gmf.runtime.emf.core,
+ org.eclipse.gmf.runtime.notation

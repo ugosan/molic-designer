@@ -19,70 +19,70 @@ import br.puc.molic.UbiquitousAccess;
  */
 public class UbiquitousAccessTest extends TestCase {
 	/**
-	 * The fixture for this Ubiquitous Access test case.
-	 * <!-- begin-user-doc -->
+     * The fixture for this Ubiquitous Access test case.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected UbiquitousAccess fixture = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static void main(String[] args) {
-		TestRunner.run(UbiquitousAccessTest.class);
-	}
+        TestRunner.run(UbiquitousAccessTest.class);
+    }
 
 	/**
-	 * Constructs a new Ubiquitous Access test case with the given name.
-	 * <!-- begin-user-doc -->
+     * Constructs a new Ubiquitous Access test case with the given name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public UbiquitousAccessTest(String name) {
-		super(name);
-	}
+        super(name);
+    }
 
 	/**
-	 * Sets the fixture for this Ubiquitous Access test case.
-	 * <!-- begin-user-doc -->
+     * Sets the fixture for this Ubiquitous Access test case.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected void setFixture(UbiquitousAccess fixture) {
-		this.fixture = fixture;
-	}
+        this.fixture = fixture;
+    }
 
 	/**
-	 * Returns the fixture for this Ubiquitous Access test case.
-	 * <!-- begin-user-doc -->
+     * Returns the fixture for this Ubiquitous Access test case.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private UbiquitousAccess getFixture() {
-		return fixture;
-	}
+        return fixture;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#setUp()
+     * @generated
+     */
 	protected void setUp() throws Exception {
-		setFixture(MolicFactory.eINSTANCE.createUbiquitousAccess());
-	}
+        setFixture(MolicFactory.eINSTANCE.createUbiquitousAccess());
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
-	 */
+     * @see junit.framework.TestCase#tearDown()
+     * @generated
+     */
 	protected void tearDown() throws Exception {
-		setFixture(null);
-	}
+        setFixture(null);
+    }
 
 } //UbiquitousAccessTest

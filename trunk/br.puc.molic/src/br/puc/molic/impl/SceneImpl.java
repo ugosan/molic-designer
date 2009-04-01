@@ -21,6 +21,7 @@ import br.puc.molic.Scene;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link br.puc.molic.impl.SceneImpl#getID <em>ID</em>}</li>
  *   <li>{@link br.puc.molic.impl.SceneImpl#getTopic <em>Topic</em>}</li>
  *   <li>{@link br.puc.molic.impl.SceneImpl#getDialogue <em>Dialogue</em>}</li>
  * </ul>
@@ -30,184 +31,219 @@ import br.puc.molic.Scene;
  */
 public class SceneImpl extends EObjectImpl implements Scene {
 	/**
-	 * The default value of the '{@link #getTopic() <em>Topic</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getID() <em>ID</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getID()
+     * @generated
+     * @ordered
+     */
+    protected static final String ID_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getID() <em>ID</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getID()
+     * @generated
+     * @ordered
+     */
+    protected String id = ID_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getTopic() <em>Topic</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTopic()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTopic()
+     * @generated
+     * @ordered
+     */
 	protected static final String TOPIC_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getTopic() <em>Topic</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTopic() <em>Topic</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTopic()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTopic()
+     * @generated
+     * @ordered
+     */
 	protected String topic = TOPIC_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDialogue() <em>Dialogue</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getDialogue() <em>Dialogue</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDialogue()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDialogue()
+     * @generated
+     * @ordered
+     */
 	protected static final String DIALOGUE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDialogue() <em>Dialogue</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getDialogue() <em>Dialogue</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDialogue()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDialogue()
+     * @generated
+     * @ordered
+     */
 	protected String dialogue = DIALOGUE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SceneImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return MolicPackage.Literals.SCENE;
-	}
+        return MolicPackage.Literals.SCENE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getID() {
+        return id;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getTopic() {
-		return topic;
-	}
+        return topic;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTopic(String newTopic) {
-		String oldTopic = topic;
-		topic = newTopic;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.SCENE__TOPIC, oldTopic, topic));
-	}
+        String oldTopic = topic;
+        topic = newTopic;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.SCENE__TOPIC, oldTopic, topic));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getDialogue() {
-		return dialogue;
-	}
+        return dialogue;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setDialogue(String newDialogue) {
-		String oldDialogue = dialogue;
-		dialogue = newDialogue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.SCENE__DIALOGUE, oldDialogue, dialogue));
-	}
+        String oldDialogue = dialogue;
+        dialogue = newDialogue;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.SCENE__DIALOGUE, oldDialogue, dialogue));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case MolicPackage.SCENE__TOPIC:
-				return getTopic();
-			case MolicPackage.SCENE__DIALOGUE:
-				return getDialogue();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case MolicPackage.SCENE__ID:
+                return getID();
+            case MolicPackage.SCENE__TOPIC:
+                return getTopic();
+            case MolicPackage.SCENE__DIALOGUE:
+                return getDialogue();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case MolicPackage.SCENE__TOPIC:
-				setTopic((String)newValue);
-				return;
-			case MolicPackage.SCENE__DIALOGUE:
-				setDialogue((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case MolicPackage.SCENE__TOPIC:
+                setTopic((String)newValue);
+                return;
+            case MolicPackage.SCENE__DIALOGUE:
+                setDialogue((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case MolicPackage.SCENE__TOPIC:
-				setTopic(TOPIC_EDEFAULT);
-				return;
-			case MolicPackage.SCENE__DIALOGUE:
-				setDialogue(DIALOGUE_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case MolicPackage.SCENE__TOPIC:
+                setTopic(TOPIC_EDEFAULT);
+                return;
+            case MolicPackage.SCENE__DIALOGUE:
+                setDialogue(DIALOGUE_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case MolicPackage.SCENE__TOPIC:
-				return TOPIC_EDEFAULT == null ? topic != null : !TOPIC_EDEFAULT.equals(topic);
-			case MolicPackage.SCENE__DIALOGUE:
-				return DIALOGUE_EDEFAULT == null ? dialogue != null : !DIALOGUE_EDEFAULT.equals(dialogue);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case MolicPackage.SCENE__ID:
+                return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+            case MolicPackage.SCENE__TOPIC:
+                return TOPIC_EDEFAULT == null ? topic != null : !TOPIC_EDEFAULT.equals(topic);
+            case MolicPackage.SCENE__DIALOGUE:
+                return DIALOGUE_EDEFAULT == null ? dialogue != null : !DIALOGUE_EDEFAULT.equals(dialogue);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (topic: ");
-		result.append(topic);
-		result.append(", dialogue: ");
-		result.append(dialogue);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (ID: ");
+        result.append(id);
+        result.append(", topic: ");
+        result.append(topic);
+        result.append(", dialogue: ");
+        result.append(dialogue);
+        result.append(')');
+        return result.toString();
+    }
 
 } //SceneImpl

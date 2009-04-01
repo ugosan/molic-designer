@@ -11,7 +11,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference molic.ecore#//Diagram/element"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference molic.ecore#//Diagram/utterance"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="molic.ecore#//Element"/>
+    <genClasses image="false" ecoreClass="molic.ecore#//Element">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Element/ID"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="molic.ecore#//Connection">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Connection/label"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference molic.ecore#//Connection/source"/>

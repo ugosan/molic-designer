@@ -42,7 +42,9 @@
               grabExcessHorizontalSpace="true"
               grabExcessVerticalSpace="true"
               verticalAlignment="FILL"
-              horizontalAlignment="FILL"/>
+              horizontalAlignment="FILL"
+              verticalSpan="0"
+              horizontalSpan="0"/>
           <layout
               xsi:type="gmfgraph:GridLayout"/>
           <children
@@ -54,7 +56,9 @@
                 xsi:type="gmfgraph:GridLayoutData"
                 grabExcessHorizontalSpace="true"
                 verticalAlignment="BEGINNING"
-                horizontalAlignment="FILL"/>
+                horizontalAlignment="FILL"
+                verticalSpan="0"
+                horizontalSpan="0"/>
             <foregroundColor
                 xsi:type="gmfgraph:ConstantColor"
                 value="black"/>
@@ -75,6 +79,9 @@
                 grabExcessVerticalSpace="true"
                 verticalAlignment="FILL"
                 horizontalAlignment="BEGINNING"/>
+            <preferredSize
+                dx="100"
+                dy="100"/>
           </children>
         </children>
       </actualFigure>

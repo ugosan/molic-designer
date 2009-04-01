@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -263,13 +264,13 @@ public class SceneEditPart extends ShapeNodeEditPart {
         }
 
         /**
-         * @generated
+         * @generated NOT
          */
         private void createContents() {
 
             fFigureSceneTopicFigure = new WrappingLabel();
             fFigureSceneTopicFigure.setText("Untitled Scene");
-
+            
             fFigureSceneTopicFigure.setFont(FFIGURESCENETOPICFIGURE_FONT);
 
             GridData constraintFFigureSceneTopicFigure = new GridData();
@@ -292,8 +293,8 @@ public class SceneEditPart extends ShapeNodeEditPart {
             constraintDialogueRectangle0.verticalAlignment = GridData.FILL;
             constraintDialogueRectangle0.horizontalAlignment = GridData.FILL;
             constraintDialogueRectangle0.horizontalIndent = 0;
-            constraintDialogueRectangle0.horizontalSpan = 1;
-            constraintDialogueRectangle0.verticalSpan = 1;
+            constraintDialogueRectangle0.horizontalSpan = 0;
+            constraintDialogueRectangle0.verticalSpan = 0;
             constraintDialogueRectangle0.grabExcessHorizontalSpace = true;
             constraintDialogueRectangle0.grabExcessVerticalSpace = true;
             this.add(dialogueRectangle0, constraintDialogueRectangle0);
@@ -315,8 +316,8 @@ public class SceneEditPart extends ShapeNodeEditPart {
             constraintLine1.verticalAlignment = GridData.BEGINNING;
             constraintLine1.horizontalAlignment = GridData.FILL;
             constraintLine1.horizontalIndent = 0;
-            constraintLine1.horizontalSpan = 1;
-            constraintLine1.verticalSpan = 1;
+            constraintLine1.horizontalSpan = 0;
+            constraintLine1.verticalSpan = 0;
             constraintLine1.grabExcessHorizontalSpace = true;
             constraintLine1.grabExcessVerticalSpace = false;
             dialogueRectangle0.add(line1, constraintLine1);
@@ -324,6 +325,10 @@ public class SceneEditPart extends ShapeNodeEditPart {
             fFigureDialogueFigure = new WrappingLabel();
             fFigureDialogueFigure.setText("Click to edit...");
             fFigureDialogueFigure.setTextWrap(true);
+            fFigureDialogueFigure.setPreferredSize(new Dimension(getMapMode()
+                    .DPtoLP(100), getMapMode().DPtoLP(100)));
+
+            
             GridData constraintFFigureDialogueFigure = new GridData();
             constraintFFigureDialogueFigure.verticalAlignment = GridData.FILL;
             constraintFFigureDialogueFigure.horizontalAlignment = GridData.BEGINNING;
