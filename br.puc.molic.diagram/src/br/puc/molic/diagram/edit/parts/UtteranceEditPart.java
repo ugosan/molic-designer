@@ -105,11 +105,12 @@ public class UtteranceEditPart extends ConnectionNodeEditPart implements
         }
 
         /**
-         * @generated
+         * @generated NOT
          */
         private void createContents() {
 
             fFigureUtteranceLabelFigure = new WrappingLabel();
+            fFigureUtteranceLabelFigure.setTextWrap(true);
             fFigureUtteranceLabelFigure.setText("");
 
             this.add(fFigureUtteranceLabelFigure);

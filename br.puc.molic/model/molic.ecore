@@ -9,7 +9,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="utterance" upperBound="-1"
         eType="#//Connection" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" iD="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Connection" abstract="true" interface="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Element"/>

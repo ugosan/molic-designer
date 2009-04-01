@@ -28,35 +28,35 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Diagram extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Element</b></em>' containment reference list.
-	 * The list contents are of type {@link br.puc.molic.Element}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Element</b></em>' containment reference list.
+     * The list contents are of type {@link br.puc.molic.Element}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Element</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Element</em>' containment reference list.
-	 * @see br.puc.molic.MolicPackage#getDiagram_Element()
-	 * @model type="br.puc.molic.Element" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Element</em>' containment reference list.
+     * @see br.puc.molic.MolicPackage#getDiagram_Element()
+     * @model type="br.puc.molic.Element" containment="true"
+     * @generated
+     */
 	EList getElement();
 
 	/**
-	 * Returns the value of the '<em><b>Utterance</b></em>' containment reference list.
-	 * The list contents are of type {@link br.puc.molic.Connection}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Utterance</b></em>' containment reference list.
+     * The list contents are of type {@link br.puc.molic.Connection}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Utterance</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Utterance</em>' containment reference list.
-	 * @see br.puc.molic.MolicPackage#getDiagram_Utterance()
-	 * @model type="br.puc.molic.Connection" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Utterance</em>' containment reference list.
+     * @see br.puc.molic.MolicPackage#getDiagram_Utterance()
+     * @model type="br.puc.molic.Connection" containment="true"
+     * @generated
+     */
 	EList getUtterance();
 
 } // Diagram

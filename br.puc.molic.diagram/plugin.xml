@@ -95,6 +95,17 @@ Teste de nota de copyright do Molic
                id="br.puc.molic.diagram.InitDiagramAction">
          </action>
       </actionSet>
+       <actionSet
+            label="%exportToCSVActionLabel"
+            visible="true"
+            id="br.puc.molic.diagram.ExportToCSV">
+         <action
+               label="%exportToCSVActionLabel"
+               class="br.puc.molic.diagram.part.ExportToCSVAction"
+               menubarPath="file/additions"
+               id="br.puc.molic.diagram.ExportToCSVAction">
+         </action>
+      </actionSet>
    </extension>
 	
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders">

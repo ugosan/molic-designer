@@ -5,13 +5,19 @@ package br.puc.molic.diagram.edit.parts;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.draw2d.AncestorListener;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RunnableWithResult;
@@ -20,10 +26,15 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.NonResizableHandleKit;
 import org.eclipse.gef.requests.DirectEditRequest;
+import org.eclipse.gef.tools.CellEditorLocator;
 import org.eclipse.gef.tools.DirectEditManager;
+import org.eclipse.gmf.runtime.common.core.util.Log;
+import org.eclipse.gmf.runtime.common.core.util.Trace;
+import org.eclipse.gmf.runtime.common.ui.contentassist.ContentAssistantHelper;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
@@ -33,23 +44,51 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
+import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
+import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
+import org.eclipse.gmf.runtime.diagram.ui.label.ILabelDelegate;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
+import org.eclipse.gmf.runtime.gef.ui.internal.parts.TextCellEditorEx;
+import org.eclipse.gmf.runtime.gef.ui.internal.parts.WrapTextCellEditor;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.resource.DeviceResourceException;
+import org.eclipse.jface.resource.FontDescriptor;
+import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.RGB;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.actions.ActionFactory;
+import org.eclipse.ui.part.CellEditorActionHandler;
 
 import br.puc.molic.diagram.edit.policies.MolicTextSelectionEditPolicy;
 import br.puc.molic.diagram.providers.MolicElementTypes;
@@ -324,13 +363,20 @@ public class SceneDialogueEditPart extends CompartmentEditPart implements
     }
 
     /**
-     * @generated
+     * @generated NOT
      */
     protected DirectEditManager getManager() {
         if (manager == null) {
-            setManager(new TextDirectEditManager(this, TextDirectEditManager
+            /*setManager(new TextDirectEditManager(this, TextDirectEditManager
                     .getTextCellEditorClass(this), MolicEditPartFactory
                     .getTextCellEditorLocator(this)));
+             */
+
+            DialogueTextManager m = new DialogueTextManager(this,
+                    WrapTextCellEditor.class, MolicEditPartFactory
+                            .getTextCellEditorLocator(this));
+
+            setManager(m);
         }
         return manager;
     }
@@ -590,4 +636,5 @@ public class SceneDialogueEditPart extends CompartmentEditPart implements
         // Parent should assign one using setLabel() method
         return null;
     }
+
 }

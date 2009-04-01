@@ -21,6 +21,7 @@ import br.puc.molic.Monologue;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link br.puc.molic.impl.MonologueImpl#getID <em>ID</em>}</li>
  *   <li>{@link br.puc.molic.impl.MonologueImpl#getLabel <em>Label</em>}</li>
  * </ul>
  * </p>
@@ -29,131 +30,166 @@ import br.puc.molic.Monologue;
  */
 public class MonologueImpl extends EObjectImpl implements Monologue {
 	/**
-	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getID() <em>ID</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getID()
+     * @generated
+     * @ordered
+     */
+    protected static final String ID_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getID() <em>ID</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getID()
+     * @generated
+     * @ordered
+     */
+    protected String id = ID_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLabel()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getLabel()
+     * @generated
+     * @ordered
+     */
 	protected static final String LABEL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLabel()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getLabel()
+     * @generated
+     * @ordered
+     */
 	protected String label = LABEL_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected MonologueImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return MolicPackage.Literals.MONOLOGUE;
-	}
+        return MolicPackage.Literals.MONOLOGUE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getID() {
+        return id;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getLabel() {
-		return label;
-	}
+        return label;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setLabel(String newLabel) {
-		String oldLabel = label;
-		label = newLabel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.MONOLOGUE__LABEL, oldLabel, label));
-	}
+        String oldLabel = label;
+        label = newLabel;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.MONOLOGUE__LABEL, oldLabel, label));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case MolicPackage.MONOLOGUE__LABEL:
-				return getLabel();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case MolicPackage.MONOLOGUE__ID:
+                return getID();
+            case MolicPackage.MONOLOGUE__LABEL:
+                return getLabel();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case MolicPackage.MONOLOGUE__LABEL:
-				setLabel((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case MolicPackage.MONOLOGUE__LABEL:
+                setLabel((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case MolicPackage.MONOLOGUE__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case MolicPackage.MONOLOGUE__LABEL:
+                setLabel(LABEL_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case MolicPackage.MONOLOGUE__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case MolicPackage.MONOLOGUE__ID:
+                return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+            case MolicPackage.MONOLOGUE__LABEL:
+                return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (label: ");
-		result.append(label);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (ID: ");
+        result.append(id);
+        result.append(", label: ");
+        result.append(label);
+        result.append(')');
+        return result.toString();
+    }
 
 } //MonologueImpl

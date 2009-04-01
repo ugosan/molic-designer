@@ -33,249 +33,249 @@ import br.puc.molic.Utterance;
  */
 public class UtteranceImpl extends EObjectImpl implements Utterance {
 	/**
-	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLabel()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getLabel()
+     * @generated
+     * @ordered
+     */
 	protected static final String LABEL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLabel()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getLabel()
+     * @generated
+     * @ordered
+     */
 	protected String label = LABEL_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSource()
+     * @generated
+     * @ordered
+     */
 	protected Element source;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTarget()
+     * @generated
+     * @ordered
+     */
 	protected Element target;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected UtteranceImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return MolicPackage.Literals.UTTERANCE;
-	}
+        return MolicPackage.Literals.UTTERANCE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getLabel() {
-		return label;
-	}
+        return label;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setLabel(String newLabel) {
-		String oldLabel = label;
-		label = newLabel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.UTTERANCE__LABEL, oldLabel, label));
-	}
+        String oldLabel = label;
+        label = newLabel;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.UTTERANCE__LABEL, oldLabel, label));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Element getSource() {
-		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (Element)eResolveProxy(oldSource);
-			if (source != oldSource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MolicPackage.UTTERANCE__SOURCE, oldSource, source));
-			}
-		}
-		return source;
-	}
+        if (source != null && source.eIsProxy()) {
+            InternalEObject oldSource = (InternalEObject)source;
+            source = (Element)eResolveProxy(oldSource);
+            if (source != oldSource) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, MolicPackage.UTTERANCE__SOURCE, oldSource, source));
+            }
+        }
+        return source;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Element basicGetSource() {
-		return source;
-	}
+        return source;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSource(Element newSource) {
-		Element oldSource = source;
-		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.UTTERANCE__SOURCE, oldSource, source));
-	}
+        Element oldSource = source;
+        source = newSource;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.UTTERANCE__SOURCE, oldSource, source));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Element getTarget() {
-		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (Element)eResolveProxy(oldTarget);
-			if (target != oldTarget) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MolicPackage.UTTERANCE__TARGET, oldTarget, target));
-			}
-		}
-		return target;
-	}
+        if (target != null && target.eIsProxy()) {
+            InternalEObject oldTarget = (InternalEObject)target;
+            target = (Element)eResolveProxy(oldTarget);
+            if (target != oldTarget) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, MolicPackage.UTTERANCE__TARGET, oldTarget, target));
+            }
+        }
+        return target;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Element basicGetTarget() {
-		return target;
-	}
+        return target;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTarget(Element newTarget) {
-		Element oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.UTTERANCE__TARGET, oldTarget, target));
-	}
+        Element oldTarget = target;
+        target = newTarget;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.UTTERANCE__TARGET, oldTarget, target));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case MolicPackage.UTTERANCE__LABEL:
-				return getLabel();
-			case MolicPackage.UTTERANCE__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
-			case MolicPackage.UTTERANCE__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case MolicPackage.UTTERANCE__LABEL:
+                return getLabel();
+            case MolicPackage.UTTERANCE__SOURCE:
+                if (resolve) return getSource();
+                return basicGetSource();
+            case MolicPackage.UTTERANCE__TARGET:
+                if (resolve) return getTarget();
+                return basicGetTarget();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case MolicPackage.UTTERANCE__LABEL:
-				setLabel((String)newValue);
-				return;
-			case MolicPackage.UTTERANCE__SOURCE:
-				setSource((Element)newValue);
-				return;
-			case MolicPackage.UTTERANCE__TARGET:
-				setTarget((Element)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case MolicPackage.UTTERANCE__LABEL:
+                setLabel((String)newValue);
+                return;
+            case MolicPackage.UTTERANCE__SOURCE:
+                setSource((Element)newValue);
+                return;
+            case MolicPackage.UTTERANCE__TARGET:
+                setTarget((Element)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case MolicPackage.UTTERANCE__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case MolicPackage.UTTERANCE__SOURCE:
-				setSource((Element)null);
-				return;
-			case MolicPackage.UTTERANCE__TARGET:
-				setTarget((Element)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case MolicPackage.UTTERANCE__LABEL:
+                setLabel(LABEL_EDEFAULT);
+                return;
+            case MolicPackage.UTTERANCE__SOURCE:
+                setSource((Element)null);
+                return;
+            case MolicPackage.UTTERANCE__TARGET:
+                setTarget((Element)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case MolicPackage.UTTERANCE__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case MolicPackage.UTTERANCE__SOURCE:
-				return source != null;
-			case MolicPackage.UTTERANCE__TARGET:
-				return target != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case MolicPackage.UTTERANCE__LABEL:
+                return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+            case MolicPackage.UTTERANCE__SOURCE:
+                return source != null;
+            case MolicPackage.UTTERANCE__TARGET:
+                return target != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (label: ");
-		result.append(label);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (label: ");
+        result.append(label);
+        result.append(')');
+        return result.toString();
+    }
 
 } //UtteranceImpl

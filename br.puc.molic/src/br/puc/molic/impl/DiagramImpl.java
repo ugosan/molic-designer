@@ -37,146 +37,146 @@ import br.puc.molic.MolicPackage;
  */
 public class DiagramImpl extends EObjectImpl implements Diagram {
 	/**
-	 * The cached value of the '{@link #getElement() <em>Element</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getElement() <em>Element</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElement()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getElement()
+     * @generated
+     * @ordered
+     */
 	protected EList element;
 
 	/**
-	 * The cached value of the '{@link #getUtterance() <em>Utterance</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getUtterance() <em>Utterance</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUtterance()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getUtterance()
+     * @generated
+     * @ordered
+     */
 	protected EList utterance;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected DiagramImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EClass eStaticClass() {
-		return MolicPackage.Literals.DIAGRAM;
-	}
+        return MolicPackage.Literals.DIAGRAM;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList getElement() {
-		if (element == null) {
-			element = new EObjectContainmentEList(Element.class, this, MolicPackage.DIAGRAM__ELEMENT);
-		}
-		return element;
-	}
+        if (element == null) {
+            element = new EObjectContainmentEList(Element.class, this, MolicPackage.DIAGRAM__ELEMENT);
+        }
+        return element;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList getUtterance() {
-		if (utterance == null) {
-			utterance = new EObjectContainmentEList(Connection.class, this, MolicPackage.DIAGRAM__UTTERANCE);
-		}
-		return utterance;
-	}
+        if (utterance == null) {
+            utterance = new EObjectContainmentEList(Connection.class, this, MolicPackage.DIAGRAM__UTTERANCE);
+        }
+        return utterance;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MolicPackage.DIAGRAM__ELEMENT:
-				return ((InternalEList)getElement()).basicRemove(otherEnd, msgs);
-			case MolicPackage.DIAGRAM__UTTERANCE:
-				return ((InternalEList)getUtterance()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case MolicPackage.DIAGRAM__ELEMENT:
+                return ((InternalEList)getElement()).basicRemove(otherEnd, msgs);
+            case MolicPackage.DIAGRAM__UTTERANCE:
+                return ((InternalEList)getUtterance()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case MolicPackage.DIAGRAM__ELEMENT:
-				return getElement();
-			case MolicPackage.DIAGRAM__UTTERANCE:
-				return getUtterance();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case MolicPackage.DIAGRAM__ELEMENT:
+                return getElement();
+            case MolicPackage.DIAGRAM__UTTERANCE:
+                return getUtterance();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case MolicPackage.DIAGRAM__ELEMENT:
-				getElement().clear();
-				getElement().addAll((Collection)newValue);
-				return;
-			case MolicPackage.DIAGRAM__UTTERANCE:
-				getUtterance().clear();
-				getUtterance().addAll((Collection)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case MolicPackage.DIAGRAM__ELEMENT:
+                getElement().clear();
+                getElement().addAll((Collection)newValue);
+                return;
+            case MolicPackage.DIAGRAM__UTTERANCE:
+                getUtterance().clear();
+                getUtterance().addAll((Collection)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case MolicPackage.DIAGRAM__ELEMENT:
-				getElement().clear();
-				return;
-			case MolicPackage.DIAGRAM__UTTERANCE:
-				getUtterance().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case MolicPackage.DIAGRAM__ELEMENT:
+                getElement().clear();
+                return;
+            case MolicPackage.DIAGRAM__UTTERANCE:
+                getUtterance().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case MolicPackage.DIAGRAM__ELEMENT:
-				return element != null && !element.isEmpty();
-			case MolicPackage.DIAGRAM__UTTERANCE:
-				return utterance != null && !utterance.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case MolicPackage.DIAGRAM__ELEMENT:
+                return element != null && !element.isEmpty();
+            case MolicPackage.DIAGRAM__UTTERANCE:
+                return utterance != null && !utterance.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //DiagramImpl
