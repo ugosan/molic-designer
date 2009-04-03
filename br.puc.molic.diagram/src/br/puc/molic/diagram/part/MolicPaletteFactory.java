@@ -12,6 +12,7 @@ import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.ToolEntry;
+import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.PaletteToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
 
@@ -189,9 +190,9 @@ public class MolicPaletteFactory {
     }
 
     /**
-     * @generated
+     * @generated NOT
      */
-    private static class NodeToolEntry extends ToolEntry {
+    private static class NodeToolEntry extends PaletteToolEntry {
 
         /**
          * @generated
@@ -199,11 +200,12 @@ public class MolicPaletteFactory {
         private final List elementTypes;
 
         /**
-         * @generated
+         * @generated NOT
          */
         private NodeToolEntry(String title, String description,
                 List elementTypes) {
-            super(title, description, null, null);
+            super(null, title, null);
+            this.setDescription(description);
             this.elementTypes = elementTypes;
         }
 
