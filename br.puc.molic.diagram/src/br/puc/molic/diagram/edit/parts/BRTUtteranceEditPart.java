@@ -109,11 +109,12 @@ public class BRTUtteranceEditPart extends ConnectionNodeEditPart implements
         }
 
         /**
-         * @generated
+         * @generated NOT
          */
         private void createContents() {
 
             fFigureBRTUtteranceLabelFigure = new WrappingLabel();
+            fFigureBRTUtteranceLabelFigure.setTextWrap(true);
             fFigureBRTUtteranceLabelFigure.setText("");
 
             this.add(fFigureBRTUtteranceLabelFigure);
