@@ -23,6 +23,7 @@ import org.eclipse.ui.ide.IDE;
 import br.puc.molic.BRTUtterance;
 import br.puc.molic.Utterance;
 import br.puc.molic.diagram.SaveDialog;
+import br.puc.molic.diagram.application.MolicApplication;
 import br.puc.molic.diagram.edit.parts.DiagramEditPart;
 import br.puc.molic.impl.SceneImpl;
 import br.puc.molic.impl.UbiquitousAccessImpl;
@@ -63,15 +64,15 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
             
             String title = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getTitle();
             
-            
-            
+
             SaveDialog dlg = new SaveDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title.replaceFirst(".molic_diagram", ""));
             String path = dlg.open();
             
             write(path+".nodes.csv", csvnodes);
             write(path+".utterances.csv", csvconnections);
 
-            Desktop.getDesktop().open(new File(path));
+           // Desktop.getDesktop().open(new File(path+".nodes.csv"));
+            //Desktop.getDesktop().open(new File(path+".utterances.csv"));
             
             /*
              * Open a editor
@@ -89,6 +90,7 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
             
         }catch(Exception e) {
             e.printStackTrace();
+           MolicDiagramEditorPlugin.getInstance().logError(e.getMessage());
         }
     }
     
@@ -115,7 +117,9 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
            }else if (name.equals("Scene")) {
                csv += getCSVLineNode(id, ((SceneImpl)n.getElement()).getTopic(), "1", ((SceneImpl)n.getElement()).getDialogue());
            }else if (name.equals("UbiquitousAccess")) {
-               csv += getCSVLineNode(id, "Ubiqutous"+i, "3", ((UbiquitousAccessImpl)n.getElement()).getLabel());
+               String label = ((UbiquitousAccessImpl)n.getElement()).getLabel();
+        	   if(label==null) label = "NULL";
+        	   csv += getCSVLineNode(id, "Ubiqutous"+i, "3", label);
            }else if (name.equals("SystemProcess")) {
                csv += getCSVLineNode(id, "SystemProcess"+i, "2", "NULL");
            }else if (name.equals("ClosingPoint")) {
@@ -135,7 +139,7 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
         for(int i=0;i<connections.size();i++) {
             EdgeImpl e = (EdgeImpl) connections.get(i).getModel();
             String name = e.getElement().eClass().getName();
-            csv += "\n";
+            //csv += "\n";
             
             NodeImpl source = (NodeImpl) e.getSource();
             NodeImpl target = (NodeImpl) e.getTarget();
@@ -196,12 +200,7 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
             int idxud = label.indexOf("u:");
             if(idxud==-1) idxud = label.indexOf("d:");
 
-
-           // System.out.println("pressup "+idxpressup);
-            //System.out.println("precond "+idxprecond);
-           // System.out.println("perloc "+idxperloc);
-
-
+            
             if(idxpressup>-1) {
   
                 String sub1 = "NULL"; int sub1length = 999; 
@@ -220,10 +219,7 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
                     sub3 = label.substring(idxpressup, idxperloc);
                     sub3length = sub3.length();
                 }
-                
-                //System.out.println("sub1:"+sub1);
-                //System.out.println("sub2:"+sub2);
-                //System.out.println("sub3:"+sub3);
+
                 
                 if((sub1length<sub2length)&&(sub1length<sub3length)){
                     //sub1 menor                    
@@ -272,8 +268,9 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
                  
             
             
+            String parsed = getCSVLineConnection(id,source_id,target_id,utId,utType,pressup,precond,perloc,udlabel).replaceAll("\r", "" );
             
-            csv += getCSVLineConnection(id,source_id,target_id,utId,utType,pressup,precond,perloc,udlabel);
+            csv += parsed.replaceAll("\n", "" )+"\n";
             
         
         }
@@ -282,15 +279,15 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
     
     
     private String getCSVLineNode(String nodeAutoId, String nodeId, String nodeType, String nodeContent) {
-        String content = nodeContent.replaceAll("\n", " <br> ");
+        String content = nodeContent.replaceAll("\r", " <br> ");
         
-        return "\""+nodeAutoId+"\";\""+nodeId+"\";\""+nodeType+"\";\""+content+"\"";
+        return "\""+nodeAutoId+"\";\""+nodeId+"\";\""+nodeType+"\";\""+content.replaceAll("\n", "")+"\"";
    
     }
     
     private String getCSVLineConnection(String utAutoId, String utSourceNodeAutoId, String utTargetNodeAutoId, String utId, String utType, String utPresup, String utPrecond, String utPerloc, String utContent) {
-
-        return "\""+utAutoId+"\";\""+utSourceNodeAutoId+"\";\""+utTargetNodeAutoId+"\";\""+utId+"\";\""+utType.replaceAll("\n", "")+"\";\""+utPresup.replaceAll("\n", "")+"\";\""+utPrecond.replaceAll("\n", "")+"\";\""+utPerloc.replaceAll("\n", "")+"\";\""+utContent.replaceAll("\n", "")+"\"";
+    	//System.out.println(utType.indexOf("\n"));
+        return "\""+utAutoId+"\";\""+utSourceNodeAutoId+"\";\""+utTargetNodeAutoId+"\";\""+utId+"\";\""+utType+"\";\""+utPresup+"\";\""+utPrecond+"\";\""+utPerloc+"\";\""+utContent+"\"";
         
    
     }
