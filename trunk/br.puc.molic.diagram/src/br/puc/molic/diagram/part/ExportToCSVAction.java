@@ -1,6 +1,5 @@
 package br.puc.molic.diagram.part;
 
-import java.awt.Desktop;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -13,17 +12,13 @@ import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.ide.IDE;
 
 import br.puc.molic.BRTUtterance;
 import br.puc.molic.Utterance;
 import br.puc.molic.diagram.SaveDialog;
-import br.puc.molic.diagram.application.MolicApplication;
 import br.puc.molic.diagram.edit.parts.DiagramEditPart;
 import br.puc.molic.impl.SceneImpl;
 import br.puc.molic.impl.UbiquitousAccessImpl;
@@ -36,14 +31,10 @@ import br.puc.molic.impl.UbiquitousAccessImpl;
  */
 public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
 
-
     List<EditPart> nodes;
     List<ConnectionEditPart> connections;
 
-    public void init(IWorkbenchWindow window) {
-        // TODO Auto-generated method stub
-
-    }
+    public void init(IWorkbenchWindow window) {}
 
     public void run(IAction action) {       
         MolicDiagramEditor editor = (MolicDiagramEditor)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
@@ -68,8 +59,11 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
             SaveDialog dlg = new SaveDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title.replaceFirst(".molic_diagram", ""));
             String path = dlg.open();
             
-            write(path+".nodes.csv", csvnodes);
-            write(path+".utterances.csv", csvconnections);
+            String header = "nodeAutoId;nodeId;nodeType;nodeContent \n";
+            write(path+".nodes.csv", header+csvnodes);
+            
+            header = "utAutoId;utSourceNodeAutoId;utTargetNodeAutoId;utId;utType;utPresup;utPrecond;utPerloc;utContent \n";
+            write(path+".utterances.csv", header + csvconnections);
 
            // Desktop.getDesktop().open(new File(path+".nodes.csv"));
             //Desktop.getDesktop().open(new File(path+".utterances.csv"));
@@ -132,22 +126,22 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
        
        return csv;
     }
-    
-    private String generateConnections() {
-        //String csv = "\"utAutoId\";\"utSourceNodeAutoId\";\"utTargetNodeAutoId\";\"utId\";\"utType\";\"utPresup\";\"utPrecond\";\"utPerloc\";\"utContent\"";
+    /**
+     * Format "\"utAutoId\";\"utSourceNodeAutoId\";\"utTargetNodeAutoId\";\"utId\";\"utType\";\"utPresup\";\"utPrecond\";\"utPerloc\";\"utContent\"";
+     * @return
+     */
+    private String generateConnections() {        
         String csv = "";
         for(int i=0;i<connections.size();i++) {
             EdgeImpl e = (EdgeImpl) connections.get(i).getModel();
             String name = e.getElement().eClass().getName();
-            //csv += "\n";
             
             NodeImpl source = (NodeImpl) e.getSource();
             NodeImpl target = (NodeImpl) e.getTarget();
             
             String source_id = source.getElement().eResource().getURIFragment(source.getElement());
             String target_id = source.getElement().eResource().getURIFragment(target.getElement());
-            
-            
+                        
             String id = e.getElement().eResource().getURIFragment(e.getElement());
             String utType = "NULL";
             String pressup = "NULL";
@@ -187,13 +181,10 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
                         utType = "4";
                     }
                     label = element.getLabel();
-                }
-              
+                }              
             }
             
             /* parsing pressup: */           
-            
-
             int idxpressup = label.indexOf("pressup:");
             int idxprecond = label.indexOf("precond:");
             int idxperloc = label.indexOf("perloc:");
@@ -219,7 +210,6 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
                     sub3 = label.substring(idxpressup, idxperloc);
                     sub3length = sub3.length();
                 }
-
                 
                 if((sub1length<sub2length)&&(sub1length<sub3length)){
                     //sub1 menor                    
@@ -233,7 +223,7 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
 
             }
                 
-                
+            /* parsing precond: */    
             if(idxprecond>-1) {                
                 String sub2 = "NULL"; int sub2length = 999; 
                 String sub3 = "NULL"; int sub3length = 999; 
@@ -245,8 +235,7 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
                     sub3 = label.substring(idxprecond, idxperloc);
                     sub3length = sub3.length();
                 }
-                
-                
+
                 if(sub2length<sub3length){
                     //sub2 menor
                     precond = sub2;
@@ -256,7 +245,7 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
                 
             }
             
-           
+            /* parsing label and perloc: */    
             String udlabel = "NULL";
             if(idxperloc>-1) {                
                 perloc = label.substring(idxperloc, label.length());
@@ -264,10 +253,7 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
                 udlabel = label.substring(idxud, idxperloc);
             }else if(idxud>-1)
                 udlabel = label.substring(idxud, label.length());
-               
-                 
-            
-            
+
             String parsed = getCSVLineConnection(id,source_id,target_id,utId,utType,pressup,precond,perloc,udlabel).replaceAll("\r", "" );
             
             csv += parsed.replaceAll("\n", "" )+"\n";
@@ -281,18 +267,20 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
     private String getCSVLineNode(String nodeAutoId, String nodeId, String nodeType, String nodeContent) {
         String content = nodeContent.replaceAll("\r", " <br> ");
         
-        return "\""+nodeAutoId+"\";\""+nodeId+"\";\""+nodeType+"\";\""+content.replaceAll("\n", "")+"\"";
-   
+        return "\""+nodeAutoId+"\";\""+nodeId+"\";\""+nodeType+"\";\""+content.replaceAll("\n", "")+"\"";   
     }
     
     private String getCSVLineConnection(String utAutoId, String utSourceNodeAutoId, String utTargetNodeAutoId, String utId, String utType, String utPresup, String utPrecond, String utPerloc, String utContent) {
-    	//System.out.println(utType.indexOf("\n"));
+ 
         return "\""+utAutoId+"\";\""+utSourceNodeAutoId+"\";\""+utTargetNodeAutoId+"\";\""+utId+"\";\""+utType+"\";\""+utPresup+"\";\""+utPrecond+"\";\""+utPerloc+"\";\""+utContent+"\"";
-        
-   
     }
     
-    
+    /**
+     * Writes content on path file
+     * @param path path to file
+     * @param content the content
+     * @throws Exception
+     */
     private void write(String path, String content) throws Exception{
         Writer output = null;
 
@@ -300,19 +288,11 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
         
         output = new BufferedWriter(new FileWriter(file));
         output.write(content);
-        output.close();
-            
+        output.close();            
     }
     
     
+    public void selectionChanged(IAction action, ISelection selection) {}
 
-    public void selectionChanged(IAction action, ISelection selection) {
-        
-
-    }
-
-    public void dispose() {
-        // TODO Auto-generated method stub
-
-    }
+    public void dispose() {}
 }
