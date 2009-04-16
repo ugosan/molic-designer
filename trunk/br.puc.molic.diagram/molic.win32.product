@@ -12,7 +12,7 @@
 
    <splash
       location="br.puc.molic.rcp" />
-   <launcher name="moliceditor">
+   <launcher name="molicdesigner">
       <solaris/>
       <win useIco="false">
          <bmp/>
