@@ -93,10 +93,8 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
      * @return
      */
     private String generateNodes() {
-      // String csv = "\"nodeAutoId\";\"nodeId\";\"nodeType\";\"nodeContent\"";
        String csv = "";
-       
-       
+              
        for(int i=0;i<nodes.size();i++) {
            NodeImpl n = (NodeImpl) nodes.get(i).getModel();
            String name = n.getElement().eClass().getName();
