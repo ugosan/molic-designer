@@ -10,12 +10,16 @@
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
    </launcherArgs>
 
+   <windowImages i16="/br.puc.molic.edit/icons/full/obj16/Scene.gif"/>
+
    <splash
       location="br.puc.molic.rcp" />
    <launcher name="molicdesigner">
       <solaris/>
       <win useIco="false">
-         <bmp/>
+         <bmp
+            winSmallHigh="/br.puc.molic.diagram/icons/Scene16x16-32bits.bmp"
+            winMediumHigh="/br.puc.molic.diagram/icons/Scene32x32-32bits.bmp"/>
       </win>
    </launcher>
 
