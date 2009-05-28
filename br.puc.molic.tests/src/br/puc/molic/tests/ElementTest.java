@@ -50,7 +50,7 @@ public abstract class ElementTest extends TestCase {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	private Element getFixture() {
+	protected Element getFixture() {
         return fixture;
     }
 
