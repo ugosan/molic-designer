@@ -3,36 +3,54 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/br.puc.molic/src"
     creationSubmenus="true" modelPluginID="br.puc.molic" modelName="Molic" richClientPlatform="true"
-    importerID="org.eclipse.emf.importer.ecore">
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0">
   <foreignModel>molic.ecore</foreignModel>
   <genPackages prefix="Molic" basePackage="br.puc" disposableProviderFactory="true"
       ecorePackage="molic.ecore#/">
     <genClasses ecoreClass="molic.ecore#//Diagram">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference molic.ecore#//Diagram/element"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference molic.ecore#//Diagram/utterance"/>
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EAttribute molic.ecore#//Diagram/goals"/>
     </genClasses>
     <genClasses image="false" ecoreClass="molic.ecore#//Element">
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Element/ID"/>
+      <genFeatures property="Readonly" children="true" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Element/goals"/>
     </genClasses>
     <genClasses image="false" ecoreClass="molic.ecore#//Connection">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Connection/label"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference molic.ecore#//Connection/source"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference molic.ecore#//Connection/target"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Connection/ID"/>
+      <genFeatures children="true" createChild="false" propertyCategory="Attributes"
+          propertyDescription="" ecoreFeature="ecore:EAttribute molic.ecore#//Connection/goals"/>
     </genClasses>
     <genClasses ecoreClass="molic.ecore#//Scene">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Scene/topic"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Scene/dialogue"/>
+      <genFeatures children="true" createChild="false" propertyDescription="The topic which the scene is talking about"
+          ecoreFeature="ecore:EAttribute molic.ecore#//Scene/topic"/>
+      <genFeatures children="true" createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute molic.ecore#//Scene/dialogue"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Scene/name"/>
     </genClasses>
     <genClasses ecoreClass="molic.ecore#//Monologue">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Monologue/label"/>
     </genClasses>
-    <genClasses ecoreClass="molic.ecore#//Utterance"/>
-    <genClasses ecoreClass="molic.ecore#//BRTUtterance"/>
-    <genClasses ecoreClass="molic.ecore#//SystemProcess"/>
+    <genClasses ecoreClass="molic.ecore#//Utterance">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Utterance/name"/>
+    </genClasses>
+    <genClasses ecoreClass="molic.ecore#//BRTUtterance">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//BRTUtterance/name"/>
+    </genClasses>
+    <genClasses ecoreClass="molic.ecore#//SystemProcess">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//SystemProcess/name"/>
+    </genClasses>
     <genClasses ecoreClass="molic.ecore#//UbiquitousAccess">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//UbiquitousAccess/label"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//UbiquitousAccess/name"/>
     </genClasses>
-    <genClasses ecoreClass="molic.ecore#//OpeningPoint"/>
-    <genClasses ecoreClass="molic.ecore#//ClosingPoint"/>
+    <genClasses ecoreClass="molic.ecore#//OpeningPoint">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//OpeningPoint/name"/>
+    </genClasses>
+    <genClasses ecoreClass="molic.ecore#//ClosingPoint">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//ClosingPoint/name"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

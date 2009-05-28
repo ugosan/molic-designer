@@ -5,6 +5,8 @@ package br.puc.molic.diagram.part;
 
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramActionBarContributor;
 
+
+
 /**
  * @generated
  */
@@ -25,4 +27,7 @@ public class MolicDiagramActionBarContributor extends
         return MolicDiagramEditor.ID;
 
     }
+
+
+
 }

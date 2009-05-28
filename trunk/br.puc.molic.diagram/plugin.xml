@@ -50,7 +50,7 @@ Teste de nota de copyright do Molic
       <editor
          id="br.puc.molic.diagram.part.MolicDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/MolicDiagramFile.gif"
+         icon="icons/obj16/Scene.gif"
          extensions="molic_diagram"
          default="true"
          class="br.puc.molic.diagram.part.MolicDiagramEditor"
@@ -83,19 +83,8 @@ Teste de nota de copyright do Molic
 
 
       <extension point="org.eclipse.ui.actionSets">
-      <?gmfgen generated="true"?>
-      <actionSet
-            label="%initDiagramActionLabel"
-            visible="true"
-            id="br.puc.molic.diagram.InitDiagram">
-         <action
-               label="%initDiagramActionLabel"
-               class="br.puc.molic.diagram.part.MolicInitDiagramFileAction"
-               menubarPath="file/additions"
-               id="br.puc.molic.diagram.InitDiagramAction">
-         </action>
-      </actionSet>
-       <actionSet
+      <?gmfgen generated="false"?>
+          <actionSet
             label="%exportToCSVActionLabel"
             visible="true"
             id="br.puc.molic.diagram.ExportToCSV">
@@ -104,8 +93,11 @@ Teste de nota de copyright do Molic
                class="br.puc.molic.diagram.part.ExportToCSVAction"
                menubarPath="file/additions"
                id="br.puc.molic.diagram.ExportToCSVAction">
-         </action>
+         </action>         
       </actionSet>
+       
+      
+      
    </extension>
 	
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders">
@@ -458,34 +450,14 @@ Teste de nota de copyright do Molic
    <extension point="org.eclipse.ui.actionSets">
       <?gmfgen generated="true"?>
       <actionSet
-            label="%applicationActionSetLabel"
+            label="%initDiagramActionLabel"
             visible="true"
-            id="br.puc.molic.diagram.ActionSet">
+            id="br.puc.molic.diagram.InitDiagram">
          <action
-               label="%newDiagramActionLabel"
-               class="br.puc.molic.diagram.application.DiagramEditorActionBarAdvisor$NewDiagramAction"
-               menubarPath="file/new/additions"
-               id="br.puc.molic.diagram.NewDiagramAction">
-         </action>
-         <action
-               label="%aboutActionLabel"
-               class="br.puc.molic.diagram.application.DiagramEditorActionBarAdvisor$AboutAction"
-               menubarPath="help/additions"
-               id="br.puc.molic.diagram.AboutAction">
-         </action>
-         <action
-               label="%openURIActionLabel"
-               definitionId="br.puc.molic.diagram.OpenURICommand"
-               class="br.puc.molic.diagram.application.DiagramEditorActionBarAdvisor$OpenURIAction"
+               label="%initDiagramActionLabel"
+               class="br.puc.molic.diagram.part.MolicInitDiagramFileAction"
                menubarPath="file/additions"
-               id="br.puc.molic.diagram.OpenURIAction">
-         </action>
-         <action
-               label="%openActionLabel"
-               definitionId="br.puc.molic.diagram.OpenCommand"
-               class="br.puc.molic.diagram.application.DiagramEditorActionBarAdvisor$OpenAction"
-               menubarPath="file/additions"
-               id="br.puc.molic.diagram.OpenAction">
+               id="br.puc.molic.diagram.InitDiagramAction">
          </action>
       </actionSet>
    </extension>
@@ -519,7 +491,7 @@ Teste de nota de copyright do Molic
          </property>
       </product>
    </extension><extension point="org.eclipse.ui.popupMenus">
-      <?gmfgen generated="true"?>
+      <?gmfgen generated="false"?>
       <objectContribution
             adaptable="false"
             id="br.puc.molic.diagram.LoadResource"
@@ -531,7 +503,100 @@ Teste de nota de copyright do Molic
                label="%loadResourceActionLabel"
                menubarPath="additions">
          </action>
+      </objectContribution>    
+      <objectContribution
+            adaptable="false"
+            id="br.puc.molic.diagram.actions.BindGoal"
+            objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+         <action
+               class="br.puc.molic.diagram.actions.BindGoalAction"
+               icon="icons/goal.png"
+               id="br.puc.molic.diagram.actions.BindGoalAction"
+               label="Bind to Goal.."
+               menubarPath="additions"
+               tooltip="Binds the selected elements to a specific Goal">
+         </action>
+         <action
+               class="br.puc.molic.diagram.actions.ClearGoalBindAction"
+               icon="icons/goalclear.png"
+               id="br.puc.molic.diagram.actions.ClearGoalBindAction"
+               label="Remove Goal Binding"
+               menubarPath="additions"
+               tooltip="Removes the Goal binding from the selected elements">
+         </action>
       </objectContribution>           
    </extension>
+<extension id="ValidationContributionItemProvider" name="Validation"
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <?gmfgen generated="true"?>
+      <contributionItemProvider
+         class="br.puc.molic.diagram.providers.MolicValidationProvider">
+         <Priority name="Low"/>
+         <partContribution id="br.puc.molic.diagram.part.MolicDiagramEditorID">
+            <partMenuGroup menubarPath="/diagramMenu/" id="validationGroup"/>
+            <partAction id="validateAction" menubarPath="/diagramMenu/validationGroup"/>
+         </partContribution>
+      </contributionItemProvider>
+   </extension>
+<extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="br.puc.molic.diagram.providers.MolicValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+<extension point="org.eclipse.ui.actionSets">
+      <?gmfgen generated="true"?>
+      <actionSet
+            label="%applicationActionSetLabel"
+            visible="true"
+            id="br.puc.molic.diagram.ActionSet">
+         <action
+               label="%newDiagramActionLabel"
+               class="br.puc.molic.diagram.application.DiagramEditorActionBarAdvisor$NewDiagramAction"
+               menubarPath="file/new/additions"
+               id="br.puc.molic.diagram.NewDiagramAction">
+         </action>
+         <action
+               label="%aboutActionLabel"
+               class="br.puc.molic.diagram.application.DiagramEditorActionBarAdvisor$AboutAction"
+               menubarPath="help/additions"
+               id="br.puc.molic.diagram.AboutAction">
+         </action>
+         <action
+               label="%openActionLabel"
+               definitionId="br.puc.molic.diagram.OpenCommand"
+               class="br.puc.molic.diagram.application.DiagramEditorActionBarAdvisor$OpenAction"
+               menubarPath="file/additions"
+               id="br.puc.molic.diagram.OpenAction">
+         </action>
+      </actionSet>
+   </extension>
+<extension
+      point="org.eclipse.ui.views">
+   <category
+         id="br.puc.molic.diagram.GoalsView"
+         name="Goals">
+   </category>
+   <view
+         category="br.puc.molic.diagram.GoalsView"
+         class="br.puc.molic.diagram.views.GoalsView"
+         icon="icons/goal.png"
+         id="br.puc.molic.diagram.views.GoalsView"
+         name="Goals">
+   </view>
+</extension>
+<extension
+      point="org.eclipse.help.contexts">
+   <contexts
+         file="contexts.xml">
+   </contexts>
+</extension>
+
+
+
+
+
 
 </plugin>

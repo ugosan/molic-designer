@@ -7,12 +7,15 @@
 package br.puc.molic.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import br.puc.molic.MolicPackage;
 import br.puc.molic.Monologue;
+import java.util.Collection;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +25,7 @@ import br.puc.molic.Monologue;
  * The following features are implemented:
  * <ul>
  *   <li>{@link br.puc.molic.impl.MonologueImpl#getID <em>ID</em>}</li>
+ *   <li>{@link br.puc.molic.impl.MonologueImpl#getGoals <em>Goals</em>}</li>
  *   <li>{@link br.puc.molic.impl.MonologueImpl#getLabel <em>Label</em>}</li>
  * </ul>
  * </p>
@@ -48,6 +52,16 @@ public class MonologueImpl extends EObjectImpl implements Monologue {
      * @ordered
      */
     protected String id = ID_EDEFAULT;
+
+    /**
+     * The cached value of the '{@link #getGoals() <em>Goals</em>}' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getGoals()
+     * @generated
+     * @ordered
+     */
+    protected EList<String> goals;
 
     /**
      * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
@@ -83,17 +97,29 @@ public class MonologueImpl extends EObjectImpl implements Monologue {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected EClass eStaticClass() {
+	@Override
+    protected EClass eStaticClass() {
         return MolicPackage.Literals.MONOLOGUE;
     }
 
-	/**
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public String getID() {
+        return eResource().getURIFragment(this);
+    }
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getID() {
-        return id;
+    public EList<String> getGoals() {
+        if (goals == null) {
+            goals = new EDataTypeUniqueEList<String>(String.class, this, MolicPackage.MONOLOGUE__GOALS);
+        }
+        return goals;
     }
 
     /**
@@ -122,10 +148,13 @@ public class MonologueImpl extends EObjectImpl implements Monologue {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	@Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case MolicPackage.MONOLOGUE__ID:
                 return getID();
+            case MolicPackage.MONOLOGUE__GOALS:
+                return getGoals();
             case MolicPackage.MONOLOGUE__LABEL:
                 return getLabel();
         }
@@ -137,8 +166,14 @@ public class MonologueImpl extends EObjectImpl implements Monologue {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eSet(int featureID, Object newValue) {
+	@SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case MolicPackage.MONOLOGUE__GOALS:
+                getGoals().clear();
+                getGoals().addAll((Collection<? extends String>)newValue);
+                return;
             case MolicPackage.MONOLOGUE__LABEL:
                 setLabel((String)newValue);
                 return;
@@ -151,8 +186,12 @@ public class MonologueImpl extends EObjectImpl implements Monologue {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void eUnset(int featureID) {
+	@Override
+    public void eUnset(int featureID) {
         switch (featureID) {
+            case MolicPackage.MONOLOGUE__GOALS:
+                getGoals().clear();
+                return;
             case MolicPackage.MONOLOGUE__LABEL:
                 setLabel(LABEL_EDEFAULT);
                 return;
@@ -165,10 +204,13 @@ public class MonologueImpl extends EObjectImpl implements Monologue {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean eIsSet(int featureID) {
+	@Override
+    public boolean eIsSet(int featureID) {
         switch (featureID) {
             case MolicPackage.MONOLOGUE__ID:
                 return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+            case MolicPackage.MONOLOGUE__GOALS:
+                return goals != null && !goals.isEmpty();
             case MolicPackage.MONOLOGUE__LABEL:
                 return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
         }
@@ -180,12 +222,15 @@ public class MonologueImpl extends EObjectImpl implements Monologue {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public String toString() {
+	@Override
+    public String toString() {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (ID: ");
         result.append(id);
+        result.append(", goals: ");
+        result.append(goals);
         result.append(", label: ");
         result.append(label);
         result.append(')');

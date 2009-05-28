@@ -58,7 +58,7 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected Collection supportedTypes = new ArrayList();
+	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
      * This constructs an instance.
@@ -88,7 +88,8 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Adapter createDiagramAdapter() {
+	@Override
+    public Adapter createDiagramAdapter() {
         if (diagramItemProvider == null) {
             diagramItemProvider = new DiagramItemProvider(this);
         }
@@ -110,7 +111,8 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Adapter createSceneAdapter() {
+	@Override
+    public Adapter createSceneAdapter() {
         if (sceneItemProvider == null) {
             sceneItemProvider = new SceneItemProvider(this);
         }
@@ -132,7 +134,8 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Adapter createUtteranceAdapter() {
+	@Override
+    public Adapter createUtteranceAdapter() {
         if (utteranceItemProvider == null) {
             utteranceItemProvider = new UtteranceItemProvider(this);
         }
@@ -154,7 +157,8 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Adapter createSystemProcessAdapter() {
+	@Override
+    public Adapter createSystemProcessAdapter() {
         if (systemProcessItemProvider == null) {
             systemProcessItemProvider = new SystemProcessItemProvider(this);
         }
@@ -176,7 +180,8 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Adapter createMonologueAdapter() {
+	@Override
+    public Adapter createMonologueAdapter() {
         if (monologueItemProvider == null) {
             monologueItemProvider = new MonologueItemProvider(this);
         }
@@ -198,7 +203,8 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Adapter createBRTUtteranceAdapter() {
+	@Override
+    public Adapter createBRTUtteranceAdapter() {
         if (brtUtteranceItemProvider == null) {
             brtUtteranceItemProvider = new BRTUtteranceItemProvider(this);
         }
@@ -220,7 +226,8 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Adapter createUbiquitousAccessAdapter() {
+	@Override
+    public Adapter createUbiquitousAccessAdapter() {
         if (ubiquitousAccessItemProvider == null) {
             ubiquitousAccessItemProvider = new UbiquitousAccessItemProvider(this);
         }
@@ -242,7 +249,8 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Adapter createOpeningPointAdapter() {
+	@Override
+    public Adapter createOpeningPointAdapter() {
         if (openingPointItemProvider == null) {
             openingPointItemProvider = new OpeningPointItemProvider(this);
         }
@@ -264,7 +272,8 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Adapter createClosingPointAdapter() {
+	@Override
+    public Adapter createClosingPointAdapter() {
         if (closingPointItemProvider == null) {
             closingPointItemProvider = new ClosingPointItemProvider(this);
         }
@@ -297,7 +306,8 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean isFactoryForType(Object type) {
+	@Override
+    public boolean isFactoryForType(Object type) {
         return supportedTypes.contains(type) || super.isFactoryForType(type);
     }
 
@@ -307,7 +317,8 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Adapter adapt(Notifier notifier, Object type) {
+	@Override
+    public Adapter adapt(Notifier notifier, Object type) {
         return super.adapt(notifier, this);
     }
 
@@ -316,10 +327,11 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object adapt(Object object, Object type) {
+	@Override
+    public Object adapt(Object object, Object type) {
         if (isFactoryForType(type)) {
             Object adapter = super.adapt(object, type);
-            if (!(type instanceof Class) || (((Class)type).isInstance(adapter))) {
+            if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
                 return adapter;
             }
         }

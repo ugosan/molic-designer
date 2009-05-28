@@ -7,6 +7,7 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.StackLayout;
@@ -28,6 +29,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 
@@ -183,7 +185,7 @@ public class SceneEditPart extends ShapeNodeEditPart {
      * Body of this method does not depend on settings in generation model
      * so you may safely remove <i>generated</i> tag and modify it.
      * 
-     * @generated
+     * @generated NOT
      */
     protected NodeFigure createNodeFigure() {
         NodeFigure figure = createNodePlate();
@@ -191,6 +193,12 @@ public class SceneEditPart extends ShapeNodeEditPart {
         IFigure shape = createNodeShape();
         figure.add(shape);
         contentPane = setupContentPane(shape);
+        
+        
+        
+         //Color c = new Color(shape.getForegroundColor().getDevice(),200,0,0);
+        //shape.setForegroundColor(c);
+        figure.setToolTip(new Label("Click on the topic or the dialogue to edit them. \n For multiple lines, Ctrl+Enter does a line break"));
         return figure;
     }
 
@@ -270,7 +278,7 @@ public class SceneEditPart extends ShapeNodeEditPart {
 
             fFigureSceneTopicFigure = new WrappingLabel();
             fFigureSceneTopicFigure.setText("Untitled Scene");
-            
+
             fFigureSceneTopicFigure.setFont(FFIGURESCENETOPICFIGURE_FONT);
 
             GridData constraintFFigureSceneTopicFigure = new GridData();
@@ -328,7 +336,6 @@ public class SceneEditPart extends ShapeNodeEditPart {
             fFigureDialogueFigure.setPreferredSize(new Dimension(getMapMode()
                     .DPtoLP(100), getMapMode().DPtoLP(100)));
 
-            
             GridData constraintFFigureDialogueFigure = new GridData();
             constraintFFigureDialogueFigure.verticalAlignment = GridData.FILL;
             constraintFFigureDialogueFigure.horizontalAlignment = GridData.BEGINNING;

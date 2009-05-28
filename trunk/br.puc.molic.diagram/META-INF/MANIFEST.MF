@@ -47,5 +47,12 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.diagram.ui.printing,
  org.eclipse.gmf.runtime.diagram.ui.printing.render,
  org.eclipse.gmf.runtime.notation.edit,
- org.eclipse.ui
+ org.eclipse.ui,
+ org.eclipse.ocl.ecore;visibility:=reexport,
+ org.eclipse.emf.validation;visibility:=reexport,
+ org.eclipse.core.expressions,
+ org.eclipse.ui.navigator,
+ org.eclipse.ui.navigator.resources,
+ org.eclipse.gmf.graphdef;bundle-version="2.0.100"
 Eclipse-LazyStart: true
+Import-Package: br.puc.molic.diagram.providers

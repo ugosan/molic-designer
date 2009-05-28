@@ -36,7 +36,7 @@ import br.puc.molic.Utterance;
  * @see br.puc.molic.MolicPackage
  * @generated
  */
-public class MolicSwitch {
+public class MolicSwitch<T> {
 	/**
      * The cached model package
      * <!-- begin-user-doc -->
@@ -64,7 +64,7 @@ public class MolicSwitch {
      * @return the first non-null result returned by a <code>caseXXX</code> call.
      * @generated
      */
-	public Object doSwitch(EObject theEObject) {
+	public T doSwitch(EObject theEObject) {
         return doSwitch(theEObject.eClass(), theEObject);
     }
 
@@ -75,16 +75,16 @@ public class MolicSwitch {
      * @return the first non-null result returned by a <code>caseXXX</code> call.
      * @generated
      */
-	protected Object doSwitch(EClass theEClass, EObject theEObject) {
+	protected T doSwitch(EClass theEClass, EObject theEObject) {
         if (theEClass.eContainer() == modelPackage) {
             return doSwitch(theEClass.getClassifierID(), theEObject);
         }
         else {
-            List eSuperTypes = theEClass.getESuperTypes();
+            List<EClass> eSuperTypes = theEClass.getESuperTypes();
             return
                 eSuperTypes.isEmpty() ?
                     defaultCase(theEObject) :
-                    doSwitch((EClass)eSuperTypes.get(0), theEObject);
+                    doSwitch(eSuperTypes.get(0), theEObject);
         }
     }
 
@@ -95,78 +95,78 @@ public class MolicSwitch {
      * @return the first non-null result returned by a <code>caseXXX</code> call.
      * @generated
      */
-	protected Object doSwitch(int classifierID, EObject theEObject) {
+	protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
             case MolicPackage.DIAGRAM: {
                 Diagram diagram = (Diagram)theEObject;
-                Object result = caseDiagram(diagram);
+                T result = caseDiagram(diagram);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case MolicPackage.ELEMENT: {
                 Element element = (Element)theEObject;
-                Object result = caseElement(element);
+                T result = caseElement(element);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case MolicPackage.CONNECTION: {
                 Connection connection = (Connection)theEObject;
-                Object result = caseConnection(connection);
+                T result = caseConnection(connection);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case MolicPackage.SCENE: {
                 Scene scene = (Scene)theEObject;
-                Object result = caseScene(scene);
+                T result = caseScene(scene);
                 if (result == null) result = caseElement(scene);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case MolicPackage.MONOLOGUE: {
                 Monologue monologue = (Monologue)theEObject;
-                Object result = caseMonologue(monologue);
+                T result = caseMonologue(monologue);
                 if (result == null) result = caseElement(monologue);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case MolicPackage.UTTERANCE: {
                 Utterance utterance = (Utterance)theEObject;
-                Object result = caseUtterance(utterance);
+                T result = caseUtterance(utterance);
                 if (result == null) result = caseConnection(utterance);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case MolicPackage.BRT_UTTERANCE: {
                 BRTUtterance brtUtterance = (BRTUtterance)theEObject;
-                Object result = caseBRTUtterance(brtUtterance);
+                T result = caseBRTUtterance(brtUtterance);
                 if (result == null) result = caseConnection(brtUtterance);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case MolicPackage.SYSTEM_PROCESS: {
                 SystemProcess systemProcess = (SystemProcess)theEObject;
-                Object result = caseSystemProcess(systemProcess);
+                T result = caseSystemProcess(systemProcess);
                 if (result == null) result = caseElement(systemProcess);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case MolicPackage.UBIQUITOUS_ACCESS: {
                 UbiquitousAccess ubiquitousAccess = (UbiquitousAccess)theEObject;
-                Object result = caseUbiquitousAccess(ubiquitousAccess);
+                T result = caseUbiquitousAccess(ubiquitousAccess);
                 if (result == null) result = caseElement(ubiquitousAccess);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case MolicPackage.OPENING_POINT: {
                 OpeningPoint openingPoint = (OpeningPoint)theEObject;
-                Object result = caseOpeningPoint(openingPoint);
+                T result = caseOpeningPoint(openingPoint);
                 if (result == null) result = caseElement(openingPoint);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case MolicPackage.CLOSING_POINT: {
                 ClosingPoint closingPoint = (ClosingPoint)theEObject;
-                Object result = caseClosingPoint(closingPoint);
+                T result = caseClosingPoint(closingPoint);
                 if (result == null) result = caseElement(closingPoint);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -186,7 +186,7 @@ public class MolicSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public Object caseDiagram(Diagram object) {
+	public T caseDiagram(Diagram object) {
         return null;
     }
 
@@ -201,7 +201,7 @@ public class MolicSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public Object caseScene(Scene object) {
+	public T caseScene(Scene object) {
         return null;
     }
 
@@ -216,7 +216,7 @@ public class MolicSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public Object caseElement(Element object) {
+	public T caseElement(Element object) {
         return null;
     }
 
@@ -231,7 +231,7 @@ public class MolicSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public Object caseUtterance(Utterance object) {
+	public T caseUtterance(Utterance object) {
         return null;
     }
 
@@ -246,7 +246,7 @@ public class MolicSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public Object caseSystemProcess(SystemProcess object) {
+	public T caseSystemProcess(SystemProcess object) {
         return null;
     }
 
@@ -261,7 +261,7 @@ public class MolicSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public Object caseMonologue(Monologue object) {
+	public T caseMonologue(Monologue object) {
         return null;
     }
 
@@ -276,7 +276,7 @@ public class MolicSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public Object caseBRTUtterance(BRTUtterance object) {
+	public T caseBRTUtterance(BRTUtterance object) {
         return null;
     }
 
@@ -291,7 +291,7 @@ public class MolicSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public Object caseUbiquitousAccess(UbiquitousAccess object) {
+	public T caseUbiquitousAccess(UbiquitousAccess object) {
         return null;
     }
 
@@ -306,7 +306,7 @@ public class MolicSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public Object caseOpeningPoint(OpeningPoint object) {
+	public T caseOpeningPoint(OpeningPoint object) {
         return null;
     }
 
@@ -321,7 +321,7 @@ public class MolicSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public Object caseClosingPoint(ClosingPoint object) {
+	public T caseClosingPoint(ClosingPoint object) {
         return null;
     }
 
@@ -336,7 +336,7 @@ public class MolicSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-	public Object caseConnection(Connection object) {
+	public T caseConnection(Connection object) {
         return null;
     }
 
@@ -351,7 +351,7 @@ public class MolicSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject)
      * @generated
      */
-	public Object defaultCase(EObject object) {
+	public T defaultCase(EObject object) {
         return null;
     }
 

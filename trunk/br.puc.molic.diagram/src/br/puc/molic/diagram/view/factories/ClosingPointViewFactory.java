@@ -10,6 +10,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.AbstractShapeViewFactory;
+import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 
@@ -54,4 +55,17 @@ public class ClosingPointViewFactory extends AbstractShapeViewFactory {
             view.getEAnnotations().add(shortcutAnnotation);
         }
     }
+
+    /**
+     * https://bugs.eclipse.org/bugs/show_bug.cgi?id=255445
+     */
+    @Override
+    protected LayoutConstraint createLayoutConstraint() {
+        // TODO Auto-generated method stub
+        return NotationFactory.eINSTANCE.createLocation();
+
+    }
+    
+    
+    
 }

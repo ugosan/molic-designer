@@ -17,6 +17,7 @@ import br.puc.molic.ClosingPoint;
 import br.puc.molic.Connection;
 import br.puc.molic.Diagram;
 import br.puc.molic.Element;
+
 import br.puc.molic.MolicFactory;
 import br.puc.molic.MolicPackage;
 import br.puc.molic.Monologue;
@@ -207,6 +208,15 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getDiagram_Goals() {
+        return (EAttribute)diagramEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -234,6 +244,15 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getScene_Name() {
+        return (EAttribute)sceneEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -252,6 +271,15 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getElement_Goals() {
+        return (EAttribute)elementEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -261,6 +289,15 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getUtterance_Name() {
+        return (EAttribute)utteranceEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -269,6 +306,15 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSystemProcess_Name() {
+        return (EAttribute)systemProcessEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -297,6 +343,15 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBRTUtterance_Name() {
+        return (EAttribute)brtUtteranceEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -315,6 +370,15 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getUbiquitousAccess_Name() {
+        return (EAttribute)ubiquitousAccessEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -324,6 +388,15 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getOpeningPoint_Name() {
+        return (EAttribute)openingPointEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -332,6 +405,15 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getClosingPoint_Name() {
+        return (EAttribute)closingPointEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -369,6 +451,24 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getConnection_ID() {
+        return (EAttribute)connectionEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getConnection_Goals() {
+        return (EAttribute)connectionEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -398,34 +498,45 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
         diagramEClass = createEClass(DIAGRAM);
         createEReference(diagramEClass, DIAGRAM__ELEMENT);
         createEReference(diagramEClass, DIAGRAM__UTTERANCE);
+        createEAttribute(diagramEClass, DIAGRAM__GOALS);
 
         elementEClass = createEClass(ELEMENT);
         createEAttribute(elementEClass, ELEMENT__ID);
+        createEAttribute(elementEClass, ELEMENT__GOALS);
 
         connectionEClass = createEClass(CONNECTION);
         createEAttribute(connectionEClass, CONNECTION__LABEL);
         createEReference(connectionEClass, CONNECTION__SOURCE);
         createEReference(connectionEClass, CONNECTION__TARGET);
+        createEAttribute(connectionEClass, CONNECTION__ID);
+        createEAttribute(connectionEClass, CONNECTION__GOALS);
 
         sceneEClass = createEClass(SCENE);
         createEAttribute(sceneEClass, SCENE__TOPIC);
         createEAttribute(sceneEClass, SCENE__DIALOGUE);
+        createEAttribute(sceneEClass, SCENE__NAME);
 
         monologueEClass = createEClass(MONOLOGUE);
         createEAttribute(monologueEClass, MONOLOGUE__LABEL);
 
         utteranceEClass = createEClass(UTTERANCE);
+        createEAttribute(utteranceEClass, UTTERANCE__NAME);
 
         brtUtteranceEClass = createEClass(BRT_UTTERANCE);
+        createEAttribute(brtUtteranceEClass, BRT_UTTERANCE__NAME);
 
         systemProcessEClass = createEClass(SYSTEM_PROCESS);
+        createEAttribute(systemProcessEClass, SYSTEM_PROCESS__NAME);
 
         ubiquitousAccessEClass = createEClass(UBIQUITOUS_ACCESS);
         createEAttribute(ubiquitousAccessEClass, UBIQUITOUS_ACCESS__LABEL);
+        createEAttribute(ubiquitousAccessEClass, UBIQUITOUS_ACCESS__NAME);
 
         openingPointEClass = createEClass(OPENING_POINT);
+        createEAttribute(openingPointEClass, OPENING_POINT__NAME);
 
         closingPointEClass = createEClass(CLOSING_POINT);
+        createEAttribute(closingPointEClass, CLOSING_POINT__NAME);
     }
 
 	/**
@@ -451,6 +562,10 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
         setNsPrefix(eNS_PREFIX);
         setNsURI(eNS_URI);
 
+        // Create type parameters
+
+        // Set bounds for type parameters
+
         // Add supertypes to classes
         sceneEClass.getESuperTypes().add(this.getElement());
         monologueEClass.getESuperTypes().add(this.getElement());
@@ -465,34 +580,45 @@ public class MolicPackageImpl extends EPackageImpl implements MolicPackage {
         initEClass(diagramEClass, Diagram.class, "Diagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getDiagram_Element(), this.getElement(), null, "element", null, 0, -1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDiagram_Utterance(), this.getConnection(), null, "utterance", null, 0, -1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getDiagram_Goals(), ecorePackage.getEString(), "goals", null, 0, -1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getElement_ID(), ecorePackage.getEString(), "ID", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getElement_Goals(), ecorePackage.getEString(), "goals", null, 0, -1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(connectionEClass, Connection.class, "Connection", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getConnection_Label(), ecorePackage.getEString(), "label", null, 0, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getConnection_Source(), this.getElement(), null, "source", null, 0, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getConnection_Target(), this.getElement(), null, "target", null, 0, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getConnection_ID(), ecorePackage.getEString(), "ID", null, 0, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getConnection_Goals(), ecorePackage.getEString(), "goals", null, 0, -1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(sceneEClass, Scene.class, "Scene", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getScene_Topic(), ecorePackage.getEString(), "topic", null, 0, 1, Scene.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getScene_Dialogue(), ecorePackage.getEString(), "dialogue", null, 0, 1, Scene.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getScene_Name(), ecorePackage.getEString(), "name", "Scene", 0, 1, Scene.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(monologueEClass, Monologue.class, "Monologue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getMonologue_Label(), ecorePackage.getEString(), "label", null, 0, 1, Monologue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(utteranceEClass, Utterance.class, "Utterance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getUtterance_Name(), ecorePackage.getEString(), "name", "Utterance", 0, 1, Utterance.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(brtUtteranceEClass, BRTUtterance.class, "BRTUtterance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getBRTUtterance_Name(), ecorePackage.getEString(), "name", "Breakdown Utterance", 0, 1, BRTUtterance.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(systemProcessEClass, SystemProcess.class, "SystemProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getSystemProcess_Name(), ecorePackage.getEString(), "name", "System Process", 0, 1, SystemProcess.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(ubiquitousAccessEClass, UbiquitousAccess.class, "UbiquitousAccess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getUbiquitousAccess_Label(), ecorePackage.getEString(), "label", null, 0, 1, UbiquitousAccess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getUbiquitousAccess_Name(), ecorePackage.getEString(), "name", "Ubiquitous Access", 0, 1, UbiquitousAccess.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(openingPointEClass, OpeningPoint.class, "OpeningPoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getOpeningPoint_Name(), ecorePackage.getEString(), "name", "Opening Point", 0, 1, OpeningPoint.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(closingPointEClass, ClosingPoint.class, "ClosingPoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getClosingPoint_Name(), ecorePackage.getEString(), "name", "Closing Point", 0, 1, ClosingPoint.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);

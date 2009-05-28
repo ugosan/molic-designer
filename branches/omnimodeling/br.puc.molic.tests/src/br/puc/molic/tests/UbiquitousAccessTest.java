@@ -61,7 +61,7 @@ public class UbiquitousAccessTest extends TestCase {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	private UbiquitousAccess getFixture() {
+	protected UbiquitousAccess getFixture() {
         return fixture;
     }
 
@@ -71,7 +71,8 @@ public class UbiquitousAccessTest extends TestCase {
      * @see junit.framework.TestCase#setUp()
      * @generated
      */
-	protected void setUp() throws Exception {
+	@Override
+    protected void setUp() throws Exception {
         setFixture(MolicFactory.eINSTANCE.createUbiquitousAccess());
     }
 
@@ -81,7 +82,8 @@ public class UbiquitousAccessTest extends TestCase {
      * @see junit.framework.TestCase#tearDown()
      * @generated
      */
-	protected void tearDown() throws Exception {
+	@Override
+    protected void tearDown() throws Exception {
         setFixture(null);
     }
 

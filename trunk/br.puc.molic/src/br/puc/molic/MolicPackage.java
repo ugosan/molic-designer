@@ -88,13 +88,22 @@ public interface MolicPackage extends EPackage {
 	int DIAGRAM__UTTERANCE = 1;
 
 	/**
+     * The feature id for the '<em><b>Goals</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DIAGRAM__GOALS = 2;
+
+    /**
      * The number of structural features of the '<em>Diagram</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int DIAGRAM_FEATURE_COUNT = 2;
+	int DIAGRAM_FEATURE_COUNT = 3;
 
 	/**
      * The meta object id for the '{@link br.puc.molic.Element <em>Element</em>}' class.
@@ -116,13 +125,22 @@ public interface MolicPackage extends EPackage {
     int ELEMENT__ID = 0;
 
     /**
+     * The feature id for the '<em><b>Goals</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ELEMENT__GOALS = 1;
+
+    /**
      * The number of structural features of the '<em>Element</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int ELEMENT_FEATURE_COUNT = 1;
+	int ELEMENT_FEATURE_COUNT = 2;
 
 	/**
      * The meta object id for the '{@link br.puc.molic.impl.SceneImpl <em>Scene</em>}' class.
@@ -172,13 +190,31 @@ public interface MolicPackage extends EPackage {
 	int CONNECTION__TARGET = 2;
 
 	/**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONNECTION__ID = 3;
+
+    /**
+     * The feature id for the '<em><b>Goals</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONNECTION__GOALS = 4;
+
+    /**
      * The number of structural features of the '<em>Connection</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CONNECTION_FEATURE_COUNT = 3;
+	int CONNECTION_FEATURE_COUNT = 5;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -190,6 +226,15 @@ public interface MolicPackage extends EPackage {
     int SCENE__ID = ELEMENT__ID;
 
 	/**
+     * The feature id for the '<em><b>Goals</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCENE__GOALS = ELEMENT__GOALS;
+
+    /**
      * The feature id for the '<em><b>Topic</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -208,13 +253,22 @@ public interface MolicPackage extends EPackage {
 	int SCENE__DIALOGUE = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCENE__NAME = ELEMENT_FEATURE_COUNT + 2;
+
+    /**
      * The number of structural features of the '<em>Scene</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int SCENE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+	int SCENE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
      * The meta object id for the '{@link br.puc.molic.impl.UtteranceImpl <em>Utterance</em>}' class.
@@ -254,6 +308,15 @@ public interface MolicPackage extends EPackage {
      * @ordered
      */
     int MONOLOGUE__ID = ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Goals</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MONOLOGUE__GOALS = ELEMENT__GOALS;
 
     /**
      * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -301,13 +364,40 @@ public interface MolicPackage extends EPackage {
 	int UTTERANCE__TARGET = CONNECTION__TARGET;
 
 	/**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UTTERANCE__ID = CONNECTION__ID;
+
+    /**
+     * The feature id for the '<em><b>Goals</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UTTERANCE__GOALS = CONNECTION__GOALS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UTTERANCE__NAME = CONNECTION_FEATURE_COUNT + 0;
+
+    /**
      * The number of structural features of the '<em>Utterance</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int UTTERANCE_FEATURE_COUNT = CONNECTION_FEATURE_COUNT + 0;
+	int UTTERANCE_FEATURE_COUNT = CONNECTION_FEATURE_COUNT + 1;
 
 	/**
      * The meta object id for the '{@link br.puc.molic.impl.BRTUtteranceImpl <em>BRT Utterance</em>}' class.
@@ -347,13 +437,40 @@ public interface MolicPackage extends EPackage {
 	int BRT_UTTERANCE__TARGET = CONNECTION__TARGET;
 
 	/**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BRT_UTTERANCE__ID = CONNECTION__ID;
+
+    /**
+     * The feature id for the '<em><b>Goals</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BRT_UTTERANCE__GOALS = CONNECTION__GOALS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BRT_UTTERANCE__NAME = CONNECTION_FEATURE_COUNT + 0;
+
+    /**
      * The number of structural features of the '<em>BRT Utterance</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int BRT_UTTERANCE_FEATURE_COUNT = CONNECTION_FEATURE_COUNT + 0;
+	int BRT_UTTERANCE_FEATURE_COUNT = CONNECTION_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -365,13 +482,31 @@ public interface MolicPackage extends EPackage {
     int SYSTEM_PROCESS__ID = ELEMENT__ID;
 
 	/**
+     * The feature id for the '<em><b>Goals</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SYSTEM_PROCESS__GOALS = ELEMENT__GOALS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SYSTEM_PROCESS__NAME = ELEMENT_FEATURE_COUNT + 0;
+
+    /**
      * The number of structural features of the '<em>System Process</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int SYSTEM_PROCESS_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
+	int SYSTEM_PROCESS_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
 
 
 	/**
@@ -394,6 +529,15 @@ public interface MolicPackage extends EPackage {
     int UBIQUITOUS_ACCESS__ID = ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Goals</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UBIQUITOUS_ACCESS__GOALS = ELEMENT__GOALS;
+
+    /**
      * The feature id for the '<em><b>Label</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -403,13 +547,22 @@ public interface MolicPackage extends EPackage {
 	int UBIQUITOUS_ACCESS__LABEL = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UBIQUITOUS_ACCESS__NAME = ELEMENT_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Ubiquitous Access</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int UBIQUITOUS_ACCESS_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+	int UBIQUITOUS_ACCESS_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
 
 
 	/**
@@ -432,13 +585,31 @@ public interface MolicPackage extends EPackage {
     int OPENING_POINT__ID = ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Goals</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OPENING_POINT__GOALS = ELEMENT__GOALS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OPENING_POINT__NAME = ELEMENT_FEATURE_COUNT + 0;
+
+    /**
      * The number of structural features of the '<em>Opening Point</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int OPENING_POINT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
+	int OPENING_POINT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
 
 
 	/**
@@ -461,13 +632,31 @@ public interface MolicPackage extends EPackage {
     int CLOSING_POINT__ID = ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Goals</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLOSING_POINT__GOALS = ELEMENT__GOALS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLOSING_POINT__NAME = ELEMENT_FEATURE_COUNT + 0;
+
+    /**
      * The number of structural features of the '<em>Closing Point</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int CLOSING_POINT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
+	int CLOSING_POINT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
 
 
 	/**
@@ -503,6 +692,17 @@ public interface MolicPackage extends EPackage {
 	EReference getDiagram_Utterance();
 
 	/**
+     * Returns the meta object for the attribute list '{@link br.puc.molic.Diagram#getGoals <em>Goals</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute list '<em>Goals</em>'.
+     * @see br.puc.molic.Diagram#getGoals()
+     * @see #getDiagram()
+     * @generated
+     */
+    EAttribute getDiagram_Goals();
+
+    /**
      * Returns the meta object for class '{@link br.puc.molic.Scene <em>Scene</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -535,6 +735,17 @@ public interface MolicPackage extends EPackage {
 	EAttribute getScene_Dialogue();
 
 	/**
+     * Returns the meta object for the attribute '{@link br.puc.molic.Scene#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see br.puc.molic.Scene#getName()
+     * @see #getScene()
+     * @generated
+     */
+    EAttribute getScene_Name();
+
+    /**
      * Returns the meta object for class '{@link br.puc.molic.Element <em>Element</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -556,6 +767,17 @@ public interface MolicPackage extends EPackage {
     EAttribute getElement_ID();
 
     /**
+     * Returns the meta object for the attribute list '{@link br.puc.molic.Element#getGoals <em>Goals</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute list '<em>Goals</em>'.
+     * @see br.puc.molic.Element#getGoals()
+     * @see #getElement()
+     * @generated
+     */
+    EAttribute getElement_Goals();
+
+    /**
      * Returns the meta object for class '{@link br.puc.molic.Utterance <em>Utterance</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -566,6 +788,17 @@ public interface MolicPackage extends EPackage {
 	EClass getUtterance();
 
 	/**
+     * Returns the meta object for the attribute '{@link br.puc.molic.Utterance#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see br.puc.molic.Utterance#getName()
+     * @see #getUtterance()
+     * @generated
+     */
+    EAttribute getUtterance_Name();
+
+    /**
      * Returns the meta object for class '{@link br.puc.molic.SystemProcess <em>System Process</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -576,6 +809,17 @@ public interface MolicPackage extends EPackage {
 	EClass getSystemProcess();
 
 	/**
+     * Returns the meta object for the attribute '{@link br.puc.molic.SystemProcess#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see br.puc.molic.SystemProcess#getName()
+     * @see #getSystemProcess()
+     * @generated
+     */
+    EAttribute getSystemProcess_Name();
+
+    /**
      * Returns the meta object for class '{@link br.puc.molic.Monologue <em>Monologue</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -607,6 +851,17 @@ public interface MolicPackage extends EPackage {
 	EClass getBRTUtterance();
 
 	/**
+     * Returns the meta object for the attribute '{@link br.puc.molic.BRTUtterance#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see br.puc.molic.BRTUtterance#getName()
+     * @see #getBRTUtterance()
+     * @generated
+     */
+    EAttribute getBRTUtterance_Name();
+
+    /**
      * Returns the meta object for class '{@link br.puc.molic.UbiquitousAccess <em>Ubiquitous Access</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -628,6 +883,17 @@ public interface MolicPackage extends EPackage {
 	EAttribute getUbiquitousAccess_Label();
 
 	/**
+     * Returns the meta object for the attribute '{@link br.puc.molic.UbiquitousAccess#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see br.puc.molic.UbiquitousAccess#getName()
+     * @see #getUbiquitousAccess()
+     * @generated
+     */
+    EAttribute getUbiquitousAccess_Name();
+
+    /**
      * Returns the meta object for class '{@link br.puc.molic.OpeningPoint <em>Opening Point</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -638,6 +904,17 @@ public interface MolicPackage extends EPackage {
 	EClass getOpeningPoint();
 
 	/**
+     * Returns the meta object for the attribute '{@link br.puc.molic.OpeningPoint#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see br.puc.molic.OpeningPoint#getName()
+     * @see #getOpeningPoint()
+     * @generated
+     */
+    EAttribute getOpeningPoint_Name();
+
+    /**
      * Returns the meta object for class '{@link br.puc.molic.ClosingPoint <em>Closing Point</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -648,6 +925,17 @@ public interface MolicPackage extends EPackage {
 	EClass getClosingPoint();
 
 	/**
+     * Returns the meta object for the attribute '{@link br.puc.molic.ClosingPoint#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see br.puc.molic.ClosingPoint#getName()
+     * @see #getClosingPoint()
+     * @generated
+     */
+    EAttribute getClosingPoint_Name();
+
+    /**
      * Returns the meta object for class '{@link br.puc.molic.Connection <em>Connection</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -691,6 +979,28 @@ public interface MolicPackage extends EPackage {
 	EReference getConnection_Target();
 
 	/**
+     * Returns the meta object for the attribute '{@link br.puc.molic.Connection#getID <em>ID</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>ID</em>'.
+     * @see br.puc.molic.Connection#getID()
+     * @see #getConnection()
+     * @generated
+     */
+    EAttribute getConnection_ID();
+
+    /**
+     * Returns the meta object for the attribute list '{@link br.puc.molic.Connection#getGoals <em>Goals</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute list '<em>Goals</em>'.
+     * @see br.puc.molic.Connection#getGoals()
+     * @see #getConnection()
+     * @generated
+     */
+    EAttribute getConnection_Goals();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -739,6 +1049,14 @@ public interface MolicPackage extends EPackage {
 		EReference DIAGRAM__UTTERANCE = eINSTANCE.getDiagram_Utterance();
 
 		/**
+         * The meta object literal for the '<em><b>Goals</b></em>' attribute list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DIAGRAM__GOALS = eINSTANCE.getDiagram_Goals();
+
+        /**
          * The meta object literal for the '{@link br.puc.molic.impl.SceneImpl <em>Scene</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -765,6 +1083,14 @@ public interface MolicPackage extends EPackage {
 		EAttribute SCENE__DIALOGUE = eINSTANCE.getScene_Dialogue();
 
 		/**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SCENE__NAME = eINSTANCE.getScene_Name();
+
+        /**
          * The meta object literal for the '{@link br.puc.molic.Element <em>Element</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -783,6 +1109,14 @@ public interface MolicPackage extends EPackage {
         EAttribute ELEMENT__ID = eINSTANCE.getElement_ID();
 
         /**
+         * The meta object literal for the '<em><b>Goals</b></em>' attribute list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ELEMENT__GOALS = eINSTANCE.getElement_Goals();
+
+        /**
          * The meta object literal for the '{@link br.puc.molic.impl.UtteranceImpl <em>Utterance</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -793,6 +1127,14 @@ public interface MolicPackage extends EPackage {
 		EClass UTTERANCE = eINSTANCE.getUtterance();
 
 		/**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute UTTERANCE__NAME = eINSTANCE.getUtterance_Name();
+
+        /**
          * The meta object literal for the '{@link br.puc.molic.impl.SystemProcessImpl <em>System Process</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -803,6 +1145,14 @@ public interface MolicPackage extends EPackage {
 		EClass SYSTEM_PROCESS = eINSTANCE.getSystemProcess();
 
 		/**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SYSTEM_PROCESS__NAME = eINSTANCE.getSystemProcess_Name();
+
+        /**
          * The meta object literal for the '{@link br.puc.molic.impl.MonologueImpl <em>Monologue</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -831,6 +1181,14 @@ public interface MolicPackage extends EPackage {
 		EClass BRT_UTTERANCE = eINSTANCE.getBRTUtterance();
 
 			/**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BRT_UTTERANCE__NAME = eINSTANCE.getBRTUtterance_Name();
+
+            /**
          * The meta object literal for the '{@link br.puc.molic.impl.UbiquitousAccessImpl <em>Ubiquitous Access</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -849,6 +1207,14 @@ public interface MolicPackage extends EPackage {
 		EAttribute UBIQUITOUS_ACCESS__LABEL = eINSTANCE.getUbiquitousAccess_Label();
 
 			/**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute UBIQUITOUS_ACCESS__NAME = eINSTANCE.getUbiquitousAccess_Name();
+
+            /**
          * The meta object literal for the '{@link br.puc.molic.impl.OpeningPointImpl <em>Opening Point</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -859,6 +1225,14 @@ public interface MolicPackage extends EPackage {
 		EClass OPENING_POINT = eINSTANCE.getOpeningPoint();
 
 			/**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute OPENING_POINT__NAME = eINSTANCE.getOpeningPoint_Name();
+
+            /**
          * The meta object literal for the '{@link br.puc.molic.impl.ClosingPointImpl <em>Closing Point</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -869,6 +1243,14 @@ public interface MolicPackage extends EPackage {
 		EClass CLOSING_POINT = eINSTANCE.getClosingPoint();
 
 			/**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CLOSING_POINT__NAME = eINSTANCE.getClosingPoint_Name();
+
+            /**
          * The meta object literal for the '{@link br.puc.molic.Connection <em>Connection</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -901,6 +1283,22 @@ public interface MolicPackage extends EPackage {
          * @generated
          */
 		EReference CONNECTION__TARGET = eINSTANCE.getConnection_Target();
+
+            /**
+         * The meta object literal for the '<em><b>ID</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CONNECTION__ID = eINSTANCE.getConnection_ID();
+
+            /**
+         * The meta object literal for the '<em><b>Goals</b></em>' attribute list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CONNECTION__GOALS = eINSTANCE.getConnection_Goals();
 
 	}
 

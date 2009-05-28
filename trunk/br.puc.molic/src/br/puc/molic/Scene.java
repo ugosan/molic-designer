@@ -17,6 +17,7 @@ package br.puc.molic;
  * <ul>
  *   <li>{@link br.puc.molic.Scene#getTopic <em>Topic</em>}</li>
  *   <li>{@link br.puc.molic.Scene#getDialogue <em>Dialogue</em>}</li>
+ *   <li>{@link br.puc.molic.Scene#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,5 +77,32 @@ public interface Scene extends Element {
      * @generated
      */
 	void setDialogue(String value);
+
+    /**
+     * Returns the value of the '<em><b>Name</b></em>' attribute.
+     * The default value is <code>"Scene"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Name</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Name</em>' attribute.
+     * @see #isSetName()
+     * @see br.puc.molic.MolicPackage#getScene_Name()
+     * @model default="Scene" unsettable="true" changeable="false"
+     * @generated
+     */
+    String getName();
+
+    /**
+     * Returns whether the value of the '{@link br.puc.molic.Scene#getName <em>Name</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Name</em>' attribute is set.
+     * @see #getName()
+     * @generated
+     */
+    boolean isSetName();
 
 } // Scene
