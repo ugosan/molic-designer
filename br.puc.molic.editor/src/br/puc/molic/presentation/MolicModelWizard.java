@@ -67,7 +67,7 @@ public class MolicModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public static final List FILE_EXTENSIONS =
+	public static final List<String> FILE_EXTENSIONS =
 		Collections.unmodifiableList(Arrays.asList(MolicEditorPlugin.INSTANCE.getString("_UI_MolicEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
@@ -125,7 +125,7 @@ public class MolicModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected List initialObjectNames;
+	protected List<String> initialObjectNames;
 
 	/**
      * This just records the information.
@@ -146,11 +146,10 @@ public class MolicModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected Collection getInitialObjectNames() {
+	protected Collection<String> getInitialObjectNames() {
         if (initialObjectNames == null) {
-            initialObjectNames = new ArrayList();
-            for (Iterator classifiers = molicPackage.getEClassifiers().iterator(); classifiers.hasNext(); ) {
-                EClassifier eClassifier = (EClassifier)classifiers.next();
+            initialObjectNames = new ArrayList<String>();
+            for (EClassifier eClassifier : molicPackage.getEClassifiers()) {
                 if (eClassifier instanceof EClass) {
                     EClass eClass = (EClass)eClassifier;
                     if (!eClass.isAbstract()) {
@@ -181,7 +180,8 @@ public class MolicModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean performFinish() {
+	@Override
+    public boolean performFinish() {
         try {
             // Get the URI of the model file.
             //
@@ -218,7 +218,7 @@ public class MolicModelWizard extends Wizard implements INewWizard {
 
                             // Save the contents of the resource to the file system.
                             //
-                            Map options = new HashMap();
+                            Map<Object, Object> options = new HashMap<Object, Object>();
                             options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
                             resource.save(options);
                         }
@@ -267,7 +267,7 @@ public class MolicModelWizard extends Wizard implements INewWizard {
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
          */
-		protected List encodings;
+		protected List<String> encodings;
 
 		/**
          * <!-- begin-user-doc -->
@@ -344,8 +344,9 @@ public class MolicModelWizard extends Wizard implements INewWizard {
 
             resourceURIBrowseFileSystemButton.addSelectionListener
                 (new SelectionAdapter() {
+                     @Override
                      public void widgetSelected(SelectionEvent event) {
-                         String[] filters = (String[])MolicEditor.FILE_EXTENSION_FILTERS.toArray(new String[MolicEditor.FILE_EXTENSION_FILTERS.size()]);
+                         String[] filters = MolicEditor.FILE_EXTENSION_FILTERS.toArray(new String[MolicEditor.FILE_EXTENSION_FILTERS.size()]);
                          String[] files = MolicEditorAdvisor.openFilePathDialog(getShell(), SWT.SAVE, filters);
                          if (files.length > 0) {
                              fileField.setText(files[0]);
@@ -369,8 +370,8 @@ public class MolicModelWizard extends Wizard implements INewWizard {
                 initialObjectField.setLayoutData(data);
             }
 
-            for (Iterator i = getInitialObjectNames().iterator(); i.hasNext(); ) {
-                initialObjectField.add(getLabel((String)i.next()));
+            for (String objectName : getInitialObjectNames()) {
+                initialObjectField.add(getLabel(objectName));
             }
 
             if (initialObjectField.getItemCount() == 1) {
@@ -394,8 +395,8 @@ public class MolicModelWizard extends Wizard implements INewWizard {
                 encodingField.setLayoutData(data);
             }
 
-            for (Iterator i = getEncodings().iterator(); i.hasNext(); ) {
-                encodingField.add((String)i.next());
+            for (String encoding : getEncodings()) {
+                encodingField.add(encoding);
             }
 
             encodingField.select(0);
@@ -445,7 +446,8 @@ public class MolicModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
          * @generated
          */
-		public void setVisible(boolean visible) {
+		@Override
+        public void setVisible(boolean visible) {
             super.setVisible(visible);
             if (visible) {
                 initialObjectField.clearSelection();
@@ -462,8 +464,7 @@ public class MolicModelWizard extends Wizard implements INewWizard {
 		public String getInitialObjectName() {
             String label = initialObjectField.getText();
 
-            for (Iterator i = getInitialObjectNames().iterator(); i.hasNext(); ) {
-                String name = (String)i.next();
+            for (String name : getInitialObjectNames()) {
                 if (getLabel(name).equals(label)) {
                     return name;
                 }
@@ -528,9 +529,9 @@ public class MolicModelWizard extends Wizard implements INewWizard {
 		 * <!-- end-user-doc -->
          * @generated
          */
-		protected Collection getEncodings() {
+		protected Collection<String> getEncodings() {
             if (encodings == null) {
-                encodings = new ArrayList();
+                encodings = new ArrayList<String>();
                 for (StringTokenizer stringTokenizer = new StringTokenizer(MolicEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
                     encodings.add(stringTokenizer.nextToken());
                 }
@@ -545,7 +546,8 @@ public class MolicModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void addPages() {
+	@Override
+    public void addPages() {
         initialObjectCreationPage = new MolicModelWizardInitialObjectCreationPage("Whatever2");
         initialObjectCreationPage.setTitle(MolicEditorPlugin.INSTANCE.getString("_UI_MolicModelWizard_label"));
         initialObjectCreationPage.setDescription(MolicEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));

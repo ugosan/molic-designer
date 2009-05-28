@@ -52,6 +52,7 @@ import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
+import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -122,7 +123,7 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public static final List FILE_EXTENSION_FILTERS = prefixExtensions(MolicModelWizard.FILE_EXTENSIONS, "*.");
+	public static final List<String> FILE_EXTENSION_FILTERS = prefixExtensions(MolicModelWizard.FILE_EXTENSIONS, "*.");
 
 	/**
      * Returns a new unmodifiable list containing prefixed versions of the extensions in the given list.
@@ -130,10 +131,10 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	private static List prefixExtensions(List extensions, String prefix) {
-        List result = new ArrayList();
-        for (Iterator iterator = extensions.iterator() ; iterator.hasNext(); ) {
-            result.add(prefix + (String)iterator.next());
+	private static List<String> prefixExtensions(List<String> extensions, String prefix) {
+        List<String> result = new ArrayList<String>();
+        for (String extension : extensions) {
+            result.add(prefix + extension);
         }
         return Collections.unmodifiableList(result);
     }
@@ -267,7 +268,7 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected Collection selectionChangedListeners = new ArrayList();
+	protected Collection<ISelectionChangedListener> selectionChangedListeners = new ArrayList<ISelectionChangedListener>();
 
 	/**
      * This keeps track of the selection of the editor as a whole.
@@ -323,7 +324,7 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected Collection removedResources = new ArrayList();
+	protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
 	/**
      * Resources that have been changed since last activation.
@@ -331,7 +332,7 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected Collection changedResources = new ArrayList();
+	protected Collection<Resource> changedResources = new ArrayList<Resource>();
 
 	/**
      * Resources that have been saved.
@@ -339,7 +340,7 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected Collection savedResources = new ArrayList();
+	protected Collection<Resource> savedResources = new ArrayList<Resource>();
 
 	/**
      * Map to store the diagnostic associated with a resource.
@@ -347,7 +348,7 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected Map resourceToDiagnosticMap = new LinkedHashMap();
+	protected Map<Resource, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<Resource, Diagnostic>();
 
 	/**
      * Controls whether the problem indication should be updated.
@@ -365,6 +366,7 @@ public class MolicEditor
      */
 	protected EContentAdapter problemIndicationAdapter = 
 		new EContentAdapter() {
+            @Override
             public void notifyChanged(Notification notification) {
                 if (notification.getNotifier() instanceof Resource) {
                     switch (notification.getFeatureID(Resource.class)) {
@@ -397,10 +399,12 @@ public class MolicEditor
                 }
             }
 
+            @Override
             protected void setTarget(Resource target) {
                 basicSetTarget(target);
             }
 
+            @Override
             protected void unsetTarget(Resource target) {
                 basicUnsetTarget(target);
             }
@@ -455,8 +459,7 @@ public class MolicEditor
             editingDomain.getCommandStack().flush();
 
             updateProblemIndication = false;
-            for (Iterator i = changedResources.iterator(); i.hasNext(); ) {
-                Resource resource = (Resource)i.next();
+            for (Resource resource : changedResources) {
                 if (resource.isLoaded()) {
                     resource.unload();
                     try {
@@ -494,8 +497,7 @@ public class MolicEditor
                      0,
                      null,
                      new Object [] { editingDomain.getResourceSet() });
-            for (Iterator i = resourceToDiagnosticMap.values().iterator(); i.hasNext(); ) {
-                Diagnostic childDiagnostic = (Diagnostic)i.next();
+            for (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
                 if (childDiagnostic.getSeverity() != Diagnostic.OK) {
                     diagnostic.add(childDiagnostic);
                 }
@@ -594,7 +596,7 @@ public class MolicEditor
 
         // Create the editing domain with a special command stack.
         //
-        editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap());
+        editingDomain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
     }
 
 	/**
@@ -603,7 +605,8 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected void firePropertyChange(int action) {
+	@Override
+    protected void firePropertyChange(int action) {
         super.firePropertyChange(action);
     }
 
@@ -613,8 +616,8 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void setSelectionToViewer(Collection collection) {
-        final Collection theSelection = collection;
+	public void setSelectionToViewer(Collection<?> collection) {
+        final Collection<?> theSelection = collection;
         // Make sure it's okay.
         //
         if (theSelection != null && !theSelection.isEmpty()) {
@@ -778,7 +781,7 @@ public class MolicEditor
      * @generated
      */
 	public void createModel() {
-        URI resourceURI = URI.createURI(getEditorInput().getName());
+        URI resourceURI = EditUIUtil.getURI(getEditorInput());
         Exception exception = null;
         Resource resource = null;
         try {
@@ -837,7 +840,8 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void createPages() {
+	@Override
+    public void createPages() {
         // Creates the model from the editor input
         //
         createModel();
@@ -850,11 +854,13 @@ public class MolicEditor
             {
                 ViewerPane viewerPane =
                     new ViewerPane(getSite().getPage(), MolicEditor.this) {
+                        @Override
                         public Viewer createViewer(Composite composite) {
                             Tree tree = new Tree(composite, SWT.MULTI);
                             TreeViewer newTreeViewer = new TreeViewer(tree);
                             return newTreeViewer;
                         }
+                        @Override
                         public void requestActivation() {
                             super.requestActivation();
                             setCurrentViewerPane(this);
@@ -882,11 +888,13 @@ public class MolicEditor
             {
                 ViewerPane viewerPane =
                     new ViewerPane(getSite().getPage(), MolicEditor.this) {
+                        @Override
                         public Viewer createViewer(Composite composite) {
                             Tree tree = new Tree(composite, SWT.MULTI);
                             TreeViewer newTreeViewer = new TreeViewer(tree);
                             return newTreeViewer;
                         }
+                        @Override
                         public void requestActivation() {
                             super.requestActivation();
                             setCurrentViewerPane(this);
@@ -909,9 +917,11 @@ public class MolicEditor
             {
                 ViewerPane viewerPane =
                     new ViewerPane(getSite().getPage(), MolicEditor.this) {
+                        @Override
                         public Viewer createViewer(Composite composite) {
                             return new ListViewer(composite);
                         }
+                        @Override
                         public void requestActivation() {
                             super.requestActivation();
                             setCurrentViewerPane(this);
@@ -932,9 +942,11 @@ public class MolicEditor
             {
                 ViewerPane viewerPane =
                     new ViewerPane(getSite().getPage(), MolicEditor.this) {
+                        @Override
                         public Viewer createViewer(Composite composite) {
                             return new TreeViewer(composite);
                         }
+                        @Override
                         public void requestActivation() {
                             super.requestActivation();
                             setCurrentViewerPane(this);
@@ -957,9 +969,11 @@ public class MolicEditor
             {
                 ViewerPane viewerPane =
                     new ViewerPane(getSite().getPage(), MolicEditor.this) {
+                        @Override
                         public Viewer createViewer(Composite composite) {
                             return new TableViewer(composite);
                         }
+                        @Override
                         public void requestActivation() {
                             super.requestActivation();
                             setCurrentViewerPane(this);
@@ -998,9 +1012,11 @@ public class MolicEditor
             {
                 ViewerPane viewerPane =
                     new ViewerPane(getSite().getPage(), MolicEditor.this) {
+                        @Override
                         public Viewer createViewer(Composite composite) {
                             return new TreeViewer(composite);
                         }
+                        @Override
                         public void requestActivation() {
                             super.requestActivation();
                             setCurrentViewerPane(this);
@@ -1048,6 +1064,7 @@ public class MolicEditor
         getContainer().addControlListener
             (new ControlAdapter() {
                 boolean guard = false;
+                @Override
                 public void controlResized(ControlEvent event) {
                     if (!guard) {
                         guard = true;
@@ -1107,7 +1124,8 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected void pageChange(int pageIndex) {
+	@Override
+    protected void pageChange(int pageIndex) {
         super.pageChange(pageIndex);
 
         if (contentOutlinePage != null) {
@@ -1121,7 +1139,9 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object getAdapter(Class key) {
+	@SuppressWarnings("unchecked")
+    @Override
+    public Object getAdapter(Class key) {
         if (key.equals(IContentOutlinePage.class)) {
             return showOutlineView() ? getContentOutlinePage() : null;
         }
@@ -1144,6 +1164,7 @@ public class MolicEditor
             // The content outline is just a tree.
             //
             class MyContentOutlinePage extends ContentOutlinePage {
+                @Override
                 public void createControl(Composite parent) {
                     super.createControl(parent);
                     contentOutlineViewer = getTreeViewer();
@@ -1166,11 +1187,13 @@ public class MolicEditor
                     }
                 }
 
+                @Override
                 public void makeContributions(IMenuManager menuManager, IToolBarManager toolBarManager, IStatusLineManager statusLineManager) {
                     super.makeContributions(menuManager, toolBarManager, statusLineManager);
                     contentOutlineStatusLineManager = statusLineManager;
                 }
 
+                @Override
                 public void setActionBars(IActionBars actionBars) {
                     super.setActionBars(actionBars);
                     getActionBarContributor().shareGlobalActions(this, actionBars);
@@ -1204,11 +1227,13 @@ public class MolicEditor
         if (propertySheetPage == null) {
             propertySheetPage =
                 new ExtendedPropertySheetPage(editingDomain) {
-                    public void setSelectionToViewer(List selection) {
+                    @Override
+                    public void setSelectionToViewer(List<?> selection) {
                         MolicEditor.this.setSelectionToViewer(selection);
                         MolicEditor.this.setFocus();
                     }
 
+                    @Override
                     public void setActionBars(IActionBars actionBars) {
                         super.setActionBars(actionBars);
                         getActionBarContributor().shareGlobalActions(this, actionBars);
@@ -1228,7 +1253,7 @@ public class MolicEditor
      */
 	public void handleContentOutlineSelection(ISelection selection) {
         if (currentViewerPane != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
-            Iterator selectedElements = ((IStructuredSelection)selection).iterator();
+            Iterator<?> selectedElements = ((IStructuredSelection)selection).iterator();
             if (selectedElements.hasNext()) {
                 // Get the first selected element.
                 //
@@ -1237,7 +1262,7 @@ public class MolicEditor
                 // If it's the selection viewer, then we want it to select the same selection as this selection.
                 //
                 if (currentViewerPane.getViewer() == selectionViewer) {
-                    ArrayList selectionList = new ArrayList();
+                    ArrayList<Object> selectionList = new ArrayList<Object>();
                     selectionList.add(selectedElement);
                     while (selectedElements.hasNext()) {
                         selectionList.add(selectedElements.next());
@@ -1265,7 +1290,8 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean isDirty() {
+	@Override
+    public boolean isDirty() {
         return ((BasicCommandStack)editingDomain.getCommandStack()).isSaveNeeded();
     }
 
@@ -1275,10 +1301,11 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void doSave(IProgressMonitor progressMonitor) {
+	@Override
+    public void doSave(IProgressMonitor progressMonitor) {
         // Save only resources that have actually changed.
         //
-        final Map saveOptions = new HashMap();
+        final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
         saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 
         // Do the work within an operation because this is a long running activity that modifies the workbench.
@@ -1291,8 +1318,7 @@ public class MolicEditor
                     // Save the resources to the file system.
                     //
                     boolean first = true;
-                    for (Iterator i = editingDomain.getResourceSet().getResources().iterator(); i.hasNext(); ) {
-                        Resource resource = (Resource)i.next();
+                    for (Resource resource : editingDomain.getResourceSet().getResources()) {
                         if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
                             try {
                                 long timeStamp = resource.getTimeStamp();
@@ -1358,7 +1384,8 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public boolean isSaveAsAllowed() {
+	@Override
+    public boolean isSaveAsAllowed() {
         return true;
     }
 
@@ -1368,8 +1395,9 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void doSaveAs() {
-        String[] filters = (String[])FILE_EXTENSION_FILTERS.toArray(new String[FILE_EXTENSION_FILTERS.size()]);
+	@Override
+    public void doSaveAs() {
+        String[] filters = FILE_EXTENSION_FILTERS.toArray(new String[FILE_EXTENSION_FILTERS.size()]);
         String[] files = MolicEditorAdvisor.openFilePathDialog(getSite().getShell(), SWT.SAVE, filters);
         if (files.length > 0) {
             URI uri = URI.createFileURI(files[0]);
@@ -1383,7 +1411,7 @@ public class MolicEditor
      * @generated
      */
 	protected void doSaveAs(URI uri, IEditorInput editorInput) {
-        ((Resource)editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
+        (editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
         setInputWithNotify(editorInput);
         setPartName(editorInput.getName());
         IProgressMonitor progressMonitor =
@@ -1399,7 +1427,8 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void init(IEditorSite site, IEditorInput editorInput) {
+	@Override
+    public void init(IEditorSite site, IEditorInput editorInput) {
         setSite(site);
         setInputWithNotify(editorInput);
         setPartName(editorInput.getName());
@@ -1412,7 +1441,8 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void setFocus() {
+	@Override
+    public void setFocus() {
         if (currentViewerPane != null) {
             currentViewerPane.setFocus();
         }
@@ -1461,8 +1491,7 @@ public class MolicEditor
 	public void setSelection(ISelection selection) {
         editorSelection = selection;
 
-        for (Iterator listeners = selectionChangedListeners.iterator(); listeners.hasNext(); ) {
-            ISelectionChangedListener listener = (ISelectionChangedListener)listeners.next();
+        for (ISelectionChangedListener listener : selectionChangedListeners) {
             listener.selectionChanged(new SelectionChangedEvent(this, selection));
         }
         setStatusLineManager(selection);
@@ -1479,7 +1508,7 @@ public class MolicEditor
 
         if (statusLineManager != null) {
             if (selection instanceof IStructuredSelection) {
-                Collection collection = ((IStructuredSelection)selection).toList();
+                Collection<?> collection = ((IStructuredSelection)selection).toList();
                 switch (collection.size()) {
                     case 0: {
                         statusLineManager.setMessage(getString("_UI_NoObjectSelected"));
@@ -1564,7 +1593,8 @@ public class MolicEditor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void dispose() {
+	@Override
+    public void dispose() {
         updateProblemIndication = false;
 
         getSite().getPage().removePartListener(partListener);

@@ -171,7 +171,7 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 
             menuX.add(getAction(ActionFactory.SAVE.getId()));
 
-            //menuX.add(getAction(ActionFactory.SAVE_AS.getId()));
+            menuX.add(getAction(ActionFactory.SAVE_AS.getId()));
 
             menuX.add(getAction(ActionFactory.SAVE_ALL.getId()));
 

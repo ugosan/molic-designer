@@ -17,9 +17,11 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
@@ -57,11 +59,14 @@ public class ClosingPointItemProvider
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public List getPropertyDescriptors(Object object) {
+	@Override
+    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
             addIDPropertyDescriptor(object);
+            addGoalsPropertyDescriptor(object);
+            addNamePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -89,12 +94,87 @@ public class ClosingPointItemProvider
     }
 
     /**
+     * This adds a property descriptor for the Goals feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addGoalsPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Element_goals_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Element_goals_feature", "_UI_Element_type"),
+                 MolicPackage.Literals.ELEMENT__GOALS,
+                 false,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Name feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addNamePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ClosingPoint_name_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ClosingPoint_name_feature", "_UI_ClosingPoint_type"),
+                 MolicPackage.Literals.CLOSING_POINT__NAME,
+                 false,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+        if (childrenFeatures == null) {
+            super.getChildrenFeatures(object);
+            childrenFeatures.add(MolicPackage.Literals.ELEMENT__GOALS);
+        }
+        return childrenFeatures;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EStructuralFeature getChildFeature(Object object, Object child) {
+        // Check the type of the specified child object and return the proper feature to use for
+        // adding (see {@link AddCommand}) it as a child.
+
+        return super.getChildFeature(object, child);
+    }
+
+    /**
      * This returns ClosingPoint.gif.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object getImage(Object object) {
+	@Override
+    public Object getImage(Object object) {
         return overlayImage(object, getResourceLocator().getImage("full/obj16/ClosingPoint"));
     }
 
@@ -104,8 +184,9 @@ public class ClosingPointItemProvider
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public String getText(Object object) {
-        String label = ((ClosingPoint)object).getID();
+	@Override
+    public String getText(Object object) {
+        String label = ((ClosingPoint)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_ClosingPoint_type") :
             getString("_UI_ClosingPoint_type") + " " + label;
@@ -118,12 +199,17 @@ public class ClosingPointItemProvider
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void notifyChanged(Notification notification) {
+	@Override
+    public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
         switch (notification.getFeatureID(ClosingPoint.class)) {
             case MolicPackage.CLOSING_POINT__ID:
+            case MolicPackage.CLOSING_POINT__NAME:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+            case MolicPackage.CLOSING_POINT__GOALS:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
         super.notifyChanged(notification);
@@ -136,7 +222,8 @@ public class ClosingPointItemProvider
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	@Override
+    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
     }
 
@@ -146,7 +233,8 @@ public class ClosingPointItemProvider
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public ResourceLocator getResourceLocator() {
+	@Override
+    public ResourceLocator getResourceLocator() {
         return MolicEditPlugin.INSTANCE;
     }
 

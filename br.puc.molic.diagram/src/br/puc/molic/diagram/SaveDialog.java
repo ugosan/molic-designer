@@ -15,16 +15,7 @@ public class SaveDialog {
     // The wrapped FileDialog
     private FileDialog dlg;
 
-    /**
-     * SafeSaveDialog constructor
-     * 
-     * @param shell
-     *            the parent shell
-     */
-    public SaveDialog(Shell shell) {
-        dlg = new FileDialog(shell, SWT.SAVE);
-        dlg.setFileName("molic.txt");
-    }
+
     
     public SaveDialog(Shell shell, String filename) {
         dlg = new FileDialog(shell, SWT.SAVE);

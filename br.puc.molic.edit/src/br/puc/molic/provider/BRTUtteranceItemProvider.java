@@ -13,9 +13,11 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
@@ -56,13 +58,17 @@ public class BRTUtteranceItemProvider
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public List getPropertyDescriptors(Object object) {
+	@Override
+    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
             addLabelPropertyDescriptor(object);
             addSourcePropertyDescriptor(object);
             addTargetPropertyDescriptor(object);
+            addIDPropertyDescriptor(object);
+            addGoalsPropertyDescriptor(object);
+            addNamePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -134,12 +140,109 @@ public class BRTUtteranceItemProvider
     }
 
 	/**
+     * This adds a property descriptor for the ID feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addIDPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Connection_ID_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Connection_ID_feature", "_UI_Connection_type"),
+                 MolicPackage.Literals.CONNECTION__ID,
+                 false,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Goals feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addGoalsPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Connection_goals_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Connection_goals_feature", "_UI_Connection_type"),
+                 MolicPackage.Literals.CONNECTION__GOALS,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 getString("_UI_AttributesPropertyCategory"),
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Name feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addNamePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_BRTUtterance_name_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_BRTUtterance_name_feature", "_UI_BRTUtterance_type"),
+                 MolicPackage.Literals.BRT_UTTERANCE__NAME,
+                 false,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+        if (childrenFeatures == null) {
+            super.getChildrenFeatures(object);
+            childrenFeatures.add(MolicPackage.Literals.CONNECTION__GOALS);
+        }
+        return childrenFeatures;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EStructuralFeature getChildFeature(Object object, Object child) {
+        // Check the type of the specified child object and return the proper feature to use for
+        // adding (see {@link AddCommand}) it as a child.
+
+        return super.getChildFeature(object, child);
+    }
+
+    /**
      * This returns BRTUtterance.gif.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public Object getImage(Object object) {
+	@Override
+    public Object getImage(Object object) {
         return overlayImage(object, getResourceLocator().getImage("full/obj16/BRTUtterance"));
     }
 
@@ -149,8 +252,9 @@ public class BRTUtteranceItemProvider
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public String getText(Object object) {
-        String label = ((BRTUtterance)object).getLabel();
+	@Override
+    public String getText(Object object) {
+        String label = ((BRTUtterance)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_BRTUtterance_type") :
             getString("_UI_BRTUtterance_type") + " " + label;
@@ -163,12 +267,18 @@ public class BRTUtteranceItemProvider
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void notifyChanged(Notification notification) {
+	@Override
+    public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
         switch (notification.getFeatureID(BRTUtterance.class)) {
             case MolicPackage.BRT_UTTERANCE__LABEL:
+            case MolicPackage.BRT_UTTERANCE__ID:
+            case MolicPackage.BRT_UTTERANCE__NAME:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+            case MolicPackage.BRT_UTTERANCE__GOALS:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
         super.notifyChanged(notification);
@@ -181,7 +291,8 @@ public class BRTUtteranceItemProvider
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
+	@Override
+    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
     }
 
@@ -191,7 +302,8 @@ public class BRTUtteranceItemProvider
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public ResourceLocator getResourceLocator() {
+	@Override
+    public ResourceLocator getResourceLocator() {
         return MolicEditPlugin.INSTANCE;
     }
 

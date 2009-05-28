@@ -99,6 +99,7 @@ public class MolicActionBarContributor
      */
 	protected IAction showPropertiesViewAction =
 		new Action(MolicEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
+            @Override
             public void run() {
                 try {
                     getPage().showView("org.eclipse.ui.views.PropertySheet");
@@ -118,10 +119,12 @@ public class MolicActionBarContributor
      */
 	protected IAction refreshViewerAction =
 		new Action(MolicEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
+            @Override
             public boolean isEnabled() {
                 return activeEditorPart instanceof IViewerProvider;
             }
 
+            @Override
             public void run() {
                 if (activeEditorPart instanceof IViewerProvider) {
                     Viewer viewer = ((IViewerProvider)activeEditorPart).getViewer();
@@ -139,7 +142,7 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected Collection createChildActions;
+	protected Collection<IAction> createChildActions;
 
 	/**
      * This will contain a map of {@link org.eclipse.emf.edit.ui.action.CreateChildAction}s, keyed by sub-menu text.
@@ -147,7 +150,7 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected Map createChildSubmenuActions;
+	protected Map<String, Collection<IAction>> createChildSubmenuActions;
 
 	/**
      * This is the menu manager into which menu contribution items should be added for CreateChild actions.
@@ -164,7 +167,7 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected Collection createSiblingActions;
+	protected Collection<IAction> createSiblingActions;
 
 	/**
      * This will contain a map of {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction}s, keyed by submenu text.
@@ -172,7 +175,7 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected Map createSiblingSubmenuActions;
+	protected Map<String, Collection<IAction>> createSiblingSubmenuActions;
 
 	/**
      * This is the menu manager into which menu contribution items should be added for CreateSibling actions.
@@ -201,7 +204,8 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void contributeToToolBar(IToolBarManager toolBarManager) {
+	@Override
+    public void contributeToToolBar(IToolBarManager toolBarManager) {
         toolBarManager.add(new Separator("molic-settings"));
         toolBarManager.add(new Separator("molic-additions"));
     }
@@ -213,7 +217,8 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void contributeToMenu(IMenuManager menuManager) {
+	@Override
+    public void contributeToMenu(IMenuManager menuManager) {
         super.contributeToMenu(menuManager);
 
         IMenuManager submenuManager = new MenuManager(MolicEditorPlugin.INSTANCE.getString("_UI_MolicEditor_menu"), "br.puc.molicMenuID");
@@ -251,7 +256,8 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void setActiveEditor(IEditorPart part) {
+	@Override
+    public void setActiveEditor(IEditorPart part) {
         super.setActiveEditor(part);
         activeEditorPart = part;
 
@@ -297,8 +303,8 @@ public class MolicActionBarContributor
 
         // Query the new selection for appropriate new child/sibling descriptors
         //
-        Collection newChildDescriptors = null;
-        Collection newSiblingDescriptors = null;
+        Collection<?> newChildDescriptors = null;
+        Collection<?> newSiblingDescriptors = null;
 
         ISelection selection = event.getSelection();
         if (selection instanceof IStructuredSelection && ((IStructuredSelection)selection).size() == 1) {
@@ -336,11 +342,11 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected Collection generateCreateChildActions(Collection descriptors, ISelection selection) {
-        Collection actions = new ArrayList();
+	protected Collection<IAction> generateCreateChildActions(Collection<?> descriptors, ISelection selection) {
+        Collection<IAction> actions = new ArrayList<IAction>();
         if (descriptors != null) {
-            for (Iterator i = descriptors.iterator(); i.hasNext(); ) {
-                actions.add(new CreateChildAction(activeEditorPart, selection, i.next()));
+            for (Object descriptor : descriptors) {
+                actions.add(new CreateChildAction(activeEditorPart, selection, descriptor));
             }
         }
         return actions;
@@ -353,11 +359,11 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected Collection generateCreateSiblingActions(Collection descriptors, ISelection selection) {
-        Collection actions = new ArrayList();
+	protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection) {
+        Collection<IAction> actions = new ArrayList<IAction>();
         if (descriptors != null) {
-            for (Iterator i = descriptors.iterator(); i.hasNext(); ) {
-                actions.add(new CreateSiblingAction(activeEditorPart, selection, i.next()));
+            for (Object descriptor : descriptors) {
+                actions.add(new CreateSiblingAction(activeEditorPart, selection, descriptor));
             }
         }
         return actions;
@@ -372,10 +378,9 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected void populateManager(IContributionManager manager, Collection actions, String contributionID) {
+	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions, String contributionID) {
         if (actions != null) {
-            for (Iterator i = actions.iterator(); i.hasNext(); ) {
-                IAction action = (IAction)i.next();
+            for (IAction action : actions) {
                 if (contributionID != null) {
                     manager.insertBefore(contributionID, action);
                 }
@@ -393,7 +398,7 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected void depopulateManager(IContributionManager manager, Collection actions) {
+	protected void depopulateManager(IContributionManager manager, Collection<? extends IAction> actions) {
         if (actions != null) {
             IContributionItem[] items = manager.getItems();
             for (int i = 0; i < items.length; i++) {
@@ -423,17 +428,17 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected Map extractSubmenuActions(Collection createActions) {
-        Map createSubmenuActions = new LinkedHashMap();
+	protected Map<String, Collection<IAction>> extractSubmenuActions(Collection<IAction> createActions) {
+        Map<String, Collection<IAction>> createSubmenuActions = new LinkedHashMap<String, Collection<IAction>>();
         if (createActions != null) {
-            for (Iterator actions = createActions.iterator(); actions.hasNext(); ) {
-                IAction action = (IAction)actions.next();
+            for (Iterator<IAction> actions = createActions.iterator(); actions.hasNext(); ) {
+                IAction action = actions.next();
                 StringTokenizer st = new StringTokenizer(action.getText(), "|");
                 if (st.countTokens() == 2) {
                     String text = st.nextToken().trim();
-                    Collection submenuActions = (Collection)createSubmenuActions.get(text);
+                    Collection<IAction> submenuActions = createSubmenuActions.get(text);
                     if (submenuActions == null) {
-                        createSubmenuActions.put(text, submenuActions = new ArrayList());
+                        createSubmenuActions.put(text, submenuActions = new ArrayList<IAction>());
                     }
                     action.setText(st.nextToken().trim());
                     submenuActions.add(action);
@@ -454,18 +459,17 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected void populateManager(IContributionManager manager, Map submenuActions, String contributionID) {
+	protected void populateManager(IContributionManager manager, Map<String, Collection<IAction>> submenuActions, String contributionID) {
         if (submenuActions != null) {
-            for (Iterator entries = submenuActions.entrySet().iterator(); entries.hasNext();) {
-                Map.Entry entry = (Map.Entry)entries.next();
-                MenuManager submenuManager = new MenuManager((String)entry.getKey());
+            for (Map.Entry<String, Collection<IAction>> entry : submenuActions.entrySet()) {
+                MenuManager submenuManager = new MenuManager(entry.getKey());
                 if (contributionID != null) {
                     manager.insertBefore(contributionID, submenuManager);
                 }
                 else {
                     manager.add(submenuManager);
                 }
-                populateManager(submenuManager, (Collection)entry.getValue(), null);
+                populateManager(submenuManager, entry.getValue(), null);
             }
         }
     }
@@ -478,7 +482,7 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected void depopulateManager(IContributionManager manager, Map submenuActions) {
+	protected void depopulateManager(IContributionManager manager, Map<String, Collection<IAction>> submenuActions) {
         if (submenuActions != null) {
             IContributionItem[] items = manager.getItems();
             for (int i = 0; i < items.length; i++) {
@@ -486,7 +490,7 @@ public class MolicActionBarContributor
                 if (contributionItem instanceof MenuManager) {
                     MenuManager submenuManager = (MenuManager)contributionItem;
                     if (submenuActions.containsKey(submenuManager.getMenuText())) {
-                        depopulateManager(submenuManager, (Collection)submenuActions.get(contributionItem));
+                        depopulateManager(submenuManager, submenuActions.get(contributionItem));
                         manager.remove(contributionItem);
                     }
                 }
@@ -500,7 +504,8 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void menuAboutToShow(IMenuManager menuManager) {
+	@Override
+    public void menuAboutToShow(IMenuManager menuManager) {
         super.menuAboutToShow(menuManager);
         MenuManager submenuManager = null;
 
@@ -521,7 +526,8 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected void addGlobalActions(IMenuManager menuManager) {
+	@Override
+    protected void addGlobalActions(IMenuManager menuManager) {
         menuManager.insertAfter("additions-end", new Separator("ui-actions"));
         menuManager.insertAfter("ui-actions", showPropertiesViewAction);
 
@@ -537,7 +543,8 @@ public class MolicActionBarContributor
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected boolean removeAllReferencesOnDelete() {
+	@Override
+    protected boolean removeAllReferencesOnDelete() {
         return true;
     }
 

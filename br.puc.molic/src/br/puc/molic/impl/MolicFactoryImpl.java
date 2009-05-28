@@ -64,7 +64,8 @@ public class MolicFactoryImpl extends EFactoryImpl implements MolicFactory {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public EObject create(EClass eClass) {
+	@Override
+    public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
             case MolicPackage.DIAGRAM: return createDiagram();
             case MolicPackage.SCENE: return createScene();
@@ -185,7 +186,8 @@ public class MolicFactoryImpl extends EFactoryImpl implements MolicFactory {
      * @deprecated
      * @generated
      */
-	public static MolicPackage getPackage() {
+	@Deprecated
+    public static MolicPackage getPackage() {
         return MolicPackage.eINSTANCE;
     }
 

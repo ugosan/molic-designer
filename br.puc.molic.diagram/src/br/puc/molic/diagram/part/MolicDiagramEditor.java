@@ -3,6 +3,15 @@
  */
 package br.puc.molic.diagram.part;
 
+import java.beans.PropertyChangeListener;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -10,20 +19,49 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.PropertySource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.AccessibleEditPart;
+import org.eclipse.gef.EditDomain;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartFactory;
+import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.KeyHandler;
+import org.eclipse.gef.RootEditPart;
+import org.eclipse.gef.SelectionManager;
+import org.eclipse.gef.dnd.TransferDragSourceListener;
+import org.eclipse.gef.dnd.TransferDropTargetListener;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.properties.UndoablePropertySheetEntry;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.resource.ResourceManager;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.graphics.Cursor;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IViewReference;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.navigator.resources.ProjectExplorer;
+import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 import org.eclipse.ui.views.properties.PropertySheetPage;
+
+import br.puc.molic.Element;
+import br.puc.molic.diagram.views.GoalsView;
+import br.puc.molic.impl.DiagramImpl;
 
 /**
  * @generated
@@ -54,9 +92,26 @@ public class MolicDiagramEditor extends DiagramDocumentEditor {
                 ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
         adapterFactoryConentProvider = new AdapterFactoryContentProvider(
                 fAdapterFactory);
+       
+
     }
 
-    @Override
+
+    
+    private static IViewPart getView(String id) {
+        IViewReference viewReferences[] = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getViewReferences();
+        for (int i = 0; i < viewReferences.length; i++) {
+            if (id.equals(viewReferences[i].getId())) {
+                return viewReferences[i].getView(true);
+            }
+        }
+        return null;
+    }
+
+
+
+
+	@Override
     public Object getAdapter(Class type) {
         if (type == org.eclipse.ui.views.properties.IPropertySheetPage.class) {
             PropertySheetPage page = new PropertySheetPage();
@@ -144,6 +199,7 @@ public class MolicDiagramEditor extends DiagramDocumentEditor {
         if (input instanceof URIEditorInput) {
             setDocumentProvider(MolicDiagramEditorPlugin.getInstance()
                     .getDocumentProvider());
+            MolicDiagramEditorPlugin.getInstance().getInstance().logInfo("OpenedDiagram");
         } else {
             super.setDocumentProvider(input);
         }
@@ -159,6 +215,7 @@ public class MolicDiagramEditor extends DiagramDocumentEditor {
         getDiagramGraphicalViewer().setContextMenu(provider);
         getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
                 provider, getDiagramGraphicalViewer());
+      
     }
 
 }

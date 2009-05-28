@@ -64,7 +64,7 @@ public final class MolicEditorAdvisor extends WorkbenchAdvisor {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	private static final String[] FILE_EXTENSION_FILTERS = (String[])MolicEditor.FILE_EXTENSION_FILTERS.toArray(new String[0]);
+	private static final String[] FILE_EXTENSION_FILTERS = MolicEditor.FILE_EXTENSION_FILTERS.toArray(new String[0]);
 
 	/**
      * This looks up a string in the plugin's plugin.properties file.
@@ -183,7 +183,8 @@ public final class MolicEditorAdvisor extends WorkbenchAdvisor {
 		 * <!-- end-user-doc -->
          * @generated
          */
-		public void preWindowOpen() {
+		@Override
+        public void preWindowOpen() {
             IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
             configurer.setInitialSize(new Point(600, 450));
             configurer.setShowCoolBar(false);
@@ -197,7 +198,8 @@ public final class MolicEditorAdvisor extends WorkbenchAdvisor {
 		 * <!-- end-user-doc -->
          * @generated
          */
-		public ActionBarAdvisor createActionBarAdvisor(IActionBarConfigurer configurer) {
+		@Override
+        public ActionBarAdvisor createActionBarAdvisor(IActionBarConfigurer configurer) {
             return new WindowActionBarAdvisor(configurer);
         }
 	}
@@ -225,7 +227,8 @@ public final class MolicEditorAdvisor extends WorkbenchAdvisor {
 		 * <!-- end-user-doc -->
          * @generated
          */
-		protected void fillMenuBar(IMenuManager menuBar) {
+		@Override
+        protected void fillMenuBar(IMenuManager menuBar) {
             IWorkbenchWindow window = getActionBarConfigurer().getWindowConfigurer().getWindow();
             menuBar.add(createFileMenu(window));
             menuBar.add(createEditMenu(window));
@@ -400,8 +403,8 @@ public final class MolicEditorAdvisor extends WorkbenchAdvisor {
 		public void run(IAction action) {
             LoadResourceAction.LoadResourceDialog loadResourceDialog = new LoadResourceAction.LoadResourceDialog(getWindow().getShell());
             if (Window.OK == loadResourceDialog.open()) {
-                for (Iterator i = loadResourceDialog.getURIs().iterator(); i.hasNext();) {
-                    openEditor(getWindow().getWorkbench(), (URI)i.next());
+                for (URI uri : loadResourceDialog.getURIs()) {
+                    openEditor(getWindow().getWorkbench(), uri);
                 }
             }
         }
@@ -436,7 +439,7 @@ public final class MolicEditorAdvisor extends WorkbenchAdvisor {
         if (includeGroupFilter || includeAllFilter) {
             int size = fileExtensionFilters.length + offset + (includeAllFilter ? 1 : 0);
             String[] allFilters = new String[size];
-            StringBuffer group = includeGroupFilter ? new StringBuffer() : null;
+            StringBuilder group = includeGroupFilter ? new StringBuilder() : null;
             
             for (int i = 0; i < fileExtensionFilters.length; i++) {
                 if (includeGroupFilter) {
@@ -534,7 +537,8 @@ public final class MolicEditorAdvisor extends WorkbenchAdvisor {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public String getInitialWindowPerspectiveId() {
+	@Override
+    public String getInitialWindowPerspectiveId() {
         return Perspective.ID_PERSPECTIVE;
     }
 
@@ -544,7 +548,8 @@ public final class MolicEditorAdvisor extends WorkbenchAdvisor {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public void initialize(IWorkbenchConfigurer configurer) {
+	@Override
+    public void initialize(IWorkbenchConfigurer configurer) {
         super.initialize(configurer);
         configurer.setSaveAndRestore(true);
     }
@@ -555,7 +560,8 @@ public final class MolicEditorAdvisor extends WorkbenchAdvisor {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
+	@Override
+    public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer) {
         return new WindowAdvisor(configurer);
     }
 }

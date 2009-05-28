@@ -1,3 +1,7 @@
+/*
+ * SERG - Semiotic Engineering Research Group
+ * This work is part of MSc thesis of Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br
+ */
 package br.puc.molic.diagram.sheet;
 
 import org.eclipse.core.runtime.IAdaptable;

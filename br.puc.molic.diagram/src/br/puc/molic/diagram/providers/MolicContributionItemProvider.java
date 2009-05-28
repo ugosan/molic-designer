@@ -27,4 +27,5 @@ public class MolicContributionItemProvider extends
         }
         return super.createAction(actionId, partDescriptor);
     }
+
 }

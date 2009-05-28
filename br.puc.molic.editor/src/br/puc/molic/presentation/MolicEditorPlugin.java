@@ -52,7 +52,8 @@ public final class MolicEditorPlugin extends EMFPlugin {
      * @return the singleton instance.
      * @generated
      */
-	public ResourceLocator getPluginResourceLocator() {
+	@Override
+    public ResourceLocator getPluginResourceLocator() {
         return plugin;
     }
 

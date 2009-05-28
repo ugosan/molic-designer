@@ -60,7 +60,8 @@ public class MolicAdapterFactory extends AdapterFactoryImpl {
      * @return whether this factory is applicable for the type of the object.
      * @generated
      */
-	public boolean isFactoryForType(Object object) {
+	@Override
+    public boolean isFactoryForType(Object object) {
         if (object == modelPackage) {
             return true;
         }
@@ -76,42 +77,54 @@ public class MolicAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
      * @generated
      */
-	protected MolicSwitch modelSwitch =
-		new MolicSwitch() {
-            public Object caseDiagram(Diagram object) {
+	protected MolicSwitch<Adapter> modelSwitch =
+		new MolicSwitch<Adapter>() {
+            @Override
+            public Adapter caseDiagram(Diagram object) {
                 return createDiagramAdapter();
             }
-            public Object caseElement(Element object) {
+            @Override
+            public Adapter caseElement(Element object) {
                 return createElementAdapter();
             }
-            public Object caseConnection(Connection object) {
+            @Override
+            public Adapter caseConnection(Connection object) {
                 return createConnectionAdapter();
             }
-            public Object caseScene(Scene object) {
+            @Override
+            public Adapter caseScene(Scene object) {
                 return createSceneAdapter();
             }
-            public Object caseMonologue(Monologue object) {
+            @Override
+            public Adapter caseMonologue(Monologue object) {
                 return createMonologueAdapter();
             }
-            public Object caseUtterance(Utterance object) {
+            @Override
+            public Adapter caseUtterance(Utterance object) {
                 return createUtteranceAdapter();
             }
-            public Object caseBRTUtterance(BRTUtterance object) {
+            @Override
+            public Adapter caseBRTUtterance(BRTUtterance object) {
                 return createBRTUtteranceAdapter();
             }
-            public Object caseSystemProcess(SystemProcess object) {
+            @Override
+            public Adapter caseSystemProcess(SystemProcess object) {
                 return createSystemProcessAdapter();
             }
-            public Object caseUbiquitousAccess(UbiquitousAccess object) {
+            @Override
+            public Adapter caseUbiquitousAccess(UbiquitousAccess object) {
                 return createUbiquitousAccessAdapter();
             }
-            public Object caseOpeningPoint(OpeningPoint object) {
+            @Override
+            public Adapter caseOpeningPoint(OpeningPoint object) {
                 return createOpeningPointAdapter();
             }
-            public Object caseClosingPoint(ClosingPoint object) {
+            @Override
+            public Adapter caseClosingPoint(ClosingPoint object) {
                 return createClosingPointAdapter();
             }
-            public Object defaultCase(EObject object) {
+            @Override
+            public Adapter defaultCase(EObject object) {
                 return createEObjectAdapter();
             }
         };
@@ -124,8 +137,9 @@ public class MolicAdapterFactory extends AdapterFactoryImpl {
      * @return the adapter for the <code>target</code>.
      * @generated
      */
-	public Adapter createAdapter(Notifier target) {
-        return (Adapter)modelSwitch.doSwitch((EObject)target);
+	@Override
+    public Adapter createAdapter(Notifier target) {
+        return modelSwitch.doSwitch((EObject)target);
     }
 
 

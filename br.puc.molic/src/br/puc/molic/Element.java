@@ -6,6 +6,7 @@
  */
 package br.puc.molic;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -17,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link br.puc.molic.Element#getID <em>ID</em>}</li>
+ *   <li>{@link br.puc.molic.Element#getGoals <em>Goals</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,4 +42,20 @@ public interface Element extends EObject {
      * @generated
      */
     String getID();
+
+    /**
+     * Returns the value of the '<em><b>Goals</b></em>' attribute list.
+     * The list contents are of type {@link java.lang.String}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Goals</em>' attribute list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Goals</em>' attribute list.
+     * @see br.puc.molic.MolicPackage#getElement_Goals()
+     * @model
+     * @generated
+     */
+    EList<String> getGoals();
 } // Element

@@ -313,9 +313,9 @@ public class UtteranceLabelEditPart extends LabelEditPart implements
      */
     protected DirectEditManager getManager() {
         if (manager == null) {
-            setManager(new TextDirectEditManager(this, 
+            setManager(new TextDirectEditManager(this,
                     WrapTextCellEditor.class, MolicEditPartFactory
-                    .getTextCellEditorLocator(this)));
+                            .getTextCellEditorLocator(this)));
         }
         return manager;
     }
