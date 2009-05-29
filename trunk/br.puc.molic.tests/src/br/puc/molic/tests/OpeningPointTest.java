@@ -64,7 +64,7 @@ public class OpeningPointTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private OpeningPoint getFixture() {
+	protected OpeningPoint getFixture() {
 		return fixture;
 	}
 
@@ -74,6 +74,7 @@ public class OpeningPointTest extends TestCase {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		setFixture(MolicFactory.eINSTANCE.createOpeningPoint());
 	}
@@ -84,6 +85,7 @@ public class OpeningPointTest extends TestCase {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
+	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

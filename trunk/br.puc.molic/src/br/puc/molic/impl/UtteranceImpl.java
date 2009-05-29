@@ -39,122 +39,122 @@ import java.util.Collection;
  */
 public class UtteranceImpl extends EObjectImpl implements Utterance {
 	/**
-     * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getLabel()
-     * @generated
-     * @ordered
-     */
+	 * @see #getLabel()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final String LABEL_EDEFAULT = null;
 
 	/**
-     * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getLabel()
-     * @generated
-     * @ordered
-     */
+	 * @see #getLabel()
+	 * @generated
+	 * @ordered
+	 */
 	protected String label = LABEL_EDEFAULT;
 
 	/**
-     * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getSource()
-     * @generated
-     * @ordered
-     */
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
 	protected Element source;
 
 	/**
-     * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #getTarget()
-     * @generated
-     * @ordered
-     */
+	 * @see #getTarget()
+	 * @generated
+	 * @ordered
+	 */
 	protected Element target;
 
 	/**
-     * The default value of the '{@link #getID() <em>ID</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getID() <em>ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getID()
-     * @generated
-     * @ordered
-     */
+	 * @see #getID()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String ID_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getID() <em>ID</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getID() <em>ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getID()
-     * @generated
-     * @ordered
-     */
+	 * @see #getID()
+	 * @generated
+	 * @ordered
+	 */
     protected String id = ID_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getGoals() <em>Goals</em>}' attribute list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getGoals() <em>Goals</em>}' attribute list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getGoals()
-     * @generated
-     * @ordered
-     */
+	 * @see #getGoals()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<String> goals;
 
     /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String NAME_EDEFAULT = "Utterance";
 
     /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
     protected String name = NAME_EDEFAULT;
 
     /**
-     * This is true if the Name attribute has been set.
-     * <!-- begin-user-doc -->
+	 * This is true if the Name attribute has been set.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
+	 * @generated
+	 * @ordered
+	 */
     protected boolean nameESet;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected UtteranceImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     protected EClass eStaticClass() {
-        return MolicPackage.Literals.UTTERANCE;
-    }
+		return MolicPackage.Literals.UTTERANCE;
+	}
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -166,253 +166,253 @@ public class UtteranceImpl extends EObjectImpl implements Utterance {
         return eResource().getURIFragment(this);
     }
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<String> getGoals() {
-        if (goals == null) {
-            goals = new EDataTypeUniqueEList<String>(String.class, this, MolicPackage.UTTERANCE__GOALS);
-        }
-        return goals;
-    }
+		if (goals == null) {
+			goals = new EDataTypeUniqueEList<String>(String.class, this, MolicPackage.UTTERANCE__GOALS);
+		}
+		return goals;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public String getLabel() {
-        return label;
-    }
+		return label;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setLabel(String newLabel) {
-        String oldLabel = label;
-        label = newLabel;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.UTTERANCE__LABEL, oldLabel, label));
-    }
+		String oldLabel = label;
+		label = newLabel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.UTTERANCE__LABEL, oldLabel, label));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Element getSource() {
-        if (source != null && source.eIsProxy()) {
-            InternalEObject oldSource = (InternalEObject)source;
-            source = (Element)eResolveProxy(oldSource);
-            if (source != oldSource) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, MolicPackage.UTTERANCE__SOURCE, oldSource, source));
-            }
-        }
-        return source;
-    }
+		if (source != null && source.eIsProxy()) {
+			InternalEObject oldSource = (InternalEObject)source;
+			source = (Element)eResolveProxy(oldSource);
+			if (source != oldSource) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MolicPackage.UTTERANCE__SOURCE, oldSource, source));
+			}
+		}
+		return source;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Element basicGetSource() {
-        return source;
-    }
+		return source;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setSource(Element newSource) {
-        Element oldSource = source;
-        source = newSource;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.UTTERANCE__SOURCE, oldSource, source));
-    }
+		Element oldSource = source;
+		source = newSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.UTTERANCE__SOURCE, oldSource, source));
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Element getTarget() {
-        if (target != null && target.eIsProxy()) {
-            InternalEObject oldTarget = (InternalEObject)target;
-            target = (Element)eResolveProxy(oldTarget);
-            if (target != oldTarget) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, MolicPackage.UTTERANCE__TARGET, oldTarget, target));
-            }
-        }
-        return target;
-    }
+		if (target != null && target.eIsProxy()) {
+			InternalEObject oldTarget = (InternalEObject)target;
+			target = (Element)eResolveProxy(oldTarget);
+			if (target != oldTarget) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MolicPackage.UTTERANCE__TARGET, oldTarget, target));
+			}
+		}
+		return target;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Element basicGetTarget() {
-        return target;
-    }
+		return target;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setTarget(Element newTarget) {
-        Element oldTarget = target;
-        target = newTarget;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.UTTERANCE__TARGET, oldTarget, target));
-    }
+		Element oldTarget = target;
+		target = newTarget;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.UTTERANCE__TARGET, oldTarget, target));
+	}
 
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getName() {
-        return name;
-    }
+		return name;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean isSetName() {
-        return nameESet;
-    }
+		return nameESet;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MolicPackage.UTTERANCE__LABEL:
-                return getLabel();
-            case MolicPackage.UTTERANCE__SOURCE:
-                if (resolve) return getSource();
-                return basicGetSource();
-            case MolicPackage.UTTERANCE__TARGET:
-                if (resolve) return getTarget();
-                return basicGetTarget();
-            case MolicPackage.UTTERANCE__ID:
-                return getID();
-            case MolicPackage.UTTERANCE__GOALS:
-                return getGoals();
-            case MolicPackage.UTTERANCE__NAME:
-                return getName();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case MolicPackage.UTTERANCE__LABEL:
+				return getLabel();
+			case MolicPackage.UTTERANCE__SOURCE:
+				if (resolve) return getSource();
+				return basicGetSource();
+			case MolicPackage.UTTERANCE__TARGET:
+				if (resolve) return getTarget();
+				return basicGetTarget();
+			case MolicPackage.UTTERANCE__ID:
+				return getID();
+			case MolicPackage.UTTERANCE__GOALS:
+				return getGoals();
+			case MolicPackage.UTTERANCE__NAME:
+				return getName();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MolicPackage.UTTERANCE__LABEL:
-                setLabel((String)newValue);
-                return;
-            case MolicPackage.UTTERANCE__SOURCE:
-                setSource((Element)newValue);
-                return;
-            case MolicPackage.UTTERANCE__TARGET:
-                setTarget((Element)newValue);
-                return;
-            case MolicPackage.UTTERANCE__GOALS:
-                getGoals().clear();
-                getGoals().addAll((Collection<? extends String>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case MolicPackage.UTTERANCE__LABEL:
+				setLabel((String)newValue);
+				return;
+			case MolicPackage.UTTERANCE__SOURCE:
+				setSource((Element)newValue);
+				return;
+			case MolicPackage.UTTERANCE__TARGET:
+				setTarget((Element)newValue);
+				return;
+			case MolicPackage.UTTERANCE__GOALS:
+				getGoals().clear();
+				getGoals().addAll((Collection<? extends String>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case MolicPackage.UTTERANCE__LABEL:
-                setLabel(LABEL_EDEFAULT);
-                return;
-            case MolicPackage.UTTERANCE__SOURCE:
-                setSource((Element)null);
-                return;
-            case MolicPackage.UTTERANCE__TARGET:
-                setTarget((Element)null);
-                return;
-            case MolicPackage.UTTERANCE__GOALS:
-                getGoals().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case MolicPackage.UTTERANCE__LABEL:
+				setLabel(LABEL_EDEFAULT);
+				return;
+			case MolicPackage.UTTERANCE__SOURCE:
+				setSource((Element)null);
+				return;
+			case MolicPackage.UTTERANCE__TARGET:
+				setTarget((Element)null);
+				return;
+			case MolicPackage.UTTERANCE__GOALS:
+				getGoals().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MolicPackage.UTTERANCE__LABEL:
-                return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-            case MolicPackage.UTTERANCE__SOURCE:
-                return source != null;
-            case MolicPackage.UTTERANCE__TARGET:
-                return target != null;
-            case MolicPackage.UTTERANCE__ID:
-                return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-            case MolicPackage.UTTERANCE__GOALS:
-                return goals != null && !goals.isEmpty();
-            case MolicPackage.UTTERANCE__NAME:
-                return isSetName();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case MolicPackage.UTTERANCE__LABEL:
+				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+			case MolicPackage.UTTERANCE__SOURCE:
+				return source != null;
+			case MolicPackage.UTTERANCE__TARGET:
+				return target != null;
+			case MolicPackage.UTTERANCE__ID:
+				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+			case MolicPackage.UTTERANCE__GOALS:
+				return goals != null && !goals.isEmpty();
+			case MolicPackage.UTTERANCE__NAME:
+				return isSetName();
+		}
+		return super.eIsSet(featureID);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (label: ");
-        result.append(label);
-        result.append(", ID: ");
-        result.append(id);
-        result.append(", goals: ");
-        result.append(goals);
-        result.append(", name: ");
-        if (nameESet) result.append(name); else result.append("<unset>");
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (label: ");
+		result.append(label);
+		result.append(", ID: ");
+		result.append(id);
+		result.append(", goals: ");
+		result.append(goals);
+		result.append(", name: ");
+		if (nameESet) result.append(name); else result.append("<unset>");
+		result.append(')');
+		return result.toString();
+	}
 
 } //UtteranceImpl

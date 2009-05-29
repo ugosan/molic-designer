@@ -37,358 +37,358 @@ import br.puc.molic.util.MolicAdapterFactory;
  */
 public class MolicItemProviderAdapterFactory extends MolicAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
-     * This keeps track of the root adapter factory that delegates to this adapter factory.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-     * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-     * <!-- begin-user-doc -->
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
 	/**
-     * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-     * <!-- begin-user-doc -->
+	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-     * This constructs an instance.
-     * <!-- begin-user-doc -->
+	 * This constructs an instance.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public MolicItemProviderAdapterFactory() {
-        supportedTypes.add(IEditingDomainItemProvider.class);
-        supportedTypes.add(IStructuredItemContentProvider.class);
-        supportedTypes.add(ITreeItemContentProvider.class);
-        supportedTypes.add(IItemLabelProvider.class);
-        supportedTypes.add(IItemPropertySource.class);
-    }
+		supportedTypes.add(IEditingDomainItemProvider.class);
+		supportedTypes.add(IStructuredItemContentProvider.class);
+		supportedTypes.add(ITreeItemContentProvider.class);
+		supportedTypes.add(IItemLabelProvider.class);
+		supportedTypes.add(IItemPropertySource.class);
+	}
 
 	/**
-     * This keeps track of the one adapter used for all {@link br.puc.molic.Diagram} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link br.puc.molic.Diagram} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected DiagramItemProvider diagramItemProvider;
 
 	/**
-     * This creates an adapter for a {@link br.puc.molic.Diagram}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link br.puc.molic.Diagram}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public Adapter createDiagramAdapter() {
-        if (diagramItemProvider == null) {
-            diagramItemProvider = new DiagramItemProvider(this);
-        }
+		if (diagramItemProvider == null) {
+			diagramItemProvider = new DiagramItemProvider(this);
+		}
 
-        return diagramItemProvider;
-    }
+		return diagramItemProvider;
+	}
 
 	/**
-     * This keeps track of the one adapter used for all {@link br.puc.molic.Scene} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link br.puc.molic.Scene} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SceneItemProvider sceneItemProvider;
 
 	/**
-     * This creates an adapter for a {@link br.puc.molic.Scene}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link br.puc.molic.Scene}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public Adapter createSceneAdapter() {
-        if (sceneItemProvider == null) {
-            sceneItemProvider = new SceneItemProvider(this);
-        }
+		if (sceneItemProvider == null) {
+			sceneItemProvider = new SceneItemProvider(this);
+		}
 
-        return sceneItemProvider;
-    }
+		return sceneItemProvider;
+	}
 
 	/**
-     * This keeps track of the one adapter used for all {@link br.puc.molic.Utterance} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link br.puc.molic.Utterance} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected UtteranceItemProvider utteranceItemProvider;
 
 	/**
-     * This creates an adapter for a {@link br.puc.molic.Utterance}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link br.puc.molic.Utterance}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public Adapter createUtteranceAdapter() {
-        if (utteranceItemProvider == null) {
-            utteranceItemProvider = new UtteranceItemProvider(this);
-        }
+		if (utteranceItemProvider == null) {
+			utteranceItemProvider = new UtteranceItemProvider(this);
+		}
 
-        return utteranceItemProvider;
-    }
+		return utteranceItemProvider;
+	}
 
 	/**
-     * This keeps track of the one adapter used for all {@link br.puc.molic.SystemProcess} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link br.puc.molic.SystemProcess} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SystemProcessItemProvider systemProcessItemProvider;
 
 	/**
-     * This creates an adapter for a {@link br.puc.molic.SystemProcess}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link br.puc.molic.SystemProcess}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public Adapter createSystemProcessAdapter() {
-        if (systemProcessItemProvider == null) {
-            systemProcessItemProvider = new SystemProcessItemProvider(this);
-        }
+		if (systemProcessItemProvider == null) {
+			systemProcessItemProvider = new SystemProcessItemProvider(this);
+		}
 
-        return systemProcessItemProvider;
-    }
+		return systemProcessItemProvider;
+	}
 
 	/**
-     * This keeps track of the one adapter used for all {@link br.puc.molic.Monologue} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link br.puc.molic.Monologue} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected MonologueItemProvider monologueItemProvider;
 
 	/**
-     * This creates an adapter for a {@link br.puc.molic.Monologue}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link br.puc.molic.Monologue}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public Adapter createMonologueAdapter() {
-        if (monologueItemProvider == null) {
-            monologueItemProvider = new MonologueItemProvider(this);
-        }
+		if (monologueItemProvider == null) {
+			monologueItemProvider = new MonologueItemProvider(this);
+		}
 
-        return monologueItemProvider;
-    }
+		return monologueItemProvider;
+	}
 
 	/**
-     * This keeps track of the one adapter used for all {@link br.puc.molic.BRTUtterance} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link br.puc.molic.BRTUtterance} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected BRTUtteranceItemProvider brtUtteranceItemProvider;
 
 	/**
-     * This creates an adapter for a {@link br.puc.molic.BRTUtterance}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link br.puc.molic.BRTUtterance}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public Adapter createBRTUtteranceAdapter() {
-        if (brtUtteranceItemProvider == null) {
-            brtUtteranceItemProvider = new BRTUtteranceItemProvider(this);
-        }
+		if (brtUtteranceItemProvider == null) {
+			brtUtteranceItemProvider = new BRTUtteranceItemProvider(this);
+		}
 
-        return brtUtteranceItemProvider;
-    }
+		return brtUtteranceItemProvider;
+	}
 
 	/**
-     * This keeps track of the one adapter used for all {@link br.puc.molic.UbiquitousAccess} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link br.puc.molic.UbiquitousAccess} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected UbiquitousAccessItemProvider ubiquitousAccessItemProvider;
 
 	/**
-     * This creates an adapter for a {@link br.puc.molic.UbiquitousAccess}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link br.puc.molic.UbiquitousAccess}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public Adapter createUbiquitousAccessAdapter() {
-        if (ubiquitousAccessItemProvider == null) {
-            ubiquitousAccessItemProvider = new UbiquitousAccessItemProvider(this);
-        }
+		if (ubiquitousAccessItemProvider == null) {
+			ubiquitousAccessItemProvider = new UbiquitousAccessItemProvider(this);
+		}
 
-        return ubiquitousAccessItemProvider;
-    }
+		return ubiquitousAccessItemProvider;
+	}
 
 	/**
-     * This keeps track of the one adapter used for all {@link br.puc.molic.OpeningPoint} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link br.puc.molic.OpeningPoint} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected OpeningPointItemProvider openingPointItemProvider;
 
 	/**
-     * This creates an adapter for a {@link br.puc.molic.OpeningPoint}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link br.puc.molic.OpeningPoint}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public Adapter createOpeningPointAdapter() {
-        if (openingPointItemProvider == null) {
-            openingPointItemProvider = new OpeningPointItemProvider(this);
-        }
+		if (openingPointItemProvider == null) {
+			openingPointItemProvider = new OpeningPointItemProvider(this);
+		}
 
-        return openingPointItemProvider;
-    }
+		return openingPointItemProvider;
+	}
 
 	/**
-     * This keeps track of the one adapter used for all {@link br.puc.molic.ClosingPoint} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link br.puc.molic.ClosingPoint} instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected ClosingPointItemProvider closingPointItemProvider;
 
 	/**
-     * This creates an adapter for a {@link br.puc.molic.ClosingPoint}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link br.puc.molic.ClosingPoint}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public Adapter createClosingPointAdapter() {
-        if (closingPointItemProvider == null) {
-            closingPointItemProvider = new ClosingPointItemProvider(this);
-        }
+		if (closingPointItemProvider == null) {
+			closingPointItemProvider = new ClosingPointItemProvider(this);
+		}
 
-        return closingPointItemProvider;
-    }
+		return closingPointItemProvider;
+	}
 
 	/**
-     * This returns the root adapter factory that contains this factory.
-     * <!-- begin-user-doc -->
+	 * This returns the root adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
-        return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-    }
+		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+	}
 
 	/**
-     * This sets the composed adapter factory that contains this factory.
-     * <!-- begin-user-doc -->
+	 * This sets the composed adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-        this.parentAdapterFactory = parentAdapterFactory;
-    }
+		this.parentAdapterFactory = parentAdapterFactory;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public boolean isFactoryForType(Object type) {
-        return supportedTypes.contains(type) || super.isFactoryForType(type);
-    }
+		return supportedTypes.contains(type) || super.isFactoryForType(type);
+	}
 
 	/**
-     * This implementation substitutes the factory itself as the key for the adapter.
-     * <!-- begin-user-doc -->
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public Adapter adapt(Notifier notifier, Object type) {
-        return super.adapt(notifier, this);
-    }
+		return super.adapt(notifier, this);
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public Object adapt(Object object, Object type) {
-        if (isFactoryForType(type)) {
-            Object adapter = super.adapt(object, type);
-            if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
-                return adapter;
-            }
-        }
+		if (isFactoryForType(type)) {
+			Object adapter = super.adapt(object, type);
+			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
+				return adapter;
+			}
+		}
 
-        return null;
-    }
+		return null;
+	}
 
 	/**
-     * This adds a listener.
-     * <!-- begin-user-doc -->
+	 * This adds a listener.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.addListener(notifyChangedListener);
-    }
+		changeNotifier.addListener(notifyChangedListener);
+	}
 
 	/**
-     * This removes a listener.
-     * <!-- begin-user-doc -->
+	 * This removes a listener.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.removeListener(notifyChangedListener);
-    }
+		changeNotifier.removeListener(notifyChangedListener);
+	}
 
 	/**
-     * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-     * <!-- begin-user-doc -->
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void fireNotifyChanged(Notification notification) {
-        changeNotifier.fireNotifyChanged(notification);
+		changeNotifier.fireNotifyChanged(notification);
 
-        if (parentAdapterFactory != null) {
-            parentAdapterFactory.fireNotifyChanged(notification);
-        }
-    }
+		if (parentAdapterFactory != null) {
+			parentAdapterFactory.fireNotifyChanged(notification);
+		}
+	}
 
 	/**
-     * This disposes all of the item providers created by this factory. 
-     * <!-- begin-user-doc -->
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void dispose() {
-        if (diagramItemProvider != null) diagramItemProvider.dispose();
-        if (sceneItemProvider != null) sceneItemProvider.dispose();
-        if (monologueItemProvider != null) monologueItemProvider.dispose();
-        if (utteranceItemProvider != null) utteranceItemProvider.dispose();
-        if (brtUtteranceItemProvider != null) brtUtteranceItemProvider.dispose();
-        if (systemProcessItemProvider != null) systemProcessItemProvider.dispose();
-        if (ubiquitousAccessItemProvider != null) ubiquitousAccessItemProvider.dispose();
-        if (openingPointItemProvider != null) openingPointItemProvider.dispose();
-        if (closingPointItemProvider != null) closingPointItemProvider.dispose();
-    }
+		if (diagramItemProvider != null) diagramItemProvider.dispose();
+		if (sceneItemProvider != null) sceneItemProvider.dispose();
+		if (monologueItemProvider != null) monologueItemProvider.dispose();
+		if (utteranceItemProvider != null) utteranceItemProvider.dispose();
+		if (brtUtteranceItemProvider != null) brtUtteranceItemProvider.dispose();
+		if (systemProcessItemProvider != null) systemProcessItemProvider.dispose();
+		if (ubiquitousAccessItemProvider != null) ubiquitousAccessItemProvider.dispose();
+		if (openingPointItemProvider != null) openingPointItemProvider.dispose();
+		if (closingPointItemProvider != null) closingPointItemProvider.dispose();
+	}
 
 }

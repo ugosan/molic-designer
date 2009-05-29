@@ -61,7 +61,7 @@ public class MonologueTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Monologue getFixture() {
+	protected Monologue getFixture() {
 		return fixture;
 	}
 
@@ -71,6 +71,7 @@ public class MonologueTest extends TestCase {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		setFixture(MolicFactory.eINSTANCE.createMonologue());
 	}
@@ -81,6 +82,7 @@ public class MonologueTest extends TestCase {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
+	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

@@ -27,82 +27,82 @@ package br.puc.molic;
  */
 public interface Scene extends Element {
 	/**
-     * Returns the value of the '<em><b>Topic</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Topic</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Topic</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Topic</em>' attribute.
-     * @see #setTopic(String)
-     * @see br.puc.molic.MolicPackage#getScene_Topic()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Topic</em>' attribute.
+	 * @see #setTopic(String)
+	 * @see br.puc.molic.MolicPackage#getScene_Topic()
+	 * @model
+	 * @generated
+	 */
 	String getTopic();
 
 	/**
-     * Sets the value of the '{@link br.puc.molic.Scene#getTopic <em>Topic</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link br.puc.molic.Scene#getTopic <em>Topic</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Topic</em>' attribute.
-     * @see #getTopic()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Topic</em>' attribute.
+	 * @see #getTopic()
+	 * @generated
+	 */
 	void setTopic(String value);
 
 	/**
-     * Returns the value of the '<em><b>Dialogue</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Dialogue</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dialogue</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Dialogue</em>' attribute.
-     * @see #setDialogue(String)
-     * @see br.puc.molic.MolicPackage#getScene_Dialogue()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Dialogue</em>' attribute.
+	 * @see #setDialogue(String)
+	 * @see br.puc.molic.MolicPackage#getScene_Dialogue()
+	 * @model
+	 * @generated
+	 */
 	String getDialogue();
 
 	/**
-     * Sets the value of the '{@link br.puc.molic.Scene#getDialogue <em>Dialogue</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link br.puc.molic.Scene#getDialogue <em>Dialogue</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Dialogue</em>' attribute.
-     * @see #getDialogue()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Dialogue</em>' attribute.
+	 * @see #getDialogue()
+	 * @generated
+	 */
 	void setDialogue(String value);
 
     /**
-     * Returns the value of the '<em><b>Name</b></em>' attribute.
-     * The default value is <code>"Scene"</code>.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * The default value is <code>"Scene"</code>.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Name</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Name</em>' attribute.
-     * @see #isSetName()
-     * @see br.puc.molic.MolicPackage#getScene_Name()
-     * @model default="Scene" unsettable="true" changeable="false"
-     * @generated
-     */
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #isSetName()
+	 * @see br.puc.molic.MolicPackage#getScene_Name()
+	 * @model default="Scene" unsettable="true" changeable="false"
+	 * @generated
+	 */
     String getName();
 
     /**
-     * Returns whether the value of the '{@link br.puc.molic.Scene#getName <em>Name</em>}' attribute is set.
-     * <!-- begin-user-doc -->
+	 * Returns whether the value of the '{@link br.puc.molic.Scene#getName <em>Name</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Name</em>' attribute is set.
-     * @see #getName()
-     * @generated
-     */
+	 * @return whether the value of the '<em>Name</em>' attribute is set.
+	 * @see #getName()
+	 * @generated
+	 */
     boolean isSetName();
 
 } // Scene

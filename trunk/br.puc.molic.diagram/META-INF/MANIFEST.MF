@@ -53,6 +53,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.expressions,
  org.eclipse.ui.navigator,
  org.eclipse.ui.navigator.resources,
- org.eclipse.gmf.graphdef;bundle-version="2.0.100"
+ org.eclipse.gmf.graphdef;bundle-version="2.0.100",
+ org.eclipse.jface.text,
+ org.eclipse.ui.editors
 Eclipse-LazyStart: true
 Import-Package: br.puc.molic.diagram.providers
