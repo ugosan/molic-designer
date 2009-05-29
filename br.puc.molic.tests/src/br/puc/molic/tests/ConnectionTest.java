@@ -51,7 +51,7 @@ public abstract class ConnectionTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Connection getFixture() {
+	protected Connection getFixture() {
 		return fixture;
 	}
 

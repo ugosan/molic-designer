@@ -61,7 +61,7 @@ public class DiagramTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Diagram getFixture() {
+	protected Diagram getFixture() {
 		return fixture;
 	}
 
@@ -71,6 +71,7 @@ public class DiagramTest extends TestCase {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		setFixture(MolicFactory.eINSTANCE.createDiagram());
 	}
@@ -81,6 +82,7 @@ public class DiagramTest extends TestCase {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
+	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

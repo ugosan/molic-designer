@@ -26,5 +26,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.apache.batik.xml,
  org.w3c.css.sac,
  org.w3c.dom.smil,
- org.apache.xerces
+ org.apache.xerces,
+ org.eclipse.jface;bundle-version="3.4.2"
 Eclipse-LazyStart: true

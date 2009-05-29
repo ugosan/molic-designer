@@ -31,164 +31,164 @@ import br.puc.molic.Utterance;
  */
 public class MolicFactoryImpl extends EFactoryImpl implements MolicFactory {
 	/**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static MolicFactory init() {
-        try {
-            MolicFactory theMolicFactory = (MolicFactory)EPackage.Registry.INSTANCE.getEFactory("molic"); 
-            if (theMolicFactory != null) {
-                return theMolicFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new MolicFactoryImpl();
-    }
+		try {
+			MolicFactory theMolicFactory = (MolicFactory)EPackage.Registry.INSTANCE.getEFactory("molic"); 
+			if (theMolicFactory != null) {
+				return theMolicFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new MolicFactoryImpl();
+	}
 
 	/**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public MolicFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
     public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case MolicPackage.DIAGRAM: return createDiagram();
-            case MolicPackage.SCENE: return createScene();
-            case MolicPackage.MONOLOGUE: return createMonologue();
-            case MolicPackage.UTTERANCE: return createUtterance();
-            case MolicPackage.BRT_UTTERANCE: return createBRTUtterance();
-            case MolicPackage.SYSTEM_PROCESS: return createSystemProcess();
-            case MolicPackage.UBIQUITOUS_ACCESS: return createUbiquitousAccess();
-            case MolicPackage.OPENING_POINT: return createOpeningPoint();
-            case MolicPackage.CLOSING_POINT: return createClosingPoint();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eClass.getClassifierID()) {
+			case MolicPackage.DIAGRAM: return createDiagram();
+			case MolicPackage.SCENE: return createScene();
+			case MolicPackage.MONOLOGUE: return createMonologue();
+			case MolicPackage.UTTERANCE: return createUtterance();
+			case MolicPackage.BRT_UTTERANCE: return createBRTUtterance();
+			case MolicPackage.SYSTEM_PROCESS: return createSystemProcess();
+			case MolicPackage.UBIQUITOUS_ACCESS: return createUbiquitousAccess();
+			case MolicPackage.OPENING_POINT: return createOpeningPoint();
+			case MolicPackage.CLOSING_POINT: return createClosingPoint();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Diagram createDiagram() {
-        DiagramImpl diagram = new DiagramImpl();
-        return diagram;
-    }
+		DiagramImpl diagram = new DiagramImpl();
+		return diagram;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Scene createScene() {
-        SceneImpl scene = new SceneImpl();
-        return scene;
-    }
+		SceneImpl scene = new SceneImpl();
+		return scene;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Utterance createUtterance() {
-        UtteranceImpl utterance = new UtteranceImpl();
-        return utterance;
-    }
+		UtteranceImpl utterance = new UtteranceImpl();
+		return utterance;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public SystemProcess createSystemProcess() {
-        SystemProcessImpl systemProcess = new SystemProcessImpl();
-        return systemProcess;
-    }
+		SystemProcessImpl systemProcess = new SystemProcessImpl();
+		return systemProcess;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Monologue createMonologue() {
-        MonologueImpl monologue = new MonologueImpl();
-        return monologue;
-    }
+		MonologueImpl monologue = new MonologueImpl();
+		return monologue;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public BRTUtterance createBRTUtterance() {
-        BRTUtteranceImpl brtUtterance = new BRTUtteranceImpl();
-        return brtUtterance;
-    }
+		BRTUtteranceImpl brtUtterance = new BRTUtteranceImpl();
+		return brtUtterance;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public UbiquitousAccess createUbiquitousAccess() {
-        UbiquitousAccessImpl ubiquitousAccess = new UbiquitousAccessImpl();
-        return ubiquitousAccess;
-    }
+		UbiquitousAccessImpl ubiquitousAccess = new UbiquitousAccessImpl();
+		return ubiquitousAccess;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public OpeningPoint createOpeningPoint() {
-        OpeningPointImpl openingPoint = new OpeningPointImpl();
-        return openingPoint;
-    }
+		OpeningPointImpl openingPoint = new OpeningPointImpl();
+		return openingPoint;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ClosingPoint createClosingPoint() {
-        ClosingPointImpl closingPoint = new ClosingPointImpl();
-        return closingPoint;
-    }
+		ClosingPointImpl closingPoint = new ClosingPointImpl();
+		return closingPoint;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public MolicPackage getMolicPackage() {
-        return (MolicPackage)getEPackage();
-    }
+		return (MolicPackage)getEPackage();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+	 * @deprecated
+	 * @generated
+	 */
 	@Deprecated
     public static MolicPackage getPackage() {
-        return MolicPackage.eINSTANCE;
-    }
+		return MolicPackage.eINSTANCE;
+	}
 
 } //MolicFactoryImpl

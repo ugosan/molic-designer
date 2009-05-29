@@ -64,7 +64,7 @@ public class ClosingPointTest extends TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ClosingPoint getFixture() {
+	protected ClosingPoint getFixture() {
 		return fixture;
 	}
 
@@ -74,6 +74,7 @@ public class ClosingPointTest extends TestCase {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
+	@Override
 	protected void setUp() throws Exception {
 		setFixture(MolicFactory.eINSTANCE.createClosingPoint());
 	}
@@ -84,6 +85,7 @@ public class ClosingPointTest extends TestCase {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
+	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
 	}

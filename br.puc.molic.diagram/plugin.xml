@@ -57,6 +57,14 @@ Teste de nota de copyright do Molic
          matchingStrategy="br.puc.molic.diagram.part.MolicMatchingStrategy"
          contributorClass="br.puc.molic.diagram.part.MolicDiagramActionBarContributor">
       </editor>
+      <editor
+            class="br.puc.molic.diagram.editors.MolicSimulatorEditor"
+            contributorClass="br.puc.molic.diagram.editors.MolicSimulatorEditorContributor"
+            extensions="molic_simulation"
+            icon="icons/obj16/OpeningPoint.gif"
+            id="br.puc.molic.diagram.editors.MolicSimulatorEditor"
+            name="Simulation">
+      </editor>
    </extension>
    
    <extension point="org.eclipse.ui.contexts">
