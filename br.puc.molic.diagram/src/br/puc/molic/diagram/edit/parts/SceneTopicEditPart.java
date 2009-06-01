@@ -206,6 +206,15 @@ public class SceneTopicEditPart extends CompartmentEditPart implements
         return null;
     }
 
+    @Override
+    protected void fireSelectionChanged() {
+        super.fireSelectionChanged();
+        if (getSelected() == 2) {
+            performDirectEdit();
+        }
+    }
+
+    
     /**
      * @generated
      */
