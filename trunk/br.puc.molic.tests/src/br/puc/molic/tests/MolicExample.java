@@ -22,6 +22,9 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import br.puc.molic.Diagram;
 import br.puc.molic.MolicFactory;
 import br.puc.molic.MolicPackage;
+import br.puc.molic.Scene;
+import br.puc.molic.SystemProcess;
+import br.puc.molic.Utterance;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,45 +35,72 @@ import br.puc.molic.MolicPackage;
 public class MolicExample {
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and may be freely distributed\nunder the terms of GNU General Public License v2\nhttp://www.gnu.org/licenses/gpl-2.0.html\n\nDeveloped at Semiotic Engineering Research Lab (SERG) - http://serg.inf.puc-rio.br\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * Load all the argument file paths or URIs as instances of the model.
 	 * <!-- end-user-doc -->
 	 * @param args the file paths or URIs.
-	 * @generated
+	 * @generated NOT
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 		// Create a resource set to hold the resources.
 		//
 		ResourceSet resourceSet = new ResourceSetImpl();
-		
+
 		// Register the appropriate resource factory to handle all file extensions.
 		//
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put
-			(Resource.Factory.Registry.DEFAULT_EXTENSION, 
-			 new XMIResourceFactoryImpl());
+		(Resource.Factory.Registry.DEFAULT_EXTENSION, 
+				new XMIResourceFactoryImpl());
 
 		// Register the package to ensure it is available during loading.
 		//
-		resourceSet.getPackageRegistry().put
-			(MolicPackage.eNS_URI, 
-			 MolicPackage.eINSTANCE);
-        
-		// If there are no arguments, emit an appropriate usage message.
-		//
-		if (args.length == 0) {
-			System.out.println("Enter a list of file paths or URIs that have content like this:");
-			try {
-				Resource resource = resourceSet.createResource(URI.createURI("http:///My.molic"));
-				Diagram root = MolicFactory.eINSTANCE.createDiagram();
-				resource.getContents().add(root);
-				resource.save(System.out, null);
-			}
-			catch (IOException exception) {
-				exception.printStackTrace();
-			}
-		}
-		else {
-			// Iterate over all the arguments.
-			//
+		resourceSet.getPackageRegistry().put(MolicPackage.eNS_URI, MolicPackage.eINSTANCE);
+
+		Resource resource = resourceSet.createResource(URI.createURI("http:///My.molic"));
+
+		//creates a Diagram
+		Diagram diagram = MolicFactory.eINSTANCE.createDiagram();
+
+		//creates a Scene
+		Scene scene = MolicFactory.eINSTANCE.createScene();
+		scene.setTopic("View All News");
+		scene.setDialogue("d+u: news{ *title, *content, *category}");
+
+		//creates a System Process
+		SystemProcess sysProcess = MolicFactory.eINSTANCE.createSystemProcess();
+
+		//creates a Utterance
+		Utterance userUT = MolicFactory.eINSTANCE.createUtterance();
+		userUT.setLabel("u: select news item");
+		userUT.setSource(scene);
+		userUT.setTarget(sysProcess);
+
+		//creates a goal and reference it in all elements
+				String goal = "List Front Page";
+				diagram.getGoals().add(goal);
+				scene.getGoals().add(goal);
+				userUT.getGoals().add(goal);
+				sysProcess.getGoals().add(goal);
+		 
+
+		//inserts the elements on the diagram
+		diagram.getElement().add(scene);
+		diagram.getElement().add(sysProcess);				
+		diagram.getUtterance().add(userUT);
+
+		//saves the resource
+		resource.getContents().add(diagram);
+		resource.save(System.out, null);
+		
+		
+			 /*
+			//to load
 			for (int i = 0; i < args.length; ++i) {
 				// Construct the URI for the instance file.
 				// The argument is treated as a file path only if it denotes an existing file.
@@ -99,7 +129,8 @@ public class MolicExample {
 					exception.printStackTrace();
 				}
 			}
-		}
+		*/
+
 	}
 	
 	/**

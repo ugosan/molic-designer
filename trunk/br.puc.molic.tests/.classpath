@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-collections-3.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-collections-testframework-3.2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/org.eclipse.swtbot.eclipse.core_2.0.0.348-dev.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/org.eclipse.swtbot.eclipse.finder_2.0.0.348-dev.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/org.eclipse.swtbot.eclipse.spy_2.0.0.348-dev.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/org.eclipse.swtbot.eclipse.ui_2.0.0.348-dev.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/org.eclipse.swtbot.junit4_x_2.0.0.348-dev.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/org.eclipse.swtbot.swt.finder_2.0.0.348-dev.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="bin"/>
