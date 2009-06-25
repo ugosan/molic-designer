@@ -7,8 +7,10 @@
 package br.puc.molic.tests;
 
 import junit.framework.TestCase;
+import junit.framework.TestResult;
 import junit.textui.TestRunner;
 import br.puc.molic.MolicFactory;
+import br.puc.molic.Scene;
 import br.puc.molic.Utterance;
 
 /**
@@ -18,6 +20,12 @@ import br.puc.molic.Utterance;
  * @generated
  */
 public class UtteranceTest extends TestCase {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and may be freely distributed\nunder the terms of GNU General Public License v2\nhttp://www.gnu.org/licenses/gpl-2.0.html\n\nDeveloped at Semiotic Engineering Research Lab (SERG) - http://serg.inf.puc-rio.br\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
 	/**
 	 * The fixture for this Utterance test case.
 	 * <!-- begin-user-doc -->
@@ -53,6 +61,18 @@ public class UtteranceTest extends TestCase {
 	 */
 	protected void setFixture(Utterance fixture) {
 		this.fixture = fixture;
+	}
+
+	//Utterance cant do a loop
+	public void testLoop() {
+		Scene s = MolicFactory.eINSTANCE.createScene();
+		fixture.setSource(s);
+		fixture.setTarget(s);		
+		
+		System.out.println(fixture.getSource());
+		System.out.println(fixture.getTarget());
+		
+		assertTrue(fixture.getSource() == fixture.getTarget());		
 	}
 
 	/**
