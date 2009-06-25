@@ -9,11 +9,11 @@ import br.puc.molic.diagram.part.MolicDiagramEditorPlugin;
  */
 public class DiagramAppearancePreferencePage extends AppearancePreferencePage {
 
-    /**
-     * @generated
-     */
-    public DiagramAppearancePreferencePage() {
-        setPreferenceStore(MolicDiagramEditorPlugin.getInstance()
-                .getPreferenceStore());
-    }
+	/**
+	 * @generated
+	 */
+	public DiagramAppearancePreferencePage() {
+		setPreferenceStore(MolicDiagramEditorPlugin.getInstance()
+				.getPreferenceStore());
+	}
 }

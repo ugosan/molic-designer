@@ -17,11 +17,12 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PlatformUI;
 
 import br.puc.molic.BRTUtterance;
+import br.puc.molic.Scene;
+import br.puc.molic.UbiquitousAccess;
 import br.puc.molic.Utterance;
 import br.puc.molic.diagram.SaveDialog;
 import br.puc.molic.diagram.edit.parts.DiagramEditPart;
-import br.puc.molic.impl.SceneImpl;
-import br.puc.molic.impl.UbiquitousAccessImpl;
+
 
 /**
  * 
@@ -100,6 +101,7 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
            String name = n.getElement().eClass().getName();
            csv += "\n";
            
+           System.out.println(n.getElement());
                              
            String id = n.getElement().eResource().getURIFragment(n.getElement());
            
@@ -107,9 +109,9 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
                csv += getCSVLineNode(id, "OpeningPoint"+i, "4", "NULL");
                
            }else if (name.equals("Scene")) {
-               csv += getCSVLineNode(id, ((SceneImpl)n.getElement()).getTopic(), "1", ((SceneImpl)n.getElement()).getDialogue());
+               csv += getCSVLineNode(id, ((Scene)n.getElement()).getTopic(), "1", ((Scene)n.getElement()).getDialogue());
            }else if (name.equals("UbiquitousAccess")) {
-               String label = ((UbiquitousAccessImpl)n.getElement()).getLabel();
+               String label = ((UbiquitousAccess)n.getElement()).getLabel();
         	   if(label==null) label = "NULL";
         	   csv += getCSVLineNode(id, "Ubiqutous"+i, "3", label);
            }else if (name.equals("SystemProcess")) {

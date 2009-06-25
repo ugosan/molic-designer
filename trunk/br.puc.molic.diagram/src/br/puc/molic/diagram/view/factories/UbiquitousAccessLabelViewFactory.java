@@ -1,5 +1,6 @@
 /*
- * Teste de nota de copyright do Molic
+ * SERG - Semiotic Engineering Research Group
+ * This work is part of MSc thesis of Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br
  */
 package br.puc.molic.diagram.view.factories;
 
@@ -12,7 +13,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class WrappingLabelViewFactory extends BasicNodeViewFactory {
+public class UbiquitousAccessLabelViewFactory extends BasicNodeViewFactory {
 
 	/**
 	 * @generated

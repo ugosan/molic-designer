@@ -7,12 +7,6 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: br.puc.molic;uses:="org.eclipse.emf.ecore,org.eclipse.emf.common.util",
- br.puc.molic.impl;
-  uses:="br.puc.molic,
-   org.eclipse.emf.ecore,
-   org.eclipse.emf.common.util,
-   org.eclipse.emf.common.notify,
-   org.eclipse.emf.ecore.impl",
  br.puc.molic.util;
   uses:="br.puc.molic,
    org.eclipse.emf.ecore,

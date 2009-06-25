@@ -2,11 +2,6 @@ package br.puc.molic.diagram;
 
 
 
-import java.util.ArrayList;
-
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-
-import br.puc.molic.diagram.providers.MolicElementTypes;
 
 //import com.ugosan.omnimodeling.sketch.SketchTool;
 

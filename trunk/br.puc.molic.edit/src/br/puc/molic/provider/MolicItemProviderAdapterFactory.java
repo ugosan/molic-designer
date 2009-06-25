@@ -37,6 +37,13 @@ import br.puc.molic.util.MolicAdapterFactory;
  */
 public class MolicItemProviderAdapterFactory extends MolicAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and may be freely distributed\nunder the terms of GNU General Public License v2\nhttp://www.gnu.org/licenses/gpl-2.0.html\n\nDeveloped at Semiotic Engineering Research Lab (SERG) - http://serg.inf.puc-rio.br\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
+
+	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -164,29 +171,6 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 		}
 
 		return systemProcessItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link br.puc.molic.Monologue} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected MonologueItemProvider monologueItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link br.puc.molic.Monologue}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-    public Adapter createMonologueAdapter() {
-		if (monologueItemProvider == null) {
-			monologueItemProvider = new MonologueItemProvider(this);
-		}
-
-		return monologueItemProvider;
 	}
 
 	/**
@@ -382,7 +366,6 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	public void dispose() {
 		if (diagramItemProvider != null) diagramItemProvider.dispose();
 		if (sceneItemProvider != null) sceneItemProvider.dispose();
-		if (monologueItemProvider != null) monologueItemProvider.dispose();
 		if (utteranceItemProvider != null) utteranceItemProvider.dispose();
 		if (brtUtteranceItemProvider != null) brtUtteranceItemProvider.dispose();
 		if (systemProcessItemProvider != null) systemProcessItemProvider.dispose();

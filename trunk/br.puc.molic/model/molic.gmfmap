@@ -53,28 +53,6 @@
         href="molic.ecore#//Diagram/element"/>
     <ownedChild>
       <domainMetaElement
-          href="molic.ecore#//Monologue"/>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="&lt;&lt; {0} >>"
-          editPattern="{0}">
-        <diagramLabel
-            href="molic.gmfgraph#MonologueLabel"/>
-        <features
-            href="molic.ecore#//Monologue/label"/>
-      </labelMappings>
-      <tool
-          xsi:type="gmftool:CreationTool"
-          href="molic.gmftool#//@palette/@tools.5"/>
-      <diagramNode
-          href="molic.gmfgraph#Monologue"/>
-    </ownedChild>
-  </nodes>
-  <nodes>
-    <containmentFeature
-        href="molic.ecore#//Diagram/element"/>
-    <ownedChild>
-      <domainMetaElement
           href="molic.ecore#//UbiquitousAccess"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
@@ -85,7 +63,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="molic.gmftool#//@palette/@tools.6"/>
+          href="molic.gmftool#//@palette/@tools.5"/>
       <diagramNode
           href="molic.gmfgraph#UbiquitousAccess"/>
     </ownedChild>
@@ -130,7 +108,7 @@
         href="molic.ecore#//Diagram/utterance"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="molic.gmftool#//@palette/@tools.8"/>
+        href="molic.gmftool#//@palette/@tools.7"/>
     <diagramLink
         href="molic.gmfgraph#Utterance"/>
     <sourceMetaFeature
@@ -139,6 +117,10 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="molic.ecore#//Connection/target"/>
+    <creationConstraints>
+      <sourceEnd
+          body="self &lt;> oppositeEnd"/>
+    </creationConstraints>
   </links>
   <links>
     <domainMetaElement
@@ -155,7 +137,7 @@
         href="molic.ecore#//Diagram/utterance"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="molic.gmftool#//@palette/@tools.9"/>
+        href="molic.gmftool#//@palette/@tools.8"/>
     <diagramLink
         href="molic.gmfgraph#BRTUtterance"/>
     <sourceMetaFeature
@@ -164,6 +146,10 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="molic.ecore#//Connection/target"/>
+    <creationConstraints>
+      <sourceEnd
+          body="self &lt;> oppositeEnd"/>
+    </creationConstraints>
   </links>
   <diagram>
     <diagramCanvas

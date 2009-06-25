@@ -17,7 +17,6 @@ import br.puc.molic.Connection;
 import br.puc.molic.Diagram;
 import br.puc.molic.Element;
 import br.puc.molic.MolicPackage;
-import br.puc.molic.Monologue;
 import br.puc.molic.Scene;
 import br.puc.molic.SystemProcess;
 import br.puc.molic.UbiquitousAccess;
@@ -32,6 +31,12 @@ import br.puc.molic.Utterance;
  * @generated
  */
 public class MolicAdapterFactory extends AdapterFactoryImpl {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and may be freely distributed\nunder the terms of GNU General Public License v2\nhttp://www.gnu.org/licenses/gpl-2.0.html\n\nDeveloped at Semiotic Engineering Research Lab (SERG) - http://serg.inf.puc-rio.br\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -94,10 +99,6 @@ public class MolicAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseScene(Scene object) {
 				return createSceneAdapter();
-			}
-			@Override
-			public Adapter caseMonologue(Monologue object) {
-				return createMonologueAdapter();
 			}
 			@Override
 			public Adapter caseUtterance(Utterance object) {
@@ -210,20 +211,6 @@ public class MolicAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSystemProcessAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link br.puc.molic.Monologue <em>Monologue</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see br.puc.molic.Monologue
-	 * @generated
-	 */
-	public Adapter createMonologueAdapter() {
 		return null;
 	}
 
