@@ -14,11 +14,11 @@ import org.eclipse.gmf.runtime.notation.View;
  */
 public class SceneDialogueViewFactory extends BasicNodeViewFactory {
 
-    /**
-     * @generated
-     */
-    protected List createStyles(View view) {
-        List styles = new ArrayList();
-        return styles;
-    }
+	/**
+	 * @generated
+	 */
+	protected List createStyles(View view) {
+		List styles = new ArrayList();
+		return styles;
+	}
 }

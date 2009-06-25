@@ -6,6 +6,7 @@ package br.puc.molic.diagram.edit.policies;
 import java.util.Collections;
 import java.util.Iterator;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
@@ -15,6 +16,7 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
@@ -44,343 +46,372 @@ import org.eclipse.gmf.runtime.notation.View;
 
 import br.puc.molic.Diagram;
 import br.puc.molic.Element;
+import br.puc.molic.MolicPackage;
 import br.puc.molic.diagram.edit.helpers.MolicBaseEditHelper;
+import br.puc.molic.diagram.expressions.MolicAbstractExpression;
+import br.puc.molic.diagram.expressions.MolicOCLFactory;
+import br.puc.molic.diagram.part.MolicDiagramEditorPlugin;
 import br.puc.molic.diagram.part.MolicVisualIDRegistry;
+import br.puc.molic.diagram.providers.MolicElementTypes;
 
 /**
  * @generated
  */
 public class MolicBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
-    /**
-     * Extended request data key to hold editpart visual id.
-     * 
-     * @generated
-     */
-    public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
+	/**
+	 * Extended request data key to hold editpart visual id.
+	 * 
+	 * @generated
+	 */
+	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 
-    /**
-     * Extended request data key to hold editpart visual id.
-     * Add visual id of edited editpart to extended data of the request
-     * so command switch can decide what kind of diagram element is being edited.
-     * It is done in those cases when it's not possible to deduce diagram
-     * element kind from domain element.
-     * 
-     * @generated
-     */
-    public Command getCommand(Request request) {
-        if (request instanceof ReconnectRequest) {
-            Object view = ((ReconnectRequest) request).getConnectionEditPart()
-                    .getModel();
-            if (view instanceof View) {
-                Integer id = new Integer(MolicVisualIDRegistry
-                        .getVisualID((View) view));
-                request.getExtendedData().put(VISUAL_ID_KEY, id);
-            }
-        }
-        return super.getCommand(request);
-    }
+	/**
+	 * @generated
+	 */
+	private final IElementType myElementType;
 
-    /**
-     * Returns visual id from request parameters.
-     * 
-     * @generated
-     */
-    protected int getVisualID(IEditCommandRequest request) {
-        Object id = request.getParameter(VISUAL_ID_KEY);
-        return id instanceof Integer ? ((Integer) id).intValue() : -1;
-    }
+	/**
+	 * @generated
+	 */
+	protected MolicBaseItemSemanticEditPolicy(IElementType elementType) {
+		myElementType = elementType;
+	}
 
-    /**
-     * @generated
-     */
-    protected Command getSemanticCommand(IEditCommandRequest request) {
-        IEditCommandRequest completedRequest = completeRequest(request);
-        Object editHelperContext = completedRequest.getEditHelperContext();
-        if (editHelperContext instanceof View
-                || (editHelperContext instanceof IEditHelperContext && ((IEditHelperContext) editHelperContext)
-                        .getEObject() instanceof View)) {
-            // no semantic commands are provided for pure design elements
-            return null;
-        }
-        if (editHelperContext == null) {
-            editHelperContext = ViewUtil
-                    .resolveSemanticElement((View) getHost().getModel());
-        }
-        IElementType elementType = ElementTypeRegistry.getInstance()
-                .getElementType(editHelperContext);
-        if (elementType == ElementTypeRegistry.getInstance().getType(
-                "org.eclipse.gmf.runtime.emf.type.core.default")) { //$NON-NLS-1$ 
-            elementType = null;
-        }
-        Command semanticCommand = getSemanticCommandSwitch(completedRequest);
-        if (semanticCommand != null) {
-            ICommand command = semanticCommand instanceof ICommandProxy ? ((ICommandProxy) semanticCommand)
-                    .getICommand()
-                    : new CommandProxy(semanticCommand);
-            completedRequest.setParameter(
-                    MolicBaseEditHelper.EDIT_POLICY_COMMAND, command);
-        }
-        if (elementType != null) {
-            ICommand command = elementType.getEditCommand(completedRequest);
-            if (command != null) {
-                if (!(command instanceof CompositeTransactionalCommand)) {
-                    TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
-                            .getEditingDomain();
-                    command = new CompositeTransactionalCommand(editingDomain,
-                            command.getLabel()).compose(command);
-                }
-                semanticCommand = new ICommandProxy(command);
-            }
-        }
-        boolean shouldProceed = true;
-        if (completedRequest instanceof DestroyRequest) {
-            shouldProceed = shouldProceed((DestroyRequest) completedRequest);
-        }
-        if (shouldProceed) {
-            if (completedRequest instanceof DestroyRequest) {
-                TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
-                        .getEditingDomain();
-                Command deleteViewCommand = new ICommandProxy(
-                        new DeleteCommand(editingDomain, (View) getHost()
-                                .getModel()));
-                semanticCommand = semanticCommand == null ? deleteViewCommand
-                        : semanticCommand.chain(deleteViewCommand);
-            }
-            return semanticCommand;
-        }
-        return null;
-    }
+	/**
+	 * Extended request data key to hold editpart visual id.
+	 * Add visual id of edited editpart to extended data of the request
+	 * so command switch can decide what kind of diagram element is being edited.
+	 * It is done in those cases when it's not possible to deduce diagram
+	 * element kind from domain element.
+	 * 
+	 * @generated
+	 */
+	public Command getCommand(Request request) {
+		if (request instanceof ReconnectRequest) {
+			Object view = ((ReconnectRequest) request).getConnectionEditPart()
+					.getModel();
+			if (view instanceof View) {
+				Integer id = new Integer(MolicVisualIDRegistry
+						.getVisualID((View) view));
+				request.getExtendedData().put(VISUAL_ID_KEY, id);
+			}
+		}
+		return super.getCommand(request);
+	}
 
-    /**
-     * @generated
-     */
-    protected Command getSemanticCommandSwitch(IEditCommandRequest req) {
-        if (req instanceof CreateRelationshipRequest) {
-            return getCreateRelationshipCommand((CreateRelationshipRequest) req);
-        } else if (req instanceof CreateElementRequest) {
-            return getCreateCommand((CreateElementRequest) req);
-        } else if (req instanceof ConfigureRequest) {
-            return getConfigureCommand((ConfigureRequest) req);
-        } else if (req instanceof DestroyElementRequest) {
-            return getDestroyElementCommand((DestroyElementRequest) req);
-        } else if (req instanceof DestroyReferenceRequest) {
-            return getDestroyReferenceCommand((DestroyReferenceRequest) req);
-        } else if (req instanceof DuplicateElementsRequest) {
-            return getDuplicateCommand((DuplicateElementsRequest) req);
-        } else if (req instanceof GetEditContextRequest) {
-            return getEditContextCommand((GetEditContextRequest) req);
-        } else if (req instanceof MoveRequest) {
-            return getMoveCommand((MoveRequest) req);
-        } else if (req instanceof ReorientReferenceRelationshipRequest) {
-            return getReorientReferenceRelationshipCommand((ReorientReferenceRelationshipRequest) req);
-        } else if (req instanceof ReorientRelationshipRequest) {
-            return getReorientRelationshipCommand((ReorientRelationshipRequest) req);
-        } else if (req instanceof SetRequest) {
-            return getSetCommand((SetRequest) req);
-        }
-        return null;
-    }
+	/**
+	 * Returns visual id from request parameters.
+	 * 
+	 * @generated
+	 */
+	protected int getVisualID(IEditCommandRequest request) {
+		Object id = request.getParameter(VISUAL_ID_KEY);
+		return id instanceof Integer ? ((Integer) id).intValue() : -1;
+	}
 
-    /**
-     * @generated
-     */
-    protected Command getConfigureCommand(ConfigureRequest req) {
-        return null;
-    }
+	/**
+	 * @generated
+	 */
+	protected Command getSemanticCommand(IEditCommandRequest request) {
+		IEditCommandRequest completedRequest = completeRequest(request);
+		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
+		semanticCommand = getEditHelperCommand(completedRequest,
+				semanticCommand);
+		if (completedRequest instanceof DestroyRequest) {
+			DestroyRequest destroyRequest = (DestroyRequest) completedRequest;
+			return shouldProceed(destroyRequest) ? addDeleteViewCommand(
+					semanticCommand, destroyRequest) : null;
+		}
+		return semanticCommand;
+	}
 
-    /**
-     * @generated
-     */
-    protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-        return null;
-    }
+	/**
+	 * @generated
+	 */
+	protected Command addDeleteViewCommand(Command mainCommand,
+			DestroyRequest completedRequest) {
+		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(
+				getEditingDomain(), (View) getHost().getModel()));
+		return mainCommand == null ? deleteViewCommand : mainCommand
+				.chain(deleteViewCommand);
+	}
 
-    /**
-     * @generated
-     */
-    protected Command getCreateCommand(CreateElementRequest req) {
-        return null;
-    }
+	/**
+	 * @generated
+	 */
+	private Command getEditHelperCommand(IEditCommandRequest request,
+			Command editPolicyCommand) {
+		if (editPolicyCommand != null) {
+			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy) editPolicyCommand)
+					.getICommand()
+					: new CommandProxy(editPolicyCommand);
+			request.setParameter(MolicBaseEditHelper.EDIT_POLICY_COMMAND,
+					command);
+		}
+		IElementType requestContextElementType = getContextElementType(request);
+		request.setParameter(MolicBaseEditHelper.CONTEXT_ELEMENT_TYPE,
+				requestContextElementType);
+		ICommand command = requestContextElementType.getEditCommand(request);
+		request.setParameter(MolicBaseEditHelper.EDIT_POLICY_COMMAND, null);
+		request.setParameter(MolicBaseEditHelper.CONTEXT_ELEMENT_TYPE, null);
+		if (command != null) {
+			if (!(command instanceof CompositeTransactionalCommand)) {
+				command = new CompositeTransactionalCommand(getEditingDomain(),
+						command.getLabel()).compose(command);
+			}
+			return new ICommandProxy(command);
+		}
+		return editPolicyCommand;
+	}
 
-    /**
-     * @generated
-     */
-    protected Command getSetCommand(SetRequest req) {
-        return null;
-    }
+	/**
+	 * @generated
+	 */
+	private IElementType getContextElementType(IEditCommandRequest request) {
+		IElementType requestContextElementType = MolicElementTypes
+				.getElementType(getVisualID(request));
+		return requestContextElementType != null ? requestContextElementType
+				: myElementType;
+	}
 
-    /**
-     * @generated
-     */
-    protected Command getEditContextCommand(GetEditContextRequest req) {
-        return null;
-    }
+	/**
+	 * @generated
+	 */
+	protected Command getSemanticCommandSwitch(IEditCommandRequest req) {
+		if (req instanceof CreateRelationshipRequest) {
+			return getCreateRelationshipCommand((CreateRelationshipRequest) req);
+		} else if (req instanceof CreateElementRequest) {
+			return getCreateCommand((CreateElementRequest) req);
+		} else if (req instanceof ConfigureRequest) {
+			return getConfigureCommand((ConfigureRequest) req);
+		} else if (req instanceof DestroyElementRequest) {
+			return getDestroyElementCommand((DestroyElementRequest) req);
+		} else if (req instanceof DestroyReferenceRequest) {
+			return getDestroyReferenceCommand((DestroyReferenceRequest) req);
+		} else if (req instanceof DuplicateElementsRequest) {
+			return getDuplicateCommand((DuplicateElementsRequest) req);
+		} else if (req instanceof GetEditContextRequest) {
+			return getEditContextCommand((GetEditContextRequest) req);
+		} else if (req instanceof MoveRequest) {
+			return getMoveCommand((MoveRequest) req);
+		} else if (req instanceof ReorientReferenceRelationshipRequest) {
+			return getReorientReferenceRelationshipCommand((ReorientReferenceRelationshipRequest) req);
+		} else if (req instanceof ReorientRelationshipRequest) {
+			return getReorientRelationshipCommand((ReorientRelationshipRequest) req);
+		} else if (req instanceof SetRequest) {
+			return getSetCommand((SetRequest) req);
+		}
+		return null;
+	}
 
-    /**
-     * @generated
-     */
-    protected Command getDestroyElementCommand(DestroyElementRequest req) {
-        return null;
-    }
+	/**
+	 * @generated
+	 */
+	protected Command getConfigureCommand(ConfigureRequest req) {
+		return null;
+	}
 
-    /**
-     * @generated
-     */
-    protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
-        return null;
-    }
+	/**
+	 * @generated
+	 */
+	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
+		return null;
+	}
 
-    /**
-     * @generated
-     */
-    protected Command getDuplicateCommand(DuplicateElementsRequest req) {
-        return null;
-    }
+	/**
+	 * @generated
+	 */
+	protected Command getCreateCommand(CreateElementRequest req) {
+		return null;
+	}
 
-    /**
-     * @generated
-     */
-    protected Command getMoveCommand(MoveRequest req) {
-        return null;
-    }
+	/**
+	 * @generated
+	 */
+	protected Command getSetCommand(SetRequest req) {
+		return null;
+	}
 
-    /**
-     * @generated
-     */
-    protected Command getReorientReferenceRelationshipCommand(
-            ReorientReferenceRelationshipRequest req) {
-        return UnexecutableCommand.INSTANCE;
-    }
+	/**
+	 * @generated
+	 */
+	protected Command getEditContextCommand(GetEditContextRequest req) {
+		return null;
+	}
 
-    /**
-     * @generated
-     */
-    protected Command getReorientRelationshipCommand(
-            ReorientRelationshipRequest req) {
-        return UnexecutableCommand.INSTANCE;
-    }
+	/**
+	 * @generated
+	 */
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+		return null;
+	}
 
-    /**
-     * @generated
-     */
-    protected final Command getGEFWrapper(ICommand cmd) {
-        return new ICommandProxy(cmd);
-    }
+	/**
+	 * @generated
+	 */
+	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
+		return null;
+	}
 
-    /**
-     * @deprecated use getGEFWrapper() instead
-     * @generated
-     */
-    protected final Command getMSLWrapper(ICommand cmd) {
-        // XXX deprecated: use getGEFWrapper() instead
-        return getGEFWrapper(cmd);
-    }
+	/**
+	 * @generated
+	 */
+	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
+		return null;
+	}
 
-    /**
-     * @generated
-     */
-    protected EObject getSemanticElement() {
-        return ViewUtil.resolveSemanticElement((View) getHost().getModel());
-    }
+	/**
+	 * @generated
+	 */
+	protected Command getMoveCommand(MoveRequest req) {
+		return null;
+	}
 
-    /**
-     * Returns editing domain from the host edit part.
-     * 
-     * @generated
-     */
-    protected TransactionalEditingDomain getEditingDomain() {
-        return ((IGraphicalEditPart) getHost()).getEditingDomain();
-    }
+	/**
+	 * @generated
+	 */
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
+		return UnexecutableCommand.INSTANCE;
+	}
 
-    /**
-     * Creates command to destroy the link.
-     * 
-     * @generated
-     */
-    protected Command getDestroyElementCommand(View view) {
-        EditPart editPart = (EditPart) getHost().getViewer()
-                .getEditPartRegistry().get(view);
-        DestroyElementRequest request = new DestroyElementRequest(
-                getEditingDomain(), false);
-        return editPart.getCommand(new EditCommandRequestWrapper(request,
-                Collections.EMPTY_MAP));
-    }
+	/**
+	 * @generated
+	 */
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
+		return UnexecutableCommand.INSTANCE;
+	}
 
-    /**
-     * Creates commands to destroy all host incoming and outgoing links.
-     * 
-     * @generated
-     */
-    protected CompoundCommand getDestroyEdgesCommand() {
-        CompoundCommand cmd = new CompoundCommand();
-        View view = (View) getHost().getModel();
-        for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
-            cmd.add(getDestroyElementCommand((Edge) it.next()));
-        }
-        for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
-            cmd.add(getDestroyElementCommand((Edge) it.next()));
-        }
-        return cmd;
-    }
+	/**
+	 * @generated
+	 */
+	protected final Command getGEFWrapper(ICommand cmd) {
+		return new ICommandProxy(cmd);
+	}
 
-    /**
-     * @generated
-     */
-    protected void addDestroyShortcutsCommand(CompoundCommand command) {
-        View view = (View) getHost().getModel();
-        if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
-            return;
-        }
-        for (Iterator it = view.getDiagram().getChildren().iterator(); it
-                .hasNext();) {
-            View nextView = (View) it.next();
-            if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
-                continue;
-            }
-            command.add(getDestroyElementCommand(nextView));
-        }
-    }
+	/**
+	 * Returns editing domain from the host edit part.
+	 * 
+	 * @generated
+	 */
+	protected TransactionalEditingDomain getEditingDomain() {
+		return ((IGraphicalEditPart) getHost()).getEditingDomain();
+	}
 
-    /**
-     * @generated
-     */
-    public static class LinkConstraints {
+	/**
+	 * Clean all shortcuts to the host element from the same diagram
+	 * @generated
+	 */
+	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
+		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
+		for (Iterator it = view.getDiagram().getChildren().iterator(); it
+				.hasNext();) {
+			View nextView = (View) it.next();
+			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
+				continue;
+			}
+			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
+		}
+	}
 
-        /**
-         * @generated
-         */
-        public static boolean canCreateUtterance_4001(Diagram container,
-                Element source, Element target) {
-            return canExistUtterance_4001(container, source, target);
-        }
+	/**
+	 * @generated
+	 */
+	public static class LinkConstraints {
 
-        /**
-         * @generated
-         */
-        public static boolean canCreateBRTUtterance_4002(Diagram container,
-                Element source, Element target) {
-            return canExistBRTUtterance_4002(container, source, target);
-        }
+		/**
+		 * @generated
+		 */
+		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
+		/**
+		 * @generated
+		 */
+		private static MolicAbstractExpression Utterance_4001_SourceExpression;
+		/**
+		 * @generated
+		 */
+		private static MolicAbstractExpression BRTUtterance_4002_SourceExpression;
 
-        /**
-         * @generated
-         */
-        public static boolean canExistUtterance_4001(Diagram container,
-                Element source, Element target) {
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateUtterance_4001(Diagram container,
+				Element source, Element target) {
+			return canExistUtterance_4001(container, source, target);
+		}
 
-            return true;
-        }
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateBRTUtterance_4002(Diagram container,
+				Element source, Element target) {
+			return canExistBRTUtterance_4002(container, source, target);
+		}
 
-        /**
-         * @generated
-         */
-        public static boolean canExistBRTUtterance_4002(Diagram container,
-                Element source, Element target) {
+		/**
+		 * @generated
+		 */
+		public static boolean canExistUtterance_4001(Diagram container,
+				Element source, Element target) {
+			try {
+				if (source == null) {
+					return true;
+				}
+				if (Utterance_4001_SourceExpression == null) {
+					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
+							MolicPackage.eINSTANCE.getElement());
+					Utterance_4001_SourceExpression = MolicOCLFactory
+							.getExpression(
+									"self <> oppositeEnd", MolicPackage.eINSTANCE.getElement(), env); //$NON-NLS-1$
+				}
+				Object sourceVal = Utterance_4001_SourceExpression.evaluate(
+						source, Collections.singletonMap(OPPOSITE_END_VAR,
+								target));
+				if (false == sourceVal instanceof Boolean
+						|| !((Boolean) sourceVal).booleanValue()) {
+					return false;
+				} // else fall-through
+				return true;
+			} catch (Exception e) {
+				MolicDiagramEditorPlugin.getInstance().logError(
+						"Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
+		}
 
-            return true;
-        }
+		/**
+		 * @generated
+		 */
+		public static boolean canExistBRTUtterance_4002(Diagram container,
+				Element source, Element target) {
+			try {
+				if (source == null) {
+					return true;
+				}
+				if (BRTUtterance_4002_SourceExpression == null) {
+					Map env = Collections.singletonMap(OPPOSITE_END_VAR,
+							MolicPackage.eINSTANCE.getElement());
+					BRTUtterance_4002_SourceExpression = MolicOCLFactory
+							.getExpression(
+									"self <> oppositeEnd", MolicPackage.eINSTANCE.getElement(), env); //$NON-NLS-1$
+				}
+				Object sourceVal = BRTUtterance_4002_SourceExpression.evaluate(
+						source, Collections.singletonMap(OPPOSITE_END_VAR,
+								target));
+				if (false == sourceVal instanceof Boolean
+						|| !((Boolean) sourceVal).booleanValue()) {
+					return false;
+				} // else fall-through
+				return true;
+			} catch (Exception e) {
+				MolicDiagramEditorPlugin.getInstance().logError(
+						"Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
+		}
 
-    }
+	}
 
 }

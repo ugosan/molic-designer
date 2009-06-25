@@ -23,49 +23,47 @@ import br.puc.molic.diagram.part.MolicVisualIDRegistry;
  */
 public class ClosingPointViewFactory extends AbstractShapeViewFactory {
 
-    /**
-     * @generated
-     */
-    protected List createStyles(View view) {
-        List styles = new ArrayList();
-        styles.add(NotationFactory.eINSTANCE.createShapeStyle());
-        return styles;
-    }
+	/**
+	 * @generated
+	 */
+	protected List createStyles(View view) {
+		List styles = new ArrayList();
+		styles.add(NotationFactory.eINSTANCE.createShapeStyle());
+		return styles;
+	}
 
-    /**
-     * @generated
-     */
-    protected void decorateView(View containerView, View view,
-            IAdaptable semanticAdapter, String semanticHint, int index,
-            boolean persisted) {
-        if (semanticHint == null) {
-            semanticHint = MolicVisualIDRegistry
-                    .getType(ClosingPointEditPart.VISUAL_ID);
-            view.setType(semanticHint);
-        }
-        super.decorateView(containerView, view, semanticAdapter, semanticHint,
-                index, persisted);
-        if (!DiagramEditPart.MODEL_ID.equals(MolicVisualIDRegistry
-                .getModelID(containerView))) {
-            EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
-                    .createEAnnotation();
-            shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-            shortcutAnnotation.getDetails().put(
-                    "modelID", DiagramEditPart.MODEL_ID); //$NON-NLS-1$
-            view.getEAnnotations().add(shortcutAnnotation);
-        }
-    }
+	/**
+	 * @generated
+	 */
+	protected void decorateView(View containerView, View view,
+			IAdaptable semanticAdapter, String semanticHint, int index,
+			boolean persisted) {
+		if (semanticHint == null) {
+			semanticHint = MolicVisualIDRegistry
+					.getType(ClosingPointEditPart.VISUAL_ID);
+			view.setType(semanticHint);
+		}
+		super.decorateView(containerView, view, semanticAdapter, semanticHint,
+				index, persisted);
+		if (!DiagramEditPart.MODEL_ID.equals(MolicVisualIDRegistry
+				.getModelID(containerView))) {
+			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
+					.createEAnnotation();
+			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put(
+					"modelID", DiagramEditPart.MODEL_ID); //$NON-NLS-1$
+			view.getEAnnotations().add(shortcutAnnotation);
+		}
+	}
 
-    /**
-     * https://bugs.eclipse.org/bugs/show_bug.cgi?id=255445
-     */
-    @Override
-    protected LayoutConstraint createLayoutConstraint() {
-        // TODO Auto-generated method stub
-        return NotationFactory.eINSTANCE.createLocation();
+	/**
+	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=255445
+	 */
+	@Override
+	protected LayoutConstraint createLayoutConstraint() {
+		// TODO Auto-generated method stub
+		return NotationFactory.eINSTANCE.createLocation();
 
-    }
-    
-    
-    
+	}
+
 }

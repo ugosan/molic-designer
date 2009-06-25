@@ -1,27 +1,22 @@
 /**
- * <copyright>
- * </copyright>
+ * MoLIC Designer (c) 2009 
+ * This software is part of Ugo Braga Sangiorgi's MSc work
+ * 
+ * Developed at Semiotic Engineering Research Lab (SERG)
+ * Pontifical Catholic University of Rio de Janeiro, PUCRio
+ * 
+ * Author: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br
  *
  * $Id$
  */
 package br.puc.molic.util;
 
 import br.puc.molic.*;
+
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import br.puc.molic.BRTUtterance;
-import br.puc.molic.Connection;
-import br.puc.molic.Diagram;
-import br.puc.molic.Element;
-import br.puc.molic.MolicPackage;
-import br.puc.molic.Monologue;
-import br.puc.molic.Scene;
-import br.puc.molic.SystemProcess;
-import br.puc.molic.UbiquitousAccess;
-import br.puc.molic.Utterance;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,6 +32,13 @@ import br.puc.molic.Utterance;
  * @generated
  */
 public class MolicSwitch<T> {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and may be freely distributed\nunder the terms of GNU General Public License v2\nhttp://www.gnu.org/licenses/gpl-2.0.html\n\nDeveloped at Semiotic Engineering Research Lab (SERG) - http://serg.inf.puc-rio.br\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -122,13 +124,6 @@ public class MolicSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MolicPackage.MONOLOGUE: {
-				Monologue monologue = (Monologue)theEObject;
-				T result = caseMonologue(monologue);
-				if (result == null) result = caseElement(monologue);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case MolicPackage.UTTERANCE: {
 				Utterance utterance = (Utterance)theEObject;
 				T result = caseUtterance(utterance);
@@ -191,21 +186,6 @@ public class MolicSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Scene</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Scene</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseScene(Scene object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -217,6 +197,36 @@ public class MolicSwitch<T> {
 	 * @generated
 	 */
 	public T caseElement(Element object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Connection</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Connection</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConnection(Connection object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Scene</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Scene</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseScene(Scene object) {
 		return null;
 	}
 
@@ -236,36 +246,6 @@ public class MolicSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>System Process</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>System Process</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSystemProcess(SystemProcess object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Monologue</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Monologue</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMonologue(Monologue object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>BRT Utterance</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -277,6 +257,21 @@ public class MolicSwitch<T> {
 	 * @generated
 	 */
 	public T caseBRTUtterance(BRTUtterance object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>System Process</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>System Process</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSystemProcess(SystemProcess object) {
 		return null;
 	}
 
@@ -322,21 +317,6 @@ public class MolicSwitch<T> {
 	 * @generated
 	 */
 	public T caseClosingPoint(ClosingPoint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Connection</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Connection</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConnection(Connection object) {
 		return null;
 	}
 

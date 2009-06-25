@@ -37,9 +37,6 @@ public class MolicDomainModelElementTester extends PropertyTester {
         if (eClass == MolicPackage.eINSTANCE.getScene()) {
             return true;
         }
-        if (eClass == MolicPackage.eINSTANCE.getMonologue()) {
-            return true;
-        }
         if (eClass == MolicPackage.eINSTANCE.getUtterance()) {
             return true;
         }

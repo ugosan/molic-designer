@@ -7,75 +7,79 @@ package br.puc.molic.diagram.sheet;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.viewers.BaseLabelProvider;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.graphics.Image;
 
 import br.puc.molic.diagram.part.MolicDiagramEditorPlugin;
+import br.puc.molic.diagram.part.MolicVisualIDRegistry;
+import br.puc.molic.diagram.providers.MolicElementTypes;
 
 /**
  * @generated
  */
-public class MolicSheetLabelProvider extends DecoratingLabelProvider {
+public class MolicSheetLabelProvider extends BaseLabelProvider implements
+		ILabelProvider {
 
-    /**
-     * @generated
-     */
-    public MolicSheetLabelProvider() {
-        super(new AdapterFactoryLabelProvider(MolicDiagramEditorPlugin
-                .getInstance().getItemProvidersAdapterFactory()), null);
-    }
+	/**
+	 * @generated
+	 */
+	public String getText(Object element) {
+		element = unwrap(element);
+		IElementType etype = getElementType(getView(element));
+		return etype == null ? "" : etype.getDisplayName();
+	}
 
-    /**
-     * @generated
-     */
-    public String getText(Object element) {
-        Object selected = unwrap(element);
-        return super.getText(selected);
-    }
+	/**
+	 * @generated
+	 */
+	public Image getImage(Object element) {
+		IElementType etype = getElementType(getView(unwrap(element)));
+		return etype == null ? null : MolicElementTypes.getImage(etype);
+	}
 
-    /**
-     * @generated
-     */
-    public Image getImage(Object element) {
-        return super.getImage(unwrap(element));
-    }
+	/**
+	 * @generated
+	 */
+	private Object unwrap(Object element) {
+		if (element instanceof IStructuredSelection) {
+			return ((IStructuredSelection) element).getFirstElement();
+		}
+		return element;
+	}
 
-    /**
-     * @generated
-     */
-    private Object unwrap(Object element) {
-        if (element instanceof IStructuredSelection) {
-            return unwrap(((IStructuredSelection) element).getFirstElement());
-        }
-        if (element instanceof EditPart) {
-            return unwrapEditPart((EditPart) element);
-        }
-        if (element instanceof IAdaptable) {
-            View view = (View) ((IAdaptable) element).getAdapter(View.class);
-            if (view != null) {
-                return unwrapView(view);
-            }
-        }
-        return element;
-    }
+	/**
+	 * @generated
+	 */
+	private View getView(Object element) {
+		if (element instanceof View) {
+			return (View) element;
+		}
+		if (element instanceof IAdaptable) {
+			return (View) ((IAdaptable) element).getAdapter(View.class);
+		}
+		return null;
+	}
 
-    /**
-     * @generated
-     */
-    private Object unwrapEditPart(EditPart p) {
-        if (p.getModel() instanceof View) {
-            return unwrapView((View) p.getModel());
-        }
-        return p.getModel();
-    }
-
-    /**
-     * @generated
-     */
-    private Object unwrapView(View view) {
-        return view.getElement() == null ? view : view.getElement();
-    }
+	/**
+	 * @generated
+	 */
+	private IElementType getElementType(View view) {
+		// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
+		while (view != null) {
+			int vid = MolicVisualIDRegistry.getVisualID(view);
+			IElementType etype = MolicElementTypes.getElementType(vid);
+			if (etype != null) {
+				return etype;
+			}
+			view = view.eContainer() instanceof View ? (View) view.eContainer()
+					: null;
+		}
+		return null;
+	}
 
 }

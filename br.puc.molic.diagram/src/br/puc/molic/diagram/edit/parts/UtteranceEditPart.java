@@ -20,127 +20,149 @@ import br.puc.molic.diagram.edit.policies.UtteranceItemSemanticEditPolicy;
  * @generated
  */
 public class UtteranceEditPart extends ConnectionNodeEditPart implements
-        ITreeBranchEditPart {
+		ITreeBranchEditPart {
 
-    /**
-     * @generated
-     */
-    public static final int VISUAL_ID = 4001;
+	/**
+	 * @generated
+	 */
+	public static final int VISUAL_ID = 4001;
 
-    /**
-     * @generated
-     */
-    public UtteranceEditPart(View view) {
-        super(view);
-    }
+	/**
+	 * @generated
+	 */
+	public UtteranceEditPart(View view) {
+		super(view);
+	}
 
-    /**
-     * @generated
-     */
-    protected void createDefaultEditPolicies() {
-        super.createDefaultEditPolicies();
-        installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-                new UtteranceItemSemanticEditPolicy());
-    }
+	/**
+	 * @generated
+	 */
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new UtteranceItemSemanticEditPolicy());
+	}
 
-    /**
-     * @generated
-     */
-    protected boolean addFixedChild(EditPart childEditPart) {
-        if (childEditPart instanceof UtteranceLabelEditPart) {
-            ((UtteranceLabelEditPart) childEditPart).setLabel(getPrimaryShape()
-                    .getFigureUtteranceLabelFigure());
-            return true;
-        }
-        return false;
-    }
+	/**
+	 * @generated
+	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof UtteranceLabelEditPart) {
+			((UtteranceLabelEditPart) childEditPart).setLabel(getPrimaryShape()
+					.getFigureUtteranceLabelFigure());
+			return true;
+		}
+		return false;
+	}
 
-    /**
-     * @generated
-     */
-    protected void addChildVisual(EditPart childEditPart, int index) {
-        if (addFixedChild(childEditPart)) {
-            return;
-        }
-        super.addChildVisual(childEditPart, -1);
-    }
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
 
-    /**
-     * Creates figure for this edit part.
-     * 
-     * Body of this method does not depend on settings in generation model
-     * so you may safely remove <i>generated</i> tag and modify it.
-     * 
-     * @generated
-     */
-    protected Connection createConnectionFigure() {
-        return new UtteranceFigure();
-    }
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof UtteranceLabelEditPart) {
+			return true;
+		}
+		return false;
+	}
 
-    /**
-     * @generated
-     */
-    public UtteranceFigure getPrimaryShape() {
-        return (UtteranceFigure) getFigure();
-    }
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
 
-    /**
-     * @generated
-     */
-    public class UtteranceFigure extends PolylineConnectionEx {
+	/**
+	 * Creates figure for this edit part.
+	 * 
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * 
+	 * @generated
+	 */
+	protected Connection createConnectionFigure() {
+		return new UtteranceFigure();
+	}
 
-        /**
-         * @generated
-         */
-        private WrappingLabel fFigureUtteranceLabelFigure;
+	/**
+	 * @generated
+	 */
+	public UtteranceFigure getPrimaryShape() {
+		return (UtteranceFigure) getFigure();
+	}
 
-        /**
-         * @generated
-         */
-        public UtteranceFigure() {
-            this.setForegroundColor(ColorConstants.black);
+	/**
+	 * @generated
+	 */
+	public class UtteranceFigure extends PolylineConnectionEx {
 
-            createContents();
-            setTargetDecoration(createTargetDecoration());
-        }
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureUtteranceLabelFigure;
 
-        /**
-         * @generated NOT
-         */
-        private void createContents() {
+		/**
+		 * @generated
+		 */
+		public UtteranceFigure() {
+			this.setLineWidth(1);
+			this.setForegroundColor(ColorConstants.black);
 
-            fFigureUtteranceLabelFigure = new WrappingLabel();
-            fFigureUtteranceLabelFigure.setTextWrap(true);
-            fFigureUtteranceLabelFigure.setText("");
+			createContents();
+			setTargetDecoration(createTargetDecoration());
+		}
 
-            this.add(fFigureUtteranceLabelFigure);
+		/**
+		 * @generated NOT
+		 */
+		private void createContents() {
 
-        }
+			fFigureUtteranceLabelFigure = new WrappingLabel();
+			fFigureUtteranceLabelFigure.setTextWrap(true);
+			fFigureUtteranceLabelFigure.setText("");
 
-        /**
-         * @generated
-         */
-        private RotatableDecoration createTargetDecoration() {
-            PolygonDecoration df = new PolygonDecoration();
-            df.setFill(true);
-            df.setBackgroundColor(ColorConstants.black);
-            PointList pl = new PointList();
-            pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
-            pl.addPoint(getMapMode().DPtoLP(-1), getMapMode().DPtoLP(1));
-            pl.addPoint(getMapMode().DPtoLP(-1), getMapMode().DPtoLP(-1));
-            pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
-            df.setTemplate(pl);
-            df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
-            return df;
-        }
+			this.add(fFigureUtteranceLabelFigure);
 
-        /**
-         * @generated
-         */
-        public WrappingLabel getFigureUtteranceLabelFigure() {
-            return fFigureUtteranceLabelFigure;
-        }
+		}
 
-    }
+		/**
+		 * @generated
+		 */
+		private RotatableDecoration createTargetDecoration() {
+			PolygonDecoration df = new PolygonDecoration();
+			df.setFill(true);
+			df.setLineWidth(1);
+			df.setBackgroundColor(ColorConstants.black);
+			PointList pl = new PointList();
+			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
+			pl.addPoint(getMapMode().DPtoLP(-1), getMapMode().DPtoLP(1));
+			pl.addPoint(getMapMode().DPtoLP(-1), getMapMode().DPtoLP(-1));
+			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));
+			df.setTemplate(pl);
+			df.setScale(getMapMode().DPtoLP(7), getMapMode().DPtoLP(3));
+			return df;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureUtteranceLabelFigure() {
+			return fFigureUtteranceLabelFigure;
+		}
+
+	}
 
 }

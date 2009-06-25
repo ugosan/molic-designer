@@ -27,47 +27,47 @@ import br.puc.molic.diagram.part.MolicVisualIDRegistry;
  */
 public class SceneViewFactory extends AbstractShapeViewFactory {
 
-    /**
-     * @generated
-     */
-    protected List createStyles(View view) {
-        List styles = new ArrayList();
-        styles.add(NotationFactory.eINSTANCE.createShapeStyle());
-        return styles;
-    }
+	/**
+	 * @generated
+	 */
+	protected List createStyles(View view) {
+		List styles = new ArrayList();
+		styles.add(NotationFactory.eINSTANCE.createShapeStyle());
+		return styles;
+	}
 
-    /**
-     * @generated
-     */
-    protected void decorateView(View containerView, View view,
-            IAdaptable semanticAdapter, String semanticHint, int index,
-            boolean persisted) {
-        if (semanticHint == null) {
-            semanticHint = MolicVisualIDRegistry
-                    .getType(SceneEditPart.VISUAL_ID);
-            view.setType(semanticHint);
-        }
-        super.decorateView(containerView, view, semanticAdapter, semanticHint,
-                index, persisted);
-        if (!DiagramEditPart.MODEL_ID.equals(MolicVisualIDRegistry
-                .getModelID(containerView))) {
-            EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
-                    .createEAnnotation();
-            shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-            shortcutAnnotation.getDetails().put(
-                    "modelID", DiagramEditPart.MODEL_ID); //$NON-NLS-1$
-            view.getEAnnotations().add(shortcutAnnotation);
-        }
-        IAdaptable eObjectAdapter = null;
-        EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
-        if (eObject != null) {
-            eObjectAdapter = new EObjectAdapter(eObject);
-        }
-        getViewService().createNode(eObjectAdapter, view,
-                MolicVisualIDRegistry.getType(SceneTopicEditPart.VISUAL_ID),
-                ViewUtil.APPEND, true, getPreferencesHint());
-        getViewService().createNode(eObjectAdapter, view,
-                MolicVisualIDRegistry.getType(SceneDialogueEditPart.VISUAL_ID),
-                ViewUtil.APPEND, true, getPreferencesHint());
-    }
+	/**
+	 * @generated
+	 */
+	protected void decorateView(View containerView, View view,
+			IAdaptable semanticAdapter, String semanticHint, int index,
+			boolean persisted) {
+		if (semanticHint == null) {
+			semanticHint = MolicVisualIDRegistry
+					.getType(SceneEditPart.VISUAL_ID);
+			view.setType(semanticHint);
+		}
+		super.decorateView(containerView, view, semanticAdapter, semanticHint,
+				index, persisted);
+		if (!DiagramEditPart.MODEL_ID.equals(MolicVisualIDRegistry
+				.getModelID(containerView))) {
+			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
+					.createEAnnotation();
+			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put(
+					"modelID", DiagramEditPart.MODEL_ID); //$NON-NLS-1$
+			view.getEAnnotations().add(shortcutAnnotation);
+		}
+		IAdaptable eObjectAdapter = null;
+		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
+		if (eObject != null) {
+			eObjectAdapter = new EObjectAdapter(eObject);
+		}
+		getViewService().createNode(eObjectAdapter, view,
+				MolicVisualIDRegistry.getType(SceneTopicEditPart.VISUAL_ID),
+				ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(eObjectAdapter, view,
+				MolicVisualIDRegistry.getType(SceneDialogueEditPart.VISUAL_ID),
+				ViewUtil.APPEND, true, getPreferencesHint());
+	}
 }

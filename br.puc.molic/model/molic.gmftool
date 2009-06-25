@@ -60,19 +60,6 @@
     </tools>
     <tools
         xsi:type="gmftool:CreationTool"
-        title="Monologue"
-        description="Create new Monologue">
-      <smallIcon
-          xsi:type="gmftool:BundleImage"
-          path="icons/monologue_small.png"
-          bundle="br.puc.molic"/>
-      <largeIcon
-          xsi:type="gmftool:BundleImage"
-          path="icons/monologue_big.png"
-          bundle="br.puc.molic"/>
-    </tools>
-    <tools
-        xsi:type="gmftool:CreationTool"
         title="Ubiquitous Access"
         description="Create new Ubiquitous Access">
       <smallIcon

@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.URIEditorInput;
@@ -41,11 +42,13 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocument
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -61,161 +64,153 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 
 import br.puc.molic.Element;
 import br.puc.molic.diagram.views.GoalsView;
-import br.puc.molic.impl.DiagramImpl;
 
 /**
  * @generated
  */
 public class MolicDiagramEditor extends DiagramDocumentEditor {
 
-    private AdapterFactory fAdapterFactory;
+	private AdapterFactory fAdapterFactory;
 
-    private AdapterFactoryContentProvider adapterFactoryConentProvider;
+	private AdapterFactoryContentProvider adapterFactoryConentProvider;
 
-    /**
-     * @generated
-     */
-    public static final String ID = "br.puc.molic.diagram.part.MolicDiagramEditorID"; //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final String ID = "br.puc.molic.diagram.part.MolicDiagramEditorID"; //$NON-NLS-1$
 
-    /**
-     * @generated
-     */
-    public static final String CONTEXT_ID = "br.puc.molic.diagram.ui.diagramContext"; //$NON-NLS-1$
+	/**
+	 * @generated
+	 */
+	public static final String CONTEXT_ID = "br.puc.molic.diagram.ui.diagramContext"; //$NON-NLS-1$
 
-    /**
-     * @generated NOT
-     */
-    public MolicDiagramEditor() {
+	/**
+	 * @generated NOT
+	 */
+	public MolicDiagramEditor() {
 
-        super(true);
-        fAdapterFactory = new ComposedAdapterFactory(
-                ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-        adapterFactoryConentProvider = new AdapterFactoryContentProvider(
-                fAdapterFactory);
-       
+		super(true);
+		fAdapterFactory = new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		adapterFactoryConentProvider = new AdapterFactoryContentProvider(
+				fAdapterFactory);
 
-    }
+	}
 
-
-    
-    private static IViewPart getView(String id) {
-        IViewReference viewReferences[] = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getViewReferences();
-        for (int i = 0; i < viewReferences.length; i++) {
-            if (id.equals(viewReferences[i].getId())) {
-                return viewReferences[i].getView(true);
-            }
-        }
-        return null;
-    }
-
-
-
+	private static IViewPart getView(String id) {
+		IViewReference viewReferences[] = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage().getViewReferences();
+		for (int i = 0; i < viewReferences.length; i++) {
+			if (id.equals(viewReferences[i].getId())) {
+				return viewReferences[i].getView(true);
+			}
+		}
+		return null;
+	}
 
 	@Override
-    public Object getAdapter(Class type) {
-        if (type == org.eclipse.ui.views.properties.IPropertySheetPage.class) {
-            PropertySheetPage page = new PropertySheetPage();
-            UndoablePropertySheetEntry root = new UndoablePropertySheetEntry(
-                    getCommandStack());
-            root.setPropertySourceProvider(new IPropertySourceProvider() {
-                public IPropertySource getPropertySource(Object object) {
-                    if (object instanceof EditPart) {
-                        Object model = ((EditPart) object).getModel();
+	public Object getAdapter(Class type) {
+		if (type == org.eclipse.ui.views.properties.IPropertySheetPage.class) {
+			PropertySheetPage page = new PropertySheetPage();
+			UndoablePropertySheetEntry root = new UndoablePropertySheetEntry(
+					getCommandStack());
+			root.setPropertySourceProvider(new IPropertySourceProvider() {
+				public IPropertySource getPropertySource(Object object) {
+					if (object instanceof EditPart) {
+						Object model = ((EditPart) object).getModel();
 
-                        View v = (View) model;
+						View v = (View) model;
 
-                        return new PropertySource(v.getElement(),
-                                (IItemPropertySource) fAdapterFactory.adapt(v
-                                        .getElement(),
-                                        IItemPropertySource.class));
-                    } else {
-                        return adapterFactoryConentProvider
-                                .getPropertySource(object);
-                    }
-                }
-            });
-            page.setRootEntry(root);
-            return page;
-        }
-        return super.getAdapter(type);
-    }
+						return new PropertySource(v.getElement(),
+								(IItemPropertySource) fAdapterFactory.adapt(v
+										.getElement(),
+										IItemPropertySource.class));
+					} else {
+						return adapterFactoryConentProvider
+								.getPropertySource(object);
+					}
+				}
+			});
+			page.setRootEntry(root);
+			return page;
+		}
+		return super.getAdapter(type);
+	}
 
-    /**
-     * @generated
-     */
-    protected String getContextID() {
-        return CONTEXT_ID;
-    }
+	/**
+	 * @generated
+	 */
+	protected String getContextID() {
+		return CONTEXT_ID;
+	}
 
-    /**
-     * @generated
-     */
-    protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
-        PaletteRoot root = super.createPaletteRoot(existingPaletteRoot);
-        new MolicPaletteFactory().fillPalette(root);
-        return root;
-    }
+	/**
+	 * @generated
+	 */
+	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
+		PaletteRoot root = super.createPaletteRoot(existingPaletteRoot);
+		new MolicPaletteFactory().fillPalette(root);
+		return root;
+	}
 
-    /**
-     * @generated
-     */
-    protected PreferencesHint getPreferencesHint() {
-        return MolicDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
-    }
+	/**
+	 * @generated
+	 */
+	protected PreferencesHint getPreferencesHint() {
+		return MolicDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
+	}
 
-    /**
-     * @generated
-     */
-    public String getContributorId() {
-        return MolicDiagramEditorPlugin.ID;
-    }
+	/**
+	 * @generated
+	 */
+	public String getContributorId() {
+		return MolicDiagramEditorPlugin.ID;
+	}
 
-    /**
-     * @generated
-     */
-    protected IDocumentProvider getDocumentProvider(IEditorInput input) {
-        if (input instanceof URIEditorInput) {
-            return MolicDiagramEditorPlugin.getInstance().getDocumentProvider();
-        }
-        return super.getDocumentProvider(input);
-    }
+	/**
+	 * @generated
+	 */
+	protected IDocumentProvider getDocumentProvider(IEditorInput input) {
+		if (input instanceof URIEditorInput) {
+			return MolicDiagramEditorPlugin.getInstance().getDocumentProvider();
+		}
+		return super.getDocumentProvider(input);
+	}
 
-    /**
-     * @generated
-     */
-    public TransactionalEditingDomain getEditingDomain() {
-        IDocument document = getEditorInput() != null ? getDocumentProvider()
-                .getDocument(getEditorInput()) : null;
-        if (document instanceof IDiagramDocument) {
-            return ((IDiagramDocument) document).getEditingDomain();
-        }
-        return super.getEditingDomain();
-    }
+	/**
+	 * @generated
+	 */
+	public TransactionalEditingDomain getEditingDomain() {
+		IDocument document = getEditorInput() != null ? getDocumentProvider()
+				.getDocument(getEditorInput()) : null;
+		if (document instanceof IDiagramDocument) {
+			return ((IDiagramDocument) document).getEditingDomain();
+		}
+		return super.getEditingDomain();
+	}
 
-    /**
-     * @generated
-     */
-    protected void setDocumentProvider(IEditorInput input) {
-        if (input instanceof URIEditorInput) {
-            setDocumentProvider(MolicDiagramEditorPlugin.getInstance()
-                    .getDocumentProvider());
-            MolicDiagramEditorPlugin.getInstance().getInstance().logInfo("OpenedDiagram");
-        } else {
-            super.setDocumentProvider(input);
-        }
-    }
+	/**
+	 * @generated
+	 */
+	protected void setDocumentProvider(IEditorInput input) {
+		if (input instanceof URIEditorInput) {
+			setDocumentProvider(MolicDiagramEditorPlugin.getInstance()
+					.getDocumentProvider());
+		} else {
+			super.setDocumentProvider(input);
+		}
+	}
 
-    /**
-     * @generated
-     */
-    protected void configureGraphicalViewer() {
-        super.configureGraphicalViewer();
-        DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(
-                this, getDiagramGraphicalViewer());
-        getDiagramGraphicalViewer().setContextMenu(provider);
-        getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
-                provider, getDiagramGraphicalViewer());
-      
-    }
+	/**
+	 * @generated
+	 */
+	protected void configureGraphicalViewer() {
+		super.configureGraphicalViewer();
+		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(
+				this, getDiagramGraphicalViewer());
+		getDiagramGraphicalViewer().setContextMenu(provider);
+		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
+				provider, getDiagramGraphicalViewer());
+	}
 
 }

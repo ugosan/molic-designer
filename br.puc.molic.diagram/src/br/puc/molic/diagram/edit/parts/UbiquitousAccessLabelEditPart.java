@@ -1,119 +1,71 @@
 /*
- * Teste de nota de copyright do Molic
+ * SERG - Semiotic Engineering Research Group
+ * This work is part of MSc thesis of Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br
  */
 package br.puc.molic.diagram.edit.parts;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.draw2d.AncestorListener;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.RectangleFigure;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
-import org.eclipse.emf.edit.ui.provider.PropertyDescriptor;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.AccessibleEditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.handles.NonResizableHandleKit;
 import org.eclipse.gef.requests.DirectEditRequest;
-import org.eclipse.gef.tools.CellEditorLocator;
 import org.eclipse.gef.tools.DirectEditManager;
-import org.eclipse.gmf.runtime.common.core.util.Log;
-import org.eclipse.gmf.runtime.common.core.util.Trace;
-import org.eclipse.gmf.runtime.common.ui.contentassist.ContentAssistantHelper;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
-import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
-import org.eclipse.gmf.runtime.diagram.ui.label.ILabelDelegate;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
-import org.eclipse.gmf.runtime.gef.ui.internal.parts.TextCellEditorEx;
-import org.eclipse.gmf.runtime.gef.ui.internal.parts.WrapTextCellEditor;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.runtime.notation.provider.NodeItemProvider;
-import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.dialogs.InputDialog;
-import org.eclipse.jface.resource.DeviceResourceException;
-import org.eclipse.jface.resource.FontDescriptor;
-import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.RGB;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.IActionBars;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.actions.ActionFactory;
-import org.eclipse.ui.part.CellEditorActionHandler;
 
 import br.puc.molic.diagram.edit.policies.MolicTextSelectionEditPolicy;
-import br.puc.molic.diagram.part.MolicDiagramEditorPlugin;
 import br.puc.molic.diagram.part.MolicVisualIDRegistry;
 import br.puc.molic.diagram.providers.MolicElementTypes;
 import br.puc.molic.diagram.providers.MolicParserProvider;
-import br.puc.molic.provider.SceneItemProvider;
 
 /**
  * @generated
  */
-public class SceneDialogueEditPart extends CompartmentEditPart implements
-		ITextAwareEditPart {
+public class UbiquitousAccessLabelEditPart extends CompartmentEditPart
+		implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5005;
+	public static final int VISUAL_ID = 5007;
 
 	/**
 	 * @generated
@@ -138,7 +90,7 @@ public class SceneDialogueEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public SceneDialogueEditPart(View view) {
+	public UbiquitousAccessLabelEditPart(View view) {
 		super(view);
 	}
 
@@ -234,16 +186,6 @@ public class SceneDialogueEditPart extends CompartmentEditPart implements
 		return Collections.EMPTY_LIST;
 	}
 
-	@Override
-	protected void fireSelectionChanged() {
-		super.fireSelectionChanged();
-		if (getSelected() == 2) {
-			performDirectEdit();
-
-			//org.eclipse.emf.edit.ui.provider.PropertyDescriptor;
-		}
-	}
-
 	/**
 	 * @generated
 	 */
@@ -262,7 +204,11 @@ public class SceneDialogueEditPart extends CompartmentEditPart implements
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		return null;
+		EObject parserElement = getParserElement();
+		if (parserElement == null) {
+			return null;
+		}
+		return MolicElementTypes.getImage(parserElement.eClass());
 	}
 
 	/**
@@ -374,29 +320,22 @@ public class SceneDialogueEditPart extends CompartmentEditPart implements
 		if (parser == null) {
 			parser = MolicParserProvider
 					.getParser(
-							MolicElementTypes.Scene_2007,
+							MolicElementTypes.UbiquitousAccess_2010,
 							getParserElement(),
 							MolicVisualIDRegistry
-									.getType(br.puc.molic.diagram.edit.parts.SceneDialogueEditPart.VISUAL_ID));
+									.getType(br.puc.molic.diagram.edit.parts.UbiquitousAccessLabelEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			/*setManager(new TextDirectEditManager(this, TextDirectEditManager
-			        .getTextCellEditorClass(this), MolicEditPartFactory
-			        .getTextCellEditorLocator(this)));
-			 */
-
-			DialogueTextManager m = new DialogueTextManager(this,
-					WrapTextCellEditor.class, MolicEditPartFactory
-							.getTextCellEditorLocator(this));
-
-			setManager(m);
+			setManager(new TextDirectEditManager(this, TextDirectEditManager
+					.getTextCellEditorClass(this), MolicEditPartFactory
+					.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -409,26 +348,10 @@ public class SceneDialogueEditPart extends CompartmentEditPart implements
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void performDirectEdit() {
-		// getManager().show();
-
-		//PropertyDescriptor descriptor = new PropertyDescriptor(getModel(),);
-		//MolicDiagramEditorPlugin.getInstance().
-		//System.out.println(AdapterFactoryEditingDomain.getEditingDomainItemProviderFor(getModel()));
-
-		//provider.getPropertyDescriptors(object)
-		/*
-			InputDialog dialog = new MultiLineInputDialog
-		    (getViewer().getControl().getShell(),
-		     EMFEditUIPlugin.INSTANCE.getString
-		       ("_UI_FeatureEditorDialog_title", new Object [] { getDisplayName(), getEditLabelProvider().getText(object) }),
-		     EMFEditUIPlugin.INSTANCE.getString("_UI_MultiLineInputDialog_message"),
-		     valueHandler.toString(getValue()),
-		     valueHandler);
-		  return dialog.open() == Window.OK ? valueHandler.toValue(dialog.getValue()) : null;
-		 */
+		getManager().show();
 	}
 
 	/**

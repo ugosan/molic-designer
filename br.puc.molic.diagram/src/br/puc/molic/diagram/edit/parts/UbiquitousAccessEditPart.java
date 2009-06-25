@@ -1,10 +1,13 @@
 package br.puc.molic.diagram.edit.parts;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RoundedRectangle;
+import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.EditPart;
@@ -19,278 +22,455 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 
+import org.eclipse.swt.graphics.Color;
 import br.puc.molic.diagram.edit.policies.UbiquitousAccessItemSemanticEditPolicy;
 import br.puc.molic.diagram.part.MolicVisualIDRegistry;
+import br.puc.molic.diagram.providers.MolicElementTypes;
 
 /**
  * @generated
  */
 public class UbiquitousAccessEditPart extends ShapeNodeEditPart {
 
-    /**
-     * @generated
-     */
-    public static final int VISUAL_ID = 2010;
+	/**
+	 * @generated
+	 */
+	public static final int VISUAL_ID = 2010;
 
-    /**
-     * @generated
-     */
-    protected IFigure contentPane;
+	/**
+	 * @generated
+	 */
+	protected IFigure contentPane;
 
-    /**
-     * @generated
-     */
-    protected IFigure primaryShape;
+	/**
+	 * @generated
+	 */
+	protected IFigure primaryShape;
 
-    /**
-     * @generated
-     */
-    public UbiquitousAccessEditPart(View view) {
-        super(view);
-    }
+	/**
+	 * @generated
+	 */
+	public UbiquitousAccessEditPart(View view) {
+		super(view);
+	}
 
-    /**
-     * @generated NOT
-     */
-    protected void createDefaultEditPolicies() {
+	/**
+	 * @generated NOT
+	 */
+	protected void createDefaultEditPolicies() {
 
-        super.createDefaultEditPolicies();
-        installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-                new UbiquitousAccessItemSemanticEditPolicy());
-        installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-        // XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
-        removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-    }
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new UbiquitousAccessItemSemanticEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+	}
 
-    /**
-     * @generated
-     */
-    protected LayoutEditPolicy createLayoutEditPolicy() {
-        LayoutEditPolicy lep = new LayoutEditPolicy() {
+	/**
+	 * @generated
+	 */
+	protected LayoutEditPolicy createLayoutEditPolicy() {
+		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
-            protected EditPolicy createChildEditPolicy(EditPart child) {
-                EditPolicy result = child
-                        .getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-                if (result == null) {
-                    result = new NonResizableEditPolicy();
-                }
-                return result;
-            }
+			protected EditPolicy createChildEditPolicy(EditPart child) {
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				if (result == null) {
+					result = new NonResizableEditPolicy();
+				}
+				return result;
+			}
 
-            protected Command getMoveChildrenCommand(Request request) {
-                return null;
-            }
+			protected Command getMoveChildrenCommand(Request request) {
+				return null;
+			}
 
-            protected Command getCreateCommand(CreateRequest request) {
-                return null;
-            }
-        };
-        return lep;
-    }
+			protected Command getCreateCommand(CreateRequest request) {
+				return null;
+			}
+		};
+		return lep;
+	}
 
-    /**
-     * @generated
-     */
-    protected IFigure createNodeShape() {
-        UbiquitousAccessFigure figure = new UbiquitousAccessFigure();
-        return primaryShape = figure;
-    }
+	/**
+	 * @generated
+	 */
+	protected IFigure createNodeShape() {
+		UbiquitousAccessFigure figure = new UbiquitousAccessFigure();
+		return primaryShape = figure;
+	}
 
-    /**
-     * @generated
-     */
-    public UbiquitousAccessFigure getPrimaryShape() {
-        return (UbiquitousAccessFigure) primaryShape;
-    }
+	/**
+	 * @generated
+	 */
+	public UbiquitousAccessFigure getPrimaryShape() {
+		return (UbiquitousAccessFigure) primaryShape;
+	}
 
-    /**
-     * @generated
-     */
-    protected boolean addFixedChild(EditPart childEditPart) {
-        if (childEditPart instanceof WrappingLabelEditPart) {
-            ((WrappingLabelEditPart) childEditPart).setLabel(getPrimaryShape()
-                    .getFigureUbiquitousAccessLabel());
-            return true;
-        }
-        return false;
-    }
+	/**
+	 * @generated
+	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof UbiquitousAccessLabelEditPart) {
+			((UbiquitousAccessLabelEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureUbiquitousAccessLabel());
+			return true;
+		}
+		return false;
+	}
 
-    /**
-     * @generated
-     */
-    protected boolean removeFixedChild(EditPart childEditPart) {
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof UbiquitousAccessLabelEditPart) {
+			return true;
+		}
+		return false;
+	}
 
-        return false;
-    }
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
 
-    /**
-     * @generated
-     */
-    protected void addChildVisual(EditPart childEditPart, int index) {
-        if (addFixedChild(childEditPart)) {
-            return;
-        }
-        super.addChildVisual(childEditPart, -1);
-    }
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
 
-    /**
-     * @generated
-     */
-    protected void removeChildVisual(EditPart childEditPart) {
-        if (removeFixedChild(childEditPart)) {
-            return;
-        }
-        super.removeChildVisual(childEditPart);
-    }
+	/**
+	 * @generated
+	 */
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		return getContentPane();
+	}
 
-    /**
-     * @generated
-     */
-    protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+	/**
+	 * @generated
+	 */
+	protected NodeFigure createNodePlate() {
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(100, 40);
+		return result;
+	}
 
-        return super.getContentPaneFor(editPart);
-    }
+	/**
+	 * Creates figure for this edit part.
+	 * 
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * 
+	 * @generated
+	 */
+	protected NodeFigure createNodeFigure() {
+		NodeFigure figure = createNodePlate();
+		figure.setLayoutManager(new StackLayout());
+		IFigure shape = createNodeShape();
+		figure.add(shape);
+		contentPane = setupContentPane(shape);
+		return figure;
+	}
 
-    /**
-     * @generated
-     */
-    protected NodeFigure createNodePlate() {
-        DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
-                .DPtoLP(100), getMapMode().DPtoLP(40));
-        return result;
-    }
+	/**
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
+	 * @param nodeShape instance of generated figure class
+	 * @generated
+	 */
+	protected IFigure setupContentPane(IFigure nodeShape) {
+		if (nodeShape.getLayoutManager() == null) {
+			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
+			layout.setSpacing(5);
+			nodeShape.setLayoutManager(layout);
+		}
+		return nodeShape; // use nodeShape itself as contentPane
+	}
 
-    /**
-     * Creates figure for this edit part.
-     * 
-     * Body of this method does not depend on settings in generation model
-     * so you may safely remove <i>generated</i> tag and modify it.
-     * 
-     * @generated
-     */
-    protected NodeFigure createNodeFigure() {
-        NodeFigure figure = createNodePlate();
-        figure.setLayoutManager(new StackLayout());
-        IFigure shape = createNodeShape();
-        figure.add(shape);
-        contentPane = setupContentPane(shape);
-        return figure;
-    }
+	/**
+	 * @generated
+	 */
+	public IFigure getContentPane() {
+		if (contentPane != null) {
+			return contentPane;
+		}
+		return super.getContentPane();
+	}
 
-    /**
-     * Default implementation treats passed figure as content pane.
-     * Respects layout one may have set for generated figure.
-     * @param nodeShape instance of generated figure class
-     * @generated
-     */
-    protected IFigure setupContentPane(IFigure nodeShape) {
-        if (nodeShape.getLayoutManager() == null) {
-            ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
-            layout.setSpacing(getMapMode().DPtoLP(5));
-            nodeShape.setLayoutManager(layout);
-        }
-        return nodeShape; // use nodeShape itself as contentPane
-    }
+	/**
+	 * @generated
+	 */
+	protected void setForegroundColor(Color color) {
+		if (primaryShape != null) {
+			primaryShape.setForegroundColor(color);
+		}
+	}
 
-    /**
-     * @generated
-     */
-    public IFigure getContentPane() {
-        if (contentPane != null) {
-            return contentPane;
-        }
-        return super.getContentPane();
-    }
+	/**
+	 * @generated
+	 */
+	protected void setBackgroundColor(Color color) {
+		if (primaryShape != null) {
+			primaryShape.setBackgroundColor(color);
+		}
+	}
 
-    /**
-     * @generated
-     */
-    public EditPart getPrimaryChildEditPart() {
-        return getChildBySemanticHint(MolicVisualIDRegistry
-                .getType(WrappingLabelEditPart.VISUAL_ID));
-    }
+	/**
+	 * @generated
+	 */
+	protected void setLineWidth(int width) {
+		if (primaryShape instanceof Shape) {
+			((Shape) primaryShape).setLineWidth(width);
+		}
+	}
 
-    /**
-     * @generated
-     */
-    public class UbiquitousAccessFigure extends RoundedRectangle {
+	/**
+	 * @generated
+	 */
+	protected void setLineType(int style) {
+		if (primaryShape instanceof Shape) {
+			((Shape) primaryShape).setLineStyle(style);
+		}
+	}
 
-        /**
-         * @generated
-         */
-        private WrappingLabel fFigureUbiquitousAccessLabel;
+	/**
+	 * @generated
+	 */
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(MolicVisualIDRegistry
+				.getType(UbiquitousAccessLabelEditPart.VISUAL_ID));
+	}
 
-        /**
-         * @generated
-         */
-        public UbiquitousAccessFigure() {
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		types.add(MolicElementTypes.Utterance_4001);
+		types.add(MolicElementTypes.BRTUtterance_4002);
+		return types;
+	}
 
-            GridLayout layoutThis = new GridLayout();
-            layoutThis.numColumns = 1;
-            layoutThis.makeColumnsEqualWidth = true;
-            this.setLayoutManager(layoutThis);
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+			IGraphicalEditPart targetEditPart) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (targetEditPart instanceof SceneEditPart) {
+			types.add(MolicElementTypes.Utterance_4001);
+		}
+		if (targetEditPart instanceof SystemProcessEditPart) {
+			types.add(MolicElementTypes.Utterance_4001);
+		}
+		if (targetEditPart instanceof br.puc.molic.diagram.edit.parts.UbiquitousAccessEditPart) {
+			types.add(MolicElementTypes.Utterance_4001);
+		}
+		if (targetEditPart instanceof OpeningPointEditPart) {
+			types.add(MolicElementTypes.Utterance_4001);
+		}
+		if (targetEditPart instanceof ClosingPointEditPart) {
+			types.add(MolicElementTypes.Utterance_4001);
+		}
+		if (targetEditPart instanceof SceneEditPart) {
+			types.add(MolicElementTypes.BRTUtterance_4002);
+		}
+		if (targetEditPart instanceof SystemProcessEditPart) {
+			types.add(MolicElementTypes.BRTUtterance_4002);
+		}
+		if (targetEditPart instanceof br.puc.molic.diagram.edit.parts.UbiquitousAccessEditPart) {
+			types.add(MolicElementTypes.BRTUtterance_4002);
+		}
+		if (targetEditPart instanceof OpeningPointEditPart) {
+			types.add(MolicElementTypes.BRTUtterance_4002);
+		}
+		if (targetEditPart instanceof ClosingPointEditPart) {
+			types.add(MolicElementTypes.BRTUtterance_4002);
+		}
+		return types;
+	}
 
-            this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(20),
-                    getMapMode().DPtoLP(20)));
-            this.setLineWidth(2);
-            this.setForegroundColor(ColorConstants.black);
-            this.setBackgroundColor(ColorConstants.lightGray);
-            this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100),
-                    getMapMode().DPtoLP(40)));
-            createContents();
-        }
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
+			IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (relationshipType == MolicElementTypes.Utterance_4001) {
+			types.add(MolicElementTypes.Scene_2007);
+		}
+		if (relationshipType == MolicElementTypes.Utterance_4001) {
+			types.add(MolicElementTypes.SystemProcess_2008);
+		}
+		if (relationshipType == MolicElementTypes.Utterance_4001) {
+			types.add(MolicElementTypes.UbiquitousAccess_2010);
+		}
+		if (relationshipType == MolicElementTypes.Utterance_4001) {
+			types.add(MolicElementTypes.OpeningPoint_2011);
+		}
+		if (relationshipType == MolicElementTypes.Utterance_4001) {
+			types.add(MolicElementTypes.ClosingPoint_2012);
+		}
+		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
+			types.add(MolicElementTypes.Scene_2007);
+		}
+		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
+			types.add(MolicElementTypes.SystemProcess_2008);
+		}
+		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
+			types.add(MolicElementTypes.UbiquitousAccess_2010);
+		}
+		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
+			types.add(MolicElementTypes.OpeningPoint_2011);
+		}
+		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
+			types.add(MolicElementTypes.ClosingPoint_2012);
+		}
+		return types;
+	}
 
-        /**
-         * @generated
-         */
-        private void createContents() {
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		types.add(MolicElementTypes.Utterance_4001);
+		types.add(MolicElementTypes.BRTUtterance_4002);
+		return types;
+	}
 
-            fFigureUbiquitousAccessLabel = new WrappingLabel();
-            fFigureUbiquitousAccessLabel.setText(" ");
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
+			IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (relationshipType == MolicElementTypes.Utterance_4001) {
+			types.add(MolicElementTypes.Scene_2007);
+		}
+		if (relationshipType == MolicElementTypes.Utterance_4001) {
+			types.add(MolicElementTypes.SystemProcess_2008);
+		}
+		if (relationshipType == MolicElementTypes.Utterance_4001) {
+			types.add(MolicElementTypes.UbiquitousAccess_2010);
+		}
+		if (relationshipType == MolicElementTypes.Utterance_4001) {
+			types.add(MolicElementTypes.OpeningPoint_2011);
+		}
+		if (relationshipType == MolicElementTypes.Utterance_4001) {
+			types.add(MolicElementTypes.ClosingPoint_2012);
+		}
+		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
+			types.add(MolicElementTypes.Scene_2007);
+		}
+		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
+			types.add(MolicElementTypes.SystemProcess_2008);
+		}
+		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
+			types.add(MolicElementTypes.UbiquitousAccess_2010);
+		}
+		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
+			types.add(MolicElementTypes.OpeningPoint_2011);
+		}
+		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
+			types.add(MolicElementTypes.ClosingPoint_2012);
+		}
+		return types;
+	}
 
-            GridData constraintFFigureUbiquitousAccessLabel = new GridData();
-            constraintFFigureUbiquitousAccessLabel.verticalAlignment = GridData.CENTER;
-            constraintFFigureUbiquitousAccessLabel.horizontalAlignment = GridData.CENTER;
-            constraintFFigureUbiquitousAccessLabel.horizontalIndent = 0;
-            constraintFFigureUbiquitousAccessLabel.horizontalSpan = 1;
-            constraintFFigureUbiquitousAccessLabel.verticalSpan = 1;
-            constraintFFigureUbiquitousAccessLabel.grabExcessHorizontalSpace = true;
-            constraintFFigureUbiquitousAccessLabel.grabExcessVerticalSpace = true;
-            this.add(fFigureUbiquitousAccessLabel,
-                    constraintFFigureUbiquitousAccessLabel);
+	/**
+	 * @generated
+	 */
+	public class UbiquitousAccessFigure extends RoundedRectangle {
 
-        }
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureUbiquitousAccessLabel;
 
-        /**
-         * @generated
-         */
-        private boolean myUseLocalCoordinates = false;
+		/**
+		 * @generated
+		 */
+		public UbiquitousAccessFigure() {
 
-        /**
-         * @generated
-         */
-        protected boolean useLocalCoordinates() {
-            return myUseLocalCoordinates;
-        }
+			GridLayout layoutThis = new GridLayout();
+			layoutThis.numColumns = 1;
+			layoutThis.makeColumnsEqualWidth = true;
+			this.setLayoutManager(layoutThis);
 
-        /**
-         * @generated
-         */
-        protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-            myUseLocalCoordinates = useLocalCoordinates;
-        }
+			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(20),
+					getMapMode().DPtoLP(20)));
+			this.setLineWidth(2);
+			this.setForegroundColor(ColorConstants.black);
+			this.setBackgroundColor(ColorConstants.lightGray);
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100),
+					getMapMode().DPtoLP(40)));
+			createContents();
+		}
 
-        /**
-         * @generated
-         */
-        public WrappingLabel getFigureUbiquitousAccessLabel() {
-            return fFigureUbiquitousAccessLabel;
-        }
+		/**
+		 * @generated
+		 */
+		private void createContents() {
 
-    }
+			fFigureUbiquitousAccessLabel = new WrappingLabel();
+			fFigureUbiquitousAccessLabel.setText(" ");
+
+			GridData constraintFFigureUbiquitousAccessLabel = new GridData();
+			constraintFFigureUbiquitousAccessLabel.verticalAlignment = GridData.CENTER;
+			constraintFFigureUbiquitousAccessLabel.horizontalAlignment = GridData.CENTER;
+			constraintFFigureUbiquitousAccessLabel.horizontalIndent = 0;
+			constraintFFigureUbiquitousAccessLabel.horizontalSpan = 1;
+			constraintFFigureUbiquitousAccessLabel.verticalSpan = 1;
+			constraintFFigureUbiquitousAccessLabel.grabExcessHorizontalSpace = true;
+			constraintFFigureUbiquitousAccessLabel.grabExcessVerticalSpace = true;
+			this.add(fFigureUbiquitousAccessLabel,
+					constraintFFigureUbiquitousAccessLabel);
+
+		}
+
+		/**
+		 * @generated
+		 */
+		private boolean myUseLocalCoordinates = false;
+
+		/**
+		 * @generated
+		 */
+		protected boolean useLocalCoordinates() {
+			return myUseLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
+			myUseLocalCoordinates = useLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureUbiquitousAccessLabel() {
+			return fFigureUbiquitousAccessLabel;
+		}
+
+	}
 
 }

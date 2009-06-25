@@ -18,11 +18,12 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.SWT;
 
 
+import br.puc.molic.Diagram;
 import br.puc.molic.MolicFactory;
 import br.puc.molic.MolicPackage;
 import br.puc.molic.diagram.edit.parts.DiagramEditPart;
 import br.puc.molic.diagram.part.MolicDiagramEditor;
-import br.puc.molic.impl.DiagramImpl;
+
 
 
 /**
@@ -67,7 +68,7 @@ public class GoalsView extends ViewPart implements IPartListener2{
 		}
 		 public Object[] getElements(Object parent) {       	         
 			 if(parent != null){   				                              
-				 return ((DiagramImpl)parent).getGoals().toArray();
+				 return ((Diagram)parent).getGoals().toArray();
 	         }
 	         return new String[]{""};
 		 }
@@ -106,10 +107,10 @@ public class GoalsView extends ViewPart implements IPartListener2{
 	 */
 	public void createPartControl(Composite parent) {
 		Table table = new Table(parent, SWT.CHECK | SWT.BORDER );
-		table.setHeaderVisible(false);
+		table.setHeaderVisible(true);
 		table.setLinesVisible(false);
 		  
-		viewer = new CheckboxTableViewer(table);
+		viewer = new CheckboxTableViewer(table);		
 		viewer.setContentProvider(new ViewContentProvider());
 		viewer.setLabelProvider(new ViewLabelProvider());
 		viewer.setSorter(new NameSorter());

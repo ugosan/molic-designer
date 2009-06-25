@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/br.puc.molic/src"
-    creationSubmenus="true" modelPluginID="br.puc.molic" modelName="Molic" richClientPlatform="true"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="MoLIC Designer (c) 2009 &#xA;This software is part of the MSc work of Ugo Braga Sangiorgi and can be copied freely&#xA;&#xA;Developed at Semiotic Engineering Research Lab (SERG)&#xA;Pontifical Catholic University of Rio de Janeiro, PUCRio&#xA;&#xA;Author: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br"
+    modelDirectory="/br.puc.molic/src" creationSubmenus="true" modelPluginID="br.puc.molic"
+    modelName="Molic" generateSchema="true" suppressInterfaces="true" richClientPlatform="true"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0">
   <foreignModel>molic.ecore</foreignModel>
   <genPackages prefix="Molic" basePackage="br.puc" disposableProviderFactory="true"
@@ -34,9 +35,6 @@
       <genFeatures children="true" createChild="false" propertyCategory="Attributes"
           propertyMultiLine="true" ecoreFeature="ecore:EAttribute molic.ecore#//Scene/dialogue"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Scene/name"/>
-    </genClasses>
-    <genClasses ecoreClass="molic.ecore#//Monologue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Monologue/label"/>
     </genClasses>
     <genClasses ecoreClass="molic.ecore#//Utterance">
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Utterance/name"/>
