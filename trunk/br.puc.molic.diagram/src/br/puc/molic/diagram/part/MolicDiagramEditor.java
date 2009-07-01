@@ -94,18 +94,8 @@ public class MolicDiagramEditor extends DiagramDocumentEditor {
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		adapterFactoryConentProvider = new AdapterFactoryContentProvider(
 				fAdapterFactory);
+		
 
-	}
-
-	private static IViewPart getView(String id) {
-		IViewReference viewReferences[] = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getActivePage().getViewReferences();
-		for (int i = 0; i < viewReferences.length; i++) {
-			if (id.equals(viewReferences[i].getId())) {
-				return viewReferences[i].getView(true);
-			}
-		}
-		return null;
 	}
 
 	@Override
@@ -134,6 +124,7 @@ public class MolicDiagramEditor extends DiagramDocumentEditor {
 			page.setRootEntry(root);
 			return page;
 		}
+		
 		return super.getAdapter(type);
 	}
 

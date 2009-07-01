@@ -1,5 +1,6 @@
 package br.puc.molic.diagram.actions;
 
+import java.awt.List;
 import java.util.Iterator;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -8,7 +9,10 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.draw2d.LineBorder;
+import org.eclipse.draw2d.Shape;
 
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.commands.Command;
 
@@ -20,6 +24,9 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.DiagramColorConstants;
 import org.eclipse.gmf.runtime.diagram.ui.internal.properties.Properties;
 import org.eclipse.gmf.runtime.diagram.ui.requests.ChangePropertyValueRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
+
 import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
 import org.eclipse.jface.action.IAction;
@@ -38,13 +45,17 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
 import br.puc.molic.Connection;
+import br.puc.molic.Diagram;
 import br.puc.molic.Element;
+import br.puc.molic.MolicPackage;
+import br.puc.molic.Scene;
+import br.puc.molic.diagram.part.MolicDiagramEditor;
 
 
 
 public class BindGoalAction implements IObjectActionDelegate {
 
-    boolean DEBUG = true;
+    boolean DEBUG = false;
     IWorkbenchPart selectedPart;
     /**
      * @generated
@@ -62,7 +73,7 @@ public class BindGoalAction implements IObjectActionDelegate {
     public void setActivePart(IAction action, IWorkbenchPart targetPart) {
         myShell = targetPart.getSite().getShell();
         selectedPart = targetPart;
-        System.out.println(selectedPart);
+        //System.out.println(selectedPart);
     }
 
     /**
@@ -107,6 +118,10 @@ public class BindGoalAction implements IObjectActionDelegate {
     
         */
       
+    	MolicDiagramEditor editor = (MolicDiagramEditor)selectedPart;
+     
+     	Diagram d = (Diagram)editor.getDiagram().getDiagram().getElement();
+    	
     	
     	Iterator it = mySelectedElements.iterator();
        while(it.hasNext()) {
@@ -118,20 +133,30 @@ public class BindGoalAction implements IObjectActionDelegate {
                Element e = (Element)((NodeImpl)n.getModel()).basicGetElement();
                if(DEBUG)System.out.println(e.getID());
                
-               changeColor(n, DiagramColorConstants.red);
+               //changeColor(n, DiagramColorConstants.red);
 
+               //n.getFigure().setForegroundColor(DiagramColorConstants.red);
+              
+               Shape s = (Shape)n.getFigure().getChildren().get(0);
+            	  
+               s.setLineWidth(3);            	  
+               s.setForegroundColor(DiagramColorConstants.red);
+            
+             
+               
+               
            }else {
                ConnectionNodeEditPart n = (ConnectionNodeEditPart) o;  
 
                
                Connection e = (Connection)((EdgeImpl)n.getModel()).basicGetElement();
                if(DEBUG)System.out.println(e.getID());
-               /*
-               org.eclipse.draw2d.LineBorder border = new LineBorder();
-               border.setWidth(2);
-               n.getFigure().setBorder(border);
-               */
-               changeColor(n, DiagramColorConstants.red);
+               
+               PolylineConnectionEx s = (PolylineConnectionEx)n.getFigure();
+               s.setLineWidth(3);               
+               s.setForegroundColor(DiagramColorConstants.red);
+               
+              // changeColor(n, DiagramColorConstants.red);
            }
            
        }
@@ -140,8 +165,7 @@ public class BindGoalAction implements IObjectActionDelegate {
     private void changeColor(IGraphicalEditPart part, Color c){
     	 try {
              ChangePropertyValueRequest req = new ChangePropertyValueRequest( 
-          	        StringStatics.BLANK,Properties.ID_LINECOLOR,
-          	    FigureUtilities.colorToInteger(c));
+          	        StringStatics.BLANK,Properties.ID_LINECOLOR,FigureUtilities.colorToInteger(c));
 
              final Command cmd = (Command) part.getCommand(req);
              
@@ -171,8 +195,10 @@ public class BindGoalAction implements IObjectActionDelegate {
             IStructuredSelection structuredSelection = (IStructuredSelection) selection;
             mySelectedElements = structuredSelection;
         }
+        
         //System.out.println(selection);
-        action.setEnabled(isEnabled());
+      //  if(!selection.isEmpty())
+        	//action.setEnabled(isEnabled());
          
          
     }
