@@ -261,13 +261,15 @@ public class GoalsView extends ViewPart implements IPartListener2{
 
 	
 	public void partBroughtToTop(IWorkbenchPartReference partRef) {
-		// TODO Auto-generated method stub
-		
+		if(partRef.getPart(false) instanceof MolicDiagramEditor){
+			MolicDiagramEditor editor = (MolicDiagramEditor) partRef.getPart(false);
+			viewer.setInput(editor.getDiagramEditPart().getDiagramView().getElement()); 						
+		}
 	}
 
 	
 	public void partClosed(IWorkbenchPartReference partRef) {
-		viewer.setInput(null);
+		//viewer.setInput(null);
 
 	}
 
@@ -290,13 +292,17 @@ public class GoalsView extends ViewPart implements IPartListener2{
 	}
 
 	public void partOpened(IWorkbenchPartReference partRef) {
-		// TODO Auto-generated method stub
-		
+		if(partRef.getPart(false) instanceof MolicDiagramEditor){
+			MolicDiagramEditor editor = (MolicDiagramEditor) partRef.getPart(false);
+			viewer.setInput(editor.getDiagramEditPart().getDiagramView().getElement()); 						
+		}
 	}
 
 	public void partVisible(IWorkbenchPartReference partRef) {
-		// TODO Auto-generated method stub
-		
+		if(partRef.getPart(false) instanceof MolicDiagramEditor){
+			MolicDiagramEditor editor = (MolicDiagramEditor) partRef.getPart(false);
+			viewer.setInput(editor.getDiagramEditPart().getDiagramView().getElement()); 						
+		}
 	}
 
 
