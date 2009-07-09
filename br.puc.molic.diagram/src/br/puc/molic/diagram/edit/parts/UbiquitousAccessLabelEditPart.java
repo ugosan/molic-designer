@@ -204,11 +204,7 @@ public class UbiquitousAccessLabelEditPart extends CompartmentEditPart
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		EObject parserElement = getParserElement();
-		if (parserElement == null) {
-			return null;
-		}
-		return MolicElementTypes.getImage(parserElement.eClass());
+		return null;
 	}
 
 	/**

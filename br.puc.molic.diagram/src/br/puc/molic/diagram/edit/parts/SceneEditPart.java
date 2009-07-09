@@ -127,14 +127,14 @@ public class SceneEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof SceneDialogueEditPart) {
-			((SceneDialogueEditPart) childEditPart).setLabel(getPrimaryShape()
-					.getFigureDialogueFigure());
-			return true;
-		}
 		if (childEditPart instanceof SceneTopicEditPart) {
 			((SceneTopicEditPart) childEditPart).setLabel(getPrimaryShape()
 					.getFigureSceneTopicFigure());
+			return true;
+		}
+		if (childEditPart instanceof SceneDialogueEditPart) {
+			((SceneDialogueEditPart) childEditPart).setLabel(getPrimaryShape()
+					.getFigureDialogueFigure());
 			return true;
 		}
 		return false;
@@ -144,10 +144,10 @@ public class SceneEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof SceneDialogueEditPart) {
+		if (childEditPart instanceof SceneTopicEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof SceneTopicEditPart) {
+		if (childEditPart instanceof SceneDialogueEditPart) {
 			return true;
 		}
 		return false;
