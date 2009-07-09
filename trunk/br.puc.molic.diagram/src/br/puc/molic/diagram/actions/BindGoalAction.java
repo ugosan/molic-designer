@@ -120,7 +120,7 @@ public class BindGoalAction implements IObjectActionDelegate {
       
     	MolicDiagramEditor editor = (MolicDiagramEditor)selectedPart;
      
-     	Diagram d = (Diagram)editor.getDiagram().getDiagram().getElement();
+     	Diagram d = (Diagram)editor.getDiagramEditPart().getDiagramView().getElement();
     	
     	
     	Iterator it = mySelectedElements.iterator();

@@ -1,6 +1,7 @@
 package br.puc.molic.diagram.views;
 
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
@@ -8,7 +9,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.internal.WorkbenchPage;
 import org.eclipse.ui.part.*;
+import org.eclipse.draw2d.Shape;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.figures.DiagramColorConstants;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
+import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
 import org.eclipse.jface.viewers.*;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.jface.action.*;
@@ -19,6 +25,7 @@ import org.eclipse.swt.SWT;
 
 
 import br.puc.molic.Diagram;
+import br.puc.molic.Element;
 import br.puc.molic.MolicFactory;
 import br.puc.molic.MolicPackage;
 import br.puc.molic.diagram.edit.parts.DiagramEditPart;
@@ -46,9 +53,12 @@ import br.puc.molic.diagram.part.MolicDiagramEditor;
 
 public class GoalsView extends ViewPart implements IPartListener2{
 	private CheckboxTableViewer viewer;
-	private Action action1;
+	private Action highlightSelected;
 	private Action action2;
 	private Action doubleClickAction;
+	
+	private DiagramEditor activeEditor;
+	private IStructuredSelection selectedGoals;
 	
 	/*
 	 * The content provider class is responsible for
@@ -118,8 +128,8 @@ public class GoalsView extends ViewPart implements IPartListener2{
 		
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			public void selectionChanged(SelectionChangedEvent event) {
-				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
-			    System.out.println(sel.size() + " items selected, " +viewer.getCheckedElements().length + " items checked");
+				selectedGoals = (IStructuredSelection) event.getSelection();
+			    
 			   }
 			  });
 		
@@ -154,32 +164,59 @@ public class GoalsView extends ViewPart implements IPartListener2{
 	}
 
 	private void fillLocalPullDown(IMenuManager manager) {
-		manager.add(action1);
+		manager.add(highlightSelected);
 		manager.add(new Separator());
 		manager.add(action2);
 	}
 
 	private void fillContextMenu(IMenuManager manager) {
-		manager.add(action1);
+		manager.add(highlightSelected);
 		manager.add(action2);
 		// Other plug-ins can contribute there actions here
 		manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 	}
 	
 	private void fillLocalToolBar(IToolBarManager manager) {
-		manager.add(action1);
+		manager.add(highlightSelected);
 		manager.add(action2);
 	}
 
 	private void makeActions() {
-		action1 = new Action() {
+		highlightSelected = new Action() {
 			public void run() {
 			   
 			    
+			    Iterator it = activeEditor.getDiagramEditPart().getChildren().iterator();
+			    while(it.hasNext()){
+			    	ShapeNodeEditPart n = (ShapeNodeEditPart) it.next();
+			    	
+		            Element e = (Element)((NodeImpl)n.getModel()).basicGetElement();
+		            Iterator<String> goals = e.getGoals().iterator();
+		            while(goals.hasNext()){
+		            	String goal = goals.next();
+		            	System.out.println("i have "+goal);
+		            	System.out.println(selectedGoals.toList().indexOf(goal));
+		            }
+		            
+		           // Shape s = (Shape)n.getFigure().getChildren().get(0);
+		            	  
+		            //s.setLineWidth(3);            	  
+		           // s.setForegroundColor(DiagramColorConstants.red);
+			    }
 			    
-			    GoalsDialog d = new GoalsDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),"llala","lalalal","lalala",null);
-			    d.open();
-			    /*
+			    it = activeEditor.getDiagramEditPart().getConnections().iterator();
+			    while(it.hasNext()){
+			    	//System.out.println(it.next());
+			    	
+			    }
+			    //GoalsDialog d = new GoalsDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),"llala","lalalal","lalala",null);
+			    //d.open();
+			    
+				
+				
+				
+				
+				/*
 			    try {
 			    MolicDiagramEditor editor = ( MolicDiagramEditor )PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		        
@@ -205,9 +242,9 @@ public class GoalsView extends ViewPart implements IPartListener2{
 			    */
 			}
 		};
-		action1.setText("New Goal");
-		action1.setToolTipText("Adds a new goal");
-		action1.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
+		highlightSelected.setText("New Goal");
+		highlightSelected.setToolTipText("Adds a new goal");
+		highlightSelected.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
 			getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
 		
 		action2 = new Action() {
@@ -253,18 +290,12 @@ public class GoalsView extends ViewPart implements IPartListener2{
 
 	
 	public void partActivated(IWorkbenchPartReference partRef) {		
-		if(partRef.getPart(false) instanceof MolicDiagramEditor){
-			MolicDiagramEditor editor = (MolicDiagramEditor) partRef.getPart(false);
-			viewer.setInput(editor.getDiagramEditPart().getDiagramView().getElement()); 						
-		}
+		setInput(partRef);
 	}
 
 	
 	public void partBroughtToTop(IWorkbenchPartReference partRef) {
-		if(partRef.getPart(false) instanceof MolicDiagramEditor){
-			MolicDiagramEditor editor = (MolicDiagramEditor) partRef.getPart(false);
-			viewer.setInput(editor.getDiagramEditPart().getDiagramView().getElement()); 						
-		}
+		setInput(partRef);
 	}
 
 	
@@ -285,25 +316,23 @@ public class GoalsView extends ViewPart implements IPartListener2{
 	}
 
 	public void partInputChanged(IWorkbenchPartReference partRef) {
-		if(partRef.getPart(false) instanceof MolicDiagramEditor){
-			MolicDiagramEditor editor = (MolicDiagramEditor) partRef.getPart(false);
-			viewer.setInput(editor.getDiagramEditPart().getDiagramView().getElement()); 					
-		}
+		setInput(partRef);
 	}
 
 	public void partOpened(IWorkbenchPartReference partRef) {
-		if(partRef.getPart(false) instanceof MolicDiagramEditor){
-			MolicDiagramEditor editor = (MolicDiagramEditor) partRef.getPart(false);
-			viewer.setInput(editor.getDiagramEditPart().getDiagramView().getElement()); 						
-		}
+		setInput(partRef);
 	}
 
 	public void partVisible(IWorkbenchPartReference partRef) {
-		if(partRef.getPart(false) instanceof MolicDiagramEditor){
-			MolicDiagramEditor editor = (MolicDiagramEditor) partRef.getPart(false);
-			viewer.setInput(editor.getDiagramEditPart().getDiagramView().getElement()); 						
-		}
+		setInput(partRef);
 	}
 
+	private void setInput(IWorkbenchPartReference partRef){
+		if(partRef.getPart(false) instanceof MolicDiagramEditor){
+			MolicDiagramEditor editor = (MolicDiagramEditor) partRef.getPart(false);			
+			viewer.setInput(editor.getDiagramEditPart().getDiagramView().getElement());
+			activeEditor = editor;
+		}
+	}
 
 }

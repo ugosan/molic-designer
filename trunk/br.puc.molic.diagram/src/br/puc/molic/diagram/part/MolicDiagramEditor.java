@@ -94,7 +94,6 @@ public class MolicDiagramEditor extends DiagramDocumentEditor {
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		adapterFactoryConentProvider = new AdapterFactoryContentProvider(
 				fAdapterFactory);
-		
 
 	}
 
@@ -124,7 +123,7 @@ public class MolicDiagramEditor extends DiagramDocumentEditor {
 			page.setRootEntry(root);
 			return page;
 		}
-		
+
 		return super.getAdapter(type);
 	}
 

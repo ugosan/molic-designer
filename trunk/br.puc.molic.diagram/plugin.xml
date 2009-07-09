@@ -47,7 +47,7 @@ Teste de nota de copyright do Molic
       <editor
          id="br.puc.molic.diagram.part.MolicDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/MolicDiagramFile.gif"
+         icon="icons/obj16/Scene.gif"
          extensions="molic_diagram"
          default="true"
          class="br.puc.molic.diagram.part.MolicDiagramEditor"
