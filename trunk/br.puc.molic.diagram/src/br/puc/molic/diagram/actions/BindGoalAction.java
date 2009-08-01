@@ -1,6 +1,5 @@
 package br.puc.molic.diagram.actions;
 
-import java.awt.List;
 import java.util.Iterator;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -9,13 +8,10 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.Shape;
-
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.commands.Command;
-
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -25,30 +21,21 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.properties.Properties;
 import org.eclipse.gmf.runtime.diagram.ui.requests.ChangePropertyValueRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
-
 import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.viewers.CheckboxTableViewer;
+import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.swt.SWT;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.layout.FormAttachment;
-import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.layout.FormLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
 import br.puc.molic.Connection;
 import br.puc.molic.Diagram;
 import br.puc.molic.Element;
-import br.puc.molic.MolicPackage;
-import br.puc.molic.Scene;
 import br.puc.molic.diagram.part.MolicDiagramEditor;
 
 
@@ -162,6 +149,18 @@ public class BindGoalAction implements IObjectActionDelegate {
        }
     }
 
+
+    protected Object openDialogBox(){
+    /*  InputDialog dialog = new MultiLineInputDialog(myShell,EMFEditUIPlugin.INSTANCE.getString
+           ("_UI_FeatureEditorDialog_title", new Object [] { getDisplayName(), getEditLabelProvider().getText(object) }),
+         EMFEditUIPlugin.INSTANCE.getString("_UI_MultiLineInputDialog_message"),
+         valueHandler.toString(getValue()),
+         valueHandler);
+      return dialog.open() == Window.OK ? valueHandler.toValue(dialog.getValue()) : null;
+      */
+    	return null;
+    }
+    
     private void changeColor(IGraphicalEditPart part, Color c){
     	 try {
              ChangePropertyValueRequest req = new ChangePropertyValueRequest( 
