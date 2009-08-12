@@ -19,10 +19,18 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.provider.PropertyDescriptor;
+
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.AccessibleEditPart;
 import org.eclipse.gef.EditPolicy;
@@ -70,7 +78,9 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.provider.NodeItemProvider;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.IInputValidator;
+
 import org.eclipse.jface.resource.DeviceResourceException;
 import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
@@ -78,6 +88,7 @@ import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
@@ -85,6 +96,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.RGB;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -97,7 +109,12 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.part.CellEditorActionHandler;
 
+import br.puc.molic.MolicPackage;
+import br.puc.molic.Scene;
 import br.puc.molic.diagram.edit.policies.MolicTextSelectionEditPolicy;
+import br.puc.molic.diagram.multiline.EDataTypeValueHandler;
+import br.puc.molic.diagram.multiline.InputDialog;
+import br.puc.molic.diagram.multiline.MultiLineInputDialog;
 import br.puc.molic.diagram.part.MolicDiagramEditorPlugin;
 import br.puc.molic.diagram.part.MolicVisualIDRegistry;
 import br.puc.molic.diagram.providers.MolicElementTypes;
@@ -412,25 +429,21 @@ public class SceneDialogueEditPart extends CompartmentEditPart implements
 	 * @generated NOT
 	 */
 	protected void performDirectEdit() {
-		// getManager().show();
+		String topic = ((Scene) ((View) getParent().getModel()).getElement()).getTopic();
+		EDataTypeValueHandler valueHandler = new EDataTypeValueHandler(EcorePackage.eINSTANCE.getEString());
+		InputDialog dialog = new MultiLineInputDialog(getViewer().getControl().getShell(),
+		EMFEditUIPlugin.INSTANCE.getString("_UI_FeatureEditorDialog_title", new Object [] { "Scene "+topic, "dialogue" }),
+		"Enter the dialogue:",valueHandler.toString(getEditText()),valueHandler);
 
-		//PropertyDescriptor descriptor = new PropertyDescriptor(getModel(),);
-		//MolicDiagramEditorPlugin.getInstance().
-		//System.out.println(AdapterFactoryEditingDomain.getEditingDomainItemProviderFor(getModel()));
-
-		//provider.getPropertyDescriptors(object)
-		/*
-			InputDialog dialog = new MultiLineInputDialog
-		    (getViewer().getControl().getShell(),
-		     EMFEditUIPlugin.INSTANCE.getString
-		       ("_UI_FeatureEditorDialog_title", new Object [] { getDisplayName(), getEditLabelProvider().getText(object) }),
-		     EMFEditUIPlugin.INSTANCE.getString("_UI_MultiLineInputDialog_message"),
-		     valueHandler.toString(getValue()),
-		     valueHandler);
-		  return dialog.open() == Window.OK ? valueHandler.toValue(dialog.getValue()) : null;
-		 */
+		if (dialog.open() == Window.OK) {						
+			EAttribute feature = MolicPackage.eINSTANCE.getScene_Dialogue();
+			getEditingDomain().getCommandStack().execute(SetCommand.create(getEditingDomain(), ((View) getParent().getModel()).getElement(), feature , dialog.getValue()));
+			
+		}
+		
 	}
 
+	
 	/**
 	 * @generated
 	 */

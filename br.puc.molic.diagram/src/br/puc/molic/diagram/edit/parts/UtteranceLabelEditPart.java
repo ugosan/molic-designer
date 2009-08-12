@@ -9,7 +9,11 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.AccessibleEditPart;
 import org.eclipse.gef.EditPolicy;
@@ -41,13 +45,19 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 
+import br.puc.molic.MolicPackage;
+import br.puc.molic.Scene;
 import br.puc.molic.diagram.edit.policies.MolicTextSelectionEditPolicy;
+import br.puc.molic.diagram.multiline.EDataTypeValueHandler;
+import br.puc.molic.diagram.multiline.InputDialog;
+import br.puc.molic.diagram.multiline.MultiLineInputDialog;
 import br.puc.molic.diagram.part.MolicVisualIDRegistry;
 import br.puc.molic.diagram.providers.MolicElementTypes;
 import br.puc.molic.diagram.providers.MolicParserProvider;
@@ -348,16 +358,28 @@ public class UtteranceLabelEditPart extends LabelEditPart implements
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void performDirectEdit() {
-		getManager().show();
+
+		EDataTypeValueHandler valueHandler = new EDataTypeValueHandler(EcorePackage.eINSTANCE.getEString());
+		InputDialog dialog = new MultiLineInputDialog(getViewer().getControl().getShell(),
+		EMFEditUIPlugin.INSTANCE.getString("_UI_FeatureEditorDialog_title", new Object [] { "Scene ", "dialogue" }),
+		"Enter the utterance:",valueHandler.toString(getEditText()),valueHandler);
+		System.out.println(((View) getModel()));
+		if (dialog.open() == Window.OK) {						
+			EAttribute feature = MolicPackage.eINSTANCE.getConnection_Label();
+			getEditingDomain().getCommandStack().execute(SetCommand.create(getEditingDomain(), ((View) getModel()).getElement(), feature , dialog.getValue()));
+			
+		}
+		
 	}
 
 	/**
 	 * @generated
 	 */
 	protected void performDirectEdit(Point eventLocation) {
+		performDirectEdit();
 		if (getManager().getClass() == TextDirectEditManager.class) {
 			((TextDirectEditManager) getManager()).show(eventLocation
 					.getSWTPoint());

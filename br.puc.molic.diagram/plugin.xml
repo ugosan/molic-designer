@@ -496,7 +496,7 @@ Teste de nota de copyright do Molic
                class="br.puc.molic.diagram.actions.BindGoalAction"
                icon="icons/goal.png"
                id="br.puc.molic.diagram.actions.BindGoalAction"
-               label="Bind to Goal.."
+               label="Bind to Selected Goal.."
                menubarPath="additions"
                tooltip="Binds the selected elements to a specific Goal">
          </action>
