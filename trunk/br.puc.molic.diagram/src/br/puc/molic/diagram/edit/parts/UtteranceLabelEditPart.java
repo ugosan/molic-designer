@@ -357,9 +357,19 @@ public class UtteranceLabelEditPart extends LabelEditPart implements
 		this.manager = manager;
 	}
 
+	
+
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
+	protected void performDirectEdit() {
+		getManager().show();
+	}
+
+	
+/*	*//**
+	 * @generated NOT
+	 *//*
 	protected void performDirectEdit() {
 
 		EDataTypeValueHandler valueHandler = new EDataTypeValueHandler(EcorePackage.eINSTANCE.getEString());
@@ -374,7 +384,7 @@ public class UtteranceLabelEditPart extends LabelEditPart implements
 		}
 		
 	}
-
+*/
 	/**
 	 * @generated
 	 */
