@@ -473,6 +473,18 @@ Teste de nota de copyright do Molic
                name="appName"
                value="MoLIC">
          </property>
+         <property
+               name="windowImages"
+               value="platform:/plugin/br.puc.molic.edit/icons/full/obj16/Scene.gif">
+         </property>
+         <property
+               name="startupProgressRect"
+               value="5,275,445,15">
+         </property>
+         <property
+               name="preferenceCustomization"
+               value="plugin_customization.ini">
+         </property>
       </product>
    </extension><extension point="org.eclipse.ui.popupMenus">
       <?gmfgen generated="false"?>

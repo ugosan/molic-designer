@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ant-googlecode" default="jar">
+
+  <tstamp/>
+
+  <property name="compiler.source" value="1.5"/>
+  <property name="compiler.target" value="1.5"/>
+  <property name="compiler.optimize" value="false"/>
+  <property name="compiler.debug" value="true"/>
+  <property name="compiler.deprecation" value="false"/>
+
+  <property name="src" value="src"/>
+
+  <property name="bin" value="build"/>
+
+
+
+
+
+  <target name="clean" description="Delete products 'bin', 'jar', etc..">
+    <delete dir="${bin}"/>
+    <delete>
+      <fileset dir=".">
+        <include name="*.jar"/>
+        <include name="*.md5"/>
+        <include name="*.asc"/>
+        <include name="*.zip"/>
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="jar" depends="compile,version" description="Produce 'ant-googlecode-V*.jar' and 'ant-googlecode-V*.jar.md5'.  See 'version'.">
+    <echo>Clean past products</echo>
+    <delete>
+      <fileset dir=".">
+        <include name="*.jar"/>
+        <include name="*.md5"/>
+        <include name="*.asc"/>
+      </fileset>
+    </delete>
+    <echo>Archive products</echo>
+    <jar jarfile="${jar.file.name}">
+      <manifest>
+        <attribute name="Sealed" value="true"/>
+        <attribute name="Built-On" value="${DSTAMP}-${TSTAMP}"/>
+        <attribute name="Built-By" value="${user.name}@${ant.project.name}"/>
+        <attribute name="Implementation-Vendor" value="${user.name}@${ant.project.name}"/>
+        <attribute name="Implementation-Version" value="${this.version}"/>
+        <attribute name="Implementation-Title" value="${ant.project.name}"/>
+
+      </manifest>
+      <fileset dir="${bin}"/>
+      <fileset dir="${src}">
+        <exclude name="**/*.java"/>
+        <exclude name="**/*.html"/>
+      </fileset>
+    </jar>
+    <checksum file="${jar.file.name}" forceOverwrite="yes" fileext=".md5"/>
+    <delete>
+      <fileset dir="${bin}">
+        <include name="**/*.class"/>
+      </fileset>
+    </delete>
+  </target>
+
+  <target name="compile" depends="version" description="Dependecy of 'jar' to compile code from 'src' to 'bin'.">
+
+    <mkdir dir="${bin}"/>
+
+    <javac srcdir="${src}"
+           destDir="${bin}"
+           optimize="${compiler.optimize}"
+           deprecation="${compiler.deprecation}"
+           debug="${compiler.debug}"
+           source="${compiler.source}"
+           target="${compiler.target}"
+           failonerror="true">
+
+    </javac>
+  </target>
+
+
+  <target name="version" description="Print current version. Build 0 (zero) is the special release version.">
+    <property file="build.version" />
+    <fail unless="version.major" message="Invalid contents for file 'build.version', missing 'version.major'."/>
+    <fail unless="version.minor" message="Invalid contents for file 'build.version', missing 'version.minor'."/>
+    <fail unless="version.build" message="Invalid contents for file 'build.version', missing 'version.build'."/>
+
+    <property name="base.version" value="${version.major}.${version.minor}"/>
+
+    <condition property="this.version" value="${base.version}" else="${base.version}.${version.build}">
+      <equals arg1="0" arg2="${version.build}"/>
+    </condition>
+
+    <property name="jar.file.name" value="${ant.project.name}-${this.version}.jar"/>
+
+    <echo> </echo>
+    <echo message=" ${ant.project.name} ${this.version}"/>
+    <echo> </echo>
+
+  </target>
+
+  <target name="minor" description="Release minor: increment project version 'minor' component. Set 'build' to zero.">
+
+    <propertyfile file="build.version">
+      <entry key="version.minor" type="int" operation="+" value="1"/>
+      <entry key="version.build" type="int" value="0"/>
+    </propertyfile>
+    <antcall target="version"/>
+  </target>
+
+  <target name="major" description="Release major: increment project version 'major' component.  Set 'minor' and 'build' to zero.">
+
+    <propertyfile file="build.version">
+      <entry key="version.major" type="int" operation="+" value="1"/>
+      <entry key="version.minor" type="int" value="0"/>
+      <entry key="version.build" type="int" value="0"/>
+    </propertyfile>
+    <antcall target="version"/>
+  </target>
+
+  <target name="build" description="Not 'jar'.  Increment project version 'build' component.  See 'jar'.">
+    <propertyfile file="build.version">
+      <entry key="version.build" type="int" operation="+" value="1"/>
+    </propertyfile>
+    <antcall target="version"/>
+  </target>
+
+  <target name="sign" depends="jar" description="Calls 'jar' then signs it to produce 'ant-googlecode-X.Y.Z.jar.asc'.">
+    <exec executable="gpg">
+      <arg line=" --armor --output ${jar.file.name}.asc --detach-sig ${jar.file.name} "/>
+    </exec>
+  </target>
+
+
+  <target name="release" depends="version" description="Upload 'jar' to Downloads.  Use 'featured', 'beta' or 'alpha'.">
+
+    <taskdef classname="net.bluecow.googlecode.ant.GoogleCodeUploadTask" classpath="${jar.file.name}" name="gcupload"/>
+
+    <property file="build.credentials.properties" />
+    <fail unless="gc.username" message="Missing property 'gc.username' from file 'build.credentials.properties'."/>
+    <fail unless="gc.password" message="Missing property 'gc.password' from file 'build.credentials.properties'."/>
+
+    <property name="release.labels.hash" value="Type-Hash, OpSys-All"/>
+
+    <gcupload 
+            username="${gc.username}" 
+            password="${gc.password}" 
+         projectname="${ant.project.name}" 
+            filename="${jar.file.name}" 
+      targetfilename="${jar.file.name}"
+             summary="Version ${this.version} of ${ant.project.name}"
+              labels="${release.labels.jar}" />
+    <gcupload 
+            username="${gc.username}" 
+            password="${gc.password}" 
+         projectname="${ant.project.name}" 
+            filename="${jar.file.name}.md5" 
+      targetfilename="${jar.file.name}.md5"
+             summary="Version ${this.version} of ${ant.project.name}"
+              labels="${release.labels.hash}" />
+  </target>
+  <target name="featured" description="Define labels for a Featured release, call 'release'.">
+    <property name="release.labels.jar" value="Featured, Type-Package, OpSys-All"/>
+    <antcall target="release"/>
+  </target>
+  <target name="alpha" description="Define labels for an Alpha release, call 'release'.">
+    <property name="release.labels.jar" value="Alpha, Type-Package, OpSys-All"/>
+    <antcall target="release"/>
+  </target>
+  <target name="beta" description="Define labels for a Beta release, call 'release'.">
+    <property name="release.labels.jar" value="Beta, Type-Package, OpSys-All"/>
+    <antcall target="release"/>
+  </target>
+
+</project>
