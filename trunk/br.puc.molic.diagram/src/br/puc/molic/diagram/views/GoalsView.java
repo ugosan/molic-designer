@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Properties;
 
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.internal.WorkbenchPage;
 import org.eclipse.ui.part.*;
@@ -16,6 +18,10 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.DiagramColorConstants;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
 import org.eclipse.jface.viewers.*;
+import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.ControlListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.jface.action.*;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -118,20 +124,31 @@ public class GoalsView extends ViewPart implements IPartListener2{
 	public void createPartControl(Composite parent) {
 		Table table = new Table(parent, SWT.CHECK | SWT.BORDER );
 		table.setHeaderVisible(true);
-		table.setLinesVisible(false);
-		  
+		table.setLinesVisible(true);
+		
+		
 		viewer = new CheckboxTableViewer(table);		
 		viewer.setContentProvider(new ViewContentProvider());
 		viewer.setLabelProvider(new ViewLabelProvider());
 		viewer.setSorter(new NameSorter());
 		viewer.setInput(null);
-		
+		viewer.addCheckStateListener(new ICheckStateListener()
+		{
+	           public void checkStateChanged(CheckStateChangedEvent e)
+	           {
+	                //System.out.println(e.getChecked());
+	                //System.out.println(e);
+	                handleChecked(e);
+	           }
+		});
+		/* cursor selection 
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			public void selectionChanged(SelectionChangedEvent event) {
 				selectedGoals = (IStructuredSelection) event.getSelection();
 			    
 			   }
 			  });
+		*/
 		
 		// Create the help context id for the viewer's control
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(), "br.puc.molic.diagram.viewer");
@@ -143,7 +160,53 @@ public class GoalsView extends ViewPart implements IPartListener2{
 		contributeToActionBars();
 	}
 
+
 	
+	protected void handleChecked(CheckStateChangedEvent event) {
+		if(event.getChecked()){
+		Iterator it = activeEditor.getDiagramEditPart().getChildren().iterator();
+	    while(it.hasNext()){
+	    	ShapeNodeEditPart n = (ShapeNodeEditPart) it.next();
+	    	
+            Element e = (Element)((NodeImpl)n.getModel()).basicGetElement();
+            Iterator<String> goals = e.getGoals().iterator();
+            while(goals.hasNext()){
+            	String goal = goals.next();
+            	System.out.println("i have "+goal);
+            	System.out.println(selectedGoals.toList().indexOf(goal));
+            }
+
+           
+            Shape s = (Shape)n.getFigure().getChildren().get(0);
+         	  
+            s.setLineWidth(3);            	  
+            s.setForegroundColor(DiagramColorConstants.diagramBurgundyRed);
+            
+	    }
+	    
+		}else{
+			Iterator it = activeEditor.getDiagramEditPart().getChildren().iterator();
+		    while(it.hasNext()){
+		    	ShapeNodeEditPart n = (ShapeNodeEditPart) it.next();
+		    	
+	            Element e = (Element)((NodeImpl)n.getModel()).basicGetElement();
+	            Iterator<String> goals = e.getGoals().iterator();
+	            while(goals.hasNext()){
+	            	String goal = goals.next();
+	            	System.out.println("i have "+goal);
+	            	System.out.println(selectedGoals.toList().indexOf(goal));
+	            }
+
+	           
+	            Shape s = (Shape)n.getFigure().getChildren().get(0);
+	         	  
+	            s.setLineWidth(2);            	  
+	            s.setForegroundColor(DiagramColorConstants.black);
+		    }   
+		}
+		
+	}
+
 	private void hookContextMenu() {
 		MenuManager menuMgr = new MenuManager("#PopupMenu");
 		menuMgr.setRemoveAllWhenShown(true);
@@ -244,6 +307,7 @@ public class GoalsView extends ViewPart implements IPartListener2{
 		};
 		highlightSelected.setText("New Goal");
 		highlightSelected.setToolTipText("Adds a new goal");
+		
 		highlightSelected.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
 			getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
 		
