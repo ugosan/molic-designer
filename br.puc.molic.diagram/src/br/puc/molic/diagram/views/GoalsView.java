@@ -1,40 +1,62 @@
 package br.puc.molic.diagram.views;
 
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.ui.internal.WorkbenchPage;
-import org.eclipse.ui.part.*;
 import org.eclipse.draw2d.Shape;
-import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.ui.celleditor.FeatureEditorDialog;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.DiagramColorConstants;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.impl.DiagramImpl;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
-import org.eclipse.jface.viewers.*;
-import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.events.ControlListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.jface.action.*;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IMenuListener;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.IInputValidator;
+import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.ui.*;
-import org.eclipse.swt.widgets.Menu;
+import org.eclipse.jface.viewers.CheckStateChangedEvent;
+import org.eclipse.jface.viewers.CheckboxTableViewer;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.ICheckStateListener;
+import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
-
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IPartListener2;
+import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.IWorkbenchActionConstants;
+import org.eclipse.ui.IWorkbenchPartReference;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.part.ViewPart;
 
 import br.puc.molic.Diagram;
 import br.puc.molic.Element;
-import br.puc.molic.MolicFactory;
 import br.puc.molic.MolicPackage;
-import br.puc.molic.diagram.edit.parts.DiagramEditPart;
 import br.puc.molic.diagram.part.MolicDiagramEditor;
 
 
@@ -59,12 +81,13 @@ import br.puc.molic.diagram.part.MolicDiagramEditor;
 
 public class GoalsView extends ViewPart implements IPartListener2{
 	private CheckboxTableViewer viewer;
-	private Action highlightSelected;
-	private Action action2;
+	private Action newGoal;
+	private Action remove;
 	private Action doubleClickAction;
 	
 	private DiagramEditor activeEditor;
 	private IStructuredSelection selectedGoals;
+	private IWorkbenchPartReference activeRef;
 	
 	/*
 	 * The content provider class is responsible for
@@ -141,14 +164,14 @@ public class GoalsView extends ViewPart implements IPartListener2{
 	                handleChecked(e);
 	           }
 		});
-		/* cursor selection 
+		
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			public void selectionChanged(SelectionChangedEvent event) {
 				selectedGoals = (IStructuredSelection) event.getSelection();
 			    
 			   }
 			  });
-		*/
+		
 		
 		// Create the help context id for the viewer's control
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(), "br.puc.molic.diagram.viewer");
@@ -227,28 +250,56 @@ public class GoalsView extends ViewPart implements IPartListener2{
 	}
 
 	private void fillLocalPullDown(IMenuManager manager) {
-		manager.add(highlightSelected);
-		manager.add(new Separator());
-		manager.add(action2);
+		manager.add(newGoal);		
+		manager.add(remove);
 	}
 
 	private void fillContextMenu(IMenuManager manager) {
-		manager.add(highlightSelected);
-		manager.add(action2);
+		manager.add(newGoal);
+		manager.add(remove);
 		// Other plug-ins can contribute there actions here
 		manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 	}
 	
 	private void fillLocalToolBar(IToolBarManager manager) {
-		manager.add(highlightSelected);
-		manager.add(action2);
+		manager.add(newGoal);
+		manager.add(remove);
 	}
 
 	private void makeActions() {
-		highlightSelected = new Action() {
+		newGoal = new Action() {
 			public void run() {
-			   
-			    
+			   /*
+				Diagram d = (Diagram) ((DiagramImpl)activeEditor.getDiagramEditPart().getModel()).basicGetElement();
+				
+				Element e = (Element)((NodeImpl)n.getModel()).basicGetElement();
+				EAttribute feature = MolicPackage.eINSTANCE.getDiagram_Goals();
+				
+				FeatureEditorDialog dialog = new FeatureEditorDialog(
+						getSite().getShell(), getLabelProvider(),
+						d, feature.getEType(),
+						(List) ((IItemPropertySource) itemPropertyDescriptor.getPropertyValue(object)).getEditableValue(object), getDisplayName(),
+						choiceOfValues);
+				dialog.open();
+				*/
+
+				Diagram d = (Diagram) ((DiagramImpl)activeEditor.getDiagramEditPart().getModel()).basicGetElement();
+				
+				List list = new ArrayList(d.getGoals());
+								
+				InputDialog dlg = new InputDialog(getSite().getShell(), "", "Enter new Goal", "", new LengthValidator());
+				
+				 if (dlg.open() == Window.OK) {
+					list.add(dlg.getValue());
+					
+					EAttribute feature = MolicPackage.eINSTANCE.getDiagram_Goals();
+					activeEditor.getEditingDomain().getCommandStack().execute(SetCommand.create(activeEditor.getEditingDomain(), d, feature , list));
+					setInput(activeRef);
+
+				 }
+
+				/*
+				 
 			    Iterator it = activeEditor.getDiagramEditPart().getChildren().iterator();
 			    while(it.hasNext()){
 			    	ShapeNodeEditPart n = (ShapeNodeEditPart) it.next();
@@ -272,54 +323,39 @@ public class GoalsView extends ViewPart implements IPartListener2{
 			    	//System.out.println(it.next());
 			    	
 			    }
-			    //GoalsDialog d = new GoalsDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),"llala","lalalal","lalala",null);
-			    //d.open();
 			    
-				
-				
-				
-				
-				/*
-			    try {
-			    MolicDiagramEditor editor = ( MolicDiagramEditor )PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		        
-			    
-		        MolicFactory factory = MolicFactory.eINSTANCE;
-		        Goal goal = factory.createGoal();
-		        goal.setName("aaa");
-		        
-
-		        
-		        
-		        
-		        DiagramImpl diagram = (DiagramImpl)((org.eclipse.gmf.runtime.notation.impl.DiagramImpl)editor.getDiagramEditPart().getModel()).basicGetElement();
-
-		        
-		        editor.getDiagramEditPart().getEditingDomain().getCommandStack().execute(AddCommand.create(
-		                editor.getDiagramEditPart().getEditingDomain(), diagram, MolicPackage.Literals.DIAGRAM__GOAL, goal)); 
-		        
-		        
-			    }catch(Exception e) {
-			        e.printStackTrace();
-			    }
 			    */
+				
+				
 			}
 		};
-		highlightSelected.setText("New Goal");
-		highlightSelected.setToolTipText("Adds a new goal");
+		newGoal.setText("New Goal");
+		newGoal.setToolTipText("Adds a new goal");
 		
-		highlightSelected.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
-			getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
+		newGoal.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
+			getImageDescriptor(ISharedImages.IMG_OBJ_ADD));
 		
-		action2 = new Action() {
+		remove = new Action() {
 			public void run() {
-				showMessage("This is supposed to happen..");
+				Diagram d = (Diagram) ((DiagramImpl)activeEditor.getDiagramEditPart().getModel()).basicGetElement();
+				
+				List list = new ArrayList(d.getGoals());
+								
+				
+				list.removeAll(selectedGoals.toList());
+					
+				EAttribute feature = MolicPackage.eINSTANCE.getDiagram_Goals();
+				activeEditor.getEditingDomain().getCommandStack().execute(SetCommand.create(activeEditor.getEditingDomain(), d, feature , list));
+				setInput(activeRef);
+
+				 
+
 			}
 		};
-		action2.setText("Run");
-		action2.setToolTipText("Runs the selected goal");
-		action2.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
-				getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
+		remove.setText("Remove");
+		remove.setToolTipText("Remove the selected goal");
+		remove.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
+				getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
 		doubleClickAction = new Action() {
 			public void run() {
 				ISelection selection = viewer.getSelection();
@@ -350,28 +386,21 @@ public class GoalsView extends ViewPart implements IPartListener2{
 		viewer.getControl().setFocus();
 	}
 
-
-
-	
 	public void partActivated(IWorkbenchPartReference partRef) {		
 		setInput(partRef);
 	}
-
 	
 	public void partBroughtToTop(IWorkbenchPartReference partRef) {
 		setInput(partRef);
 	}
-
 	
 	public void partClosed(IWorkbenchPartReference partRef) {
 		//viewer.setInput(null);
-
 	}
 
 	
 	public void partDeactivated(IWorkbenchPartReference partRef) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 
 	public void partHidden(IWorkbenchPartReference partRef) {
@@ -396,7 +425,32 @@ public class GoalsView extends ViewPart implements IPartListener2{
 			MolicDiagramEditor editor = (MolicDiagramEditor) partRef.getPart(false);			
 			viewer.setInput(editor.getDiagramEditPart().getDiagramView().getElement());
 			activeEditor = editor;
+			activeRef = partRef;
 		}
 	}
 
+
+	/**
+	 * This class validates a String. It makes sure that the String is between 5 and 8
+	 * characters
+	 */
+	class LengthValidator implements IInputValidator {
+	  /**
+	   * Validates the String. Returns null for no error, or an error message
+	   * 
+	   * @param newText the String to validate
+	   * @return String
+	   */
+	  public String isValid(String newText) {
+	    int len = newText.length();
+
+	    // Determine if input is too short or too long
+	    if (len < 1) return "Too short";
+	    
+	    // Input must be OK
+	    return null;
+	  }
+	}
+
+	
 }
