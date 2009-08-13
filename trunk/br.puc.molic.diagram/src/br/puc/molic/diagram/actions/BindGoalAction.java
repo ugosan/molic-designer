@@ -1,6 +1,7 @@
 package br.puc.molic.diagram.actions;
 
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -9,7 +10,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.Shape;
-import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.ui.celleditor.FeatureEditorDialog;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
@@ -24,12 +26,17 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.window.Window;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.swt.layout.FormData;
+import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
@@ -102,9 +109,16 @@ public class BindGoalAction implements IObjectActionDelegate {
     		if (!myShell.getDisplay().readAndDispatch ()) myShell.getDisplay().sleep ();
     	}
     	//display.dispose ();
-    
-        */
-      
+    	*/
+        /*
+    	FeatureEditorDialog dialog = new FeatureEditorDialog(
+				myShell, getLabelProvider(),
+				getObject(), feature.getEType(),
+				(List) ((IItemPropertySource) itemPropertyDescriptor.getPropertyValue(object)).getEditableValue(object), getDisplayName(),
+				choiceOfValues);
+		dialog.open();
+		*/
+    	
     	MolicDiagramEditor editor = (MolicDiagramEditor)selectedPart;
      
      	Diagram d = (Diagram)editor.getDiagramEditPart().getDiagramView().getElement();
