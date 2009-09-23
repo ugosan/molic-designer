@@ -87,7 +87,7 @@ Teste de nota de copyright do Molic
             id="br.puc.molic.diagram.ExportToCSV">
          <action
                label="%exportToCSVActionLabel"
-               class="br.puc.molic.diagram.part.ExportToCSVAction"
+               class="br.puc.molic.diagram.actions.ExportToCSVAction"
                menubarPath="file/additions"
                id="br.puc.molic.diagram.ExportToCSVAction">
          </action>         
@@ -578,9 +578,23 @@ Teste de nota de copyright do Molic
          id="br.puc.molic.diagram.views.GoalsView"
          name="Goals">
    </view>
+   <category
+         id="br.puc.molic.diagram"
+         name="Gallery">
+   </category>
+   <view
+         category="br.puc.molic.diagram"
+         class="br.puc.molic.diagram.views.GalleryView"
+         icon="icons/gallery.gif"
+         id="br.puc.molic.diagram.views.GalleryView"
+         name="Gallery">
+   </view>
 </extension>
 <extension
       point="org.eclipse.help.contexts">
+   <contexts
+         file="contexts.xml">
+   </contexts>
    <contexts
          file="contexts.xml">
    </contexts>

@@ -161,7 +161,7 @@ public class BindGoalAction implements IObjectActionDelegate {
 				}
 
 			}
-			view.highlightChecked();
+			view.highlightSelected();
 		}catch(Exception ex){
 			ex.printStackTrace();
 		}

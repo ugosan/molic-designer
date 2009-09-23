@@ -173,6 +173,7 @@
       <plugin id="org.eclipse.m2m.qvt.oml.emf.util"/>
       <plugin id="org.eclipse.m2m.qvt.oml.project"/>
       <plugin id="org.eclipse.m2m.qvt.oml.runtime"/>
+      <plugin id="org.eclipse.nebula.widgets.gallery"/>
       <plugin id="org.eclipse.ocl"/>
       <plugin id="org.eclipse.ocl.ecore"/>
       <plugin id="org.eclipse.osgi"/>

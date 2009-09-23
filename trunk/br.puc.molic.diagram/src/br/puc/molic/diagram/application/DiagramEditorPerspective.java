@@ -24,6 +24,7 @@ public class DiagramEditorPerspective implements IPerspectiveFactory {
 				"right", IPageLayout.RIGHT, 0.6f, layout.getEditorArea()); //$NON-NLS-1$
 		right.addView(IPageLayout.ID_OUTLINE);
 		right.addView("br.puc.molic.diagram.views.GoalsView");
+		right.addView("br.puc.molic.diagram.views.GalleryView");
 
 		IFolderLayout bottomRight = layout.createFolder(
 				"bottomRight", IPageLayout.BOTTOM, 0.6f, "right"); //$NON-NLS-1$	//$NON-NLS-2$

@@ -9,11 +9,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.ConnectionViewFactory;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.notation.JumpLinkStatus;
+import org.eclipse.gmf.runtime.notation.JumpLinkType;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.preference.IPreferenceStore;
 
 import br.puc.molic.diagram.edit.parts.BRTUtteranceEditPart;
 import br.puc.molic.diagram.edit.parts.BRTUtteranceLabelEditPart;
@@ -45,9 +48,9 @@ public class BRTUtteranceViewFactory extends ConnectionViewFactory {
 					.getType(BRTUtteranceEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint,
-				index, persisted);
-
+		
+		super.decorateView(containerView, view, semanticAdapter, semanticHint,index, persisted);
+		
 		//rectilinear routing
 		NotationPackage NOTATION = NotationPackage.eINSTANCE;
 		EClass routingStyle = NOTATION.getRoutingStyle();
@@ -70,5 +73,26 @@ public class BRTUtteranceViewFactory extends ConnectionViewFactory {
 						.getType(BRTUtteranceLabelEditPart.VISUAL_ID),
 				ViewUtil.APPEND, true, getPreferencesHint());
 	}
+	
+	@Override
+    /**
+     *      * To make connector routing to rectilinear and other properties lk    jump status and jump type setting.
+     */    protected void initializeFromPreferences(View view) {
+        super.initializeFromPreferences(view);
+
+        IPreferenceStore store = (IPreferenceStore) getPreferencesHint()
+            .getPreferenceStore();
+
+RoutingStyle routingStyle = (RoutingStyle)view.getStyle(NotationPackage.Literals.ROUTING_STYLE);
+        if (routingStyle != null) {
+//This is for routing style set to rectilinear.           
+            Routing routing = Routing.get(1);
+            if (routing != null) {
+                routingStyle.setRouting(routing);
+                routingStyle.setJumpLinkStatus(JumpLinkStatus.ABOVE_LITERAL);
+                routingStyle.setJumpLinkType(JumpLinkType.CHAMFERED_LITERAL);
+            }
+        }           
+    } 
 
 }

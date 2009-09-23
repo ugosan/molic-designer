@@ -1,4 +1,4 @@
-package br.puc.molic.diagram.part;
+package br.puc.molic.diagram.actions;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,6 +22,8 @@ import br.puc.molic.UbiquitousAccess;
 import br.puc.molic.Utterance;
 import br.puc.molic.diagram.SaveDialog;
 import br.puc.molic.diagram.edit.parts.DiagramEditPart;
+import br.puc.molic.diagram.part.MolicDiagramEditor;
+import br.puc.molic.diagram.part.MolicDiagramEditorPlugin;
 
 
 /**
