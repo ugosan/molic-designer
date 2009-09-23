@@ -12,8 +12,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Routing;
+import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.View;
 
+import br.puc.molic.diagram.edit.parts.BRTUtteranceEditPart.BRTUtteranceFigure;
 import br.puc.molic.diagram.edit.policies.UtteranceItemSemanticEditPolicy;
 
 /**
@@ -91,10 +95,13 @@ public class UtteranceEditPart extends ConnectionNodeEditPart implements
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Connection createConnectionFigure() {
-		return new UtteranceFigure();
+		//UtteranceFigure figure = new  UtteranceFigure();
+		//RoutingStyle style = (RoutingStyle) ((View) getModel()).getStyle(NotationPackage.Literals.ROUTING_STYLE);
+		//style.setRouting(Routing.RECTILINEAR_LITERAL);
+		return new UtteranceFigure(); 
 	}
 
 	/**

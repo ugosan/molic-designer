@@ -6,6 +6,7 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
@@ -13,8 +14,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Routing;
+import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.View;
 
+import br.puc.molic.diagram.edit.parts.UtteranceEditPart.UtteranceFigure;
 import br.puc.molic.diagram.edit.policies.BRTUtteranceItemSemanticEditPolicy;
 
 /**
@@ -93,10 +98,15 @@ public class BRTUtteranceEditPart extends ConnectionNodeEditPart implements
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Connection createConnectionFigure() {
-		return new BRTUtteranceFigure();
+		//BRTUtteranceFigure figure = new  BRTUtteranceFigure();
+		//RoutingStyle style = (RoutingStyle) ((View) getModel()).getStyle(NotationPackage.Literals.ROUTING_STYLE);
+		//style.setRouting(Routing.RECTILINEAR_LITERAL);
+		//getEditingDomain().getCommandStack().execute(SetCommand.create(getEditingDomain(), (View) getModel(), style.getRouting() , Routing.RECTILINEAR_LITERAL));
+		
+		return new BRTUtteranceFigure();  
 	}
 
 	/**

@@ -3,7 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: br.puc.molic.diagram; singleton:=true
 Bundle-Version: 0.0.1.qualifier
-Bundle-ClassPath: .,satin-v2.3.jar
+Bundle-ClassPath: .,
+ lib/org.eclipse.nebula.widgets.gallery_0.5.2.R_0_20090418.jar
 Bundle-Activator: br.puc.molic.diagram.part.MolicDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

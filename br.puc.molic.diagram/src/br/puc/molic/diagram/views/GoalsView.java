@@ -1,23 +1,30 @@
 package br.puc.molic.diagram.views;
 
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.draw2d.Shape;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.celleditor.FeatureEditorDialog;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartListener;
+import org.eclipse.gef.NodeListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.DiagramColorConstants;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.DiagramImpl;
 import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
@@ -28,8 +35,8 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.IInputValidator;
-import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -52,7 +59,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IPartListener2;
 import org.eclipse.ui.ISharedImages;
@@ -60,10 +66,13 @@ import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
+import org.osgi.framework.Bundle;
 
+import br.puc.molic.BRTUtterance;
 import br.puc.molic.Connection;
 import br.puc.molic.Diagram;
 import br.puc.molic.Element;
+import br.puc.molic.MolicFactory;
 import br.puc.molic.MolicPackage;
 import br.puc.molic.diagram.part.MolicDiagramEditor;
 import br.puc.molic.diagram.part.MolicDiagramEditorPlugin;
@@ -88,10 +97,16 @@ import br.puc.molic.diagram.part.MolicDiagramEditorPlugin;
  * <p>
  */
 
-public class GoalsView extends ViewPart implements IPartListener2{
+public class GoalsView extends ViewPart implements IPartListener2, EditPartListener{
 	private CheckboxTableViewer viewer;
+	private Action highlight;
 	private Action newGoal;
 	private Action remove;
+	private Action runGoal;
+	private Action help;
+	
+	private Action changeColor;
+	
 	private Action doubleClickAction;
 	
 	private DiagramEditor activeEditor;
@@ -134,7 +149,7 @@ public class GoalsView extends ViewPart implements IPartListener2{
 			return getImage(obj);
 		}
 		public Image getImage(Object obj) {
-			return null;//PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ELEMENT);
+			return null; //PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ELEMENT);
 		}
 	}
 	class NameSorter extends ViewerSorter {
@@ -156,7 +171,7 @@ public class GoalsView extends ViewPart implements IPartListener2{
 	 * to create the viewer and initialize it.
 	 */
 	public void createPartControl(Composite parent) {
-		Table table = new Table(parent, SWT.CHECK | SWT.BORDER );
+		Table table = new Table(parent, SWT.CHECK | SWT.BORDER | SWT.MULTI);
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 
@@ -168,17 +183,62 @@ public class GoalsView extends ViewPart implements IPartListener2{
 		viewer.setSorter(new NameSorter());
 		viewer.setInput(null);
 		viewer.addCheckStateListener(new ICheckStateListener(){
-	           public void checkStateChanged(CheckStateChangedEvent e)
-	           {
+			public void checkStateChanged(CheckStateChangedEvent ev)
+			{
 
-	               highlightChecked();
-	           }
+				if(ev.getChecked()){
+					String goal = (String) ev.getElement();
+
+					EditingDomain eDomain = activeEditor.getEditingDomain();
+
+					
+					Iterator it = activeEditor.getDiagramEditPart().getPrimaryEditParts().iterator();
+					while(it.hasNext()) {
+
+						EditPart o = (EditPart)it.next();
+
+						if(o.getSelected()>0){
+
+							if(o instanceof ShapeNodeEditPart) {
+								ShapeNodeEditPart n = (ShapeNodeEditPart) o;
+								Element e = (Element)((NodeImpl)n.getModel()).basicGetElement();
+
+								EAttribute feature = MolicPackage.eINSTANCE.getElement_Goals();
+
+								eDomain.getCommandStack().execute(SetCommand.create(eDomain, e, feature , getCheckedGoals()));
+
+							}else{
+								ConnectionNodeEditPart n = (ConnectionNodeEditPart) o;  
+
+
+								Connection e = (Connection)((EdgeImpl)n.getModel()).basicGetElement();
+								EAttribute feature = MolicPackage.eINSTANCE.getConnection_Goals();
+
+								eDomain.getCommandStack().execute(SetCommand.create(eDomain, e, feature , getCheckedGoals()));
+
+
+							}
+						}
+					}
+				}
+
+				highlightSelected();
+			}
 		});
 		
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			public void selectionChanged(SelectionChangedEvent event) {
 				selectedGoals = (IStructuredSelection) event.getSelection();
-			   
+				highlightSelected();
+				
+				if(selectedGoals.size()>0){
+					runGoal.setEnabled(true);
+	        		remove.setEnabled(true);
+				}else{
+					runGoal.setEnabled(false);
+	        		remove.setEnabled(false);
+				}
+				
 			   }
 		});
 		
@@ -203,10 +263,8 @@ public class GoalsView extends ViewPart implements IPartListener2{
 		return list;
 	}
 	
-	public void highlightChecked(){
-		List<String> list = getCheckedGoals();
-		
-		clearHighlighted();
+	protected List<ShapeNodeEditPart> getNodes(String goal){
+		ArrayList<ShapeNodeEditPart> l = new ArrayList<ShapeNodeEditPart>();
 		
 		Iterator it = activeEditor.getDiagramEditPart().getChildren().iterator();
 	    while(it.hasNext()){
@@ -215,40 +273,69 @@ public class GoalsView extends ViewPart implements IPartListener2{
             Element e = (Element)((NodeImpl)n.getModel()).basicGetElement();
             Iterator<String> goals = e.getGoals().iterator();
             while(goals.hasNext()){
-            	String goal = goals.next();
-            	if(list.contains(goal)){
-            		 Shape s = (Shape)n.getFigure().getChildren().get(0);
-                	  
-                     s.setLineWidth(3);            	  
-                     s.setForegroundColor(DiagramColorConstants.red);                     
+            	String g = goals.next();
+            	if(g.equals(goal)){
+            		l.add(n);                   
             	}            	
             }
-
-           
-           
 	    }
-	    
-	    it = activeEditor.getDiagramEditPart().getConnections().iterator();
-	    while(it.hasNext()){
-	    	ConnectionNodeEditPart n = (ConnectionNodeEditPart) it.next();  
+	    return l;
+	}
+	
+	protected List<ConnectionNodeEditPart> getConnections(String goal){
+		ArrayList<ConnectionNodeEditPart> l = new ArrayList<ConnectionNodeEditPart>();
+		
+		Iterator it = activeEditor.getDiagramEditPart().getConnections().iterator();
+		    while(it.hasNext()){
+		    	ConnectionNodeEditPart n = (ConnectionNodeEditPart) it.next();  
+		    				
+		    	Connection e = (Connection)((EdgeImpl)n.getModel()).basicGetElement();
+	            Iterator<String> goals = e.getGoals().iterator();
+	            while(goals.hasNext()){
+	            	String g = goals.next();
+	            	if(g.equals(goal)){
+	            		l.add(n);                     
+	            	}            	
+	            }
+		    }
+		return l;
+	}
 
-	    	
-			
-	    	Connection e = (Connection)((EdgeImpl)n.getModel()).basicGetElement();
-            Iterator<String> goals = e.getGoals().iterator();
-            while(goals.hasNext()){
-            	String goal = goals.next();
-            	if(list.contains(goal)){
-            		PolylineConnectionEx s = (PolylineConnectionEx)n.getFigure();
-        			s.setLineWidth(3);               
-        			s.setForegroundColor(DiagramColorConstants.red);                     
-            	}            	
-            }
+	
+	public void highlightSelected(){
+		if(highlight.isChecked()){
 
-           
-           
-	    }
-	    			
+			clearHighlighted();
+
+
+
+
+			Iterator<String> goals = selectedGoals.iterator();
+			while(goals.hasNext()){
+				String goal = goals.next();
+
+				List<ShapeNodeEditPart> nodesWithGoal = getNodes(goal);
+				List<ConnectionNodeEditPart> connectionsWithGoal = getConnections(goal);
+
+				for(int i=0;i<nodesWithGoal.size();i++){
+
+					Shape s = (Shape)nodesWithGoal.get(i).getFigure().getChildren().get(0);          	  
+					s.setLineWidth(3);            	  
+					s.setForegroundColor(DiagramColorConstants.darkBlue);  
+				}
+
+				for(int i=0;i<connectionsWithGoal.size();i++){
+
+					PolylineConnectionEx s = (PolylineConnectionEx)connectionsWithGoal.get(i).getFigure();
+					s.setLineWidth(3);               
+					s.setForegroundColor(DiagramColorConstants.darkBlue);  
+				}
+
+
+			}
+
+		}
+
 	}
 	
 	public void clearHighlighted(){
@@ -267,7 +354,12 @@ public class GoalsView extends ViewPart implements IPartListener2{
 
             PolylineConnectionEx s = (PolylineConnectionEx)n.getFigure();
             s.setLineWidth(1);               
-        	s.setForegroundColor(DiagramColorConstants.black);                     
+        	s.setForegroundColor(DiagramColorConstants.black);                  
+        	
+        	//Breakdowns have thicker lines
+        	if(((EdgeImpl)n.getModel()).basicGetElement().eClass() == MolicPackage.eINSTANCE.getBRTUtterance()){
+        		s.setLineWidth(2);
+        	}
 
 	    }
 	}
@@ -288,29 +380,58 @@ public class GoalsView extends ViewPart implements IPartListener2{
 
 	private void contributeToActionBars() {
 		IActionBars bars = getViewSite().getActionBars();
-		fillLocalPullDown(bars.getMenuManager());
+		//fillLocalPullDown(bars.getMenuManager());
 		fillLocalToolBar(bars.getToolBarManager());
 	}
-
+/*
 	private void fillLocalPullDown(IMenuManager manager) {
-		manager.add(newGoal);		
+		//manager.add(newGoal);		
 		manager.add(remove);
+		manager.add(new Separator());
+		manager.add(runGoal);
+		manager.add(new Separator());
+		manager.add(help);
 	}
+	*/
 
 	private void fillContextMenu(IMenuManager manager) {
-		manager.add(newGoal);
-		manager.add(remove);
+		manager.add(runGoal);
+		manager.add(remove);		
+		manager.add(new Separator());		
+		manager.add(changeColor);
+
+		
 		// Other plug-ins can contribute there actions here
 		manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 	}
 	
-	private void fillLocalToolBar(IToolBarManager manager) {
+	private void fillLocalToolBar(IToolBarManager manager) {		
 		manager.add(newGoal);
 		manager.add(remove);
+		manager.add(new Separator());
+		manager.add(highlight);
+		manager.add(new Separator());
+		manager.add(runGoal);
+		manager.add(new Separator());
+		manager.add(help);
 	}
 
 	private void makeActions() {
-		newGoal = new Action() {
+		highlight = new Action("Highlight", Action.AS_CHECK_BOX ){
+			public void run() {
+				if(this.isChecked()){
+					highlightSelected();
+				}else{
+					clearHighlighted();
+				}
+			}
+		};
+		highlight.setToolTipText("On/Off Goal Highlighing");
+		highlight.setImageDescriptor(getImage("/icons/highlight.png"));
+		highlight.setChecked(true);
+		
+		
+		newGoal = new Action("New Goal") {
 			public void run() {
 			   
 				Diagram d = (Diagram) ((DiagramImpl)activeEditor.getDiagramEditPart().getModel()).basicGetElement();
@@ -334,51 +455,25 @@ public class GoalsView extends ViewPart implements IPartListener2{
 					activeEditor.getEditingDomain().getCommandStack().execute(SetCommand.create(activeEditor.getEditingDomain(), d, feature , list));
 					setInput(activeRef);					
 				}
-
-				/*
-				 
-			    Iterator it = activeEditor.getDiagramEditPart().getChildren().iterator();
-			    while(it.hasNext()){
-			    	ShapeNodeEditPart n = (ShapeNodeEditPart) it.next();
-			    	
-		            Element e = (Element)((NodeImpl)n.getModel()).basicGetElement();
-		            Iterator<String> goals = e.getGoals().iterator();
-		            while(goals.hasNext()){
-		            	String goal = goals.next();
-		            	System.out.println("i have "+goal);
-		            	System.out.println(selectedGoals.toList().indexOf(goal));
-		            }
-		            
-		           // Shape s = (Shape)n.getFigure().getChildren().get(0);
-		            	  
-		            //s.setLineWidth(3);            	  
-		           // s.setForegroundColor(DiagramColorConstants.red);
-			    }
-			    
-			    it = activeEditor.getDiagramEditPart().getConnections().iterator();
-			    while(it.hasNext()){
-			    	//System.out.println(it.next());
-			    	
-			    }
-			    
-			    */
-				
 				
 			}
-		};
-		newGoal.setText("New Goal");
+		};		
 		newGoal.setToolTipText("Adds a new goal");
 		
 		newGoal.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
 			getImageDescriptor(ISharedImages.IMG_OBJ_ADD));
 		
-		remove = new Action() {
+		remove = new Action("Remove") {
 			public void run() {
 				Diagram d = (Diagram) ((DiagramImpl)activeEditor.getDiagramEditPart().getModel()).basicGetElement();
+							
+				List list = new ArrayList(d.getGoals());
+				List goalsToRemove = new ArrayList(selectedGoals.toList());
 				
-				List list = new ArrayList(d.getGoals());				
-				list.removeAll(selectedGoals.toList());
+				list.removeAll(goalsToRemove);
 					
+				
+				
 				MessageBox messageBox = new MessageBox(getSite().getShell(), SWT.ICON_WARNING | SWT.YES | SWT.NO);
 		        
 		        messageBox.setText("Remove Goal");
@@ -386,24 +481,79 @@ public class GoalsView extends ViewPart implements IPartListener2{
 		        messageBox.setMessage("Are you sure to delete the selected goals?");
 		        	        
 		        if(messageBox.open() == SWT.YES){
+		        	removeGoalFromElements(goalsToRemove);
 		        	EAttribute feature = MolicPackage.eINSTANCE.getDiagram_Goals();
 					activeEditor.getEditingDomain().getCommandStack().execute(SetCommand.create(activeEditor.getEditingDomain(), d, feature , list));
 					setInput(activeRef);
+					
 		        }
 
 			}
-		};
-		remove.setText("Remove");
+		};		
 		remove.setToolTipText("Remove the selected goal");
 		remove.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
 				getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
-		doubleClickAction = new Action() {
+		
+		runGoal = new Action() {
 			public void run() {
-				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection)selection).getFirstElement();
-				showMessage("Double-click detected on "+obj.toString());
+				
+				if((selectedGoals.size()!=0)&&(selectedGoals.size()>1)){
+				
+					MessageBox messageBox = new MessageBox(getSite().getShell(), SWT.ICON_WARNING | SWT.OK);
+			        
+			        messageBox.setText("Sorry");
+			        
+			        messageBox.setMessage("It's only possible to run one goal on each simulation. \n Please select just one goal");
+			        	        
+			        messageBox.open(); 
+
+				}else{
+					String goal = (String) selectedGoals.getFirstElement();
+					//Iterator<String> goals = checkedGoals.iterator();
+				
+					RunGoal r = new RunGoal();
+					r.run(getNodes(goal),getConnections(goal));
+				}
 			}
 		};
+		runGoal.setText("Run");
+		runGoal.setToolTipText("Run the selected goal");
+		runGoal.setImageDescriptor(getImage("/icons/run.gif"));
+		
+		help = new Action() {
+			public void run() {
+				showMessage("This will have help content");
+
+			}
+		};
+		help.setText("Help");
+		help.setToolTipText("Help");
+		help.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
+				getImageDescriptor(ISharedImages.IMG_LCL_LINKTO_HELP));
+		
+		
+		changeColor = new Action() {
+			public void run() {
+				
+
+			}
+		};
+				
+		changeColor.setText("Change Highlight Color");			
+		changeColor.setImageDescriptor(getImage("/icons/changecolor.gif"));
+		
+
+		
+		doubleClickAction = new Action() {
+			public void run() {
+				//ISelection selection = viewer.getSelection();
+				//Object obj = ((IStructuredSelection)selection).getFirstElement();
+				//showMessage("Double-click detected on "+obj.toString());
+			}
+		};
+		
+		runGoal.setEnabled(false);
+		remove.setEnabled(false);
 	}
 
 	private void hookDoubleClickAction() {
@@ -420,11 +570,57 @@ public class GoalsView extends ViewPart implements IPartListener2{
 			message);
 	}
 
+	public ImageDescriptor getImage(String p) {
+		
+		Bundle bundle = Platform.getBundle("br.puc.molic.diagram");
+		IPath path = new Path(p);
+		URL imageUrl = FileLocator.find(bundle, path, null);
+		
+		return  ImageDescriptor.createFromURL(imageUrl);
+	}
+
+	
+	private void removeGoalFromElements(List<String> goals){
+		
+		Diagram d = (Diagram) ((DiagramImpl)activeEditor.getDiagramEditPart().getModel()).basicGetElement();
+		EditingDomain eDomain = activeEditor.getEditingDomain();
+		
+		Iterator<Element> elements = d.getElement().iterator();
+		while(elements.hasNext()){
+			Element e = elements.next();
+						
+			List<String> list = new ArrayList<String>(e.getGoals());
+			list.removeAll(goals);
+						
+			EAttribute feature = MolicPackage.eINSTANCE.getElement_Goals();
+
+			eDomain.getCommandStack().execute(SetCommand.create(eDomain, e, feature , list));
+
+		}
+		
+		Iterator<Connection> connections = d.getUtterance().iterator();
+		while(connections.hasNext()){
+			Connection c = connections.next();
+			List<String> list = new ArrayList<String>(c.getGoals());
+			
+			list.removeAll(goals);
+						
+			EAttribute feature = MolicPackage.eINSTANCE.getConnection_Goals();
+
+			eDomain.getCommandStack().execute(SetCommand.create(eDomain, c, feature , list));
+		}
+
+		
+		
+	}
+	
+	
 	/**
 	 * Passing the focus request to the viewer's control.
 	 */
 	public void setFocus() {
 		viewer.getControl().setFocus();
+		setInput(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getPartService().getActivePartReference());
 	}
 
 	public void partActivated(IWorkbenchPartReference partRef) {		
@@ -463,35 +659,53 @@ public class GoalsView extends ViewPart implements IPartListener2{
 
 	private void setInput(IWorkbenchPartReference partRef){
 		if(partRef.getPart(false) instanceof MolicDiagramEditor){
-			MolicDiagramEditor editor = (MolicDiagramEditor) partRef.getPart(false);			
+			MolicDiagramEditor editor = (MolicDiagramEditor) partRef.getPart(true);			
 			viewer.setInput(editor.getDiagramEditPart().getDiagramView().getElement());
 			activeEditor = editor;
 			activeRef = partRef;
+			
+			//adds listeners to ALL the editparts
+			activeEditor.getDiagramEditPart().addEditPartListener(this);
+			Iterator it = activeEditor.getDiagramEditPart().getPrimaryEditParts().iterator();
+ 		   	while(it.hasNext()) {	
+ 		   		EditPart o = (EditPart)it.next();
+				o.addEditPartListener(this);
+ 		   	}
 		}
 	}
 
-
-	/**
-	 * This class validates a String. It makes sure that the String is between 5 and 8
-	 * characters
-	 */
-	class LengthValidator implements IInputValidator {
-	  /**
-	   * Validates the String. Returns null for no error, or an error message
-	   * 
-	   * @param newText the String to validate
-	   * @return String
-	   */
-	  public String isValid(String newText) {
-	    int len = newText.length();
-
-	    // Determine if input is too short or too long
-	    if (len < 1) return "Too short";
-	    
-	    // Input must be OK
-	    return null;
-	  }
+	@Override
+	public void childAdded(EditPart arg0, int arg1) {
+		arg0.addEditPartListener(this);		
 	}
+
+	@Override
+	public void partActivated(EditPart arg0) {
+		// TODO Auto-generated method stub
+		//System.out.println("active "+arg0);
+	}
+
+	@Override
+	public void partDeactivated(EditPart arg0) {
+		// TODO Auto-generated method stub
+		//System.out.println("de-active "+arg0);
+	}
+
+	@Override
+	public void removingChild(EditPart arg0, int arg1) {
+		// TODO Auto-generated method stub
+		arg0.removeEditPartListener(this);
+	}
+
+	@Override
+	public void selectedStateChanged(EditPart arg0) {
+		// TODO Auto-generated method stub
+		//System.out.println("select change "+arg0.getSelected()+" "+arg0.getModel());
+		viewer.setSelection(null);
+		viewer.setAllChecked(false);
+		
+	}
+
 
 	
 }

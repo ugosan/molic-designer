@@ -19,6 +19,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.dnd.TransferDropTargetListener;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
@@ -33,10 +34,13 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DropTargetEvent;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 
+import br.puc.molic.diagram.edit.policies.GalleryDropEditPolicy;
 import br.puc.molic.diagram.edit.policies.SceneItemSemanticEditPolicy;
 import br.puc.molic.diagram.part.MolicVisualIDRegistry;
 import br.puc.molic.diagram.providers.MolicElementTypes;
@@ -80,6 +84,8 @@ public class SceneEditPart extends ShapeNodeEditPart {
 
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+		installEditPolicy(EditPolicy.CONTAINER_ROLE, new GalleryDropEditPolicy());
+		
 	}
 
 	/**
@@ -203,11 +209,7 @@ public class SceneEditPart extends ShapeNodeEditPart {
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 
-		//Color c = new Color(shape.getForegroundColor().getDevice(),200,0,0);
-		//shape.setForegroundColor(c);
-		figure
-				.setToolTip(new Label(
-						"Click on the topic or the dialogue to edit them. \n For multiple lines, Ctrl+Enter does a line break"));
+		//figure.setToolTip(new Label("Click on the topic or the dialogue to edit them. \n For multiple lines, Ctrl+Enter does a line break"));
 		return figure;
 	}
 
@@ -447,6 +449,7 @@ public class SceneEditPart extends ShapeNodeEditPart {
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8),
 					getMapMode().DPtoLP(8)));
 			this.setLineWidth(2);
+			
 			this.setForegroundColor(ColorConstants.black);
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(150),
 					getMapMode().DPtoLP(100)));
@@ -476,7 +479,7 @@ public class SceneEditPart extends ShapeNodeEditPart {
 							constraintFFigureSceneTopicFigure);
 
 			RectangleFigure dialogueRectangle0 = new RectangleFigure();
-			dialogueRectangle0.setFill(false);
+			dialogueRectangle0.setFill(true);
 			dialogueRectangle0.setOutline(false);
 
 			GridData constraintDialogueRectangle0 = new GridData();
@@ -495,7 +498,7 @@ public class SceneEditPart extends ShapeNodeEditPart {
 			dialogueRectangle0.setLayoutManager(layoutDialogueRectangle0);
 
 			RectangleFigure line1 = new RectangleFigure();
-			line1.setFill(false);
+			line1.setFill(true);
 			line1.setLineWidth(2);
 			line1.setForegroundColor(ColorConstants.black);
 			line1.setBackgroundColor(ColorConstants.orange);

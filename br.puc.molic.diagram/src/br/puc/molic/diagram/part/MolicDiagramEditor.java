@@ -3,67 +3,42 @@
  */
 package br.puc.molic.diagram.part;
 
-import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.PropertySource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.AccessibleEditPart;
-import org.eclipse.gef.EditDomain;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.EditPartViewer;
-import org.eclipse.gef.KeyHandler;
-import org.eclipse.gef.RootEditPart;
-import org.eclipse.gef.SelectionManager;
-import org.eclipse.gef.dnd.TransferDragSourceListener;
-import org.eclipse.gef.dnd.TransferDropTargetListener;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.properties.UndoablePropertySheetEntry;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
-import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.jface.resource.ResourceManager;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Cursor;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
+import org.eclipse.jface.util.LocalSelectionTransfer;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.IViewReference;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.navigator.resources.ProjectExplorer;
-import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 import org.eclipse.ui.views.properties.PropertySheetPage;
-
-import br.puc.molic.Element;
-import br.puc.molic.diagram.views.GoalsView;
 
 /**
  * @generated
@@ -201,6 +176,92 @@ public class MolicDiagramEditor extends DiagramDocumentEditor {
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
 				provider, getDiagramGraphicalViewer());
+		
+
+		//getGraphicalViewer().addDropTargetListener(new GalleryDropTargetListener(getGraphicalViewer()));
+		
+		
 	}
+	
+	/**
+	 * @generated NOT
+	 */
+	protected void initializeGraphicalViewer() {
+		super.initializeGraphicalViewer();
+		
+		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
+
+			protected Object getJavaObject(TransferData data) {
+				return LocalSelectionTransfer.getTransfer().nativeToJava(data);
+			}
+
+		});
+		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalTransfer.getInstance()) {
+
+			protected Object getJavaObject(TransferData data) {
+				return LocalTransfer.getInstance().nativeToJava(data);
+			}
+
+		});
+	}
+
+	/**
+	 * @generated
+	 */
+	private abstract class DropTargetListener extends DiagramDropTargetListener {
+
+		/**
+		 * @generated
+		 */
+		public DropTargetListener(EditPartViewer viewer, Transfer xfer) {
+			super(viewer, xfer);
+		}
+
+		/**
+		 * @generated
+		 */
+		protected List getObjectsBeingDropped() {
+			TransferData data = getCurrentEvent().currentDataType;
+			Collection uris = new HashSet();
+			
+			Object transferedObject = getJavaObject(data);
+			if (transferedObject instanceof IStructuredSelection) {
+				IStructuredSelection selection = (IStructuredSelection) transferedObject;
+				for (Iterator it = selection.iterator(); it.hasNext();) {
+					Object nextSelectedObject = it.next();
+					
+					/*if (nextSelectedObject instanceof EcoreNavigatorItem) {
+						View view = ((EcoreNavigatorItem) nextSelectedObject).getView();
+						nextSelectedObject = view.getElement();
+					} else if (nextSelectedObject instanceof IAdaptable) {
+						IAdaptable adaptable = (IAdaptable) nextSelectedObject;
+						nextSelectedObject = adaptable.getAdapter(EObject.class);
+					}
+
+					if (nextSelectedObject instanceof EObject) {
+						EObject modelElement = (EObject) nextSelectedObject;
+						Resource modelElementResource = modelElement.eResource();
+						uris.add(modelElementResource.getURI().appendFragment(modelElementResource.getURIFragment(modelElement)));
+					}*/
+				}
+			}
+
+			List result = new ArrayList();
+			for (Iterator it = uris.iterator(); it.hasNext();) {
+				URI nextURI = (URI) it.next();
+				EObject modelObject = getEditingDomain().getResourceSet().getEObject(nextURI, true);
+				result.add(modelObject);
+			}
+			return result;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected abstract Object getJavaObject(TransferData data);
+
+	}
+
+
 
 }
