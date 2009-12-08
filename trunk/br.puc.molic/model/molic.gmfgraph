@@ -30,7 +30,7 @@
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="sans"
-              height="10"/>
+              height="12"/>
         </children>
         <children
             xsi:type="gmfgraph:Rectangle"
@@ -41,7 +41,7 @@
               xsi:type="gmfgraph:GridLayoutData"
               grabExcessHorizontalSpace="true"
               grabExcessVerticalSpace="true"
-              verticalAlignment="FILL"
+              verticalAlignment="BEGINNING"
               horizontalAlignment="FILL"
               verticalSpan="0"
               horizontalSpan="0"/>
@@ -81,12 +81,24 @@
                 dy="100"/>
           </children>
         </children>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="SketchesCompartmentFigure">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              grabExcessHorizontalSpace="true"
+              grabExcessVerticalSpace="true"
+              verticalAlignment="FILL"
+              horizontalAlignment="FILL"/>
+        </children>
       </actualFigure>
       <accessors
           accessor="getFigureSceneTopicFigure"
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
       <accessors
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.1/@children.1"/>
+      <accessors
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.2"/>
     </descriptors>
     <descriptors
         name="UtteranceFigure">
@@ -246,6 +258,17 @@
       <accessors
           figure="//@figures.0/@descriptors.5/@actualFigure"/>
     </descriptors>
+    <descriptors
+        name="SketchFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="SketchFigure">
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="SketchImageFigure"
+            qualifiedClassName="br.puc.molic.diagram.edit.parts.SketchFigure"/>
+      </actualFigure>
+    </descriptors>
   </figures>
   <nodes
       name="Scene"
@@ -271,12 +294,24 @@
       figure="BRTUtteranceFigure"
       elementIcon="false"
       accessor="//@figures.0/@descriptors.3/@accessors.0"/>
+  <nodes
+      name="Sketch"
+      figure="SketchFigure"/>
   <connections
       name="Utterance"
       figure="UtteranceFigure"/>
   <connections
       name="BRTUtterance"
       figure="BRTUtteranceFigure"/>
+  <compartments
+      name="Sketches"
+      figure="SceneFigure"
+      needsTitle="true"
+      accessor="//@figures.0/@descriptors.0/@accessors.2">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="FILL"/>
+  </compartments>
   <labels
       name="SceneTopic"
       figure="SceneFigure"

@@ -36,7 +36,7 @@ public class MolicAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and may be freely distributed\nunder the terms of GNU General Public License v2\nhttp://www.gnu.org/licenses/gpl-2.0.html\n\nDeveloped at Semiotic Engineering Research Lab (SERG) - http://serg.inf.puc-rio.br\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
+	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and can be copied freely\n\nDeveloped at Semiotic Engineering Research Lab (SERG)\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -123,6 +123,10 @@ public class MolicAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseClosingPoint(ClosingPoint object) {
 				return createClosingPointAdapter();
+			}
+			@Override
+			public Adapter caseSketch(Sketch object) {
+				return createSketchAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -267,6 +271,20 @@ public class MolicAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createClosingPointAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link br.puc.molic.Sketch <em>Sketch</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see br.puc.molic.Sketch
+	 * @generated
+	 */
+	public Adapter createSketchAdapter() {
 		return null;
 	}
 

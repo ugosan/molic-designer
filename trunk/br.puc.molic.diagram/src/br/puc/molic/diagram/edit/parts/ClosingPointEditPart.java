@@ -245,6 +245,9 @@ public class ClosingPointEditPart extends ShapeNodeEditPart {
 		if (targetEditPart instanceof br.puc.molic.diagram.edit.parts.ClosingPointEditPart) {
 			types.add(MolicElementTypes.Utterance_4001);
 		}
+		if (targetEditPart instanceof SketchEditPart) {
+			types.add(MolicElementTypes.Utterance_4001);
+		}
 		if (targetEditPart instanceof SceneEditPart) {
 			types.add(MolicElementTypes.BRTUtterance_4002);
 		}
@@ -258,6 +261,9 @@ public class ClosingPointEditPart extends ShapeNodeEditPart {
 			types.add(MolicElementTypes.BRTUtterance_4002);
 		}
 		if (targetEditPart instanceof br.puc.molic.diagram.edit.parts.ClosingPointEditPart) {
+			types.add(MolicElementTypes.BRTUtterance_4002);
+		}
+		if (targetEditPart instanceof SketchEditPart) {
 			types.add(MolicElementTypes.BRTUtterance_4002);
 		}
 		return types;
@@ -284,6 +290,9 @@ public class ClosingPointEditPart extends ShapeNodeEditPart {
 		if (relationshipType == MolicElementTypes.Utterance_4001) {
 			types.add(MolicElementTypes.ClosingPoint_2012);
 		}
+		if (relationshipType == MolicElementTypes.Utterance_4001) {
+			types.add(MolicElementTypes.Sketch_3001);
+		}
 		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
 			types.add(MolicElementTypes.Scene_2007);
 		}
@@ -298,6 +307,9 @@ public class ClosingPointEditPart extends ShapeNodeEditPart {
 		}
 		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
 			types.add(MolicElementTypes.ClosingPoint_2012);
+		}
+		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
+			types.add(MolicElementTypes.Sketch_3001);
 		}
 		return types;
 	}
@@ -333,6 +345,9 @@ public class ClosingPointEditPart extends ShapeNodeEditPart {
 		if (relationshipType == MolicElementTypes.Utterance_4001) {
 			types.add(MolicElementTypes.ClosingPoint_2012);
 		}
+		if (relationshipType == MolicElementTypes.Utterance_4001) {
+			types.add(MolicElementTypes.Sketch_3001);
+		}
 		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
 			types.add(MolicElementTypes.Scene_2007);
 		}
@@ -347,6 +362,9 @@ public class ClosingPointEditPart extends ShapeNodeEditPart {
 		}
 		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
 			types.add(MolicElementTypes.ClosingPoint_2012);
+		}
+		if (relationshipType == MolicElementTypes.BRTUtterance_4002) {
+			types.add(MolicElementTypes.Sketch_3001);
 		}
 		return types;
 	}

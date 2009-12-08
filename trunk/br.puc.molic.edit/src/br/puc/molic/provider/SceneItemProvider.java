@@ -47,7 +47,7 @@ public class SceneItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and may be freely distributed\nunder the terms of GNU General Public License v2\nhttp://www.gnu.org/licenses/gpl-2.0.html\n\nDeveloped at Semiotic Engineering Research Lab (SERG) - http://serg.inf.puc-rio.br\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
+	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and can be copied freely\n\nDeveloped at Semiotic Engineering Research Lab (SERG)\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
 
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -73,6 +73,7 @@ public class SceneItemProvider
 			addGoalsPropertyDescriptor(object);
 			addTopicPropertyDescriptor(object);
 			addDialoguePropertyDescriptor(object);
+			addSketchPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -140,6 +141,28 @@ public class SceneItemProvider
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 getString("_UI_AttributesPropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Sketch feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSketchPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Scene_sketch_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Scene_sketch_feature", "_UI_Scene_type"),
+				 MolicPackage.Literals.SCENE__SKETCH,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
 				 null));
 	}
 

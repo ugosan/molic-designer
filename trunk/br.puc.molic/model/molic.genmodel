@@ -35,6 +35,8 @@
       <genFeatures children="true" createChild="false" propertyCategory="Attributes"
           propertyMultiLine="true" ecoreFeature="ecore:EAttribute molic.ecore#//Scene/dialogue"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Scene/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference molic.ecore#//Scene/sketch"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference molic.ecore#//Scene/connection"/>
     </genClasses>
     <genClasses ecoreClass="molic.ecore#//Utterance">
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Utterance/name"/>
@@ -54,6 +56,9 @@
     </genClasses>
     <genClasses ecoreClass="molic.ecore#//ClosingPoint">
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//ClosingPoint/name"/>
+    </genClasses>
+    <genClasses ecoreClass="molic.ecore#//Sketch">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute molic.ecore#//Sketch/image"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

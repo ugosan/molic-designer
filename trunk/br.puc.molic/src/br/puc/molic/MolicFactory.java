@@ -33,7 +33,7 @@ public class MolicFactory extends EFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and may be freely distributed\nunder the terms of GNU General Public License v2\nhttp://www.gnu.org/licenses/gpl-2.0.html\n\nDeveloped at Semiotic Engineering Research Lab (SERG) - http://serg.inf.puc-rio.br\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
+	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and can be copied freely\n\nDeveloped at Semiotic Engineering Research Lab (SERG)\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
 
 	/**
 	 * The singleton instance of the factory.
@@ -88,6 +88,7 @@ public class MolicFactory extends EFactoryImpl {
 			case MolicPackage.UBIQUITOUS_ACCESS: return createUbiquitousAccess();
 			case MolicPackage.OPENING_POINT: return createOpeningPoint();
 			case MolicPackage.CLOSING_POINT: return createClosingPoint();
+			case MolicPackage.SKETCH: return createSketch();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -171,6 +172,16 @@ public class MolicFactory extends EFactoryImpl {
 	public ClosingPoint createClosingPoint() {
 		ClosingPoint closingPoint = new ClosingPoint();
 		return closingPoint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Sketch createSketch() {
+		Sketch sketch = new Sketch();
+		return sketch;
 	}
 
 	/**

@@ -18,7 +18,9 @@ import br.puc.molic.diagram.edit.parts.DiagramEditPart;
 import br.puc.molic.diagram.edit.parts.OpeningPointEditPart;
 import br.puc.molic.diagram.edit.parts.SceneDialogueEditPart;
 import br.puc.molic.diagram.edit.parts.SceneEditPart;
+import br.puc.molic.diagram.edit.parts.SceneSketchesCompartmentEditPart;
 import br.puc.molic.diagram.edit.parts.SceneTopicEditPart;
+import br.puc.molic.diagram.edit.parts.SketchEditPart;
 import br.puc.molic.diagram.edit.parts.SystemProcessEditPart;
 import br.puc.molic.diagram.edit.parts.UbiquitousAccessEditPart;
 import br.puc.molic.diagram.edit.parts.UbiquitousAccessLabelEditPart;
@@ -133,6 +135,12 @@ public class MolicVisualIDRegistry {
 			}
 		}
 		switch (containerVisualID) {
+		case SceneSketchesCompartmentEditPart.VISUAL_ID:
+			if (MolicPackage.eINSTANCE.getSketch().isSuperTypeOf(
+					domainElement.eClass())) {
+				return SketchEditPart.VISUAL_ID;
+			}
+			break;
 		case DiagramEditPart.VISUAL_ID:
 			if (MolicPackage.eINSTANCE.getScene().isSuperTypeOf(
 					domainElement.eClass())) {
@@ -187,9 +195,17 @@ public class MolicVisualIDRegistry {
 			if (SceneDialogueEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (SceneSketchesCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case UbiquitousAccessEditPart.VISUAL_ID:
 			if (UbiquitousAccessLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case SceneSketchesCompartmentEditPart.VISUAL_ID:
+			if (SketchEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

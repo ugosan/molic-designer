@@ -1,25 +1,32 @@
 package br.puc.molic.diagram.edit.parts;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.OperationHistoryFactory;
+import org.eclipse.core.internal.content.Activator;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.notation.Location;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.View;
 
-import br.puc.molic.diagram.edit.parts.UtteranceEditPart.UtteranceFigure;
 import br.puc.molic.diagram.edit.policies.BRTUtteranceItemSemanticEditPolicy;
 
 /**
@@ -101,12 +108,29 @@ public class BRTUtteranceEditPart extends ConnectionNodeEditPart implements
 	 * @generated NOT
 	 */
 	protected Connection createConnectionFigure() {
-		//BRTUtteranceFigure figure = new  BRTUtteranceFigure();
-		//RoutingStyle style = (RoutingStyle) ((View) getModel()).getStyle(NotationPackage.Literals.ROUTING_STYLE);
-		//style.setRouting(Routing.RECTILINEAR_LITERAL);
-		//getEditingDomain().getCommandStack().execute(SetCommand.create(getEditingDomain(), (View) getModel(), style.getRouting() , Routing.RECTILINEAR_LITERAL));
-		
-		return new BRTUtteranceFigure();  
+		BRTUtteranceFigure figure = new BRTUtteranceFigure();
+
+		AbstractEMFOperation emfOp = new AbstractEMFOperation(
+				getEditingDomain(), "Utterance line routing setting") {
+
+			@Override
+			protected IStatus doExecute(IProgressMonitor monitor,
+					IAdaptable info) throws ExecutionException {
+				RoutingStyle style = (RoutingStyle) ((View) getModel())
+						.getStyle(NotationPackage.Literals.ROUTING_STYLE);
+				style.setRouting(Routing.RECTILINEAR_LITERAL);
+				return Status.OK_STATUS;
+			}
+		};
+
+		try {
+			OperationHistoryFactory.getOperationHistory().execute(emfOp, null,
+					null);
+		} catch (ExecutionException e) {
+			//e.printStackTrace();
+		}
+
+		return figure;
 	}
 
 	/**

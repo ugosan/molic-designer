@@ -353,6 +353,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Sketch10CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Sketch10CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String DiagramEditorActionBarAdvisor_DefaultFileEditorTitle;
 
 	/**
@@ -429,6 +439,11 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String WizardNewFileCreationPage_InvalidFileNameError;
+
+	/**
+	 * @generated
+	 */
+	public static String SceneSketchesCompartmentEditPart_title;
 
 	/**
 	 * @generated

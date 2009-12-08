@@ -37,7 +37,7 @@ public class MolicSwitch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and may be freely distributed\nunder the terms of GNU General Public License v2\nhttp://www.gnu.org/licenses/gpl-2.0.html\n\nDeveloped at Semiotic Engineering Research Lab (SERG) - http://serg.inf.puc-rio.br\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
+	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and can be copied freely\n\nDeveloped at Semiotic Engineering Research Lab (SERG)\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
 
 	/**
 	 * The cached model package
@@ -163,6 +163,13 @@ public class MolicSwitch<T> {
 				ClosingPoint closingPoint = (ClosingPoint)theEObject;
 				T result = caseClosingPoint(closingPoint);
 				if (result == null) result = caseElement(closingPoint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MolicPackage.SKETCH: {
+				Sketch sketch = (Sketch)theEObject;
+				T result = caseSketch(sketch);
+				if (result == null) result = caseElement(sketch);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -317,6 +324,21 @@ public class MolicSwitch<T> {
 	 * @generated
 	 */
 	public T caseClosingPoint(ClosingPoint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sketch</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sketch</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSketch(Sketch object) {
 		return null;
 	}
 

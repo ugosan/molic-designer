@@ -23,6 +23,7 @@ import br.puc.molic.MolicPackage;
 
 import br.puc.molic.OpeningPoint;
 import br.puc.molic.Scene;
+import br.puc.molic.Sketch;
 import br.puc.molic.SystemProcess;
 import br.puc.molic.UbiquitousAccess;
 import br.puc.molic.Utterance;
@@ -32,6 +33,8 @@ import br.puc.molic.diagram.edit.parts.DiagramEditPart;
 
 import br.puc.molic.diagram.edit.parts.OpeningPointEditPart;
 import br.puc.molic.diagram.edit.parts.SceneEditPart;
+import br.puc.molic.diagram.edit.parts.SceneSketchesCompartmentEditPart;
+import br.puc.molic.diagram.edit.parts.SketchEditPart;
 import br.puc.molic.diagram.edit.parts.SystemProcessEditPart;
 import br.puc.molic.diagram.edit.parts.UbiquitousAccessEditPart;
 import br.puc.molic.diagram.edit.parts.UtteranceEditPart;
@@ -47,10 +50,37 @@ public class MolicDiagramUpdater {
 	 */
 	public static List getSemanticChildren(View view) {
 		switch (MolicVisualIDRegistry.getVisualID(view)) {
+		case SceneSketchesCompartmentEditPart.VISUAL_ID:
+			return getSceneSketches_7001SemanticChildren(view);
 		case DiagramEditPart.VISUAL_ID:
 			return getDiagram_1000SemanticChildren(view);
 		}
 		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getSceneSketches_7001SemanticChildren(View view) {
+		if (false == view.eContainer() instanceof View) {
+			return Collections.EMPTY_LIST;
+		}
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		Scene modelElement = (Scene) containerView.getElement();
+		List result = new LinkedList();
+		for (Iterator it = modelElement.getSketch().iterator(); it.hasNext();) {
+			Sketch childElement = (Sketch) it.next();
+			int visualID = MolicVisualIDRegistry.getNodeVisualID(view,
+					childElement);
+			if (visualID == SketchEditPart.VISUAL_ID) {
+				result.add(new MolicNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -107,6 +137,8 @@ public class MolicDiagramUpdater {
 			return getOpeningPoint_2011ContainedLinks(view);
 		case ClosingPointEditPart.VISUAL_ID:
 			return getClosingPoint_2012ContainedLinks(view);
+		case SketchEditPart.VISUAL_ID:
+			return getSketch_3001ContainedLinks(view);
 		case UtteranceEditPart.VISUAL_ID:
 			return getUtterance_4001ContainedLinks(view);
 		case BRTUtteranceEditPart.VISUAL_ID:
@@ -130,6 +162,8 @@ public class MolicDiagramUpdater {
 			return getOpeningPoint_2011IncomingLinks(view);
 		case ClosingPointEditPart.VISUAL_ID:
 			return getClosingPoint_2012IncomingLinks(view);
+		case SketchEditPart.VISUAL_ID:
+			return getSketch_3001IncomingLinks(view);
 		case UtteranceEditPart.VISUAL_ID:
 			return getUtterance_4001IncomingLinks(view);
 		case BRTUtteranceEditPart.VISUAL_ID:
@@ -153,6 +187,8 @@ public class MolicDiagramUpdater {
 			return getOpeningPoint_2011OutgoingLinks(view);
 		case ClosingPointEditPart.VISUAL_ID:
 			return getClosingPoint_2012OutgoingLinks(view);
+		case SketchEditPart.VISUAL_ID:
+			return getSketch_3001OutgoingLinks(view);
 		case UtteranceEditPart.VISUAL_ID:
 			return getUtterance_4001OutgoingLinks(view);
 		case BRTUtteranceEditPart.VISUAL_ID:
@@ -206,6 +242,13 @@ public class MolicDiagramUpdater {
 	 * @generated
 	 */
 	public static List getClosingPoint_2012ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getSketch_3001ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
@@ -301,6 +344,21 @@ public class MolicDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List getSketch_3001IncomingLinks(View view) {
+		Sketch modelElement = (Sketch) view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
+				.getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_Utterance_4001(
+				modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_BRTUtterance_4002(
+				modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List getUtterance_4001IncomingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
@@ -369,6 +427,19 @@ public class MolicDiagramUpdater {
 	 */
 	public static List getClosingPoint_2012OutgoingLinks(View view) {
 		ClosingPoint modelElement = (ClosingPoint) view.getElement();
+		List result = new LinkedList();
+		result
+				.addAll(getOutgoingTypeModelFacetLinks_Utterance_4001(modelElement));
+		result
+				.addAll(getOutgoingTypeModelFacetLinks_BRTUtterance_4002(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getSketch_3001OutgoingLinks(View view) {
+		Sketch modelElement = (Sketch) view.getElement();
 		List result = new LinkedList();
 		result
 				.addAll(getOutgoingTypeModelFacetLinks_Utterance_4001(modelElement));

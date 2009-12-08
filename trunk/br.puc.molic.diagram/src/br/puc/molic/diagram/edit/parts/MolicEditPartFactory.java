@@ -57,6 +57,12 @@ public class MolicEditPartFactory implements EditPartFactory {
 			case ClosingPointEditPart.VISUAL_ID:
 				return new ClosingPointEditPart(view);
 
+			case SketchEditPart.VISUAL_ID:
+				return new SketchEditPart(view);
+
+			case SceneSketchesCompartmentEditPart.VISUAL_ID:
+				return new SceneSketchesCompartmentEditPart(view);
+
 			case UtteranceEditPart.VISUAL_ID:
 				return new UtteranceEditPart(view);
 
