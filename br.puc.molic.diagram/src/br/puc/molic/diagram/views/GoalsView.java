@@ -16,10 +16,8 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.celleditor.FeatureEditorDialog;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartListener;
-import org.eclipse.gef.NodeListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.DiagramColorConstants;
@@ -34,7 +32,6 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
@@ -43,7 +40,6 @@ import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -68,11 +64,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.osgi.framework.Bundle;
 
-import br.puc.molic.BRTUtterance;
 import br.puc.molic.Connection;
 import br.puc.molic.Diagram;
 import br.puc.molic.Element;
-import br.puc.molic.MolicFactory;
 import br.puc.molic.MolicPackage;
 import br.puc.molic.diagram.part.MolicDiagramEditor;
 import br.puc.molic.diagram.part.MolicDiagramEditorPlugin;
@@ -702,10 +696,32 @@ public class GoalsView extends ViewPart implements IPartListener2, EditPartListe
 		// TODO Auto-generated method stub
 		//System.out.println("select change "+arg0.getSelected()+" "+arg0.getModel());
 		viewer.setSelection(null);
-		viewer.setAllChecked(false);
+		//viewer.setAllChecked(false);
+		checkGoals(arg0);
+		
 		
 	}
 
 
+	private void checkGoals(EditPart p){
+		Iterator<String> goals = null;
+		if(p instanceof ShapeNodeEditPart){
+	    	
+            Element e = (Element)((NodeImpl)p.getModel()).basicGetElement();
+            goals = e.getGoals().iterator();
+		}else if(p instanceof ConnectionNodeEditPart){
+			Connection e = (Connection)((EdgeImpl)p.getModel()).basicGetElement();
+            goals = e.getGoals().iterator();           
+		}
+		
+		if(goals!=null)
+		while(goals.hasNext()){
+            String goal = goals.next();
+            viewer.setChecked(goal, true);
+        }
+		
+	}
+	
+	
 	
 }

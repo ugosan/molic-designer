@@ -48,6 +48,7 @@ public class MolicPaletteFactory {
 		paletteContainer.add(new PaletteSeparator());
 		paletteContainer.add(createUtterance8CreationTool());
 		paletteContainer.add(createBreakdown9CreationTool());
+		paletteContainer.add(createSketch10CreationTool());
 		return paletteContainer;
 	}
 
@@ -176,6 +177,22 @@ public class MolicPaletteFactory {
 						.findImageDescriptor("/br.puc.molic/icons/utterance_small.png")); //$NON-NLS-1$
 		entry.setLargeIcon(MolicDiagramEditorPlugin
 				.findImageDescriptor("/br.puc.molic/icons/utterance_big.png")); //$NON-NLS-1$
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createSketch10CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types.add(MolicElementTypes.Sketch_3001);
+		NodeToolEntry entry = new NodeToolEntry(
+				Messages.Sketch10CreationTool_title,
+				Messages.Sketch10CreationTool_desc, types);
+		entry.setId("createSketch10CreationTool"); //$NON-NLS-1$
+		entry.setSmallIcon(MolicElementTypes
+				.getImageDescriptor(MolicElementTypes.Sketch_3001));
+		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
 

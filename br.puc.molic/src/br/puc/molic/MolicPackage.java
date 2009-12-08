@@ -39,7 +39,7 @@ public class MolicPackage extends EPackageImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and may be freely distributed\nunder the terms of GNU General Public License v2\nhttp://www.gnu.org/licenses/gpl-2.0.html\n\nDeveloped at Semiotic Engineering Research Lab (SERG) - http://serg.inf.puc-rio.br\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
+	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and can be copied freely\n\nDeveloped at Semiotic Engineering Research Lab (SERG)\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
 
 	/**
 	 * The package name.
@@ -276,13 +276,22 @@ public class MolicPackage extends EPackageImpl {
 	public static final int SCENE__NAME = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Sketch</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SCENE__SKETCH = ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Scene</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SCENE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
+	public static final int SCENE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link br.puc.molic.Utterance <em>Utterance</em>}' class.
@@ -624,6 +633,52 @@ public class MolicPackage extends EPackageImpl {
 	public static final int CLOSING_POINT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link br.puc.molic.Sketch <em>Sketch</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see br.puc.molic.Sketch
+	 * @see br.puc.molic.MolicPackage#getSketch()
+	 * @generated
+	 */
+	public static final int SKETCH = 10;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SKETCH__ID = ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Goals</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SKETCH__GOALS = ELEMENT__GOALS;
+
+	/**
+	 * The feature id for the '<em><b>Image</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SKETCH__IMAGE = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Sketch</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int SKETCH_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -694,6 +749,13 @@ public class MolicPackage extends EPackageImpl {
 	private EClass closingPointEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass sketchEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -720,20 +782,10 @@ public class MolicPackage extends EPackageImpl {
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * 
+	 * <p>This method is used to initialize {@link MolicPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -745,7 +797,7 @@ public class MolicPackage extends EPackageImpl {
 		if (isInited) return (MolicPackage)EPackage.Registry.INSTANCE.getEPackage(MolicPackage.eNS_URI);
 
 		// Obtain or create and register package
-		MolicPackage theMolicPackage = (MolicPackage)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof MolicPackage ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new MolicPackage());
+		MolicPackage theMolicPackage = (MolicPackage)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MolicPackage ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MolicPackage());
 
 		isInited = true;
 
@@ -758,6 +810,9 @@ public class MolicPackage extends EPackageImpl {
 		// Mark meta-data to indicate it can't be changed
 		theMolicPackage.freeze();
 
+  
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(MolicPackage.eNS_URI, theMolicPackage);
 		return theMolicPackage;
 	}
 
@@ -980,6 +1035,20 @@ public class MolicPackage extends EPackageImpl {
 	}
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link br.puc.molic.Scene#getSketch <em>Sketch</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Sketch</em>'.
+	 * @see br.puc.molic.Scene#getSketch()
+	 * @see #getScene()
+	 * @generated
+	 */
+	public EReference getScene_Sketch() {
+		return (EReference)sceneEClass.getEStructuralFeatures().get(3);
+	}
+
+
+	/**
 	 * Returns the meta object for class '{@link br.puc.molic.Utterance <em>Utterance</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1143,6 +1212,33 @@ public class MolicPackage extends EPackageImpl {
 	}
 
 	/**
+	 * Returns the meta object for class '{@link br.puc.molic.Sketch <em>Sketch</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Sketch</em>'.
+	 * @see br.puc.molic.Sketch
+	 * @generated
+	 */
+	public EClass getSketch() {
+		return sketchEClass;
+	}
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link br.puc.molic.Sketch#getImage <em>Image</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Image</em>'.
+	 * @see br.puc.molic.Sketch#getImage()
+	 * @see #getSketch()
+	 * @generated
+	 */
+	public EAttribute getSketch_Image() {
+		return (EAttribute)sketchEClass.getEStructuralFeatures().get(0);
+	}
+
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1192,6 +1288,7 @@ public class MolicPackage extends EPackageImpl {
 		createEAttribute(sceneEClass, SCENE__TOPIC);
 		createEAttribute(sceneEClass, SCENE__DIALOGUE);
 		createEAttribute(sceneEClass, SCENE__NAME);
+		createEReference(sceneEClass, SCENE__SKETCH);
 
 		utteranceEClass = createEClass(UTTERANCE);
 		createEAttribute(utteranceEClass, UTTERANCE__NAME);
@@ -1211,6 +1308,9 @@ public class MolicPackage extends EPackageImpl {
 
 		closingPointEClass = createEClass(CLOSING_POINT);
 		createEAttribute(closingPointEClass, CLOSING_POINT__NAME);
+
+		sketchEClass = createEClass(SKETCH);
+		createEAttribute(sketchEClass, SKETCH__IMAGE);
 	}
 
 	/**
@@ -1248,6 +1348,7 @@ public class MolicPackage extends EPackageImpl {
 		ubiquitousAccessEClass.getESuperTypes().add(this.getElement());
 		openingPointEClass.getESuperTypes().add(this.getElement());
 		closingPointEClass.getESuperTypes().add(this.getElement());
+		sketchEClass.getESuperTypes().add(this.getElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(diagramEClass, Diagram.class, "Diagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1270,6 +1371,7 @@ public class MolicPackage extends EPackageImpl {
 		initEAttribute(getScene_Topic(), ecorePackage.getEString(), "topic", null, 0, 1, Scene.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getScene_Dialogue(), ecorePackage.getEString(), "dialogue", null, 0, 1, Scene.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getScene_Name(), ecorePackage.getEString(), "name", "Scene", 0, 1, Scene.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getScene_Sketch(), this.getSketch(), null, "sketch", null, 0, -1, Scene.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(utteranceEClass, Utterance.class, "Utterance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUtterance_Name(), ecorePackage.getEString(), "name", "Utterance", 0, 1, Utterance.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1289,6 +1391,9 @@ public class MolicPackage extends EPackageImpl {
 
 		initEClass(closingPointEClass, ClosingPoint.class, "ClosingPoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getClosingPoint_Name(), ecorePackage.getEString(), "name", "Closing Point", 0, 1, ClosingPoint.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(sketchEClass, Sketch.class, "Sketch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSketch_Image(), ecorePackage.getEString(), "image", null, 0, 1, Sketch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -1452,6 +1557,14 @@ public class MolicPackage extends EPackageImpl {
 		public static final EAttribute SCENE__NAME = eINSTANCE.getScene_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Sketch</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference SCENE__SKETCH = eINSTANCE.getScene_Sketch();
+
+		/**
 		 * The meta object literal for the '{@link br.puc.molic.Utterance <em>Utterance</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1566,6 +1679,24 @@ public class MolicPackage extends EPackageImpl {
 		 * @generated
 		 */
 		public static final EAttribute CLOSING_POINT__NAME = eINSTANCE.getClosingPoint_Name();
+
+		/**
+		 * The meta object literal for the '{@link br.puc.molic.Sketch <em>Sketch</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see br.puc.molic.Sketch
+		 * @see br.puc.molic.MolicPackage#getSketch()
+		 * @generated
+		 */
+		public static final EClass SKETCH = eINSTANCE.getSketch();
+
+		/**
+		 * The meta object literal for the '<em><b>Image</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute SKETCH__IMAGE = eINSTANCE.getSketch_Image();
 
 	}
 

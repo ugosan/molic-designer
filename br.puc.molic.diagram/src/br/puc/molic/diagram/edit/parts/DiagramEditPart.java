@@ -39,8 +39,8 @@ public class DiagramEditPart extends
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
 				new DiagramCanonicalEditPolicy());
 		removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
-	}
 
+	}
 
 	@Override
 	protected void addNotationalListeners() {

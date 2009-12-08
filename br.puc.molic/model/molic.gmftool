@@ -99,5 +99,14 @@
           path="icons/utterance_big.png"
           bundle="br.puc.molic"/>
     </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Sketch"
+        description="Sketch">
+      <smallIcon
+          xsi:type="gmftool:DefaultImage"/>
+      <largeIcon
+          xsi:type="gmftool:DefaultImage"/>
+    </tools>
   </palette>
 </gmftool:ToolRegistry>

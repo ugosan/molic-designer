@@ -1,10 +1,17 @@
 package br.puc.molic.diagram.edit.parts;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.OperationHistoryFactory;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
@@ -16,6 +23,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.View;
+
+import com.sun.corba.se.spi.orb.OperationFactory;
 
 import br.puc.molic.diagram.edit.parts.BRTUtteranceEditPart.BRTUtteranceFigure;
 import br.puc.molic.diagram.edit.policies.UtteranceItemSemanticEditPolicy;
@@ -98,10 +107,29 @@ public class UtteranceEditPart extends ConnectionNodeEditPart implements
 	 * @generated NOT
 	 */
 	protected Connection createConnectionFigure() {
-		//UtteranceFigure figure = new  UtteranceFigure();
-		//RoutingStyle style = (RoutingStyle) ((View) getModel()).getStyle(NotationPackage.Literals.ROUTING_STYLE);
-		//style.setRouting(Routing.RECTILINEAR_LITERAL);
-		return new UtteranceFigure(); 
+		UtteranceFigure figure = new UtteranceFigure();
+
+		AbstractEMFOperation emfOp = new AbstractEMFOperation(
+				getEditingDomain(), "Breakdown line routing setting") {
+
+			@Override
+			protected IStatus doExecute(IProgressMonitor monitor,
+					IAdaptable info) throws ExecutionException {
+				RoutingStyle style = (RoutingStyle) ((View) getModel())
+						.getStyle(NotationPackage.Literals.ROUTING_STYLE);
+				style.setRouting(Routing.RECTILINEAR_LITERAL);
+				return Status.OK_STATUS;
+			}
+		};
+
+		try {
+			OperationHistoryFactory.getOperationHistory().execute(emfOp, null,
+					null);
+		} catch (ExecutionException e) {
+			//e.printStackTrace();
+		}
+
+		return figure;
 	}
 
 	/**

@@ -33,6 +33,28 @@
           href="molic.gmftool#//@palette/@tools.0"/>
       <diagramNode
           href="molic.gmfgraph#Scene"/>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.0/@ownedChild/@children.0/@ownedChild">
+        <containmentFeature
+            href="molic.ecore#//Scene/sketch"/>
+        <childrenFeature
+            href="molic.ecore#//Scene/sketch"/>
+        <ownedChild>
+          <domainMetaElement
+              href="molic.ecore#//Sketch"/>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="molic.gmftool#//@palette/@tools.9"/>
+          <diagramNode
+              href="molic.gmfgraph#Sketch"/>
+        </ownedChild>
+      </children>
+      <compartments
+          children="//@nodes.0/@ownedChild/@children.0">
+        <compartment
+            href="molic.gmfgraph#Sketches"/>
+      </compartments>
     </ownedChild>
   </nodes>
   <nodes>
@@ -150,6 +172,25 @@
       <sourceEnd
           body="self &lt;> oppositeEnd"/>
     </creationConstraints>
+  </links>
+  <links>
+    <domainMetaElement
+        href="molic.ecore#//Utterance"/>
+    <domainSpecialization
+        body="self &lt;> oppositeEnd"/>
+    <containmentFeature
+        href="molic.ecore#//Scene/connection"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="molic.gmftool#//@palette/@tools.7"/>
+    <diagramLink
+        href="molic.gmfgraph#Utterance"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="molic.ecore#//Connection/source"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="molic.ecore#//Connection/target"/>
   </links>
   <diagram>
     <diagramCanvas

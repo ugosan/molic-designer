@@ -25,6 +25,8 @@ import br.puc.molic.diagram.edit.parts.ClosingPointEditPart;
 import br.puc.molic.diagram.edit.parts.DiagramEditPart;
 import br.puc.molic.diagram.edit.parts.OpeningPointEditPart;
 import br.puc.molic.diagram.edit.parts.SceneEditPart;
+import br.puc.molic.diagram.edit.parts.SceneSketchesCompartmentEditPart;
+import br.puc.molic.diagram.edit.parts.SketchEditPart;
 import br.puc.molic.diagram.edit.parts.SystemProcessEditPart;
 import br.puc.molic.diagram.edit.parts.UbiquitousAccessEditPart;
 import br.puc.molic.diagram.part.Messages;
@@ -41,6 +43,11 @@ public class MolicModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
+		if (editPart instanceof SceneSketchesCompartmentEditPart) {
+			ArrayList types = new ArrayList(1);
+			types.add(MolicElementTypes.Sketch_3001);
+			return types;
+		}
 		if (editPart instanceof DiagramEditPart) {
 			ArrayList types = new ArrayList(5);
 			types.add(MolicElementTypes.Scene_2007);
@@ -78,6 +85,9 @@ public class MolicModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((ClosingPointEditPart) sourceEditPart)
 					.getMARelTypesOnSource();
 		}
+		if (sourceEditPart instanceof SketchEditPart) {
+			return ((SketchEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -105,6 +115,9 @@ public class MolicModelingAssistantProvider extends ModelingAssistantProvider {
 		if (targetEditPart instanceof ClosingPointEditPart) {
 			return ((ClosingPointEditPart) targetEditPart)
 					.getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof SketchEditPart) {
+			return ((SketchEditPart) targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -138,6 +151,10 @@ public class MolicModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((ClosingPointEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if (sourceEditPart instanceof SketchEditPart) {
+			return ((SketchEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -168,6 +185,10 @@ public class MolicModelingAssistantProvider extends ModelingAssistantProvider {
 			return ((ClosingPointEditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
 		}
+		if (targetEditPart instanceof SketchEditPart) {
+			return ((SketchEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -196,6 +217,10 @@ public class MolicModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if (sourceEditPart instanceof ClosingPointEditPart) {
 			return ((ClosingPointEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof SketchEditPart) {
+			return ((SketchEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;

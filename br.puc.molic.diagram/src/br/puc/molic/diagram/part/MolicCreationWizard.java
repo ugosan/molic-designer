@@ -84,7 +84,7 @@ public class MolicCreationWizard extends Wizard implements INewWizard {
 	 */
 	public void addPages() {
 		diagramModelFilePage = new MolicCreationWizardPage(
-				"DiagramModelFile", getSelection(), "molic_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
+				"DiagramModelFile", getSelection(), "molic"); //$NON-NLS-1$ //$NON-NLS-2$
 		diagramModelFilePage
 				.setTitle(Messages.MolicCreationWizard_DiagramModelFilePageTitle);
 		diagramModelFilePage

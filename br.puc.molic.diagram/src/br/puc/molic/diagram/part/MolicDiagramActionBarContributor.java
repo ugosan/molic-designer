@@ -43,7 +43,9 @@ public class MolicDiagramActionBarContributor extends
 		IMenuManager fileMenu = bars.getMenuManager().findMenuUsingPath(
 				IWorkbenchActionConstants.M_FILE);
 		assert fileMenu != null;
-		fileMenu.remove("pageSetupAction"); //$NON-NLS-1$
+		IAction printPreviewAction = new RenderedPrintPreviewAction(
+				new EnhancedPrintActionHelper());
+		fileMenu.insertBefore("print", printPreviewAction); //$NON-NLS-1$
 		IMenuManager editMenu = bars.getMenuManager().findMenuUsingPath(
 				IWorkbenchActionConstants.M_EDIT);
 		assert editMenu != null;

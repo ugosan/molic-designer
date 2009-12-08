@@ -41,7 +41,7 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and may be freely distributed\nunder the terms of GNU General Public License v2\nhttp://www.gnu.org/licenses/gpl-2.0.html\n\nDeveloped at Semiotic Engineering Research Lab (SERG) - http://serg.inf.puc-rio.br\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
+	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and can be copied freely\n\nDeveloped at Semiotic Engineering Research Lab (SERG)\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
 
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
@@ -266,6 +266,29 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link br.puc.molic.Sketch} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SketchItemProvider sketchItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link br.puc.molic.Sketch}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSketchAdapter() {
+		if (sketchItemProvider == null) {
+			sketchItemProvider = new SketchItemProvider(this);
+		}
+
+		return sketchItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -315,7 +338,7 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
     public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -372,6 +395,7 @@ public class MolicItemProviderAdapterFactory extends MolicAdapterFactory impleme
 		if (ubiquitousAccessItemProvider != null) ubiquitousAccessItemProvider.dispose();
 		if (openingPointItemProvider != null) openingPointItemProvider.dispose();
 		if (closingPointItemProvider != null) closingPointItemProvider.dispose();
+		if (sketchItemProvider != null) sketchItemProvider.dispose();
 	}
 
 }

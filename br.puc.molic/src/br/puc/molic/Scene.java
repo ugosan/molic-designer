@@ -15,14 +15,19 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,6 +40,7 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  *   <li>{@link br.puc.molic.Scene#getTopic <em>Topic</em>}</li>
  *   <li>{@link br.puc.molic.Scene#getDialogue <em>Dialogue</em>}</li>
  *   <li>{@link br.puc.molic.Scene#getName <em>Name</em>}</li>
+ *   <li>{@link br.puc.molic.Scene#getSketch <em>Sketch</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,7 +54,7 @@ public class Scene extends EObjectImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and may be freely distributed\nunder the terms of GNU General Public License v2\nhttp://www.gnu.org/licenses/gpl-2.0.html\n\nDeveloped at Semiotic Engineering Research Lab (SERG) - http://serg.inf.puc-rio.br\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
+	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and can be copied freely\n\nDeveloped at Semiotic Engineering Research Lab (SERG)\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
 
 	/**
 	 * The default value of the '{@link #getID() <em>ID</em>}' attribute.
@@ -148,6 +154,16 @@ public class Scene extends EObjectImpl implements Element {
 	 * @ordered
 	 */
 	protected boolean nameESet;
+
+	/**
+	 * The cached value of the '{@link #getSketch() <em>Sketch</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSketch()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Sketch> sketch;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -304,6 +320,41 @@ public class Scene extends EObjectImpl implements Element {
 	}
 
 	/**
+	 * Returns the value of the '<em><b>Sketch</b></em>' containment reference list.
+	 * The list contents are of type {@link br.puc.molic.Sketch}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sketch</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sketch</em>' containment reference list.
+	 * @see br.puc.molic.MolicPackage#getScene_Sketch()
+	 * @model containment="true"
+	 * @generated
+	 */
+	public EList<Sketch> getSketch() {
+		if (sketch == null) {
+			sketch = new EObjectContainmentEList<Sketch>(Sketch.class, this, MolicPackage.SCENE__SKETCH);
+		}
+		return sketch;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MolicPackage.SCENE__SKETCH:
+				return ((InternalEList<?>)getSketch()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -321,6 +372,8 @@ public class Scene extends EObjectImpl implements Element {
 				return getDialogue();
 			case MolicPackage.SCENE__NAME:
 				return getName();
+			case MolicPackage.SCENE__SKETCH:
+				return getSketch();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -344,6 +397,10 @@ public class Scene extends EObjectImpl implements Element {
 			case MolicPackage.SCENE__DIALOGUE:
 				setDialogue((String)newValue);
 				return;
+			case MolicPackage.SCENE__SKETCH:
+				getSketch().clear();
+				getSketch().addAll((Collection<? extends Sketch>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -364,6 +421,9 @@ public class Scene extends EObjectImpl implements Element {
 				return;
 			case MolicPackage.SCENE__DIALOGUE:
 				setDialogue(DIALOGUE_EDEFAULT);
+				return;
+			case MolicPackage.SCENE__SKETCH:
+				getSketch().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -387,6 +447,8 @@ public class Scene extends EObjectImpl implements Element {
 				return DIALOGUE_EDEFAULT == null ? dialogue != null : !DIALOGUE_EDEFAULT.equals(dialogue);
 			case MolicPackage.SCENE__NAME:
 				return isSetName();
+			case MolicPackage.SCENE__SKETCH:
+				return sketch != null && !sketch.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

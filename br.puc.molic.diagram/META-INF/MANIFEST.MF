@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: br.puc.molic.diagram; singleton:=true
-Bundle-Version: 0.0.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .,
  lib/org.eclipse.nebula.widgets.gallery_0.5.2.R_0_20090418.jar
 Bundle-Activator: br.puc.molic.diagram.part.MolicDiagramEditorPlugin
@@ -57,6 +57,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.graphdef;bundle-version="2.0.100",
  org.eclipse.jface.text,
  org.eclipse.ui.editors,
- org.eclipse.emf.workspace.ui;bundle-version="1.2.0"
+ org.eclipse.emf.workspace.ui;bundle-version="1.2.0",
+ org.eclipse.gmf.runtime.draw2d.ui.render;bundle-version="1.2.0"
 Eclipse-LazyStart: true
 Import-Package: br.puc.molic.diagram.providers

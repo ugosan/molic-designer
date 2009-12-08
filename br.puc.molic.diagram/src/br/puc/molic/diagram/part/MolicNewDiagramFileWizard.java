@@ -85,7 +85,7 @@ public class MolicNewDiagramFileWizard extends Wizard {
 		}
 		myFileCreationPage.setContainerFullPath(filePath);
 		myFileCreationPage.setFileName(MolicDiagramEditorUtil
-				.getUniqueFileName(filePath, fileName, "molic_diagram")); //$NON-NLS-1$
+				.getUniqueFileName(filePath, fileName, "molic")); //$NON-NLS-1$
 
 		diagramRootElementSelectionPage = new DiagramRootElementSelectionPage(
 				Messages.MolicNewDiagramFileWizard_RootSelectionPageName);

@@ -12,36 +12,33 @@
 package br.puc.molic;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ubiquitous Access</b></em>'.
+ * A representation of the model object '<em><b>Sketch</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link br.puc.molic.UbiquitousAccess#getLabel <em>Label</em>}</li>
- *   <li>{@link br.puc.molic.UbiquitousAccess#getName <em>Name</em>}</li>
+ *   <li>{@link br.puc.molic.Sketch#getImage <em>Image</em>}</li>
  * </ul>
  * </p>
  *
- * @see br.puc.molic.MolicPackage#getUbiquitousAccess()
+ * @see br.puc.molic.MolicPackage#getSketch()
  * @model kind="class"
  * @generated
  */
-public class UbiquitousAccess extends EObjectImpl implements Element {
+public class Sketch extends EObjectImpl implements Element {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,60 +77,31 @@ public class UbiquitousAccess extends EObjectImpl implements Element {
 	protected EList<String> goals;
 
 	/**
-	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * The default value of the '{@link #getImage() <em>Image</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLabel()
+	 * @see #getImage()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String LABEL_EDEFAULT = null;
+	protected static final String IMAGE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * The cached value of the '{@link #getImage() <em>Image</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLabel()
+	 * @see #getImage()
 	 * @generated
 	 * @ordered
 	 */
-	protected String label = LABEL_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = "Ubiquitous Access";
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * This is true if the Name attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean nameESet;
+	protected String image = IMAGE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected UbiquitousAccess() {
+	protected Sketch() {
 		super();
 	}
 
@@ -144,7 +112,7 @@ public class UbiquitousAccess extends EObjectImpl implements Element {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MolicPackage.Literals.UBIQUITOUS_ACCESS;
+		return MolicPackage.Literals.SKETCH;
 	}
 
 	/**
@@ -158,10 +126,10 @@ public class UbiquitousAccess extends EObjectImpl implements Element {
 	 * @return the value of the '<em>ID</em>' attribute.
 	 * @see br.puc.molic.MolicPackage#getElement_ID()
 	 * @model id="true" changeable="false"
-	 * @generated NOT
+	 * @generated
 	 */
 	public String getID() {
-		return eResource().getURIFragment(this);
+		return id;
 	}
 
 	/**
@@ -180,73 +148,42 @@ public class UbiquitousAccess extends EObjectImpl implements Element {
 	 */
 	public EList<String> getGoals() {
 		if (goals == null) {
-			goals = new EDataTypeUniqueEList<String>(String.class, this, MolicPackage.UBIQUITOUS_ACCESS__GOALS);
+			goals = new EDataTypeUniqueEList<String>(String.class, this, MolicPackage.SKETCH__GOALS);
 		}
 		return goals;
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Label</b></em>' attribute.
+	 * Returns the value of the '<em><b>Image</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Label</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Image</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Label</em>' attribute.
-	 * @see #setLabel(String)
-	 * @see br.puc.molic.MolicPackage#getUbiquitousAccess_Label()
+	 * @return the value of the '<em>Image</em>' attribute.
+	 * @see #setImage(String)
+	 * @see br.puc.molic.MolicPackage#getSketch_Image()
 	 * @model
 	 * @generated
 	 */
-	public String getLabel() {
-		return label;
+	public String getImage() {
+		return image;
 	}
 
 	/**
-	 * Sets the value of the '{@link br.puc.molic.UbiquitousAccess#getLabel <em>Label</em>}' attribute.
+	 * Sets the value of the '{@link br.puc.molic.Sketch#getImage <em>Image</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Label</em>' attribute.
-	 * @see #getLabel()
+	 * @param value the new value of the '<em>Image</em>' attribute.
+	 * @see #getImage()
 	 * @generated
 	 */
-	public void setLabel(String newLabel) {
-		String oldLabel = label;
-		label = newLabel;
+	public void setImage(String newImage) {
+		String oldImage = image;
+		image = newImage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.UBIQUITOUS_ACCESS__LABEL, oldLabel, label));
-	}
-
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * The default value is <code>"Ubiquitous Access"</code>.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see br.puc.molic.MolicPackage#getUbiquitousAccess_Name()
-	 * @model default="Ubiquitous Access" unsettable="true" changeable="false"
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * Returns whether the value of the '{@link br.puc.molic.UbiquitousAccess#getName <em>Name</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Name</em>' attribute is set.
-	 * @see #getName()
-	 * @generated
-	 */
-	public boolean isSetName() {
-		return nameESet;
+			eNotify(new ENotificationImpl(this, Notification.SET, MolicPackage.SKETCH__IMAGE, oldImage, image));
 	}
 
 	/**
@@ -257,14 +194,12 @@ public class UbiquitousAccess extends EObjectImpl implements Element {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MolicPackage.UBIQUITOUS_ACCESS__ID:
+			case MolicPackage.SKETCH__ID:
 				return getID();
-			case MolicPackage.UBIQUITOUS_ACCESS__GOALS:
+			case MolicPackage.SKETCH__GOALS:
 				return getGoals();
-			case MolicPackage.UBIQUITOUS_ACCESS__LABEL:
-				return getLabel();
-			case MolicPackage.UBIQUITOUS_ACCESS__NAME:
-				return getName();
+			case MolicPackage.SKETCH__IMAGE:
+				return getImage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -278,12 +213,12 @@ public class UbiquitousAccess extends EObjectImpl implements Element {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MolicPackage.UBIQUITOUS_ACCESS__GOALS:
+			case MolicPackage.SKETCH__GOALS:
 				getGoals().clear();
 				getGoals().addAll((Collection<? extends String>)newValue);
 				return;
-			case MolicPackage.UBIQUITOUS_ACCESS__LABEL:
-				setLabel((String)newValue);
+			case MolicPackage.SKETCH__IMAGE:
+				setImage((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -297,11 +232,11 @@ public class UbiquitousAccess extends EObjectImpl implements Element {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MolicPackage.UBIQUITOUS_ACCESS__GOALS:
+			case MolicPackage.SKETCH__GOALS:
 				getGoals().clear();
 				return;
-			case MolicPackage.UBIQUITOUS_ACCESS__LABEL:
-				setLabel(LABEL_EDEFAULT);
+			case MolicPackage.SKETCH__IMAGE:
+				setImage(IMAGE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -315,14 +250,12 @@ public class UbiquitousAccess extends EObjectImpl implements Element {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MolicPackage.UBIQUITOUS_ACCESS__ID:
+			case MolicPackage.SKETCH__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-			case MolicPackage.UBIQUITOUS_ACCESS__GOALS:
+			case MolicPackage.SKETCH__GOALS:
 				return goals != null && !goals.isEmpty();
-			case MolicPackage.UBIQUITOUS_ACCESS__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case MolicPackage.UBIQUITOUS_ACCESS__NAME:
-				return isSetName();
+			case MolicPackage.SKETCH__IMAGE:
+				return IMAGE_EDEFAULT == null ? image != null : !IMAGE_EDEFAULT.equals(image);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -341,12 +274,10 @@ public class UbiquitousAccess extends EObjectImpl implements Element {
 		result.append(id);
 		result.append(", goals: ");
 		result.append(goals);
-		result.append(", label: ");
-		result.append(label);
-		result.append(", name: ");
-		if (nameESet) result.append(name); else result.append("<unset>");
+		result.append(", image: ");
+		result.append(image);
 		result.append(')');
 		return result.toString();
 	}
 
-} // UbiquitousAccess
+} // Sketch

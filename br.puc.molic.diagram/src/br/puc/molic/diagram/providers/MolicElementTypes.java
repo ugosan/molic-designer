@@ -22,6 +22,7 @@ import br.puc.molic.diagram.edit.parts.ClosingPointEditPart;
 import br.puc.molic.diagram.edit.parts.DiagramEditPart;
 import br.puc.molic.diagram.edit.parts.OpeningPointEditPart;
 import br.puc.molic.diagram.edit.parts.SceneEditPart;
+import br.puc.molic.diagram.edit.parts.SketchEditPart;
 import br.puc.molic.diagram.edit.parts.SystemProcessEditPart;
 import br.puc.molic.diagram.edit.parts.UbiquitousAccessEditPart;
 import br.puc.molic.diagram.edit.parts.UtteranceEditPart;
@@ -175,6 +176,8 @@ public class MolicElementTypes extends ElementInitializers {
 			elements.put(ClosingPoint_2012, MolicPackage.eINSTANCE
 					.getClosingPoint());
 
+			elements.put(Sketch_3001, MolicPackage.eINSTANCE.getSketch());
+
 			elements.put(Utterance_4001, MolicPackage.eINSTANCE.getUtterance());
 
 			elements.put(BRTUtterance_4002, MolicPackage.eINSTANCE
@@ -228,6 +231,11 @@ public class MolicElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Sketch_3001 = getElementType("br.puc.molic.diagram.Sketch_3001"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Utterance_4001 = getElementType("br.puc.molic.diagram.Utterance_4001"); //$NON-NLS-1$
 
 	/**
@@ -247,6 +255,7 @@ public class MolicElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(UbiquitousAccess_2010);
 			KNOWN_ELEMENT_TYPES.add(OpeningPoint_2011);
 			KNOWN_ELEMENT_TYPES.add(ClosingPoint_2012);
+			KNOWN_ELEMENT_TYPES.add(Sketch_3001);
 			KNOWN_ELEMENT_TYPES.add(Utterance_4001);
 			KNOWN_ELEMENT_TYPES.add(BRTUtterance_4002);
 		}
@@ -270,6 +279,8 @@ public class MolicElementTypes extends ElementInitializers {
 			return OpeningPoint_2011;
 		case ClosingPointEditPart.VISUAL_ID:
 			return ClosingPoint_2012;
+		case SketchEditPart.VISUAL_ID:
+			return Sketch_3001;
 		case UtteranceEditPart.VISUAL_ID:
 			return Utterance_4001;
 		case BRTUtteranceEditPart.VISUAL_ID:

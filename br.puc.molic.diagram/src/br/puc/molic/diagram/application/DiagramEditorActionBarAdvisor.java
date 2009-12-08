@@ -11,7 +11,6 @@ import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.ICoolBarManager;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
@@ -33,6 +32,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.ActionFactory;
+import org.eclipse.ui.actions.ContributionItemFactory;
 import org.eclipse.ui.application.ActionBarAdvisor;
 import org.eclipse.ui.application.IActionBarConfigurer;
 import org.eclipse.ui.internal.WorkbenchPlugin;
@@ -141,6 +141,8 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 	 */
 	protected void fillMenuBar(IMenuManager menu) {
 
+		ContributionItemFactory.VIEWS_SHORTLIST.create(getWindow());
+
 		{
 			IMenuManager menuX = new MenuManager(
 					Messages.ApplicationMenuName_File,
@@ -167,8 +169,11 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 
 			menuX.add(getAction(ActionFactory.SAVE_AS.getId()));
 
-			menuX.add(getAction(ActionFactory.SAVE_ALL.getId()));
-
+			menuX.add(getAction(ActionFactory.SAVE_ALL.getId()));			
+			/*++ added*/
+			menuX.add(new Separator());
+			menuX.add(getAction(ActionFactory.PRINT.getId()));
+	
 			menuX.add(new Separator());
 
 			menuX.add(getAction(ActionFactory.QUIT.getId()));
@@ -216,20 +221,18 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 			menu.add(menuX);
 		}
 
-		menu.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
+		//menu.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
 
-		{
-			IMenuManager menuX = new MenuManager(
-					Messages.ApplicationMenuName_Help,
-					IWorkbenchActionConstants.M_HELP);
+		IMenuManager menuX = new MenuManager(Messages.ApplicationMenuName_Help,
+				IWorkbenchActionConstants.M_HELP);
 
-			menuX.add(new GroupMarker(IWorkbenchActionConstants.HELP_START));
+		menuX.add(new GroupMarker(IWorkbenchActionConstants.HELP_START));
 
-			menuX.add(new GroupMarker(IWorkbenchActionConstants.HELP_END));
+		menuX.add(new GroupMarker(IWorkbenchActionConstants.HELP_END));
 
-			menuX.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
-			menu.add(menuX);
-		}
+		menuX.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
+		menu.add(menuX);
+
 	}
 
 	/**

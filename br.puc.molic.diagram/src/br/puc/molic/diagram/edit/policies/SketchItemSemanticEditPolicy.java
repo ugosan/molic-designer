@@ -1,13 +1,20 @@
 /*
- * Teste de nota de copyright do Molic
+ * MoLIC Designer (c) 2009 
+ * This software is part of the MSc work of Ugo Braga Sangiorgi and may be freely distributed
+ * under the terms of GNU General Public License v2
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ * 
+ * Developed at Semiotic Engineering Research Lab (SERG) - http://serg.inf.puc-rio.br
+ * Pontifical Catholic University of Rio de Janeiro, PUCRio
+ * 
+ * 
+ * Author: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br
  */
 package br.puc.molic.diagram.edit.policies;
 
 import java.util.Iterator;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.CompoundCommand;
-import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
@@ -15,7 +22,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
 import br.puc.molic.diagram.edit.commands.BRTUtteranceCreateCommand;
@@ -23,8 +29,6 @@ import br.puc.molic.diagram.edit.commands.BRTUtteranceReorientCommand;
 import br.puc.molic.diagram.edit.commands.UtteranceCreateCommand;
 import br.puc.molic.diagram.edit.commands.UtteranceReorientCommand;
 import br.puc.molic.diagram.edit.parts.BRTUtteranceEditPart;
-import br.puc.molic.diagram.edit.parts.SceneSketchesCompartmentEditPart;
-import br.puc.molic.diagram.edit.parts.SketchEditPart;
 import br.puc.molic.diagram.edit.parts.UtteranceEditPart;
 import br.puc.molic.diagram.part.MolicVisualIDRegistry;
 import br.puc.molic.diagram.providers.MolicElementTypes;
@@ -32,14 +36,14 @@ import br.puc.molic.diagram.providers.MolicElementTypes;
 /**
  * @generated
  */
-public class SceneItemSemanticEditPolicy extends
+public class SketchItemSemanticEditPolicy extends
 		MolicBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public SceneItemSemanticEditPolicy() {
-		super(MolicElementTypes.Scene_2007);
+	public SketchItemSemanticEditPolicy() {
+		super(MolicElementTypes.Sketch_3001);
 	}
 
 	/**
@@ -87,7 +91,6 @@ public class SceneItemSemanticEditPolicy extends
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if (annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
-			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			cmd.add(new DestroyElementCommand(req));
@@ -95,73 +98,6 @@ public class SceneItemSemanticEditPolicy extends
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}
 		return getGEFWrapper(cmd.reduce());
-	}
-
-	/**
-	 * @generated
-	 */
-	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
-		View view = (View) getHost().getModel();
-		for (Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
-			Node node = (Node) nit.next();
-			switch (MolicVisualIDRegistry.getVisualID(node)) {
-			case SceneSketchesCompartmentEditPart.VISUAL_ID:
-				for (Iterator cit = node.getChildren().iterator(); cit
-						.hasNext();) {
-					Node cnode = (Node) cit.next();
-					switch (MolicVisualIDRegistry.getVisualID(cnode)) {
-					case SketchEditPart.VISUAL_ID:
-						for (Iterator it = cnode.getTargetEdges().iterator(); it
-								.hasNext();) {
-							Edge incomingLink = (Edge) it.next();
-							if (MolicVisualIDRegistry.getVisualID(incomingLink) == UtteranceEditPart.VISUAL_ID) {
-								DestroyElementRequest r = new DestroyElementRequest(
-										incomingLink.getElement(), false);
-								cmd.add(new DestroyElementCommand(r));
-								cmd.add(new DeleteCommand(getEditingDomain(),
-										incomingLink));
-								continue;
-							}
-							if (MolicVisualIDRegistry.getVisualID(incomingLink) == BRTUtteranceEditPart.VISUAL_ID) {
-								DestroyElementRequest r = new DestroyElementRequest(
-										incomingLink.getElement(), false);
-								cmd.add(new DestroyElementCommand(r));
-								cmd.add(new DeleteCommand(getEditingDomain(),
-										incomingLink));
-								continue;
-							}
-						}
-						for (Iterator it = cnode.getSourceEdges().iterator(); it
-								.hasNext();) {
-							Edge outgoingLink = (Edge) it.next();
-							if (MolicVisualIDRegistry.getVisualID(outgoingLink) == UtteranceEditPart.VISUAL_ID) {
-								DestroyElementRequest r = new DestroyElementRequest(
-										outgoingLink.getElement(), false);
-								cmd.add(new DestroyElementCommand(r));
-								cmd.add(new DeleteCommand(getEditingDomain(),
-										outgoingLink));
-								continue;
-							}
-							if (MolicVisualIDRegistry.getVisualID(outgoingLink) == BRTUtteranceEditPart.VISUAL_ID) {
-								DestroyElementRequest r = new DestroyElementRequest(
-										outgoingLink.getElement(), false);
-								cmd.add(new DestroyElementCommand(r));
-								cmd.add(new DeleteCommand(getEditingDomain(),
-										outgoingLink));
-								continue;
-							}
-						}
-						cmd.add(new DestroyElementCommand(
-								new DestroyElementRequest(getEditingDomain(),
-										cnode.getElement(), false))); // directlyOwned: true
-						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
-						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
-						break;
-					}
-				}
-				break;
-			}
-		}
 	}
 
 	/**

@@ -357,8 +357,6 @@ public class UtteranceLabelEditPart extends LabelEditPart implements
 		this.manager = manager;
 	}
 
-	
-
 	/**
 	 * @generated
 	 */
@@ -366,30 +364,29 @@ public class UtteranceLabelEditPart extends LabelEditPart implements
 		getManager().show();
 	}
 
-	
-/*	*//**
-	 * @generated NOT
-	 *//*
+	/*	*//**
+			 * @generated NOT
+			 */
+	/*
 	protected void performDirectEdit() {
 
-		EDataTypeValueHandler valueHandler = new EDataTypeValueHandler(EcorePackage.eINSTANCE.getEString());
-		InputDialog dialog = new MultiLineInputDialog(getViewer().getControl().getShell(),
-		EMFEditUIPlugin.INSTANCE.getString("_UI_FeatureEditorDialog_title", new Object [] { "Scene ", "dialogue" }),
-		"Enter the utterance:",valueHandler.toString(getEditText()),valueHandler);
-		System.out.println(((View) getModel()));
-		if (dialog.open() == Window.OK) {						
-			EAttribute feature = MolicPackage.eINSTANCE.getConnection_Label();
-			getEditingDomain().getCommandStack().execute(SetCommand.create(getEditingDomain(), ((View) getModel()).getElement(), feature , dialog.getValue()));
-			
-		}
+	EDataTypeValueHandler valueHandler = new EDataTypeValueHandler(EcorePackage.eINSTANCE.getEString());
+	InputDialog dialog = new MultiLineInputDialog(getViewer().getControl().getShell(),
+	EMFEditUIPlugin.INSTANCE.getString("_UI_FeatureEditorDialog_title", new Object [] { "Scene ", "dialogue" }),
+	"Enter the utterance:",valueHandler.toString(getEditText()),valueHandler);
+	System.out.println(((View) getModel()));
+	if (dialog.open() == Window.OK) {						
+		EAttribute feature = MolicPackage.eINSTANCE.getConnection_Label();
+		getEditingDomain().getCommandStack().execute(SetCommand.create(getEditingDomain(), ((View) getModel()).getElement(), feature , dialog.getValue()));
 		
 	}
-*/
+	
+	}
+	 */
 	/**
 	 * @generated
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		performDirectEdit();
 		if (getManager().getClass() == TextDirectEditManager.class) {
 			((TextDirectEditManager) getManager()).show(eventLocation
 					.getSWTPoint());

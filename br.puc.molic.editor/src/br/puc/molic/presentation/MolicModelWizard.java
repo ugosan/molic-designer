@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
@@ -66,7 +65,7 @@ public class MolicModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and may be freely distributed\nunder the terms of GNU General Public License v2\nhttp://www.gnu.org/licenses/gpl-2.0.html\n\nDeveloped at Semiotic Engineering Research Lab (SERG) - http://serg.inf.puc-rio.br\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
+	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and can be copied freely\n\nDeveloped at Semiotic Engineering Research Lab (SERG)\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
 
 	/**
 	 * The supported extensions for created files.
@@ -562,13 +561,13 @@ public class MolicModelWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-		 * Get the URI from the page.
-		 * <!-- begin-user-doc -->
+	 * Get the URI from the page.
+	 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		*/
+	 * @generated
+	 */
 		public URI getModelURI() {
-			return initialObjectCreationPage.getFileURI();
-		}
+		return initialObjectCreationPage.getFileURI();
+	}
 
 }
