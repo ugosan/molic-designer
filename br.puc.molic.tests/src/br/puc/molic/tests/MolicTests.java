@@ -1,63 +1,62 @@
 /**
- * <copyright>
- * </copyright>
+ * MoLIC Designer (c) 2009 
+ * This software is part of the MSc work of Ugo Braga Sangiorgi and can be copied freely
+ * 
+ * Developed at Semiotic Engineering Research Lab (SERG)
+ * Pontifical Catholic University of Rio de Janeiro, PUCRio
+ * 
+ * Author: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br
  *
  * $Id$
  */
 package br.puc.molic.tests;
 
-import junit.framework.TestCase;
-import br.puc.molic.Element;
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
+import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Element</b></em>'.
+ * A test suite for the '<em><b>molic</b></em>' package.
  * <!-- end-user-doc -->
  * @generated
  */
-public abstract class ElementTest extends TestCase {
+public class MolicTests extends TestSuite {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static final String copyright = "MoLIC Designer (c) 2009 \nThis software is part of the MSc work of Ugo Braga Sangiorgi and can be copied freely\n\nDeveloped at Semiotic Engineering Research Lab (SERG)\nPontifical Catholic University of Rio de Janeiro, PUCRio\n\nAuthor: Ugo Braga Sangiorgi - usangiorgi@inf.puc-rio.br";
-	/**
-	 * The fixture for this Element test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Element fixture = null;
 
 	/**
-	 * Constructs a new Element test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ElementTest(String name) {
+	public static void main(String[] args) {
+		TestRunner.run(suite());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static Test suite() {
+		TestSuite suite = new MolicTests("molic Tests");
+		return suite;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MolicTests(String name) {
 		super(name);
 	}
 
-	/**
-	 * Sets the fixture for this Element test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void setFixture(Element fixture) {
-		this.fixture = fixture;
-	}
-
-	/**
-	 * Returns the fixture for this Element test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Element getFixture() {
-		return fixture;
-	}
-
-} //ElementTest
+} //MolicTests
