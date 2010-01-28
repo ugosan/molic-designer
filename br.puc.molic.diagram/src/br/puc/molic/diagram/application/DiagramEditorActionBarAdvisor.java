@@ -218,6 +218,9 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 			menuX.add(new GroupMarker(IWorkbenchActionConstants.EDIT_END));
 
 			menuX.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
+			
+		
+			
 			menu.add(menuX);
 		}
 

@@ -20,7 +20,7 @@ Teste de nota de copyright do Molic
      	<predefinedEntry id="standardGroup/zoomTool" remove="true"/>
      	<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 	<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
-	<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
+	<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="false"/>
       </contribution>
       <editor
             id="br.puc.molic.diagram.part.MolicDiagramEditorID">

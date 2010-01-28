@@ -38,76 +38,78 @@ public class GalleryDropEditPolicy extends DragDropEditPolicy {
 
 	/**
 	 * Creates the Sketch model and view, based on the dropped image
+	 * @author Ugo Sangiorgi
+	 * @author Artur Kronenberg
 	 */
 	protected Command getDropObjectsCommand(DropObjectsRequest request) {
-		
+
 		CompoundCommand command = null;
 		if(request.getObjects()!=null){
 
 			Iterator elements = request.getObjects().iterator();
-			
+
 			while (elements.hasNext()) {
 				Object obj = elements.next();
-			
+
 				if(obj instanceof StructuredSelection){
 					try{
-					StructuredSelection s = (StructuredSelection)obj;					
-					final File f = (File)s.getFirstElement();
-					
-					
-					final DiagramEditor editor = (DiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-					
-					command = new CompoundCommand();
-					
-					final Sketch sketch = MolicFactory.eINSTANCE.createSketch();
-					sketch.eSet(MolicPackage.Literals.SKETCH__IMAGE, f.getAbsolutePath());
-					
-					CreateViewRequest.ViewDescriptor viewDescriptor = new CreateViewRequest.ViewDescriptor(
-							new EObjectAdapter(sketch), Node.class, ((IHintedType)MolicElementTypes.Sketch_3001).getSemanticHint(), true,
-							editor.getDiagramEditPart().getDiagramPreferencesHint()); 
-					
-					viewDescriptor.setPersisted(true);
-					
-					CreateViewRequest createRequest = new CreateViewRequest(viewDescriptor);
-					createRequest.setLocation(request.getLocation());
-				
-					Command c = new Command(){
+						StructuredSelection s = (StructuredSelection)obj;					
+						final File f = (File)s.getFirstElement();
 
-						@Override
-						public void execute() {
-							AbstractEMFOperation emfOp = new AbstractEMFOperation(editor.getEditingDomain(), "Add sketch model") {
 
-						@Override
-						protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-							NodeImpl n = (NodeImpl)getHost().getParent().getModel();
-							Scene s = (Scene) n.basicGetElement();
-							s.getSketch().add(sketch);
-							
-							return Status.OK_STATUS;
-						}
+						final DiagramEditor editor = (DiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 
-					};
+						command = new CompoundCommand();
 
-				
-					try {
-						OperationHistoryFactory.getOperationHistory().execute(emfOp, null, null);
-					} catch (ExecutionException e) {}
-					}
-					};
-					
-					command.add(c);				
-					command.add(getHost().getCommand(createRequest));
-					
-				
+						final Sketch sketch = MolicFactory.eINSTANCE.createSketch();
+						sketch.eSet(MolicPackage.Literals.SKETCH__IMAGE, f.getAbsolutePath());
+
+						CreateViewRequest.ViewDescriptor viewDescriptor = new CreateViewRequest.ViewDescriptor(
+								new EObjectAdapter(sketch), Node.class, ((IHintedType)MolicElementTypes.Sketch_3001).getSemanticHint(), true,
+								editor.getDiagramEditPart().getDiagramPreferencesHint()); 
+
+						viewDescriptor.setPersisted(true);
+
+						CreateViewRequest createRequest = new CreateViewRequest(viewDescriptor);
+						createRequest.setLocation(request.getLocation());
+
+						Command c = new Command(){
+
+							@Override
+							public void execute() {
+								AbstractEMFOperation emfOp = new AbstractEMFOperation(editor.getEditingDomain(), "Add sketch model") {
+
+									@Override
+									protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+										NodeImpl n = (NodeImpl)getHost().getParent().getModel();
+										Scene s = (Scene) n.basicGetElement();
+										s.getSketch().add(sketch);
+
+										return Status.OK_STATUS;
+									}
+
+								};
+
+
+								try {
+									OperationHistoryFactory.getOperationHistory().execute(emfOp, null, null);
+								} catch (ExecutionException e) {}
+							}
+						};
+
+						command.add(c);				
+						command.add(getHost().getCommand(createRequest));
+
+
 					}catch(Exception e){
 						e.printStackTrace();
 					}
-					
+
 				}
 
 			}
 		}
 		return command;
 	}
-		
+
 }
