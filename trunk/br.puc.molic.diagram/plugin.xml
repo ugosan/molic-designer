@@ -90,6 +90,15 @@ Teste de nota de copyright do Molic
                class="br.puc.molic.diagram.actions.ExportToCSVAction"
                menubarPath="file/additions"
                id="br.puc.molic.diagram.ExportToCSVAction">
+         </action>
+         <menu
+               id="br.puc.molic.diagram.menu1"
+               label="label">
+         </menu>
+         <action
+               id="br.puc.molic.diagram.action1"
+               label="label"
+               style="pulldown">
          </action>         
       </actionSet>
        
@@ -598,7 +607,8 @@ Teste de nota de copyright do Molic
          class="br.puc.molic.diagram.views.GoalsView"
          icon="icons/goal.png"
          id="br.puc.molic.diagram.views.GoalsView"
-         name="Goals">
+         name="Goals"       
+         restorable="true">
    </view>
    <category
          id="br.puc.molic.diagram"
@@ -609,9 +619,35 @@ Teste de nota de copyright do Molic
          class="br.puc.molic.diagram.views.GalleryView"
          icon="icons/gallery.gif"
          id="br.puc.molic.diagram.views.GalleryView"
-         name="Gallery">
+         name="Gallery"
+         restorable="true">
    </view>
 </extension>
+  <extension point="org.eclipse.ui.perspectiveExtensions"> 
+        <perspectiveExtension 
+            targetID="br.puc.molic.diagram.MolicPerspective">             
+            <view id="br.puc.molic.diagram.views.GalleryView" 
+                relative="org.eclipse.ui.views.ResourceNavigator" 
+                relationship="right"
+                closeable="false"/> 
+            <view id="br.puc.molic.diagram.views.GoalsView" 
+                relative="org.eclipse.ui.views.ResourceNavigator"      
+                relationship="right"           
+                closeable="false"/> 
+            <view id="org.eclipse.ui.views.PropertySheet" 
+                relative="org.eclipse.ui.views.ResourceNavigator"      
+                relationship="right"           
+                closeable="false"/> 
+            <view id="org.eclipse.ui.views.ContentOutline" 
+                relative="org.eclipse.ui.views.ResourceNavigator"      
+                relationship="right"           
+                closeable="false"/> 
+             <view id="org.eclipse.ui.views.ProblemView" 
+                relative="org.eclipse.ui.views.ResourceNavigator"      
+                relationship="right"           
+                closeable="false"/> 
+        </perspectiveExtension> 
+    </extension> 
 <extension
       point="org.eclipse.help.contexts">
    <contexts
@@ -655,6 +691,16 @@ Teste de nota de copyright do Molic
    </extension>
 
 
+<extension point="org.eclipse.ui.activities">
+<activity id="com.sequenom.ivd.actitivities.unwantedActionSet1" name="Unwanted Search ActionSet">
+   <enabledwhen>
+      <with variable="activePartId">  
+<equals value="com.sequenom.ivd.actitivities.unwantedActionSet"> 
+</equals>    
+</with></enabledwhen></activity></extension>
+
+<activitypatternbinding activityid="com.sequenom.ivd.actitivities.unwantedActionSet1" pattern="org.eclipse.search.*">
+</activitypatternbinding>
 
 
 

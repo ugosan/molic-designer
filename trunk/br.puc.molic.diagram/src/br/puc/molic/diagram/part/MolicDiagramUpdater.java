@@ -20,7 +20,6 @@ import br.puc.molic.ClosingPoint;
 import br.puc.molic.Diagram;
 import br.puc.molic.Element;
 import br.puc.molic.MolicPackage;
-
 import br.puc.molic.OpeningPoint;
 import br.puc.molic.Scene;
 import br.puc.molic.Sketch;
@@ -30,7 +29,6 @@ import br.puc.molic.Utterance;
 import br.puc.molic.diagram.edit.parts.BRTUtteranceEditPart;
 import br.puc.molic.diagram.edit.parts.ClosingPointEditPart;
 import br.puc.molic.diagram.edit.parts.DiagramEditPart;
-
 import br.puc.molic.diagram.edit.parts.OpeningPointEditPart;
 import br.puc.molic.diagram.edit.parts.SceneEditPart;
 import br.puc.molic.diagram.edit.parts.SceneSketchesCompartmentEditPart;

@@ -48,7 +48,7 @@ public class MolicPaletteFactory {
 		paletteContainer.add(new PaletteSeparator());
 		paletteContainer.add(createUtterance8CreationTool());
 		paletteContainer.add(createBreakdown9CreationTool());
-		paletteContainer.add(createSketch10CreationTool());
+		//paletteContainer.add(createSketch10CreationTool());
 		return paletteContainer;
 	}
 

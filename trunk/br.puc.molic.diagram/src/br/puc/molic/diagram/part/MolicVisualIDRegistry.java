@@ -14,7 +14,6 @@ import br.puc.molic.diagram.edit.parts.BRTUtteranceEditPart;
 import br.puc.molic.diagram.edit.parts.BRTUtteranceLabelEditPart;
 import br.puc.molic.diagram.edit.parts.ClosingPointEditPart;
 import br.puc.molic.diagram.edit.parts.DiagramEditPart;
-
 import br.puc.molic.diagram.edit.parts.OpeningPointEditPart;
 import br.puc.molic.diagram.edit.parts.SceneDialogueEditPart;
 import br.puc.molic.diagram.edit.parts.SceneEditPart;
@@ -26,7 +25,6 @@ import br.puc.molic.diagram.edit.parts.UbiquitousAccessEditPart;
 import br.puc.molic.diagram.edit.parts.UbiquitousAccessLabelEditPart;
 import br.puc.molic.diagram.edit.parts.UtteranceEditPart;
 import br.puc.molic.diagram.edit.parts.UtteranceLabelEditPart;
-import br.puc.molic.diagram.edit.parts.WrappingLabelEditPart;
 
 /**
  * This registry is used to determine which type of visual object should be
