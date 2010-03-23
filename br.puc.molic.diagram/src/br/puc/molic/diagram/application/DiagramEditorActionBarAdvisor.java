@@ -11,6 +11,7 @@ import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.ICoolBarManager;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
@@ -21,6 +22,7 @@ import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
@@ -65,28 +67,23 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 		this.adjustOutsideActions();
 	}
 
-	private void adjustOutsideActions() {
-		String[] actionSetIds = {
-				"org.eclipse.ui.edit.text.actionSet.navigation",
-				"org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo",
-				"org.eclipse.ui.edit.text.actionSet.openExternalFile",
-				"org.eclipse.ui.WorkingSetActionSet",
-				"org.eclipse.ui.edit.text.actionSet.annotationNavigation",
-				"org.eclipse.update.ui.softwareUpdates",
-				"org.eclipse.ui.openLocalFile" };
-		ActionSetRegistry reg = WorkbenchPlugin.getDefault()
-				.getActionSetRegistry();
-		IActionSetDescriptor[] actionSets = reg.getActionSets();
-		for (int i = actionSets.length - 1; i >= 0; i--) {
-			for (int j = 0; j < actionSetIds.length; j++) {
-				if (actionSets[i].getId().equals(actionSetIds[j])) {
-					IExtension ext = actionSets[i].getConfigurationElement()
-							.getDeclaringExtension();
-					reg.removeExtension(ext, new Object[] { actionSets[i] });
-				}
-			}
-		}
+	private void adjustOutsideActions() {			
+		final ActionSetRegistry reg = WorkbenchPlugin.getDefault().getActionSetRegistry();
+		final IActionSetDescriptor[] actionSets = reg.getActionSets();
+		final String[] removeActionSets = new String[] {
+		"org.eclipse.search.searchActionSet","org.eclipse.ui.cheatsheets.actionSet",
+		"org.eclipse.ui.actionSet.keyBindings","org.eclipse.ui.edit.text.actionSet.navigation",
+		"org.eclipse.ui.edit.text.actionSet.annotationNavigation","org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo",
+		"org.eclipse.ui.edit.text.actionSet.openExternalFile","org.eclipse.ui.externaltools.ExternalToolsSet",
+		"org.eclipse.ui.WorkingSetActionSet","org.eclipse.update.ui.softwareUpdates",
+		"org.eclipse.ui.actionSet.openFiles","org.eclipse.mylyn.tasks.ui.navigation", };
 
+		for (int i = 0; i < actionSets.length; i++) {
+		boolean found = false;
+		for (int j = 0; j < removeActionSets.length; j++) {  if(removeActionSets[j].equals(actionSets[i].getId())) {  found= true;   }  }    if(!found) {  continue; }  final IExtension ext = actionSets[i].getConfigurationElement().getDeclaringExtension();  reg.removeExtension(ext, new Object[] { actionSets[i]  });   } 
+
+		
+		
 	}
 
 	/**
@@ -266,7 +263,7 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 
 			toolBarX.add(new GroupMarker(IWorkbenchActionConstants.PRINT_EXT));
 
-			toolBarX.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
+			//toolBarX.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 			toolBar.add(new ToolBarContributionItem(toolBarX,
 					IWorkbenchActionConstants.TOOLBAR_FILE));
 		}
@@ -285,8 +282,7 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 			toolBarX.add(new Separator(IWorkbenchActionConstants.GROUP_HELP));
 
 			toolBarX.add(new GroupMarker(IWorkbenchActionConstants.GROUP_APP));
-			toolBar.add(new ToolBarContributionItem(toolBarX,
-					IWorkbenchActionConstants.TOOLBAR_HELP));
+			toolBar.add(new ToolBarContributionItem(toolBarX, IWorkbenchActionConstants.TOOLBAR_HELP));
 		}
 	}
 

@@ -5,20 +5,11 @@ import java.util.List;
 
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.TransferData;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.jface.util.LocalSelectionTransfer;
-
-import br.puc.molic.diagram.providers.MolicElementTypes;
 
 public class GalleryDropTargetListener extends DiagramDropTargetListener {
 
