@@ -79,32 +79,9 @@ Teste de nota de copyright do Molic
    </extension>
 
 
-      <extension point="org.eclipse.ui.actionSets">
-      <?gmfgen generated="false"?>
-          <actionSet
-            label="%exportToCSVActionLabel"
-            visible="true"
-            id="br.puc.molic.diagram.ExportToCSV">
-         <action
-               label="%exportToCSVActionLabel"
-               class="br.puc.molic.diagram.actions.ExportToCSVAction"
-               menubarPath="file/additions"
-               id="br.puc.molic.diagram.ExportToCSVAction">
-         </action>
-         <menu
-               id="br.puc.molic.diagram.menu1"
-               label="label">
-         </menu>
-         <action
-               id="br.puc.molic.diagram.action1"
-               label="label"
-               style="pulldown">
-         </action>         
-      </actionSet>
+      
        
-      
-      
-   </extension>
+
 	
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
       <?gmfgen generated="true"?>
@@ -464,7 +441,7 @@ Teste de nota de copyright do Molic
    <extension point="org.eclipse.ui.actionSets" id="init-diagram-action">
       <?gmfgen generated="true"?>
       <actionSet
-            label="%initDiagramActionLabel"
+            label="File Actions"
             visible="true"
             id="br.puc.molic.diagram.InitDiagram">
          <action
@@ -473,6 +450,32 @@ Teste de nota de copyright do Molic
                menubarPath="file/additions"
                id="br.puc.molic.diagram.InitDiagramAction">
          </action>
+         
+          <action
+               label="%exportToCSVActionLabel"
+               class="br.puc.molic.diagram.actions.ExportToCSVAction"
+               menubarPath="file/export/additions"
+               id="br.puc.molic.diagram.ExportToCSVAction">
+         </action>
+         <action
+               label="%exportToSVGActionLabel"
+               class="br.puc.molic.diagram.actions.ExportToSVGAction"
+               menubarPath="file/export/additions"
+               id="br.puc.molic.diagram.ExportToSVGAction">
+         </action>
+         <action
+               label="%exportToPDFActionLabel"
+               class="br.puc.molic.diagram.actions.ExportToPDFAction"
+               menubarPath="file/export/additions"
+               id="br.puc.molic.diagram.ExportToPDFAction">         
+         </action>
+         <action
+               label="%exportToJPGActionLabel"
+               class="br.puc.molic.diagram.actions.ExportToJPGAction"
+               menubarPath="file/export/additions"
+               id="br.puc.molic.diagram.ExportToJPGAction">         
+         </action>
+         
       </actionSet>
    </extension>
    <extension point="org.eclipse.ui.commands" id="update-cmd">
@@ -518,7 +521,8 @@ Teste de nota de copyright do Molic
       </product>
    </extension><extension point="org.eclipse.ui.popupMenus">
       <?gmfgen generated="false"?>
-      <objectContribution
+      
+      <!-- <objectContribution
             adaptable="false"
             id="br.puc.molic.diagram.LoadResource"
             objectClass="br.puc.molic.diagram.edit.parts.DiagramEditPart">
@@ -530,7 +534,7 @@ Teste de nota de copyright do Molic
                menubarPath="additions">
          </action>
       </objectContribution>    
-     <!-- <objectContribution
+     <objectContribution
             adaptable="false"
             id="br.puc.molic.diagram.actions.BindGoal"
             objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
@@ -563,30 +567,30 @@ Teste de nota de copyright do Molic
       </decoratorProvider>
    </extension>
 <extension point="org.eclipse.ui.actionSets" id="rcp-actions">
-      <?gmfgen generated="true"?>
+      <?gmfgen generated="false"?>
       <actionSet
             label="%applicationActionSetLabel"
             visible="true"
             id="br.puc.molic.diagram.ActionSet">
          <action
-               label="%newDiagramActionLabel"
                class="br.puc.molic.diagram.application.DiagramEditorActionBarAdvisor$NewDiagramAction"
-               menubarPath="file/new/additions"
-               id="br.puc.molic.diagram.NewDiagramAction">
+               id="br.puc.molic.diagram.NewDiagramAction"
+               label="%newDiagramActionLabel"
+               menubarPath="file/new/additions">
          </action>
          <action
-               label="%aboutActionLabel"
                class="br.puc.molic.diagram.application.DiagramEditorActionBarAdvisor$AboutAction"
-               menubarPath="help/additions"
-               id="br.puc.molic.diagram.AboutAction">
+               id="br.puc.molic.diagram.AboutAction"
+               label="%aboutActionLabel"
+               menubarPath="help/additions">
          </action>
-         <action
+         <!--<action
                label="%openURIActionLabel"
                definitionId="br.puc.molic.diagram.OpenURICommand"
                class="br.puc.molic.diagram.application.DiagramEditorActionBarAdvisor$OpenURIAction"
                menubarPath="file/additions"
                id="br.puc.molic.diagram.OpenURIAction">
-         </action>
+         </action>-->
          <action
                label="%openActionLabel"
                definitionId="br.puc.molic.diagram.OpenCommand"
@@ -594,7 +598,8 @@ Teste de nota de copyright do Molic
                menubarPath="file/additions"
                id="br.puc.molic.diagram.OpenAction">
          </action>
-      </actionSet>
+        
+    </actionSet>
    </extension>
 <extension
       point="org.eclipse.ui.views">
@@ -658,11 +663,11 @@ Teste de nota de copyright do Molic
    </contexts>
 </extension>
 <extension point="org.eclipse.ui.menus" id="context-menus">
-      <?gmfgen generated="true"?>
+      <?gmfgen generated="false"?>
       <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
       </menuContribution>
       <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
-      </menuContribution -->
+      </menuContribution 
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <command commandId="br.puc.molic.diagram.LoadResourceAction">
             <visibleWhen>
@@ -675,15 +680,17 @@ Teste de nota de copyright do Molic
             </visibleWhen>
          </command>
       </menuContribution>
+      -->
    </extension>
 
 <extension point="org.eclipse.ui.commands" id="menu-commands">
-      <?gmfgen generated="true"?>
-      <category id="br.puc.molic.diagram.part.MolicDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <?gmfgen generated="false"?>
+     <!-- <category id="br.puc.molic.diagram.part.MolicDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
       <command id="br.puc.molic.diagram.LoadResourceAction"
          name="Load Resource"
          categoryId="br.puc.molic.diagram.part.MolicDiagramEditorID"
          defaultHandler="br.puc.molic.diagram.part.LoadResourceAction"/>
+         -->
    </extension>
 
 <extension point="org.eclipse.ui.handlers" id="menu-handlers">
@@ -701,7 +708,6 @@ Teste de nota de copyright do Molic
 
 <activitypatternbinding activityid="com.sequenom.ivd.actitivities.unwantedActionSet1" pattern="org.eclipse.search.*">
 </activitypatternbinding>
-
 
 
 
