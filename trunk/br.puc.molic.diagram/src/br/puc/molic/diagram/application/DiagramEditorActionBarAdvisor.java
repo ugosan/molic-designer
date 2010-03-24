@@ -41,6 +41,7 @@ import org.eclipse.ui.internal.WorkbenchPlugin;
 import org.eclipse.ui.internal.registry.ActionSetRegistry;
 import org.eclipse.ui.internal.registry.IActionSetDescriptor;
 
+import br.puc.molic.diagram.actions.ExportToCSVAction;
 import br.puc.molic.diagram.part.Messages;
 import br.puc.molic.diagram.part.MolicCreationWizard;
 
@@ -106,6 +107,7 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 
 		//register(ActionFactory.CLOSE_ALL.create(window));
 
+		
 		register(ActionFactory.SAVE.create(window));
 
 		register(ActionFactory.SAVE_AS.create(window));
@@ -156,6 +158,8 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 				menuX.add(menuXX);
 			}
 
+			
+			
 			menuX.add(new Separator());
 
 			menuX.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
@@ -169,10 +173,16 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 			menuX.add(getAction(ActionFactory.SAVE_ALL.getId()));			
 			/*++ added*/
 			menuX.add(new Separator());
+			IMenuManager menuExport = new MenuManager(
+					"Export", "export");
+			menuExport.add(new GroupMarker(
+					IWorkbenchActionConstants.MB_ADDITIONS));
+			menuX.add(menuExport);
 			menuX.add(getAction(ActionFactory.PRINT.getId()));
 	
 			menuX.add(new Separator());
-
+						
+			 
 			menuX.add(getAction(ActionFactory.QUIT.getId()));
 
 			menuX.add(new GroupMarker(IWorkbenchActionConstants.FILE_END));
@@ -258,6 +268,8 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 			toolBarX.add(getAction(ActionFactory.SAVE.getId()));
 
 			toolBarX.add(new GroupMarker(IWorkbenchActionConstants.SAVE_EXT));
+			
+			
 
 			toolBarX.add(getAction(ActionFactory.PRINT.getId()));
 

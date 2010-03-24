@@ -50,7 +50,7 @@ public class SaveDialog {
 
                     // We really should read this string from a
                     // resource bundle
-                    mb.setMessage("O arquivo já existe! Você gostaria de substituir?");
+                    mb.setMessage("The file already exists. Replace it?");
 
                     // If they click Yes, we're done and we drop out. If
                     // they click No, we redisplay the File Dialog

@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.render.util.CopyToImageUtil;
 import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
 import org.eclipse.jface.action.IAction;
@@ -45,7 +46,8 @@ public class ExportToCSVAction implements IWorkbenchWindowActionDelegate {
                
         nodes = (List<EditPart>)diagram.getChildren();
         connections = (List<ConnectionEditPart>)diagram.getConnections();
-                       
+        
+          
         
         //EditPart p = (EditPart) diagram.getChildren().get(0);
         //p.setSelected(EditPart.SELECTED_PRIMARY);
