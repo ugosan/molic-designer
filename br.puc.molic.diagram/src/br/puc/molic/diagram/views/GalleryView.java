@@ -237,13 +237,18 @@ public class GalleryView extends ViewPart {
 
 					for (int i = 0; i < files.length; i++) {
 						if(files[i].isFile()){
-							GalleryItem item = new GalleryItem(group, SWT.NONE);
-
+							try{
+							
+							
 							Image itemImage = new Image(parent.getDisplay(), files[i].getAbsolutePath());
+							
+							GalleryItem item = new GalleryItem(group, SWT.NONE);
 							item.setImage(itemImage);
 							item.setText(files[i].getName().substring(0, files[i].getName().indexOf("."))); //$NON-NLS-1$
 							item.setData(files[i]);
-
+							}catch(Exception ex){
+								
+							}
 						}
 					}
 					
@@ -333,6 +338,7 @@ public class GalleryView extends ViewPart {
 				
 				gr.setItemSize(320, 240);
 				gr.setFillIfSingleColumn(true);
+				
 			}
 			
 		});

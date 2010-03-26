@@ -12,17 +12,35 @@
  */
 package br.puc.molic.diagram.edit.parts;
 
+import java.beans.PropertyChangeEvent;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.eclipse.draw2d.Bendpoint;
+import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
+import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 
 import br.puc.molic.diagram.edit.policies.GalleryDropEditPolicy;
@@ -35,6 +53,22 @@ import br.puc.molic.diagram.part.Messages;
  */
 public class SceneSketchesCompartmentEditPart extends ShapeCompartmentEditPart {
 
+
+	@Override
+	protected void setCollapsed(boolean collapsed, boolean animate) {
+		if(collapsed){
+			//System.out.println("collapsed");
+			
+		}else{
+			//System.out.println("opened");
+		}
+		
+		super.setCollapsed(collapsed, animate);
+		
+		
+	}
+
+
 	/**
 	 * @generated
 	 */
@@ -45,6 +79,7 @@ public class SceneSketchesCompartmentEditPart extends ShapeCompartmentEditPart {
 	 */
 	public SceneSketchesCompartmentEditPart(View view) {
 		super(view);
+		
 	}
 
 	/**

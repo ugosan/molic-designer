@@ -1,5 +1,9 @@
 package br.puc.molic.diagram.application;
 
+import java.io.File;
+
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPlatformRunnable;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
@@ -32,5 +36,7 @@ public class MolicApplication implements IApplication {
 	 * @generated
 	 */
 	public void stop() {
+		
+		
 	}
 }

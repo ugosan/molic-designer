@@ -19,6 +19,14 @@ import br.puc.molic.diagram.part.Messages;
  */
 public class DiagramEditorWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 
+	@Override
+	public void postWindowClose() {
+		// TODO Auto-generated method stub
+		super.postWindowClose();
+		System.out.println("Exiting MoLIC Designer...");
+		//TODO: remember to remove temporary files here
+	}
+
 	/**
 	 * @generated
 	 */

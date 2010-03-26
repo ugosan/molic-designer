@@ -301,10 +301,10 @@ public class Scene extends EObjectImpl implements Element {
 	 * @see #isSetName()
 	 * @see br.puc.molic.MolicPackage#getScene_Name()
 	 * @model default="Scene" unsettable="true" changeable="false"
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getName() {
-		return name;
+		return name +" "+topic;
 	}
 
 	/**

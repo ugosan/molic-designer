@@ -3,6 +3,7 @@ package br.puc.molic.diagram.edit.parts;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.LabelLocator;
@@ -24,7 +25,7 @@ public class MolicExtNodeLabelEditPart extends LabelEditPart {
 	/**
 	 * @generated
 	 */
-	public void refreshBounds() {
+	/*public void refreshBounds() {
 		IFigure refFigure = ((GraphicalEditPart) getParent()).getFigure();
 		int dx = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE
 				.getLocation_X())).intValue();
@@ -48,7 +49,21 @@ public class MolicExtNodeLabelEditPart extends LabelEditPart {
 						return getLabelLocation(parent);
 					}
 				});
-	}
+	}*/
+    public void refreshBounds() {
+        int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+        int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+        Dimension size = new Dimension(width, height);
+
+               getFigure().setMinimumSize(size) ; //This is a workaround for the resize limitation if the figure has a child (such as a label)
+        int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+        int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+        Point loc = new Point(x, y);
+        ((GraphicalEditPart) getParent()).setLayoutConstraint(
+            this,
+            getFigure(),
+            new Rectangle(loc, size));
+    } 
 
 	/**
 	 * @generated

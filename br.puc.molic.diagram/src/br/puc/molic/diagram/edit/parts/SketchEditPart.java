@@ -12,18 +12,24 @@
  */
 package br.puc.molic.diagram.edit.parts;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -45,11 +51,13 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
 import br.puc.molic.Sketch;
 import br.puc.molic.diagram.edit.policies.SketchItemSemanticEditPolicy;
 import br.puc.molic.diagram.providers.MolicElementTypes;
+import br.puc.molic.util.Base64;
 
 /**
  * @generated
@@ -121,7 +129,7 @@ public class SketchEditPart extends ShapeNodeEditPart {
 	 */
 	protected IFigure createNodeShape() {
 
-		URL url = null;
+		//URL url = null;
 		Bundle bundle = Platform.getBundle("br.puc.molic.diagram");
 		try {
 
@@ -130,14 +138,17 @@ public class SketchEditPart extends ShapeNodeEditPart {
 
 			if (s.getImage() != null) {
 
-				url = FileLocator.resolve(new URL("file://" + s.getImage()));
-				primaryShape = new SketchFigure(RenderedImageFactory
-						.getInstance(url));
 				
+				IWorkspaceRoot myWorkspaceRoot= ResourcesPlugin.getWorkspace().getRoot();			
+				File imgfile = myWorkspaceRoot.getLocation().append("gallerytemp"+System.currentTimeMillis()).toFile();
+				
+				Base64.decodeToFile(s.getImage(), imgfile.getPath());
+
+				primaryShape = new SketchFigure(RenderedImageFactory.getInstance(imgfile.getPath()));
+
 
 			} else {
-				primaryShape = new SketchFigure(RenderedImageFactory
-						.getInstance(bundle.getEntry("/icons/imgmiss.gif")));
+				primaryShape = new SketchFigure(RenderedImageFactory.getInstance(bundle.getEntry("/icons/imgmiss.gif")));
 			}
 
 		} catch (IOException e) {
@@ -411,38 +422,51 @@ public class SketchEditPart extends ShapeNodeEditPart {
 	 */
 	public class SketchFigure extends ScalableImageFigure {
 
+		private RenderedImage image;
 		/**
 		 * @generated NOT
 		 */
 		public SketchFigure(RenderedImage i) {
 			super(i, false, true, true);
-
+			this.image = i;
 			createContents();
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		private void createContents() {
-
+			/*
 			try {
-				Sketch sketch = (Sketch) ((Node) SketchEditPart.this.getModel())
-						.getElement();
+				Sketch sketch = (Sketch) ((Node) SketchEditPart.this.getModel()).getElement();
 				if (sketch.getImage() != null) {
-					URL url = FileLocator.resolve(new URL("file://"
-							+ sketch.getImage()));
-					RenderedImage image = RenderedImageFactory.getInstance(url);
+					
+					//URL url = FileLocator.resolve(new URL("file://"+ sketch.getImage()));
+					//RenderedImage image = RenderedImageFactory.getInstance(url);
 					
 					//Dimension d = new Dimension(image.getRenderInfo().getWidth(), image.getRenderInfo().getHeight());
 					//d.scale(0.5);
 					//this.setSize(d);
-					this.setRenderedImage(image);
+					//this.setRenderedImage(image);
 
+					IWorkspaceRoot myWorkspaceRoot= ResourcesPlugin.getWorkspace().getRoot();			
+					File imgfile = myWorkspaceRoot.getLocation().append("gallerytemp"+System.currentTimeMillis()+".png").toFile();
+					
+					
+					
+					
+					Base64.decodeToFile(sketch.getImage(), imgfile.getPath());
+					
+					
+					
+					this.setRenderedImage(RenderedImageFactory.getInstance(url));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
+	*/
+			
+			this.setRenderedImage(image);
 		}
 
 		/**
