@@ -34,6 +34,7 @@ public class MolicDiagramEditor extends DiagramDocumentEditor {
 
 	private AdapterFactoryContentProvider adapterFactoryConentProvider;
 
+	
 	/**
 	 * @generated
 	 */

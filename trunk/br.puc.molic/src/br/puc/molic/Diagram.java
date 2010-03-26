@@ -279,4 +279,6 @@ public class Diagram extends EObjectImpl implements EObject {
 		return result.toString();
 	}
 
+
+	
 } // Diagram

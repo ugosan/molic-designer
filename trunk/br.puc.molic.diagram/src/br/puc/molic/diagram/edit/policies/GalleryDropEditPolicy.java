@@ -9,6 +9,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -28,6 +30,7 @@ import br.puc.molic.MolicPackage;
 import br.puc.molic.Scene;
 import br.puc.molic.Sketch;
 import br.puc.molic.diagram.providers.MolicElementTypes;
+import br.puc.molic.util.Base64;
 
 
 public class GalleryDropEditPolicy extends DragDropEditPolicy {
@@ -60,9 +63,15 @@ public class GalleryDropEditPolicy extends DragDropEditPolicy {
 						final DiagramEditor editor = (DiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 
 						command = new CompoundCommand();
+						
+						//URI input = ((URIEditorInput) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput()).getURI(); 
 
+						String img = Base64.encodeFromFile(f.getPath());
+						
+
+						
 						final Sketch sketch = MolicFactory.eINSTANCE.createSketch();
-						sketch.eSet(MolicPackage.Literals.SKETCH__IMAGE, f.getAbsolutePath());
+						sketch.eSet(MolicPackage.Literals.SKETCH__IMAGE, img);
 
 						CreateViewRequest.ViewDescriptor viewDescriptor = new CreateViewRequest.ViewDescriptor(
 								new EObjectAdapter(sketch), Node.class, ((IHintedType)MolicElementTypes.Sketch_3001).getSemanticHint(), true,
