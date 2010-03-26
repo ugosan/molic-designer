@@ -3,6 +3,10 @@
  */
 package br.puc.molic.diagram.application;
 
+import java.io.File;
+
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
@@ -23,8 +27,40 @@ public class DiagramEditorWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor 
 	public void postWindowClose() {
 		// TODO Auto-generated method stub
 		super.postWindowClose();
-		System.out.println("Exiting MoLIC Designer...");
-		//TODO: remember to remove temporary files here
+		
+		
+		this.cleanGalleryTempFiles();
+
+	}
+
+	private void cleanGalleryTempFiles() {
+		System.out.println("Cleaning temporary files...");
+		
+		IWorkspaceRoot myWorkspaceRoot = ResourcesPlugin.getWorkspace()
+				.getRoot();
+
+		File dir = myWorkspaceRoot.getLocation().toFile();
+
+		if (!dir.exists()) {
+			System.out.println(myWorkspaceRoot.getFullPath().toFile()
+					+ " does not exist");
+			return;
+		}
+		String patt = "gallerytemp";
+
+		String[] info = dir.list();
+		for (int i = 0; i < info.length; i++) {
+			File n = new File(dir + dir.separator + info[i]);
+			if (!n.isFile()) { // skip ., .., other directories, etc.
+				continue;
+			}
+			if (info[i].indexOf(patt) == -1) { // name doesn't match
+				continue;
+			}
+			// System.out.println("removing " + n.getPath());
+			if (!n.delete())
+				System.err.println("Couldn't remove " + n.getPath());
+		}
 	}
 
 	/**

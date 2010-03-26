@@ -63,15 +63,10 @@ public class GalleryDropEditPolicy extends DragDropEditPolicy {
 						final DiagramEditor editor = (DiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 
 						command = new CompoundCommand();
-						
-						//URI input = ((URIEditorInput) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput()).getURI(); 
 
-						String img = Base64.encodeFromFile(f.getPath());
-						
-
-						
+						//creates the sketch element and set the image encoded as Base64
 						final Sketch sketch = MolicFactory.eINSTANCE.createSketch();
-						sketch.eSet(MolicPackage.Literals.SKETCH__IMAGE, img);
+						sketch.eSet(MolicPackage.Literals.SKETCH__IMAGE,  Base64.encodeFromFile(f.getPath()));
 
 						CreateViewRequest.ViewDescriptor viewDescriptor = new CreateViewRequest.ViewDescriptor(
 								new EObjectAdapter(sketch), Node.class, ((IHintedType)MolicElementTypes.Sketch_3001).getSemanticHint(), true,
