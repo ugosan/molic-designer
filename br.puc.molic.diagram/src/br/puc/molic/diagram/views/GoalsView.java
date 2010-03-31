@@ -21,8 +21,10 @@ import org.eclipse.gef.EditPartListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.DiagramColorConstants;
+import org.eclipse.gmf.runtime.diagram.ui.internal.editparts.NoteAttachmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrapLabel;
 import org.eclipse.gmf.runtime.notation.impl.DiagramImpl;
 import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
@@ -301,9 +303,6 @@ public class GoalsView extends ViewPart implements IPartListener2, EditPartListe
 
 			clearHighlighted();
 
-
-
-
 			Iterator<String> goals = selectedGoals.iterator();
 			while(goals.hasNext()){
 				String goal = goals.next();
@@ -313,9 +312,11 @@ public class GoalsView extends ViewPart implements IPartListener2, EditPartListe
 
 				for(int i=0;i<nodesWithGoal.size();i++){
 
-					Shape s = (Shape)nodesWithGoal.get(i).getFigure().getChildren().get(0);          	  
-					s.setLineWidth(3);            	  
-					s.setForegroundColor(DiagramColorConstants.darkBlue);  
+					if(nodesWithGoal.get(i).getFigure().getChildren().get(0) instanceof Shape){
+						Shape s = (Shape)nodesWithGoal.get(i).getFigure().getChildren().get(0);          	  
+						s.setLineWidth(3);            	  
+						s.setForegroundColor(DiagramColorConstants.darkBlue);  
+					}
 				}
 
 				for(int i=0;i<connectionsWithGoal.size();i++){
@@ -336,11 +337,12 @@ public class GoalsView extends ViewPart implements IPartListener2, EditPartListe
 		Iterator it = activeEditor.getDiagramEditPart().getChildren().iterator();
 	    while(it.hasNext()){
 	    	ShapeNodeEditPart n = (ShapeNodeEditPart) it.next();
-
-            Shape s = (Shape)n.getFigure().getChildren().get(0);                	 
-            s.setLineWidth(2);            	  
-            s.setForegroundColor(DiagramColorConstants.black);                     
-  
+	    	
+	    	if(n.getFigure().getChildren().get(0) instanceof Shape){
+	    		Shape s = (Shape)n.getFigure().getChildren().get(0);                	 
+	    		s.setLineWidth(2);            	  
+	    		s.setForegroundColor(DiagramColorConstants.black);                     
+	    	}
 	    }
 	    it = activeEditor.getDiagramEditPart().getConnections().iterator();
 	    while(it.hasNext()){
@@ -350,9 +352,12 @@ public class GoalsView extends ViewPart implements IPartListener2, EditPartListe
             s.setLineWidth(1);               
         	s.setForegroundColor(DiagramColorConstants.black);                  
         	
-        	//Breakdowns have thicker lines
-        	if(((EdgeImpl)n.getModel()).basicGetElement().eClass() == MolicPackage.eINSTANCE.getBRTUtterance()){
-        		s.setLineWidth(2);
+        	//get model from note attachments causes NullPointerException
+        	if(!(n instanceof NoteAttachmentEditPart)){
+        		if(((EdgeImpl)n.getModel()).basicGetElement().eClass() == MolicPackage.eINSTANCE.getBRTUtterance()){        		
+        			//Breakdowns have thicker lines
+        			s.setLineWidth(2);
+        		}
         	}
 
 	    }

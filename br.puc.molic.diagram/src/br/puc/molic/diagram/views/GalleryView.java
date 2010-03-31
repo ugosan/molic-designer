@@ -4,10 +4,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
@@ -16,6 +21,7 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -43,6 +49,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 import org.eclipse.ui.views.properties.PropertySheetEntry;
 import org.eclipse.ui.views.properties.PropertySheetPage;
+import org.osgi.framework.Bundle;
 
 import br.puc.molic.util.RelativePath;
 
@@ -75,6 +82,8 @@ public class GalleryView extends ViewPart {
 	private Gallery gallery;	
 	private Action help;
 	private Action open;
+	private Action refresh;
+	
 	private Action doubleClickAction;
 	
 	private Composite parent;
@@ -287,6 +296,7 @@ public class GalleryView extends ViewPart {
 	private void fillContextMenu(IMenuManager manager) {
 
 		manager.add(open);
+		//manager.add(refresh);
 		manager.add(new Separator());
 		manager.add(help);
 		//drillDownAdapter.addNavigationActions(manager);
@@ -348,6 +358,7 @@ public class GalleryView extends ViewPart {
 	private void fillLocalToolBar(IToolBarManager manager) {
 
 		manager.add(open);
+		//manager.add(refresh);
 		manager.add(new Separator());
 		manager.add(help);
 		//drillDownAdapter.addNavigationActions(manager);
@@ -394,6 +405,44 @@ public class GalleryView extends ViewPart {
 		open.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
 				getImageDescriptor(ISharedImages.IMG_OBJ_FOLDER));
 
+		refresh = new Action() {
+			public void run() {
+				try { 
+				DirectoryDialog dialog = new DirectoryDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+				 
+				 String folder = dialog.open();
+				 if(folder != null){
+					 
+					IWorkspaceRoot myWorkspaceRoot= ResourcesPlugin.getWorkspace().getRoot();
+					File galleryconf = myWorkspaceRoot.getLocation().append("gallery.conf").toFile();
+					if(!galleryconf.exists()) galleryconf.createNewFile();
+						
+					Properties p = new Properties();
+					FileInputStream fis = new FileInputStream(galleryconf);
+					p.load(fis);
+							
+					String dirs = p.getProperty("dirs");					
+					if(dirs == null) dirs = "";
+					dirs += folder+";";
+							
+					p.setProperty("dirs", dirs);
+					
+					FileOutputStream fos = new FileOutputStream(galleryconf);
+					p.store(fos, "Properties of MoLIC Designer's UI. Delete this file to restore to the original state");
+					
+					loadGallery();
+					 
+				 }
+				 } catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+				}
+			}
+		};
+		refresh.setText("Refresh");
+		refresh.setToolTipText("Refresh Image Folder");
+		refresh.setImageDescriptor(getImage("/icons/refresh.gif"));
+		
 		help = new Action() {
 			public void run() {
 				showMessage("This will have help content");
@@ -407,6 +456,14 @@ public class GalleryView extends ViewPart {
 
 	}
 
+	public ImageDescriptor getImage(String p) {
+		
+		Bundle bundle = Platform.getBundle("br.puc.molic.diagram");
+		IPath path = new Path(p);
+		URL imageUrl = FileLocator.find(bundle, path, null);
+		
+		return  ImageDescriptor.createFromURL(imageUrl);
+	}
 
 	private void showMessage(String message) {
 		MessageDialog.openInformation(
