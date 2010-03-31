@@ -242,6 +242,7 @@ public class SceneDialogueEditPart extends CompartmentEditPart implements
 		defaultText = getLabelTextHelper(figure);
 		registerVisuals();
 		refreshVisuals();
+		
 	}
 
 	/**
@@ -258,6 +259,7 @@ public class SceneDialogueEditPart extends CompartmentEditPart implements
 			performDirectEdit();
 
 			//org.eclipse.emf.edit.ui.provider.PropertyDescriptor;
+			
 		}
 	}
 

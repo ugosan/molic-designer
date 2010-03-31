@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="MoLIC" uid="molicdesigner" id="br.puc.molic.diagram.molicproduct" application="br.puc.molic.diagram.MolicApplication" version="0.0.2" useFeatures="false" includeLaunchers="true">
+<product name="MoLIC" uid="molicdesigner" id="br.puc.molic.diagram.molicproduct" application="br.puc.molic.diagram.MolicApplication" version="0.3" useFeatures="false" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -30,7 +30,10 @@
       <plugin id="br.puc.molic.diagram"/>
       <plugin id="br.puc.molic.edit"/>
       <plugin id="br.puc.molic.editor"/>
+      <plugin id="br.puc.molic.rcp"/>
+      <plugin id="br.puc.molic.tests"/>
       <plugin id="com.ibm.icu"/>
+      <plugin id="javax.xml"/>
       <plugin id="net.sourceforge.lpg.lpgjavaruntime"/>
       <plugin id="org.apache.ant"/>
       <plugin id="org.apache.batik.bridge"/>
@@ -45,7 +48,13 @@
       <plugin id="org.apache.batik.util"/>
       <plugin id="org.apache.batik.util.gui"/>
       <plugin id="org.apache.batik.xml"/>
+      <plugin id="org.apache.log4j"/>
+      <plugin id="org.apache.lucene"/>
+      <plugin id="org.apache.xerces"/>
+      <plugin id="org.apache.xml.resolver"/>
+      <plugin id="org.apache.xml.serializer"/>
       <plugin id="org.eclipse.ant.core"/>
+      <plugin id="org.eclipse.ant.ui"/>
       <plugin id="org.eclipse.compare"/>
       <plugin id="org.eclipse.compare.core"/>
       <plugin id="org.eclipse.core.commands"/>
@@ -68,6 +77,10 @@
       <plugin id="org.eclipse.core.filesystem.win32.x86" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.jobs"/>
+      <plugin id="org.eclipse.core.net"/>
+      <plugin id="org.eclipse.core.net.linux.x86" fragment="true"/>
+      <plugin id="org.eclipse.core.net.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.core.net.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.resources"/>
       <plugin id="org.eclipse.core.resources.compatibility" fragment="true"/>
       <plugin id="org.eclipse.core.resources.win32.x86" fragment="true"/>
@@ -103,19 +116,23 @@
       <plugin id="org.eclipse.equinox.p2.core"/>
       <plugin id="org.eclipse.equinox.p2.director"/>
       <plugin id="org.eclipse.equinox.p2.engine"/>
+      <plugin id="org.eclipse.equinox.p2.exemplarysetup"/>
       <plugin id="org.eclipse.equinox.p2.garbagecollector"/>
       <plugin id="org.eclipse.equinox.p2.jarprocessor"/>
       <plugin id="org.eclipse.equinox.p2.metadata"/>
       <plugin id="org.eclipse.equinox.p2.metadata.repository"/>
       <plugin id="org.eclipse.equinox.p2.repository"/>
+      <plugin id="org.eclipse.equinox.p2.ui"/>
       <plugin id="org.eclipse.equinox.preferences"/>
       <plugin id="org.eclipse.equinox.registry"/>
       <plugin id="org.eclipse.equinox.security"/>
       <plugin id="org.eclipse.equinox.security.macosx" fragment="true"/>
+      <plugin id="org.eclipse.equinox.security.ui"/>
       <plugin id="org.eclipse.equinox.security.win32.x86" fragment="true"/>
       <plugin id="org.eclipse.equinox.simpleconfigurator"/>
       <plugin id="org.eclipse.equinox.simpleconfigurator.manipulator"/>
       <plugin id="org.eclipse.gef"/>
+      <plugin id="org.eclipse.gmf"/>
       <plugin id="org.eclipse.gmf.common"/>
       <plugin id="org.eclipse.gmf.graphdef"/>
       <plugin id="org.eclipse.gmf.runtime.common.core"/>
@@ -159,6 +176,9 @@
       <plugin id="org.eclipse.jdt.core"/>
       <plugin id="org.eclipse.jdt.core.manipulation"/>
       <plugin id="org.eclipse.jdt.debug"/>
+      <plugin id="org.eclipse.jdt.debug.ui"/>
+      <plugin id="org.eclipse.jdt.junit"/>
+      <plugin id="org.eclipse.jdt.junit.runtime"/>
       <plugin id="org.eclipse.jdt.launching"/>
       <plugin id="org.eclipse.jdt.ui"/>
       <plugin id="org.eclipse.jface"/>
@@ -173,13 +193,14 @@
       <plugin id="org.eclipse.m2m.qvt.oml.emf.util"/>
       <plugin id="org.eclipse.m2m.qvt.oml.project"/>
       <plugin id="org.eclipse.m2m.qvt.oml.runtime"/>
-      <plugin id="org.eclipse.nebula.widgets.gallery"/>
       <plugin id="org.eclipse.ocl"/>
       <plugin id="org.eclipse.ocl.ecore"/>
       <plugin id="org.eclipse.osgi"/>
       <plugin id="org.eclipse.osgi.services"/>
       <plugin id="org.eclipse.pde.build"/>
       <plugin id="org.eclipse.pde.core"/>
+      <plugin id="org.eclipse.pde.ui"/>
+      <plugin id="org.eclipse.platform"/>
       <plugin id="org.eclipse.search"/>
       <plugin id="org.eclipse.swt"/>
       <plugin id="org.eclipse.swt.carbon.macosx" fragment="true"/>
@@ -201,24 +222,48 @@
       <plugin id="org.eclipse.swt.win32.win32.x86" fragment="true"/>
       <plugin id="org.eclipse.swt.win32.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.swt.wpf.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.swtbot.eclipse.core"/>
+      <plugin id="org.eclipse.swtbot.eclipse.finder"/>
+      <plugin id="org.eclipse.swtbot.eclipse.spy"/>
+      <plugin id="org.eclipse.swtbot.eclipse.ui"/>
+      <plugin id="org.eclipse.swtbot.junit4_x"/>
+      <plugin id="org.eclipse.swtbot.swt.finder"/>
       <plugin id="org.eclipse.team.core"/>
       <plugin id="org.eclipse.team.ui"/>
       <plugin id="org.eclipse.text"/>
       <plugin id="org.eclipse.ui"/>
       <plugin id="org.eclipse.ui.carbon" fragment="true"/>
+      <plugin id="org.eclipse.ui.cheatsheets"/>
       <plugin id="org.eclipse.ui.cocoa" fragment="true"/>
       <plugin id="org.eclipse.ui.console"/>
       <plugin id="org.eclipse.ui.editors"/>
+      <plugin id="org.eclipse.ui.externaltools"/>
       <plugin id="org.eclipse.ui.forms"/>
       <plugin id="org.eclipse.ui.ide"/>
+      <plugin id="org.eclipse.ui.ide.application"/>
+      <plugin id="org.eclipse.ui.intro"/>
+      <plugin id="org.eclipse.ui.intro.universal"/>
       <plugin id="org.eclipse.ui.navigator"/>
       <plugin id="org.eclipse.ui.navigator.resources"/>
       <plugin id="org.eclipse.ui.views"/>
+      <plugin id="org.eclipse.ui.views.log"/>
       <plugin id="org.eclipse.ui.views.properties.tabbed"/>
       <plugin id="org.eclipse.ui.win32" fragment="true"/>
       <plugin id="org.eclipse.ui.workbench"/>
       <plugin id="org.eclipse.ui.workbench.texteditor"/>
       <plugin id="org.eclipse.update.configurator"/>
+      <plugin id="org.eclipse.update.core"/>
+      <plugin id="org.eclipse.update.core.linux" fragment="true"/>
+      <plugin id="org.eclipse.update.core.win32" fragment="true"/>
+      <plugin id="org.eclipse.update.scheduler"/>
+      <plugin id="org.eclipse.update.ui"/>
+      <plugin id="org.hamcrest"/>
+      <plugin id="org.hamcrest.core"/>
+      <plugin id="org.hamcrest.integration"/>
+      <plugin id="org.hamcrest.library"/>
+      <plugin id="org.hamcrest.text"/>
+      <plugin id="org.junit"/>
+      <plugin id="org.junit4"/>
       <plugin id="org.sat4j.core"/>
       <plugin id="org.sat4j.pb"/>
       <plugin id="org.w3c.css.sac"/>

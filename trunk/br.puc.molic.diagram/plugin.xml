@@ -47,7 +47,7 @@ Teste de nota de copyright do Molic
       <editor
          id="br.puc.molic.diagram.part.MolicDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/MolicDiagramFile.gif"
+         icon="icons/obj16/Scene.gif"
          extensions="molic"
          default="true"
          class="br.puc.molic.diagram.part.MolicDiagramEditor"
@@ -622,7 +622,7 @@ Teste de nota de copyright do Molic
    <view
          category="br.puc.molic.diagram"
          class="br.puc.molic.diagram.views.GalleryView"
-         icon="icons/gallery.gif"
+         icon="icons/writeout_co.gif"
          id="br.puc.molic.diagram.views.GalleryView"
          name="Gallery"
          restorable="true">
@@ -709,6 +709,36 @@ Teste de nota de copyright do Molic
 <activitypatternbinding activityid="com.sequenom.ivd.actitivities.unwantedActionSet1" pattern="org.eclipse.search.*">
 </activitypatternbinding>
 
+<extension id="MolicExampleContributionItemProvider"
+name="%ext.contributionItemProvider"
+point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <contributionItemProvider
+class="br.puc.molic.diagram.providers.MolicContributionItemProvider">
+         <Priority name="Low"/>
+         <popupContribution
+class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <!--<popupStructuredContributionCriteria
+objectClass="org.eclipse.gmf.runtime.diagram.ui.geoshapes.internal.editparts.CylinderEditPart">
+            </popupStructuredContributionCriteria>-->
+            <popupPredefinedItem
+                  id="autoSizeAction"
+                  path="/formatMenu/"
+                  remove="true"/>
+            <popupPredefinedItem
+                  id="arrangeMenu"
+                  path="/formatMenu/"
+                  remove="true"/>
+            <popupPredefinedItem
+                  id="editMenu"
+                  path="/"
+                  remove="true"/>
+            <popupPredefinedItem
+                  id="openGroup"
+                  path="/navigateMenu/"
+                  remove="true"/>
+           </popupContribution>
+       </contributionItemProvider>
+   </extension>
 
 
 
